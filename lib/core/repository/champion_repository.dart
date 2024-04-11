@@ -4,8 +4,7 @@ import 'package:league_of_legends_library/data/remote_data_source.dart';
 class ChampionRepository {
   final RemoteDataSource _remoteDataSource;
   final String _baseUrl = "https://dragontail.enricozangrando.com";
-  final String _championDataPath =
-      "14.7.1/data/en_US/champion";
+  final String _championDataPath = "14.7.1/data/en_US/champion";
 
   ChampionRepository({
     required RemoteDataSource remoteDataSource,
