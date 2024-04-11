@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:league_of_legends_library/core/model/champion.dart';
 import 'package:league_of_legends_library/core/repository/champion_repository.dart';
+import 'package:league_of_legends_library/view/champion_page/champion_page.dart';
 
-class ChampionBanner extends StatefulWidget {
-  final String basePath = "assets/";
+class ChampionButton extends StatefulWidget {
   final String championId;
   final ChampionRepository championRepository;
-  const ChampionBanner(
+  const ChampionButton(
       {super.key, required this.championId, required this.championRepository});
 
   @override
-  State<ChampionBanner> createState() => _ChampionBannerState();
+  State<ChampionButton> createState() => _ChampionButtonState();
 }
 
-class _ChampionBannerState extends State<ChampionBanner> {
+class _ChampionButtonState extends State<ChampionButton> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -23,7 +23,15 @@ class _ChampionBannerState extends State<ChampionBanner> {
           if (snapshot.hasData) {
             Champion champion = snapshot.data!;
 
-            return _buildChampionColumn(champion: champion, context: context);
+            return GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => ChampionPage(
+                        championId: champion.id,
+                        championRepository: widget.championRepository)));
+              },
+              child: _buildChampionColumn(champion: champion, context: context),
+            );
           } else if (snapshot.hasError) {
             return Text(snapshot.error.toString());
           }
@@ -41,8 +49,8 @@ class _ChampionBannerState extends State<ChampionBanner> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           _buildChampionTile(),
+          const Padding(padding: EdgeInsets.all(5)),
           _buildNameText(champion: champion, context: context),
-          _buildTitleText(champion: champion, context: context),
         ],
       );
 
@@ -58,8 +66,8 @@ class _ChampionBannerState extends State<ChampionBanner> {
           child: Image.network(
             widget.championRepository
                 .getChampionTileUrl(championId: widget.championId),
-            height: 140,
-            width: 140,
+            height: 90,
+            width: 90,
           ),
         ),
       );
@@ -68,19 +76,6 @@ class _ChampionBannerState extends State<ChampionBanner> {
           {required Champion champion, required BuildContext context}) =>
       Text(
         champion.name,
-        style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-              color: Theme.of(context).colorScheme.onPrimaryContainer,
-              fontFamily: "BeaufortforLOL",
-              fontSize: 45,
-              fontWeight: FontWeight.bold,
-              fontStyle: FontStyle.italic,
-            ),
-      );
-
-  Widget _buildTitleText(
-          {required Champion champion, required BuildContext context}) =>
-      Text(
-        champion.title,
         style: Theme.of(context).textTheme.headlineSmall?.copyWith(
               color: Theme.of(context).colorScheme.onPrimaryContainer,
               fontFamily: "BeaufortforLOL",

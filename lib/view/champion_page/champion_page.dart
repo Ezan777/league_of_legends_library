@@ -14,19 +14,25 @@ class ChampionPage extends StatefulWidget {
 }
 
 class _ChampionPageState extends State<ChampionPage> {
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(top: 15, left: 8, right: 8),
-          child: Center(
-            child: ChampionBanner(
-                championId: widget.championId,
-                championRepository: widget.championRepository),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.championId),
+      ),
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 15, left: 8, right: 8),
+            child: Center(
+              child: ChampionBanner(
+                  championId: widget.championId,
+                  championRepository: widget.championRepository),
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
