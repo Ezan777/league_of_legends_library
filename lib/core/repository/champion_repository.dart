@@ -36,6 +36,11 @@ class ChampionRepository {
   }
 
   String getChampionTileUrl({required String championId, int skinCode = 0}) {
+    // This is needed because Fiddlesticks images are broken and named FiddleSticks...
+    if (championId == "Fiddlesticks") {
+      championId = "FiddleSticks";
+    }
+
     return "$_baseUrl/img/champion/tiles/${championId}_$skinCode.jpg";
   }
 }

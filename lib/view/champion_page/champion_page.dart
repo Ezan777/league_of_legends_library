@@ -14,7 +14,6 @@ class ChampionPage extends StatefulWidget {
 }
 
 class _ChampionPageState extends State<ChampionPage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
