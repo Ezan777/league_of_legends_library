@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
         builder: (lightDynamic, darkDynamic) => MaterialApp(
               title: 'League of Legends library',
               theme: ThemeData(
+                fontFamily: "BeaufortforLOL",
                 colorScheme: lightDynamic ??
                     ColorScheme.fromSeed(
                         seedColor: Colors.greenAccent,
@@ -51,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        //backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
       body: ChampionSelectionPage(

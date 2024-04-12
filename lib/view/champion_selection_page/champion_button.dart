@@ -27,6 +27,7 @@ class _ChampionButtonState extends State<ChampionButton> {
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => ChampionPage(
+                        champion: champion,
                         championId: champion.id,
                         championRepository: widget.championRepository)));
               },
