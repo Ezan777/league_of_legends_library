@@ -34,7 +34,6 @@ class _LoreWidgetState extends State<LoreWidget> {
         champion.lore,
         style: Theme.of(context).textTheme.bodyLarge?.copyWith(
               color: Theme.of(context).colorScheme.onPrimaryContainer,
-              fontFamily: "BeaufortforLOL",
             ),
       );
 }

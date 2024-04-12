@@ -79,7 +79,6 @@ class _ChampionButtonState extends State<ChampionButton> {
         champion.name,
         style: Theme.of(context).textTheme.headlineSmall?.copyWith(
               color: Theme.of(context).colorScheme.onPrimaryContainer,
-              fontFamily: "BeaufortforLOL",
               fontWeight: FontWeight.bold,
               fontStyle: FontStyle.italic,
             ),

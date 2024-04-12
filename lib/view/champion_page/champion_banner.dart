@@ -70,7 +70,6 @@ class _ChampionBannerState extends State<ChampionBanner> {
         champion.name,
         style: Theme.of(context).textTheme.headlineLarge?.copyWith(
               color: Theme.of(context).colorScheme.onPrimaryContainer,
-              fontFamily: "BeaufortforLOL",
               fontSize: 45,
               fontWeight: FontWeight.bold,
               fontStyle: FontStyle.italic,
@@ -83,7 +82,6 @@ class _ChampionBannerState extends State<ChampionBanner> {
         champion.title,
         style: Theme.of(context).textTheme.headlineSmall?.copyWith(
               color: Theme.of(context).colorScheme.onPrimaryContainer,
-              fontFamily: "BeaufortforLOL",
               fontWeight: FontWeight.bold,
               fontStyle: FontStyle.italic,
             ),
