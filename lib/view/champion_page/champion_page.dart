@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:league_of_legends_library/core/model/champion.dart';
 import 'package:league_of_legends_library/core/repository/champion_repository.dart';
 import 'package:league_of_legends_library/view/champion_page/champion_banner.dart';
-import 'package:league_of_legends_library/view/champion_page/lore_widget.dart';
+import 'package:league_of_legends_library/view/champion_page/category_selector.dart';
 
 class ChampionPage extends StatefulWidget {
   final ChampionRepository championRepository;
@@ -22,8 +22,8 @@ class _ChampionPageState extends State<ChampionPage> {
       appBar: AppBar(
         title: Text(widget.champion.name),
       ),
-      body: Column(
-        children: [
+      body: SingleChildScrollView(
+        child: Column(children: [
           Padding(
             padding: const EdgeInsets.only(top: 15, left: 8, right: 8),
             child: Center(
@@ -34,14 +34,16 @@ class _ChampionPageState extends State<ChampionPage> {
                       championRepository: widget.championRepository),
                   Padding(
                     padding:
-                        const EdgeInsets.only(top: 30, left: 10, right: 10),
-                    child: LoreWidget(champion: widget.champion),
+                        const EdgeInsets.only(top: 15, left: 12, right: 12),
+                    child: CategorySelector(
+                      champion: widget.champion,
+                    ),
                   ),
                 ],
               ),
             ),
           ),
-        ],
+        ]),
       ),
     );
   }
