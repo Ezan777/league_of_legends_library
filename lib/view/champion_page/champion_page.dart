@@ -5,15 +5,11 @@ import 'package:league_of_legends_library/view/champion_page/champion_banner.dar
 import 'package:league_of_legends_library/view/champion_page/lore_widget.dart';
 
 class ChampionPage extends StatefulWidget {
-  final String championId;
   final ChampionRepository championRepository;
   final Champion champion;
 
   const ChampionPage(
-      {super.key,
-      required this.championId,
-      required this.championRepository,
-      required this.champion});
+      {super.key, required this.championRepository, required this.champion});
 
   @override
   State<ChampionPage> createState() => _ChampionPageState();
@@ -24,7 +20,7 @@ class _ChampionPageState extends State<ChampionPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.championId),
+        title: Text(widget.champion.name),
       ),
       body: Column(
         children: [
@@ -34,7 +30,7 @@ class _ChampionPageState extends State<ChampionPage> {
               child: Column(
                 children: [
                   ChampionBanner(
-                      championId: widget.championId,
+                      champion: widget.champion,
                       championRepository: widget.championRepository),
                   Padding(
                     padding:

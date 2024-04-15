@@ -4,10 +4,10 @@ import 'package:league_of_legends_library/core/repository/champion_repository.da
 
 class ChampionBanner extends StatefulWidget {
   final String basePath = "assets/";
-  final String championId;
+  final Champion champion;
   final ChampionRepository championRepository;
   const ChampionBanner(
-      {super.key, required this.championId, required this.championRepository});
+      {super.key, required this.championRepository, required this.champion});
 
   @override
   State<ChampionBanner> createState() => _ChampionBannerState();
@@ -16,22 +16,7 @@ class ChampionBanner extends StatefulWidget {
 class _ChampionBannerState extends State<ChampionBanner> {
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-        future: widget.championRepository
-            .getChampionById(championId: widget.championId),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            Champion champion = snapshot.data!;
-
-            return _buildChampionColumn(champion: champion, context: context);
-          } else if (snapshot.hasError) {
-            return Text(snapshot.error.toString());
-          }
-
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        });
+    return _buildChampionColumn(champion: widget.champion, context: context);
   }
 
   Widget _buildChampionColumn(
@@ -57,7 +42,7 @@ class _ChampionBannerState extends State<ChampionBanner> {
         child: ClipOval(
           child: Image.network(
             widget.championRepository
-                .getChampionTileUrl(championId: widget.championId),
+                .getChampionTileUrl(championId: widget.champion.id),
             height: 140,
             width: 140,
           ),

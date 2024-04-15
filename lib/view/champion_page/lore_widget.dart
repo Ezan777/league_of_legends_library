@@ -12,18 +12,17 @@ class LoreWidget extends StatefulWidget {
 class _LoreWidgetState extends State<LoreWidget> {
   @override
   Widget build(BuildContext context) {
-    const double leftRightPadding = 30.0, topBottomPadding = 22.0;
+    const double horizontalPadding = 30.0, verticalPadding = 22.0;
 
     return Container(
       decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.primaryContainer,
           shape: BoxShape.rectangle,
           borderRadius: const BorderRadius.all(Radius.circular(20))),
-      padding: const EdgeInsets.only(
-          top: topBottomPadding,
-          bottom: topBottomPadding,
-          left: leftRightPadding,
-          right: leftRightPadding),
+      padding: const EdgeInsets.symmetric(
+        vertical: verticalPadding,
+        horizontal: horizontalPadding,
+      ),
       child: _buildLoreText(context: context, champion: widget.champion),
     );
   }

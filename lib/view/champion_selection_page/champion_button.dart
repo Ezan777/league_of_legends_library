@@ -28,7 +28,6 @@ class _ChampionButtonState extends State<ChampionButton> {
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => ChampionPage(
                         champion: champion,
-                        championId: champion.id,
                         championRepository: widget.championRepository)));
               },
               child: _buildChampionColumn(champion: champion, context: context),
