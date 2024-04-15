@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:league_of_legends_library/core/repository/champion_repository.dart';
 import 'package:league_of_legends_library/view/champion_selection_page/champion_button.dart';
+import 'package:league_of_legends_library/view/search/impl_search_delegate.dart';
 
 class ChampionSelectionPage extends StatefulWidget {
   final ChampionRepository championRepository;
@@ -11,6 +12,8 @@ class ChampionSelectionPage extends StatefulWidget {
 }
 
 class _ChampionSelectionPageState extends State<ChampionSelectionPage> {
+  final TextEditingController _textController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -19,11 +22,28 @@ class _ChampionSelectionPageState extends State<ChampionSelectionPage> {
         if (snapshot.hasData) {
           final List<String> championsId = snapshot.data!;
 
-          return _buildChampionsGrid(championsId: championsId);
+          return Scaffold(
+            appBar: AppBar(
+              actions: [
+                IconButton(
+                    onPressed: () {
+                      showSearch(
+                          context: context,
+                          delegate: ImplSearchDelegate(
+                              searchable: championsId,
+                              textController: _textController));
+                    },
+                    icon: const Icon(Icons.search))
+              ],
+              title: const Text("Choose a champion"),
+            ),
+            body: _buildChampionsGrid(championsId: championsId),
+          );
         } else if (snapshot.hasError) {
           return Text(snapshot.error.toString());
         } else {
-          return const CircularProgressIndicator();
+          return const Scaffold(
+              body: Center(child: CircularProgressIndicator()));
         }
       },
     );

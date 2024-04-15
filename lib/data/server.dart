@@ -5,7 +5,9 @@ import 'package:league_of_legends_library/data/remote_data_source.dart';
 class Server implements RemoteDataSource {
   @override
   Future<Map<String, dynamic>> fetchJson(String jsonUrl) async {
-    final response = await http.get(Uri.parse(jsonUrl), );
+    final response = await http.get(
+      Uri.parse(jsonUrl),
+    );
 
     if (response.statusCode == 200) {
       final String jsonString = utf8.decode(response.bodyBytes);
