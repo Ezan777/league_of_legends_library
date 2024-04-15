@@ -43,14 +43,26 @@ class _CategorySelectorState extends State<CategorySelector> {
 
   Widget _buildInfoView() => Padding(
         padding: const EdgeInsets.only(top: 25, bottom: 10),
-        child: switch (_chosenCategory.value) {
-          InfoCategory.lore => LoreWidget(champion: widget.champion),
-          InfoCategory.abilities => SpellWidget(
-              champion: widget.champion,
+        child: AnimatedSwitcher(
+          duration: const Duration(milliseconds: 220),
+          transitionBuilder: (child, animation) => FadeTransition(
+            opacity: animation,
+            child: SlideTransition(
+              position:
+                  Tween<Offset>(begin: const Offset(1.0, 0.0), end: Offset.zero)
+                      .animate(animation),
+              child: child,
             ),
-          InfoCategory.tips => TipsWidget(
-              champion: widget.champion,
-            ),
-        },
+          ),
+          child: switch (_chosenCategory.value) {
+            InfoCategory.lore => LoreWidget(champion: widget.champion),
+            InfoCategory.abilities => SpellWidget(
+                champion: widget.champion,
+              ),
+            InfoCategory.tips => TipsWidget(
+                champion: widget.champion,
+              ),
+          },
+        ),
       );
 }

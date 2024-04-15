@@ -33,8 +33,15 @@ class _SpellWidgetState extends State<SpellWidget> {
           padding: const EdgeInsets.only(top: 20, bottom: 10),
           child: AnimatedSwitcher(
             duration: const Duration(milliseconds: 220),
-            transitionBuilder: (child, animation) =>
-                FadeTransition(opacity: animation, child: SlideTransition(position: Tween<Offset>(begin: Offset(1.0,0.0), end: Offset.zero).animate(animation), child: child,),),
+            transitionBuilder: (child, animation) => FadeTransition(
+              opacity: animation,
+              child: SlideTransition(
+                position: Tween<Offset>(
+                        begin: const Offset(1.0, 0.0), end: Offset.zero)
+                    .animate(animation),
+                child: child,
+              ),
+            ),
             child: SpellInfo(
                 key: ValueKey(widget.chosenSpell.value.id),
                 spell: widget.chosenSpell.value),
