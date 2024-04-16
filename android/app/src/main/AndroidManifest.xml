@@ -3,7 +3,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        android:label="league_of_legends_library"
+        android:label="League Library"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
