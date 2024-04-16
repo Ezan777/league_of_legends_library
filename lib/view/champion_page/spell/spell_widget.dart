@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:league_of_legends_library/core/model/champion.dart';
-import 'package:league_of_legends_library/core/model/spell.dart';
+import 'package:league_of_legends_library/core/model/passive.dart';
 import 'package:league_of_legends_library/view/champion_page/spell/spell_info.dart';
 import 'package:league_of_legends_library/view/champion_page/spell/spell_selector.dart';
 
 class SpellWidget extends StatefulWidget {
   final Champion champion;
-  final ValueNotifier<Spell> chosenSpell;
+  final ValueNotifier<Passive> chosenAbility;
 
   SpellWidget({super.key, required this.champion})
-      : chosenSpell = ValueNotifier(champion.spells[0]);
+      : chosenAbility = ValueNotifier(champion.passive);
 
   @override
   State<SpellWidget> createState() => _SpellWidgetState();
@@ -18,7 +18,7 @@ class SpellWidget extends StatefulWidget {
 class _SpellWidgetState extends State<SpellWidget> {
   @override
   Widget build(BuildContext context) {
-    widget.chosenSpell.addListener(() {
+    widget.chosenAbility.addListener(() {
       setState(() {});
     });
 
@@ -27,7 +27,7 @@ class _SpellWidgetState extends State<SpellWidget> {
         SizedBox(
           height: 90,
           child: SpellSelector(
-              champion: widget.champion, chosenSpell: widget.chosenSpell),
+              champion: widget.champion, chosenAbility: widget.chosenAbility),
         ),
         Padding(
           padding: const EdgeInsets.only(top: 20, bottom: 10),
@@ -43,8 +43,8 @@ class _SpellWidgetState extends State<SpellWidget> {
               ),
             ),
             child: SpellInfo(
-                key: ValueKey(widget.chosenSpell.value.id),
-                spell: widget.chosenSpell.value),
+                key: ValueKey(widget.chosenAbility.value.name),
+                ability: widget.chosenAbility.value),
           ),
         ),
       ],

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:league_of_legends_library/core/model/passive.dart';
 import 'package:league_of_legends_library/core/model/spell.dart';
 
 class SpellInfo extends StatelessWidget {
-  final Spell spell;
-  const SpellInfo({super.key, required this.spell});
+  final Passive ability;
+  const SpellInfo({super.key, required this.ability});
 
   @override
   Widget build(BuildContext context) {
@@ -12,15 +13,22 @@ class SpellInfo extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        // Spell name
         Padding(
-          padding: const EdgeInsets.only(bottom: 15, left: 15),
+          padding: const EdgeInsets.only(bottom: 2, left: 15),
           child: Text(
-            spell.name,
+            ability.name,
             style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                 color: Theme.of(context).colorScheme.primary,
                 fontWeight: FontWeight.bold),
           ),
         ),
+        // Spell cooldowns
+        Padding(
+          padding: const EdgeInsets.only(bottom: 13, left: 18),
+          child: _buildCooldownLabel(context: context),
+        ),
+        // Spell description
         Container(
           decoration: BoxDecoration(
               color: Theme.of(context).colorScheme.tertiaryContainer,
@@ -31,7 +39,7 @@ class SpellInfo extends StatelessWidget {
             horizontal: horizontalPadding,
           ),
           child: Text(
-            spell.description,
+            ability.description,
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                   color: Theme.of(context).colorScheme.onTertiaryContainer,
                 ),
@@ -39,5 +47,28 @@ class SpellInfo extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  Widget? _buildCooldownLabel({required BuildContext context}) {
+    if (ability is Spell) {
+      Spell spell = ability as Spell;
+      return (spell.cooldowns != "")
+          ? Text(
+              "Cooldown: ${spell.cooldowns}",
+              style: Theme.of(context)
+                  .textTheme
+                  .bodySmall
+                  ?.copyWith(color: Theme.of(context).colorScheme.primary),
+            )
+          : null;
+    } else {
+      return Text(
+        "Passive",
+        style: Theme.of(context)
+            .textTheme
+            .bodySmall
+            ?.copyWith(color: Theme.of(context).colorScheme.primary),
+      );
+    }
   }
 }

@@ -3,7 +3,7 @@ import 'package:league_of_legends_library/data/remote_data_source.dart';
 
 class ChampionRepository {
   final RemoteDataSource _remoteDataSource;
-  static const String _baseUrl =
+  static const String baseUrl =
       "https://league-of-legends-library.web.app"; //https://dragontail.enricozangrando.com";
   final String _championDataPath = "14.7.1/data/en_US/champion";
 
@@ -14,7 +14,7 @@ class ChampionRepository {
   /// Return the champion with the given [championId].
   Future<Champion> getChampionById({required String championId}) async {
     final json = await _remoteDataSource
-        .fetchJson("$_baseUrl/$_championDataPath/$championId.json");
+        .fetchJson("$baseUrl/$_championDataPath/$championId.json");
 
     return Champion.fromJson(id: championId, json: json);
   }
@@ -22,7 +22,7 @@ class ChampionRepository {
   /// Return a list containing all champions ids. If the data obtained from json is invalid it will return an empty list.
   Future<List<String>> getAllChampionIds() async {
     final json = await _remoteDataSource
-        .fetchJson("$_baseUrl/14.7.1/data/en_US/champion.json");
+        .fetchJson("$baseUrl/14.7.1/data/en_US/champion.json");
     List<String> ids;
     final jsonData = json["data"];
 
@@ -42,10 +42,10 @@ class ChampionRepository {
       championId = "FiddleSticks";
     }
 
-    return "$_baseUrl/img/champion/tiles/${championId}_$skinCode.jpg";
+    return "$baseUrl/img/champion/tiles/${championId}_$skinCode.jpg";
   }
 
   static String getSpellTileUrl({required String spellId}) {
-    return "$_baseUrl/14.7.1/img/spell/$spellId.png";
+    return "$baseUrl/14.7.1/img/spell/$spellId.png";
   }
 }

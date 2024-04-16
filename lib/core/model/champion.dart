@@ -1,3 +1,4 @@
+import 'package:league_of_legends_library/core/model/passive.dart';
 import 'package:league_of_legends_library/core/model/spell.dart';
 
 class Champion {
@@ -22,6 +23,9 @@ class Champion {
   /// The list of spells
   final List<Spell> spells;
 
+  /// The passive ability
+  final Passive passive;
+
   Champion(
       {required this.id,
       required this.name,
@@ -29,7 +33,8 @@ class Champion {
       required this.lore,
       required this.allyTips,
       required this.enemyTips,
-      required this.spells});
+      required this.spells,
+      required this.passive});
 
   /// Build the champion from it's corresponding JSON file. [id] is required in order to access JSON data.
   factory Champion.fromJson({required id, required Map<String, dynamic> json}) {
@@ -41,6 +46,7 @@ class Champion {
     List<Spell> spells = (json["data"][id]["spells"] as List<dynamic>)
         .map((spellData) => Spell.fromJson(jsonData: spellData))
         .toList();
+    Passive passive = Passive.fromJson(jsonData: json["data"][id]["passive"]);
 
     // Akshan has bugged tips, the allyTips are only the description of the champ
     if (id == "Akshan") {
@@ -55,6 +61,7 @@ class Champion {
         lore: lore,
         allyTips: allyTips,
         enemyTips: enemyTips,
-        spells: spells);
+        spells: spells,
+        passive: passive);
   }
 }
