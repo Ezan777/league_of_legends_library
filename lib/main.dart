@@ -1,10 +1,15 @@
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
-import 'package:league_of_legends_library/core/repository/champion_repository.dart';
-import 'package:league_of_legends_library/data/server.dart';
-import 'package:league_of_legends_library/view/champion_selection_page/champion_selection_page.dart';
+import 'package:league_of_legends_library/app_model.dart';
+import 'package:league_of_legends_library/view/homepage/homepage.dart';
 
-void main() {
+late final AppModel appModel;
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  appModel = await AppModel.initializeDataSource();
+
   runApp(const MyApp());
 }
 
@@ -35,22 +40,5 @@ class MyApp extends StatelessWidget {
               themeMode: ThemeMode.system,
               home: const MyHomePage(title: title),
             ));
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return ChampionSelectionPage(
-        championRepository: ChampionRepository(remoteDataSource: Server()));
   }
 }

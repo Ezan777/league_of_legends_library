@@ -41,7 +41,7 @@ class _ChampionBannerState extends State<ChampionBanner> {
           shape: BoxShape.circle,
         ),
         child: ClipOval(
-          child:CachedNetworkImage(
+          child: CachedNetworkImage(
             imageUrl: widget.championRepository
                 .getChampionTileUrl(championId: widget.champion.id),
             height: 140,

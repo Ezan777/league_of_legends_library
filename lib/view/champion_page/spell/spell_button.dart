@@ -34,7 +34,8 @@ class SpellButton extends StatelessWidget {
                   ? ChampionRepository.getSpellTileUrl(
                       spellId: (ability as Spell).id)
                   : ability.tileUrl ?? "",
-                  placeholder: ((context, url) => const CircularProgressIndicator()),
+              placeholder: ((context, url) =>
+                  const CircularProgressIndicator()),
               height: 64,
               width: 64,
             ),

@@ -67,7 +67,7 @@ class _ChampionButtonState extends State<ChampionButton> {
           child: CachedNetworkImage(
             imageUrl: widget.championRepository
                 .getChampionTileUrl(championId: widget.championId),
-                placeholder: (context, url) => CircularProgressIndicator(),
+            placeholder: (context, url) => const CircularProgressIndicator(),
             height: 90,
             width: 90,
           ),

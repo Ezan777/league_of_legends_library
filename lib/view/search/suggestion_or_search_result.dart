@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:league_of_legends_library/core/repository/champion_repository.dart';
-import 'package:league_of_legends_library/data/server.dart';
+import 'package:league_of_legends_library/main.dart';
 import 'package:league_of_legends_library/view/champion_selection_page/champion_button.dart';
 import 'package:league_of_legends_library/view/search/no_result_widget.dart';
 
@@ -39,7 +38,6 @@ class SuggestionOrSearchResult extends StatelessWidget {
             const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
         itemBuilder: ((context, index) => ChampionButton(
             championId: suggestions[index],
-            championRepository:
-                ChampionRepository(remoteDataSource: Server()))));
+            championRepository: appModel.championRepository)));
   }
 }
