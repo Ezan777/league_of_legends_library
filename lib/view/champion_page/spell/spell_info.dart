@@ -16,7 +16,9 @@ class SpellInfo extends StatelessWidget {
           padding: const EdgeInsets.only(bottom: 15, left: 15),
           child: Text(
             spell.name,
-            style: Theme.of(context).textTheme.headlineMedium?.copyWith(color: Theme.of(context).colorScheme.primary, fontWeight: FontWeight.bold),
+            style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                color: Theme.of(context).colorScheme.primary,
+                fontWeight: FontWeight.bold),
           ),
         ),
         Container(

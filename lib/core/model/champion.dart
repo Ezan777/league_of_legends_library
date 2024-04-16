@@ -42,6 +42,12 @@ class Champion {
         .map((spellData) => Spell.fromJson(jsonData: spellData))
         .toList();
 
+    // Akshan has bugged tips, the allyTips are only the description of the champ
+    if (id == "Akshan") {
+      allyTips = List.empty();
+      enemyTips = List.empty();
+    }
+
     return Champion(
         id: id,
         name: name,
