@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:league_of_legends_library/core/model/champion.dart';
 import 'package:league_of_legends_library/core/repository/champion_repository.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:league_of_legends_library/view/champion_page/champion_page.dart';
 
 class ChampionButton extends StatefulWidget {
@@ -63,9 +64,10 @@ class _ChampionButtonState extends State<ChampionButton> {
           shape: BoxShape.circle,
         ),
         child: ClipOval(
-          child: Image.network(
-            widget.championRepository
+          child: CachedNetworkImage(
+            imageUrl: widget.championRepository
                 .getChampionTileUrl(championId: widget.championId),
+                placeholder: (context, url) => CircularProgressIndicator(),
             height: 90,
             width: 90,
           ),

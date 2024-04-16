@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:league_of_legends_library/core/model/champion.dart';
 import 'package:league_of_legends_library/core/repository/champion_repository.dart';
@@ -40,8 +41,8 @@ class _ChampionBannerState extends State<ChampionBanner> {
           shape: BoxShape.circle,
         ),
         child: ClipOval(
-          child: Image.network(
-            widget.championRepository
+          child:CachedNetworkImage(
+            imageUrl: widget.championRepository
                 .getChampionTileUrl(championId: widget.champion.id),
             height: 140,
             width: 140,

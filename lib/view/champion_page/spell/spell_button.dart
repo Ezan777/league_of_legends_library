@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:league_of_legends_library/core/model/passive.dart';
 import 'package:league_of_legends_library/core/model/spell.dart';
@@ -28,11 +29,12 @@ class SpellButton extends StatelessWidget {
             onTap: () {
               chosenAbility.value = ability;
             },
-            child: Image.network(
-              ability is Spell
+            child: CachedNetworkImage(
+              imageUrl: ability is Spell
                   ? ChampionRepository.getSpellTileUrl(
                       spellId: (ability as Spell).id)
                   : ability.tileUrl ?? "",
+                  placeholder: ((context, url) => const CircularProgressIndicator()),
               height: 64,
               width: 64,
             ),
