@@ -8,7 +8,8 @@ class Spell {
       {required this.id,
       required this.name,
       required this.cooldowns,
-      required this.description});
+      required String description})
+      : description = description.replaceAll(RegExp(r"<[^>]+>"), "");
 
   factory Spell.fromJson({required Map<String, dynamic> jsonData}) {
     String id = jsonData["id"];

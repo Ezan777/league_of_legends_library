@@ -32,7 +32,7 @@ class _SpellWidgetState extends State<SpellWidget> {
         Padding(
           padding: const EdgeInsets.only(top: 20, bottom: 10),
           child: AnimatedSwitcher(
-            duration: const Duration(milliseconds: 220),
+            duration: const Duration(milliseconds: 275),
             transitionBuilder: (child, animation) => FadeTransition(
               opacity: animation,
               child: SlideTransition(

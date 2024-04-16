@@ -7,24 +7,35 @@ class SpellInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: Text is formatted following DataDragon rules need to reformat it with values
     const double horizontalPadding = 30.0, verticalPadding = 22.0;
 
-    return Container(
-      decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.tertiaryContainer,
-          shape: BoxShape.rectangle,
-          borderRadius: const BorderRadius.all(Radius.circular(20))),
-      padding: const EdgeInsets.symmetric(
-        vertical: verticalPadding,
-        horizontal: horizontalPadding,
-      ),
-      child: Text(
-        spell.description,
-        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-              color: Theme.of(context).colorScheme.onTertiaryContainer,
-            ),
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(bottom: 15, left: 15),
+          child: Text(
+            spell.name,
+            style: Theme.of(context).textTheme.headlineMedium?.copyWith(color: Theme.of(context).colorScheme.primary, fontWeight: FontWeight.bold),
+          ),
+        ),
+        Container(
+          decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.tertiaryContainer,
+              shape: BoxShape.rectangle,
+              borderRadius: const BorderRadius.all(Radius.circular(20))),
+          padding: const EdgeInsets.symmetric(
+            vertical: verticalPadding,
+            horizontal: horizontalPadding,
+          ),
+          child: Text(
+            spell.description,
+            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                  color: Theme.of(context).colorScheme.onTertiaryContainer,
+                ),
+          ),
+        ),
+      ],
     );
   }
 }
