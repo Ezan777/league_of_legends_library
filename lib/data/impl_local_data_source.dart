@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:league_of_legends_library/data/local_data_source.dart';
 import 'package:league_of_legends_library/data/shared_preferences_keys.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -19,5 +21,19 @@ class ImplLocalDataSource implements LocalDataSource {
       {required List<String> favoritesChampions}) async {
     return await _sharedPreferences.setStringList(
         SharedPreferencesKeys.favorites.key, favoritesChampions);
+  }
+
+  @override
+  Queue<String>? getRecentlyViewedChampions() {
+    return Queue.from(_sharedPreferences
+            .getStringList(SharedPreferencesKeys.recentlyViewed.key) ??
+        List.empty());
+  }
+
+  @override
+  Future<bool> saveRecentlyViewedChampions(
+      {required List<String> recentlyViewedChampions}) async {
+    return await _sharedPreferences.setStringList(
+        SharedPreferencesKeys.recentlyViewed.key, recentlyViewedChampions);
   }
 }

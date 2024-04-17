@@ -27,6 +27,7 @@ class Champion {
   final Passive passive;
 
   /// If champion is saved as a favorite one
+  // TODO: isFavorite should be handled from champion repository, not the model
   bool isFavorite;
 
   Champion(

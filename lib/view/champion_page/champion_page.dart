@@ -19,6 +19,8 @@ class ChampionPage extends StatefulWidget {
 class _ChampionPageState extends State<ChampionPage> {
   @override
   Widget build(BuildContext context) {
+    appModel.championRepository
+        .setRecentlyViewedChampion(championId: widget.champion.id);
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.champion.name),

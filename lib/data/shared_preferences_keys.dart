@@ -1,5 +1,6 @@
 enum SharedPreferencesKeys {
-  favorites(key: "FAVORITES");
+  favorites(key: "FAVORITES"),
+  recentlyViewed(key: "RECENTLY_VIEWED");
 
   final String key;
 
