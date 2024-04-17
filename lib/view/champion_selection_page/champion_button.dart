@@ -58,7 +58,7 @@ class _ChampionButtonState extends State<ChampionButton> {
   Widget _buildChampionTile() => Container(
         decoration: BoxDecoration(
           border: Border.all(
-            color: Theme.of(context).colorScheme.onPrimaryContainer,
+            color: Theme.of(context).colorScheme.onSurface,
             width: 2,
           ),
           shape: BoxShape.circle,
@@ -79,7 +79,7 @@ class _ChampionButtonState extends State<ChampionButton> {
       Text(
         champion.name,
         style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-              color: Theme.of(context).colorScheme.onPrimaryContainer,
+              color: Theme.of(context).colorScheme.onSurface,
               fontWeight: FontWeight.bold,
               fontStyle: FontStyle.italic,
             ),

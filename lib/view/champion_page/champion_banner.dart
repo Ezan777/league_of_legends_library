@@ -35,7 +35,7 @@ class _ChampionBannerState extends State<ChampionBanner> {
   Widget _buildChampionTile() => Container(
         decoration: BoxDecoration(
           border: Border.all(
-            color: Theme.of(context).colorScheme.onPrimaryContainer,
+            color: Theme.of(context).colorScheme.onSurface,
             width: 2,
           ),
           shape: BoxShape.circle,
@@ -55,7 +55,7 @@ class _ChampionBannerState extends State<ChampionBanner> {
       Text(
         champion.name,
         style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-              color: Theme.of(context).colorScheme.onPrimaryContainer,
+              color: Theme.of(context).colorScheme.onSurface,
               fontSize: 45,
               fontWeight: FontWeight.bold,
               fontStyle: FontStyle.italic,
@@ -67,7 +67,7 @@ class _ChampionBannerState extends State<ChampionBanner> {
       Text(
         champion.title,
         style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-              color: Theme.of(context).colorScheme.onPrimaryContainer,
+              color: Theme.of(context).colorScheme.onSurface,
               fontWeight: FontWeight.bold,
               fontStyle: FontStyle.italic,
             ),

@@ -70,8 +70,8 @@ class TipsWidget extends StatelessWidget {
         child: Row(children: [
           Container(
             decoration: BoxDecoration(shape: BoxShape.circle, color: textColor),
-            width: 10,
-            height: 10,
+            width: 8,
+            height: 8,
           ),
           const Padding(padding: EdgeInsets.only(right: 15)),
           Expanded(

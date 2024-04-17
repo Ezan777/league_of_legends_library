@@ -33,7 +33,7 @@ class _SpellSelectorState extends State<SpellSelector> {
         }
       },
       separatorBuilder: (context, index) =>
-          const Padding(padding: EdgeInsets.symmetric(horizontal: 15)),
+          const Padding(padding: EdgeInsets.symmetric(horizontal: 8)),
     );
   }
 }
