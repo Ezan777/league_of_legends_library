@@ -26,10 +26,6 @@ class Champion {
   /// The passive ability
   final Passive passive;
 
-  /// If champion is saved as a favorite one
-  // TODO: isFavorite should be handled from champion repository, not the model
-  bool isFavorite;
-
   Champion(
       {required this.id,
       required this.name,
@@ -38,14 +34,12 @@ class Champion {
       required this.allyTips,
       required this.enemyTips,
       required this.spells,
-      required this.passive,
-      this.isFavorite = false});
+      required this.passive,});
 
   /// Build the champion from it's corresponding JSON file. [id] is required in order to access JSON data.
   factory Champion.fromJson(
       {required id,
-      required Map<String, dynamic> json,
-      bool isFavorite = false}) {
+      required Map<String, dynamic> json,}) {
     String name = json["data"][id]["name"];
     String title = json["data"][id]["title"];
     String lore = json["data"][id]["lore"];
@@ -70,7 +64,6 @@ class Champion {
         allyTips: allyTips,
         enemyTips: enemyTips,
         spells: spells,
-        passive: passive,
-        isFavorite: isFavorite);
+        passive: passive,);
   }
 }

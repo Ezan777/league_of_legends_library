@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:league_of_legends_library/core/model/champion.dart';
 import 'package:league_of_legends_library/core/repository/champion_repository.dart';
 import 'package:league_of_legends_library/main.dart';
 import 'package:league_of_legends_library/view/champion_page/champion_page.dart';
@@ -104,12 +103,12 @@ class _MyHomePageState extends State<MyHomePage> {
                               championRepository:
                                   appModel.championRepository)));
                     },
-                    children: championsId
-                        .map((id) => {
+                    children: snapshot.data!
+                        .map((champion) => {
                               "image":
                                   ChampionRepository.getFullChampionImageUrl(
-                                      championId: id),
-                              "title": id
+                                      championId: champion.id),
+                              "title": champion.name
                             })
                         .toList(),
                   ),

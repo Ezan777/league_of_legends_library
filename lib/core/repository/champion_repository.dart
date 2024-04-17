@@ -34,19 +34,19 @@ class ChampionRepository {
         .fetchJson("$baseUrl/$_championDataPath/$championId.json");
 
     return Champion.fromJson(
-        id: championId,
-        json: json,
-        isFavorite: _favoritesChampions?.contains(championId) ?? false);
+      id: championId,
+      json: json,
+    );
   }
 
   Future<List<Champion>> getChampionsById(
       {required List<String> championsIds}) async {
     return Future.wait(championsIds
         .map((id) async => Champion.fromJson(
-            id: id,
-            json: await _remoteDataSource
-                .fetchJson("$baseUrl/$_championDataPath/$id.json"),
-            isFavorite: _favoritesChampions?.contains(id) ?? false))
+              id: id,
+              json: await _remoteDataSource
+                  .fetchJson("$baseUrl/$_championDataPath/$id.json"),
+            ))
         .toList());
   }
 
@@ -90,7 +90,7 @@ class ChampionRepository {
     return "$baseUrl/14.7.1/img/spell/$spellId.png";
   }
 
-  Future<bool> setFavoriteChampion({required String championId}) async {
+  Future<bool> addFavoriteChampion({required String championId}) async {
     _favoritesChampions?.add(championId);
     return await _localDataSource.saveFavoritesChampions(
         favoritesChampions: _favoritesChampions ?? List.empty());
@@ -102,29 +102,28 @@ class ChampionRepository {
         favoritesChampions: _favoritesChampions ?? List.empty());
   }
 
-  Future<bool> setRecentlyViewedChampion({required String championId}) async {
-    bool modified = false;
+  Future<bool> addRecentlyViewedChampion({required String championId}) async {
     if (_recentlyViewedChampions != null) {
       // Value is not null, I check if it contains the championId I am going to add
       if (!_recentlyViewedChampions!.contains(championId)) {
         // If the queue is full remove the last item (first that was inserted)
         if (_recentlyViewedChampions!.length == _maxRecentlyViewedChampions) {
           _recentlyViewedChampions!.removeLast();
-          modified = true;
         }
 
         // Add the new value to the list
         _recentlyViewedChampions!.addFirst(championId);
-        modified = true;
+      } else {
+        // Champion is inside the queue moving it to the top of the queue
+        _recentlyViewedChampions!.remove(championId);
+        _recentlyViewedChampions!.addFirst(championId);
       }
     }
-
-    if (modified) {
-      return await _localDataSource.saveRecentlyViewedChampions(
-          recentlyViewedChampions:
-              _recentlyViewedChampions?.toList() ?? List.empty());
-    } else {
-      return false;
-    }
+    return await _localDataSource.saveRecentlyViewedChampions(
+        recentlyViewedChampions:
+            _recentlyViewedChampions?.toList() ?? List.empty());
   }
+
+  bool isChampionFavorite({required String championId}) =>
+      _favoritesChampions?.contains(championId) ?? false;
 }
