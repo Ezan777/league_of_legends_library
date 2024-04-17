@@ -19,6 +19,8 @@ class ChampionRepository {
     _favoritesChampions = _localDataSource.getFavoritesChampions();
   }
 
+  List<String> get favoritesChampions => _favoritesChampions ?? List.empty();
+
   /// Return the champion with the given [championId].
   Future<Champion> getChampionById({required String championId}) async {
     final json = await _remoteDataSource
