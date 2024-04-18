@@ -17,15 +17,16 @@ class ChampionPage extends StatefulWidget {
 }
 
 class _ChampionPageState extends State<ChampionPage> {
-
   @override
   Widget build(BuildContext context) {
     appModel.championRepository
         .addRecentlyViewedChampion(championId: widget.champion.id);
-    
-    final bool isFavorite = appModel.championRepository.isChampionFavorite(championId: widget.champion.id);
+
+    final bool isFavorite = appModel.championRepository
+        .isChampionFavorite(championId: widget.champion.id);
     return Scaffold(
       appBar: AppBar(
+        forceMaterialTransparency: true,
         title: Text(widget.champion.name),
         actions: [
           IconButton(
@@ -51,9 +52,7 @@ class _ChampionPageState extends State<ChampionPage> {
                 setState(() {});
               },
               icon: Icon(
-                isFavorite
-                    ? Icons.favorite
-                    : Icons.favorite_border,
+                isFavorite ? Icons.favorite : Icons.favorite_border,
                 color: Theme.of(context).colorScheme.primary,
               ))
         ],

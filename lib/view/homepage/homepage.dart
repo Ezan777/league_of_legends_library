@@ -4,7 +4,7 @@ import 'package:league_of_legends_library/main.dart';
 import 'package:league_of_legends_library/view/champion_page/champion_page.dart';
 import 'package:league_of_legends_library/view/champion_selection_page/champion_button.dart';
 import 'package:league_of_legends_library/view/champion_selection_page/champion_selection_page.dart';
-import 'package:league_of_legends_library/view/homepage/carousel.dart';
+import 'package:league_of_legends_library/view/carousel/carousel.dart';
 
 enum BodyPages {
   homepage,
@@ -55,8 +55,10 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
       };
 
+  // TODO: Add a custom sliver list to homepage to improve scrolling
   Widget _buildHomePage() => Scaffold(
         appBar: AppBar(
+          forceMaterialTransparency: true,
           title: const Text("League of Legends library"),
         ),
         body: Column(
@@ -72,16 +74,21 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       );
 
+  // FIXME Update the carousel everytime a champion is added to the recent ones
   Widget _buildRecentlyViewedChampions(
           {required List<String> championsId, required BuildContext context}) =>
       Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            "Recently viewed",
-            style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                  fontWeight: FontWeight.bold,
-                  fontStyle: FontStyle.italic,
-                ),
+          Padding(
+            padding: const EdgeInsets.only(left: 17),
+            child: Text(
+              "Recently viewed",
+              style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                    fontWeight: FontWeight.bold,
+                    fontStyle: FontStyle.italic,
+                  ),
+            ),
           ),
           FutureBuilder(
             future: appModel.championRepository
@@ -90,7 +97,7 @@ class _MyHomePageState extends State<MyHomePage> {
               if (snapshot.hasData) {
                 return Container(
                   width: double.maxFinite,
-                  height: 250,
+                  height: 275,
                   padding: const EdgeInsets.all(10),
                   child: Carousel(
                     visible: 3,
@@ -138,7 +145,7 @@ class _MyHomePageState extends State<MyHomePage> {
               padding: const EdgeInsets.only(left: 17),
               child: Text(
                 "Your Favorites",
-                style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                       fontWeight: FontWeight.bold,
                       fontStyle: FontStyle.italic,
                     ),

@@ -26,20 +26,22 @@ class Champion {
   /// The passive ability
   final Passive passive;
 
-  Champion(
-      {required this.id,
-      required this.name,
-      required this.title,
-      required this.lore,
-      required this.allyTips,
-      required this.enemyTips,
-      required this.spells,
-      required this.passive,});
+  Champion({
+    required this.id,
+    required this.name,
+    required this.title,
+    required this.lore,
+    required this.allyTips,
+    required this.enemyTips,
+    required this.spells,
+    required this.passive,
+  });
 
   /// Build the champion from it's corresponding JSON file. [id] is required in order to access JSON data.
-  factory Champion.fromJson(
-      {required id,
-      required Map<String, dynamic> json,}) {
+  factory Champion.fromJson({
+    required id,
+    required Map<String, dynamic> json,
+  }) {
     String name = json["data"][id]["name"];
     String title = json["data"][id]["title"];
     String lore = json["data"][id]["lore"];
@@ -57,13 +59,14 @@ class Champion {
     }
 
     return Champion(
-        id: id,
-        name: name,
-        title: title,
-        lore: lore,
-        allyTips: allyTips,
-        enemyTips: enemyTips,
-        spells: spells,
-        passive: passive,);
+      id: id,
+      name: name,
+      title: title,
+      lore: lore,
+      allyTips: allyTips,
+      enemyTips: enemyTips,
+      spells: spells,
+      passive: passive,
+    );
   }
 }

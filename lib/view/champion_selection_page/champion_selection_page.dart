@@ -24,6 +24,8 @@ class _ChampionSelectionPageState extends State<ChampionSelectionPage> {
 
           return Scaffold(
             appBar: AppBar(
+              // TODO check if I can remove app bar when scrolling down
+              forceMaterialTransparency: true,
               actions: [
                 IconButton(
                     onPressed: () {

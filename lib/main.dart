@@ -32,6 +32,7 @@ class MyApp extends StatelessWidget {
                 useMaterial3: true,
               ),
               darkTheme: ThemeData(
+                fontFamily: "BeaufortforLOL",
                 colorScheme: darkDynamic ??
                     ColorScheme.fromSeed(
                         seedColor: Colors.purple, brightness: Brightness.dark),
