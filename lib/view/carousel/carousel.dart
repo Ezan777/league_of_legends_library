@@ -298,18 +298,24 @@ class _CarouselState extends State<Carousel> {
           ? (activeIndex == index || activeIndex + 1 == index)
           : (activeIndex + 1 == index || activeIndex + 2 == index);
       double bulletSize = isActive ? 8 : 4;
-      indexBullets.add(Padding(
-        padding: const EdgeInsets.only(
-          left: 4,
-          right: 4,
-          top: 20,
-        ),
-        child: Container(
-          width: bulletSize,
-          height: bulletSize,
-          decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.onSurface,
-            shape: BoxShape.circle,
+      indexBullets.add(AnimatedSwitcher(
+        duration: const Duration(milliseconds: 135),
+        child: Padding(
+          key: isActive
+              ? const Key("activeBullet")
+              : const Key("nonActiveBullet"),
+          padding: const EdgeInsets.only(
+            left: 4,
+            right: 4,
+            top: 20,
+          ),
+          child: Container(
+            width: bulletSize,
+            height: bulletSize,
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.onSurface,
+              shape: BoxShape.circle,
+            ),
           ),
         ),
       ));
