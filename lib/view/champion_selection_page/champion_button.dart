@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:league_of_legends_library/core/model/champion.dart';
 import 'package:league_of_legends_library/core/repository/champion_repository.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:league_of_legends_library/view/champion_page/champion_page.dart';
+import 'package:league_of_legends_library/view/champion_page/champion_view.dart';
 
 class ChampionButton extends StatefulWidget {
   final String championId;
@@ -27,7 +27,7 @@ class _ChampionButtonState extends State<ChampionButton> {
             return GestureDetector(
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => ChampionPage(
+                    builder: (context) => ChampionView(
                         champion: champion,
                         championRepository: widget.championRepository)));
               },

@@ -69,4 +69,14 @@ class Champion {
       passive: passive,
     );
   }
+
+  @override
+  String toString() => id;
+
+  @override
+  bool operator ==(Object other) =>
+      other is Champion && other.runtimeType == runtimeType && other.id == id;
+
+  @override
+  int get hashCode => id.hashCode;
 }

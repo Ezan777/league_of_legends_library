@@ -1,22 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:league_of_legends_library/bloc/favorites_bloc.dart';
+import 'package:league_of_legends_library/bloc/favorites_events.dart';
+import 'package:league_of_legends_library/bloc/favorites_state.dart';
 import 'package:league_of_legends_library/core/model/champion.dart';
 import 'package:league_of_legends_library/core/repository/champion_repository.dart';
 import 'package:league_of_legends_library/main.dart';
 import 'package:league_of_legends_library/view/champion_page/champion_banner.dart';
 import 'package:league_of_legends_library/view/champion_page/category_selector.dart';
 
-class ChampionPage extends StatefulWidget {
+class ChampionView extends StatefulWidget {
   final ChampionRepository championRepository;
   final Champion champion;
 
-  const ChampionPage(
+  const ChampionView(
       {super.key, required this.championRepository, required this.champion});
 
   @override
-  State<ChampionPage> createState() => _ChampionPageState();
+  State<ChampionView> createState() => _ChampionViewState();
 }
 
-class _ChampionPageState extends State<ChampionPage> {
+class _ChampionViewState extends State<ChampionView> {
   @override
   Widget build(BuildContext context) {
     appModel.championRepository
@@ -29,32 +33,7 @@ class _ChampionPageState extends State<ChampionPage> {
         forceMaterialTransparency: true,
         title: Text(widget.champion.name),
         actions: [
-          IconButton(
-              onPressed: () async {
-                final bool isSuccess;
-                if (isFavorite) {
-                  isSuccess = await appModel.championRepository
-                      .removeFavoriteChampion(championId: widget.champion.id);
-                } else {
-                  isSuccess = await appModel.championRepository
-                      .addFavoriteChampion(championId: widget.champion.id);
-                }
-
-                if (!isSuccess) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Center(
-                        child: Text("An error occurred"),
-                      ),
-                    ),
-                  );
-                }
-                setState(() {});
-              },
-              icon: Icon(
-                isFavorite ? Icons.favorite : Icons.favorite_border,
-                color: Theme.of(context).colorScheme.primary,
-              ))
+          _buildFavoriteButton(),
         ],
       ),
       body: SingleChildScrollView(
@@ -82,4 +61,29 @@ class _ChampionPageState extends State<ChampionPage> {
       ),
     );
   }
+
+  Widget _buildFavoriteButton() =>
+      BlocBuilder<FavoritesBloc, FavoritesState>(builder: (context, state) {
+        if (state is FavoritesLoaded) {
+          bool isFavorite = state.favoriteChampions.contains(widget.champion);
+          print(isFavorite);
+          return IconButton(
+            onPressed: () {
+              if (isFavorite) {
+                context.read<FavoritesBloc>().add(RemovedChampionFromFavorites(
+                    removedChampion: widget.champion));
+              } else {
+                context.read<FavoritesBloc>().add(
+                    AddedChampionToFavorites(addedChampion: widget.champion));
+              }
+            },
+            icon: Icon(
+              isFavorite ? Icons.favorite : Icons.favorite_border,
+              color: Theme.of(context).colorScheme.primary,
+            ),
+          );
+        } else {
+          return const CircularProgressIndicator();
+        }
+      });
 }

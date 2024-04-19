@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:league_of_legends_library/core/repository/champion_repository.dart';
 import 'package:league_of_legends_library/main.dart';
-import 'package:league_of_legends_library/view/champion_page/champion_page.dart';
-import 'package:league_of_legends_library/view/champion_selection_page/champion_button.dart';
+import 'package:league_of_legends_library/view/champion_page/champion_view.dart';
 import 'package:league_of_legends_library/view/champion_selection_page/champion_selection_page.dart';
 import 'package:league_of_legends_library/view/carousel/carousel.dart';
+import 'package:league_of_legends_library/view/homepage/favorties_view.dart';
 
 enum BodyPages {
   homepage,
@@ -67,9 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 championsId:
                     appModel.championRepository.recentlyViewedChampions,
                 context: context),
-            _buildFavoritesChampion(
-                championsId: appModel.championRepository.favoritesChampions,
-                context: context),
+            const FavoritesView(),
           ],
         ),
       );
@@ -105,7 +103,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     slideAnimationDuration: 500,
                     childClick: (childIndex) {
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => ChampionPage(
+                          builder: (context) => ChampionView(
                               champion: snapshot.data![childIndex],
                               championRepository:
                                   appModel.championRepository)));
@@ -133,35 +131,5 @@ class _MyHomePageState extends State<MyHomePage> {
             },
           ),
         ],
-      );
-
-  Widget _buildFavoritesChampion(
-          {required List<String> championsId, required BuildContext context}) =>
-      Expanded(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 17),
-              child: Text(
-                "Your Favorites",
-                style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                      fontStyle: FontStyle.italic,
-                    ),
-              ),
-            ),
-            Expanded(
-              child: GridView.builder(
-                itemCount: championsId.length,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2),
-                itemBuilder: (context, index) => ChampionButton(
-                    championId: championsId[index],
-                    championRepository: appModel.championRepository),
-              ),
-            ),
-          ],
-        ),
       );
 }
