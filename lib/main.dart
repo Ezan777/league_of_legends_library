@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:league_of_legends_library/app_bloc_observer.dart';
 import 'package:league_of_legends_library/app_model.dart';
-import 'package:league_of_legends_library/bloc/favorites_bloc.dart';
-import 'package:league_of_legends_library/bloc/favorites_events.dart';
+import 'package:league_of_legends_library/bloc/favorites/favorites_bloc.dart';
+import 'package:league_of_legends_library/bloc/favorites/favorites_event.dart';
+import 'package:league_of_legends_library/bloc/recently_viewed/recently_viewed_bloc.dart';
+import 'package:league_of_legends_library/bloc/recently_viewed/recently_viewed_event.dart';
 import 'package:league_of_legends_library/view/homepage/homepage.dart';
 
 late final AppModel appModel;
@@ -29,9 +31,15 @@ class MyApp extends StatelessWidget {
       builder: (lightDynamic, darkDynamic) => MultiBlocProvider(
         providers: [
           BlocProvider(
-              create: (_) =>
-                  FavoritesBloc(championRepository: appModel.championRepository)
-                    ..add(FavoritesStarted())),
+            create: (_) =>
+                FavoritesBloc(championRepository: appModel.championRepository)
+                  ..add(FavoritesStarted()),
+          ),
+          BlocProvider(
+            create: (_) => RecentlyViewedBloc(
+                championRepository: appModel.championRepository)
+              ..add(RecentlyViewedStarted()),
+          ),
         ],
         child: MaterialApp(
           title: 'League of Legends library',

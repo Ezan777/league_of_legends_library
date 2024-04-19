@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:league_of_legends_library/bloc/favorites_bloc.dart';
-import 'package:league_of_legends_library/bloc/favorites_events.dart';
-import 'package:league_of_legends_library/bloc/favorites_state.dart';
+import 'package:league_of_legends_library/bloc/favorites/favorites_bloc.dart';
+import 'package:league_of_legends_library/bloc/favorites/favorites_event.dart';
+import 'package:league_of_legends_library/bloc/favorites/favorites_state.dart';
+import 'package:league_of_legends_library/bloc/recently_viewed/recently_viewed_bloc.dart';
+import 'package:league_of_legends_library/bloc/recently_viewed/recently_viewed_event.dart';
 import 'package:league_of_legends_library/core/model/champion.dart';
 import 'package:league_of_legends_library/core/repository/champion_repository.dart';
-import 'package:league_of_legends_library/main.dart';
 import 'package:league_of_legends_library/view/champion_page/champion_banner.dart';
 import 'package:league_of_legends_library/view/champion_page/category_selector.dart';
 
@@ -23,11 +24,10 @@ class ChampionView extends StatefulWidget {
 class _ChampionViewState extends State<ChampionView> {
   @override
   Widget build(BuildContext context) {
-    appModel.championRepository
-        .addRecentlyViewedChampion(championId: widget.champion.id);
+    context
+        .read<RecentlyViewedBloc>()
+        .add(AddChampionToRecentlyViewed(widget.champion));
 
-    final bool isFavorite = appModel.championRepository
-        .isChampionFavorite(championId: widget.champion.id);
     return Scaffold(
       appBar: AppBar(
         forceMaterialTransparency: true,
@@ -66,7 +66,6 @@ class _ChampionViewState extends State<ChampionView> {
       BlocBuilder<FavoritesBloc, FavoritesState>(builder: (context, state) {
         if (state is FavoritesLoaded) {
           bool isFavorite = state.favoriteChampions.contains(widget.champion);
-          print(isFavorite);
           return IconButton(
             onPressed: () {
               if (isFavorite) {

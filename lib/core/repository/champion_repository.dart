@@ -8,7 +8,7 @@ class ChampionRepository {
   // TODO: I should clean some code, move varibales to remote data source
   List<String>? _favoritesChampions;
   Queue<String>? _recentlyViewedChampions;
-  final int _maxRecentlyViewedChampions = 6;
+  final int maxRecentlyViewedChampions = 6;
   final RemoteDataSource _remoteDataSource;
   final LocalDataSource _localDataSource;
   static const String baseUrl =
@@ -107,8 +107,7 @@ class ChampionRepository {
       // Value is not null, I check if it contains the championId I am going to add
       if (!_recentlyViewedChampions!.contains(championId)) {
         // If the queue is full remove the last item (first that was inserted)
-        while (
-            _recentlyViewedChampions!.length >= _maxRecentlyViewedChampions) {
+        while (_recentlyViewedChampions!.length >= maxRecentlyViewedChampions) {
           _recentlyViewedChampions!.removeLast();
         }
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:league_of_legends_library/bloc/favorites_bloc.dart';
-import 'package:league_of_legends_library/bloc/favorites_state.dart';
+import 'package:league_of_legends_library/bloc/favorites/favorites_bloc.dart';
+import 'package:league_of_legends_library/bloc/favorites/favorites_state.dart';
 import 'package:league_of_legends_library/main.dart';
 import 'package:league_of_legends_library/view/champion_selection_page/champion_button.dart';
 
