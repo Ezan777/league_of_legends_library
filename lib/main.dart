@@ -5,6 +5,7 @@ import 'package:league_of_legends_library/app_bloc_observer.dart';
 import 'package:league_of_legends_library/app_model.dart';
 import 'package:league_of_legends_library/bloc/favorites/favorites_bloc.dart';
 import 'package:league_of_legends_library/bloc/favorites/favorites_event.dart';
+import 'package:league_of_legends_library/bloc/navigation/navigation_bloc.dart';
 import 'package:league_of_legends_library/bloc/recently_viewed/recently_viewed_bloc.dart';
 import 'package:league_of_legends_library/bloc/recently_viewed/recently_viewed_event.dart';
 import 'package:league_of_legends_library/view/homepage/homepage.dart';
@@ -39,6 +40,9 @@ class MyApp extends StatelessWidget {
             create: (_) => RecentlyViewedBloc(
                 championRepository: appModel.championRepository)
               ..add(RecentlyViewedStarted()),
+          ),
+          BlocProvider(
+            create: (_) => NavigationBloc(),
           ),
         ],
         child: MaterialApp(

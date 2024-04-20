@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:league_of_legends_library/bloc/navigation/navigation_bloc.dart';
+import 'package:league_of_legends_library/bloc/navigation/navigation_event.dart';
+import 'package:league_of_legends_library/bloc/navigation/navigation_state.dart';
 import 'package:league_of_legends_library/main.dart';
 import 'package:league_of_legends_library/view/champion_selection_page/champion_selection_page.dart';
 import 'package:league_of_legends_library/view/homepage/favorites_view.dart';
 import 'package:league_of_legends_library/view/homepage/recently_viewed_view.dart';
-
-enum BodyPages {
-  homepage,
-  championPage,
-  settings,
-}
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -20,31 +18,31 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  BodyPages _navigationIndex = BodyPages.homepage;
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(
-              icon: Icon(Icons.home_rounded), label: "Home"),
-          BottomNavigationBarItem(icon: Icon(Icons.group), label: "Champions"),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.settings), label: "Settings"),
-        ],
-        onTap: (index) {
-          setState(() {
-            _navigationIndex = BodyPages.values[index];
-          });
-        },
-        currentIndex: _navigationIndex.index,
-      ),
-      body: _buildBody(),
-    );
+    return BlocBuilder<NavigationBloc, NavigationState>(
+        builder: ((context, state) => Scaffold(
+              bottomNavigationBar: BottomNavigationBar(
+                items: const [
+                  BottomNavigationBarItem(
+                      icon: Icon(Icons.home_rounded), label: "Home"),
+                  BottomNavigationBarItem(
+                      icon: Icon(Icons.group), label: "Champions"),
+                  BottomNavigationBarItem(
+                      icon: Icon(Icons.settings), label: "Settings"),
+                ],
+                onTap: (index) {
+                  context
+                      .read<NavigationBloc>()
+                      .add(SetNavigationPage(BodyPages.values[index]));
+                },
+                currentIndex: state.selectedPage.index,
+              ),
+              body: _buildBody(state.selectedPage),
+            )));
   }
 
-  Widget _buildBody() => switch (_navigationIndex) {
+  Widget _buildBody(BodyPages selectedPage) => switch (selectedPage) {
         BodyPages.homepage => _buildHomePage(),
         BodyPages.championPage => ChampionSelectionPage(
             championRepository: appModel.championRepository),

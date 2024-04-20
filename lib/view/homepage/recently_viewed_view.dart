@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:league_of_legends_library/bloc/navigation/navigation_bloc.dart';
+import 'package:league_of_legends_library/bloc/navigation/navigation_event.dart';
+import 'package:league_of_legends_library/bloc/navigation/navigation_state.dart';
 import 'package:league_of_legends_library/bloc/recently_viewed/recently_viewed_bloc.dart';
 import 'package:league_of_legends_library/bloc/recently_viewed/recently_viewed_state.dart';
 import 'package:league_of_legends_library/core/model/champion.dart';
@@ -17,7 +20,7 @@ class RecentlyViewedView extends StatelessWidget {
         BlocBuilder<RecentlyViewedBloc, RecentlyViewedState>(
           builder: (context, state) => switch (state) {
             RecentlyViewedLoaded() =>
-              _isLoaded(state.recentlyViewedChampions.toList()),
+              _isLoaded(context, state.recentlyViewedChampions.toList()),
             RecentlyViewedLoading() => const Center(
                 child: CircularProgressIndicator(),
               ),
@@ -30,24 +33,15 @@ class RecentlyViewedView extends StatelessWidget {
     );
   }
 
-  Widget _isLoaded(List<Champion> champions) => Column(
+  Widget _isLoaded(BuildContext context, List<Champion> champions) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
             height: 275,
             child: champions.isNotEmpty
-                ? ListView.separated(
-                    separatorBuilder: (context, index) => const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 5)),
-                    scrollDirection: Axis.horizontal,
-                    itemCount: champions.length,
-                    itemBuilder: (context, index) =>
-                        ChampionCard(champion: champions[index]),
-                  )
-                : const Center(
-                    child: Text("No recently viewed champions."),
-                  ),
+                ? _recentlyViewedList(champions)
+                : _noRecentlyViewedChampionsSaved(context),
           ),
         ],
       );
@@ -61,5 +55,37 @@ class RecentlyViewedView extends StatelessWidget {
                 fontStyle: FontStyle.italic,
               ),
         ),
+      );
+
+  Widget _recentlyViewedList(List<Champion> champions) => ListView.separated(
+        separatorBuilder: (context, index) =>
+            const Padding(padding: EdgeInsets.symmetric(horizontal: 5)),
+        scrollDirection: Axis.horizontal,
+        itemCount: champions.length,
+        itemBuilder: (context, index) =>
+            ChampionCard(champion: champions[index]),
+      );
+
+  Widget _noRecentlyViewedChampionsSaved(BuildContext context) => Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Center(
+            child: Text(
+              "No recently viewed champions.",
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: FilledButton(
+              onPressed: () {
+                context
+                    .read<NavigationBloc>()
+                    .add(const SetNavigationPage(BodyPages.championPage));
+              },
+              child: const Text("See all champions"),
+            ),
+          ),
+        ],
       );
 }

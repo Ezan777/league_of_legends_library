@@ -3,6 +3,9 @@ import 'package:league_of_legends_library/core/model/champion.dart';
 
 sealed class FavoritesEvent extends Equatable {
   const FavoritesEvent();
+
+  @override
+  List<Object?> get props => [];
 }
 
 class FavoritesStarted extends FavoritesEvent {
