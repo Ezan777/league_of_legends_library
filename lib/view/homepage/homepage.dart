@@ -23,14 +23,12 @@ class _MyHomePageState extends State<MyHomePage> {
     return BlocBuilder<NavigationBloc, NavigationState>(
         builder: ((context, state) => Scaffold(
               bottomNavigationBar: BottomNavigationBar(
-                items: const [
-                  BottomNavigationBarItem(
-                      icon: Icon(Icons.home_rounded), label: "Home"),
-                  BottomNavigationBarItem(
-                      icon: Icon(Icons.group), label: "Champions"),
-                  BottomNavigationBarItem(
-                      icon: Icon(Icons.settings), label: "Settings"),
-                ],
+                items:
+                    // Implementing items like this ensure that the index will match the desired type of page
+                    BodyPages.values
+                        .map((page) =>
+                            BodyPagesItem.getBottomNavigationBarItem(page))
+                        .toList(),
                 onTap: (index) {
                   context
                       .read<NavigationBloc>()
@@ -64,4 +62,16 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       );
+}
+
+extension BodyPagesItem on BodyPages {
+  static BottomNavigationBarItem getBottomNavigationBarItem(BodyPages page) =>
+      switch (page) {
+        BodyPages.homepage => const BottomNavigationBarItem(
+            icon: Icon(Icons.home_rounded), label: "Home"),
+        BodyPages.championPage => const BottomNavigationBarItem(
+            icon: Icon(Icons.group), label: "Champions"),
+        BodyPages.settings => const BottomNavigationBarItem(
+            icon: Icon(Icons.settings), label: "Settings"),
+      };
 }
