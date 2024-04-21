@@ -13,9 +13,13 @@ import 'package:league_of_legends_library/view/champion_page/category_selector.d
 class ChampionView extends StatefulWidget {
   final ChampionRepository championRepository;
   final Champion champion;
+  final int skinCode;
 
   const ChampionView(
-      {super.key, required this.championRepository, required this.champion});
+      {super.key,
+      required this.championRepository,
+      required this.champion,
+      required this.skinCode});
 
   @override
   State<ChampionView> createState() => _ChampionViewState();
@@ -44,8 +48,10 @@ class _ChampionViewState extends State<ChampionView> {
               child: Column(
                 children: [
                   ChampionBanner(
-                      champion: widget.champion,
-                      championRepository: widget.championRepository),
+                    champion: widget.champion,
+                    championRepository: widget.championRepository,
+                    skinCode: widget.skinCode,
+                  ),
                   Padding(
                     padding:
                         const EdgeInsets.only(top: 15, left: 12, right: 12),

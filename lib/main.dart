@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:league_of_legends_library/app_bloc_observer.dart';
 import 'package:league_of_legends_library/app_model.dart';
+import 'package:league_of_legends_library/bloc/champion_skin/skin_bloc.dart';
+import 'package:league_of_legends_library/bloc/champion_skin/skin_event.dart';
 import 'package:league_of_legends_library/bloc/favorites/favorites_bloc.dart';
 import 'package:league_of_legends_library/bloc/favorites/favorites_event.dart';
 import 'package:league_of_legends_library/bloc/navigation/navigation_bloc.dart';
@@ -43,6 +45,11 @@ class MyApp extends StatelessWidget {
           ),
           BlocProvider(
             create: (_) => NavigationBloc(),
+          ),
+          BlocProvider(
+            create: (_) =>
+                SkinsBloc(championRepository: appModel.championRepository)
+                  ..add(SkinsStarted()),
           ),
         ],
         child: MaterialApp(

@@ -1,6 +1,7 @@
 import 'dart:collection';
 
 import 'package:league_of_legends_library/core/model/champion.dart';
+import 'package:league_of_legends_library/core/model/skin.dart';
 import 'package:league_of_legends_library/data/local_data_source.dart';
 import 'package:league_of_legends_library/data/remote_data_source.dart';
 
@@ -8,6 +9,7 @@ class ChampionRepository {
   // TODO: I should clean some code, move varibales to remote data source
   List<String>? _favoritesChampions;
   Queue<String>? _recentlyViewedChampions;
+  Map<String, int>? _championIdActiveSkin;
   final int maxRecentlyViewedChampions = 6;
   final RemoteDataSource _remoteDataSource;
   final LocalDataSource _localDataSource;
@@ -20,13 +22,52 @@ class ChampionRepository {
       required LocalDataSource localDataSource})
       : _remoteDataSource = remoteDataSource,
         _localDataSource = localDataSource {
-    _favoritesChampions = _localDataSource.getFavoritesChampions();
+    _favoritesChampions =
+        _localDataSource.getFavoritesChampions() ?? List.empty(growable: true);
     _recentlyViewedChampions = _localDataSource.getRecentlyViewedChampions();
+    _championIdActiveSkin = _deserializeChampionIdActiveSkin(
+        _localDataSource.getSerializedChampionsSkins() ?? "");
   }
 
-  List<String> get favoritesChampions => _favoritesChampions ?? List.empty();
+  List<String> get favoritesChampions =>
+      _favoritesChampions ?? List.empty(growable: true);
   List<String> get recentlyViewedChampions =>
-      _recentlyViewedChampions?.toList() ?? List.empty();
+      _recentlyViewedChampions?.toList() ?? List.empty(growable: true);
+  Map<String, int> get championIdActiveSkin => _championIdActiveSkin ?? {};
+
+  Map<String, int> _deserializeChampionIdActiveSkin(String serializedString) {
+    final Map<String, int> deserializedMap = {};
+
+    if (serializedString != "") {
+      deserializedMap.addEntries(serializedString
+          .split("/")
+          .where((splitString) => splitString != "")
+          .map((e) {
+        final championIdSkin = e.split("_");
+
+        return MapEntry(championIdSkin[0], int.parse(championIdSkin[1]));
+      }));
+    }
+
+    return deserializedMap;
+  }
+
+  String _serializeChampionIdActiveSkin(Map<String, int> championIdActiveSkin) {
+    String serializedString = "";
+
+    for (var entry in championIdActiveSkin.entries) {
+      serializedString += "${entry.key}_${entry.value}/";
+    }
+
+    return serializedString;
+  }
+
+  Future<bool> addChampionSkin(Champion champion, Skin skin) async {
+    _championIdActiveSkin?[champion.id] = skin.skinCode;
+    return await _localDataSource.saveSerializedChampionsSkins(
+        serializedChampionsSkin:
+            _serializeChampionIdActiveSkin(_championIdActiveSkin ?? {}));
+  }
 
   /// Return the champion with the given [championId].
   Future<Champion> getChampionById({required String championId}) async {

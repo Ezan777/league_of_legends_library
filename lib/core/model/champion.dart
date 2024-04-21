@@ -1,4 +1,5 @@
 import 'package:league_of_legends_library/core/model/passive.dart';
+import 'package:league_of_legends_library/core/model/skin.dart';
 import 'package:league_of_legends_library/core/model/spell.dart';
 
 class Champion {
@@ -26,7 +27,10 @@ class Champion {
   /// The passive ability
   final Passive passive;
 
-  Champion({
+  /// List of available skins for this champion
+  final List<Skin> skins;
+
+  const Champion({
     required this.id,
     required this.name,
     required this.title,
@@ -35,6 +39,7 @@ class Champion {
     required this.enemyTips,
     required this.spells,
     required this.passive,
+    required this.skins,
   });
 
   /// Build the champion from it's corresponding JSON file. [id] is required in order to access JSON data.
@@ -51,6 +56,9 @@ class Champion {
         .map((spellData) => Spell.fromJson(jsonData: spellData))
         .toList();
     Passive passive = Passive.fromJson(jsonData: json["data"][id]["passive"]);
+    List<Skin> skins = (json["data"][id]["skins"] as List<dynamic>)
+        .map((skinData) => Skin.fromJson(jsonData: skinData))
+        .toList();
 
     // Akshan has bugged tips, the allyTips are only the description of the champ
     if (id == "Akshan") {
@@ -67,6 +75,7 @@ class Champion {
       enemyTips: enemyTips,
       spells: spells,
       passive: passive,
+      skins: skins,
     );
   }
 

@@ -36,4 +36,17 @@ class ImplLocalDataSource implements LocalDataSource {
     return await _sharedPreferences.setStringList(
         SharedPreferencesKeys.recentlyViewed.key, recentlyViewedChampions);
   }
+
+  @override
+  String? getSerializedChampionsSkins() {
+    return _sharedPreferences
+        .getString(SharedPreferencesKeys.championsSkins.key);
+  }
+
+  @override
+  Future<bool> saveSerializedChampionsSkins(
+      {required String serializedChampionsSkin}) async {
+    return await _sharedPreferences.setString(
+        SharedPreferencesKeys.championsSkins.key, serializedChampionsSkin);
+  }
 }
