@@ -41,6 +41,7 @@ dependencies:
   shared_preferences: ^2.2.3
   flutter_bloc: ^8.1.5
   equatable: ^2.0.5
+  flutter_launcher_icons: ^0.13.1
 
 dev_dependencies:
   flutter_test:
@@ -123,3 +124,10 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+# To create the icons use dart run flutter_launcher_icons,
+# it will generate the icons for the application.
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/logo-league-library.png"
