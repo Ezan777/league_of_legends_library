@@ -108,7 +108,8 @@ class ChampionRepository {
     return ids;
   }
 
-  String getChampionTileUrl({required String championId, int skinCode = 0}) {
+  static String getChampionTileUrl(
+      {required String championId, int skinCode = 0}) {
     // This is needed because Fiddlesticks images are broken and named FiddleSticks...
     if (championId == "Fiddlesticks") {
       championId = "FiddleSticks";

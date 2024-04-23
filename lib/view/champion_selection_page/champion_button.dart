@@ -34,7 +34,6 @@ class _ChampionButtonState extends State<ChampionButton> {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => ChampionView(
                               champion: champion,
-                              championRepository: widget.championRepository,
                               skinCode:
                                   state.championIdActiveSkin[champion.id] ?? 0,
                             )));
@@ -85,7 +84,7 @@ class _ChampionButtonState extends State<ChampionButton> {
         ),
         child: ClipOval(
           child: CachedNetworkImage(
-            imageUrl: widget.championRepository.getChampionTileUrl(
+            imageUrl: ChampionRepository.getChampionTileUrl(
                 championId: widget.championId, skinCode: skinCode),
             placeholder: (context, url) => const CircularProgressIndicator(),
             height: 90,

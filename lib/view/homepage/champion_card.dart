@@ -5,7 +5,6 @@ import 'package:league_of_legends_library/bloc/champion_skin/skin_bloc.dart';
 import 'package:league_of_legends_library/bloc/champion_skin/skin_state.dart';
 import 'package:league_of_legends_library/core/model/champion.dart';
 import 'package:league_of_legends_library/core/repository/champion_repository.dart';
-import 'package:league_of_legends_library/main.dart';
 import 'package:league_of_legends_library/view/champion_page/champion_view.dart';
 
 class ChampionCard extends StatelessWidget {
@@ -22,7 +21,6 @@ class ChampionCard extends StatelessWidget {
               Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => ChampionView(
                         champion: champion,
-                        championRepository: appModel.championRepository,
                         skinCode: state.championIdActiveSkin[champion.id] ?? 0,
                       )));
             },

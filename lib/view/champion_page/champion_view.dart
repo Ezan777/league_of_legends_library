@@ -6,20 +6,15 @@ import 'package:league_of_legends_library/bloc/favorites/favorites_state.dart';
 import 'package:league_of_legends_library/bloc/recently_viewed/recently_viewed_bloc.dart';
 import 'package:league_of_legends_library/bloc/recently_viewed/recently_viewed_event.dart';
 import 'package:league_of_legends_library/core/model/champion.dart';
-import 'package:league_of_legends_library/core/repository/champion_repository.dart';
 import 'package:league_of_legends_library/view/champion_page/champion_banner.dart';
 import 'package:league_of_legends_library/view/champion_page/category_selector.dart';
 
 class ChampionView extends StatefulWidget {
-  final ChampionRepository championRepository;
   final Champion champion;
   final int skinCode;
 
   const ChampionView(
-      {super.key,
-      required this.championRepository,
-      required this.champion,
-      required this.skinCode});
+      {super.key, required this.champion, required this.skinCode});
 
   @override
   State<ChampionView> createState() => _ChampionViewState();
@@ -49,7 +44,6 @@ class _ChampionViewState extends State<ChampionView> {
                 children: [
                   ChampionBanner(
                     champion: widget.champion,
-                    championRepository: widget.championRepository,
                     skinCode: widget.skinCode,
                   ),
                   Padding(

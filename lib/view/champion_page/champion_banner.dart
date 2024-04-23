@@ -9,13 +9,9 @@ import 'package:league_of_legends_library/view/champion_page/skin/skin_page.dart
 
 class ChampionBanner extends StatefulWidget {
   final Champion champion;
-  final ChampionRepository championRepository;
   final int skinCode;
   const ChampionBanner(
-      {super.key,
-      required this.championRepository,
-      required this.champion,
-      required this.skinCode});
+      {super.key, required this.champion, required this.skinCode});
 
   @override
   State<ChampionBanner> createState() => _ChampionBannerState();
@@ -62,7 +58,7 @@ class _ChampionBannerState extends State<ChampionBanner> {
                   children: [
                     ClipOval(
                       child: CachedNetworkImage(
-                        imageUrl: widget.championRepository.getChampionTileUrl(
+                        imageUrl: ChampionRepository.getChampionTileUrl(
                             championId: widget.champion.id,
                             skinCode: state
                                     .championIdActiveSkin[widget.champion.id] ??
