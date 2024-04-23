@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:league_of_legends_library/core/model/champion.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TipsWidget extends StatelessWidget {
   final Champion champion;
@@ -21,7 +22,9 @@ class TipsWidget extends StatelessWidget {
           _buildTipsContainer(
               context: context,
               tips: champion.allyTips,
-              title: "Playing as ${champion.name}:",
+              title: AppLocalizations.of(context)
+                      ?.playingAsChampion(champion.name) ??
+                  "Playing as ${champion.name}:",
               backgroundColor: Theme.of(context).colorScheme.tertiaryContainer,
               textColor: Theme.of(context).colorScheme.onTertiaryContainer),
         const Padding(padding: EdgeInsets.only(top: 20)),
@@ -30,7 +33,9 @@ class TipsWidget extends StatelessWidget {
           _buildTipsContainer(
               context: context,
               tips: champion.enemyTips,
-              title: "Playing against ${champion.name}",
+              title: AppLocalizations.of(context)
+                      ?.playingAgainstChampion(champion.name) ??
+                  "Playing against ${champion.name}",
               backgroundColor: Theme.of(context).colorScheme.errorContainer,
               textColor: Theme.of(context).colorScheme.onErrorContainer),
       ],

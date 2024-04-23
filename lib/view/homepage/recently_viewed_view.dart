@@ -7,6 +7,7 @@ import 'package:league_of_legends_library/bloc/recently_viewed/recently_viewed_b
 import 'package:league_of_legends_library/bloc/recently_viewed/recently_viewed_state.dart';
 import 'package:league_of_legends_library/core/model/champion.dart';
 import 'package:league_of_legends_library/view/homepage/champion_card.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class RecentlyViewedView extends StatelessWidget {
   const RecentlyViewedView({super.key});
@@ -49,7 +50,8 @@ class RecentlyViewedView extends StatelessWidget {
   Widget _recentlyViewedTitle(BuildContext context) => Padding(
         padding: const EdgeInsets.only(left: 17),
         child: Text(
-          "Recently viewed",
+          AppLocalizations.of(context)?.recentlyViewedTitle ??
+              "Recently Viewed",
           style: Theme.of(context).textTheme.headlineLarge?.copyWith(
                 fontWeight: FontWeight.bold,
                 fontStyle: FontStyle.italic,

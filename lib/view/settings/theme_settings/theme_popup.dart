@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:league_of_legends_library/bloc/settings/theme_bloc/theme_bloc.dart';
 import 'package:league_of_legends_library/bloc/settings/theme_bloc/theme_event.dart';
 import 'package:league_of_legends_library/bloc/settings/theme_bloc/theme_state.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ThemeModeRadioList extends StatefulWidget {
   final AppThemeMode themeMode;
@@ -20,11 +21,12 @@ class _ThemeModeRadioListState extends State<ThemeModeRadioList> {
   Widget build(BuildContext context) {
     _chosenThemeMode ??= widget.themeMode;
     return AlertDialog(
-      title: const Text("Choose theme mode"),
+      title: Text(AppLocalizations.of(context)?.themeModePopupTitle ??
+          "Choose theme mode"),
       actions: [
         TextButton(
           onPressed: () => Navigator.pop(context),
-          child: const Text('Cancel'),
+          child: Text(AppLocalizations.of(context)?.cancel ?? 'Cancel'),
         ),
         TextButton(
           onPressed: () {
@@ -33,7 +35,7 @@ class _ThemeModeRadioListState extends State<ThemeModeRadioList> {
                 .add(ChangeThemeMode(_chosenThemeMode ?? widget.themeMode));
             Navigator.pop(context);
           },
-          child: const Text('Apply'),
+          child: Text(AppLocalizations.of(context)?.apply ?? 'Apply'),
         ),
       ],
       content: SizedBox(
@@ -42,7 +44,8 @@ class _ThemeModeRadioListState extends State<ThemeModeRadioList> {
           shrinkWrap: true,
           itemCount: AppThemeMode.values.length,
           itemBuilder: (context, index) => RadioListTile<AppThemeMode>(
-            title: Text(AppThemeMode.values[index].displayName()),
+            title:
+                Text(AppThemeMode.values[index].localizedDisplayName(context)),
             value: AppThemeMode.values[index],
             groupValue: _chosenThemeMode,
             onChanged: (_) {

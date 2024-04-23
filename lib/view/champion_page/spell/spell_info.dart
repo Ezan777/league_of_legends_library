@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:league_of_legends_library/core/model/passive.dart';
 import 'package:league_of_legends_library/core/model/spell.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SpellInfo extends StatelessWidget {
   final Passive ability;
@@ -54,7 +55,8 @@ class SpellInfo extends StatelessWidget {
       Spell spell = ability as Spell;
       return (spell.cooldowns != "")
           ? Text(
-              "Cooldown: ${spell.cooldowns}",
+              AppLocalizations.of(context)?.cooldown(spell.cooldowns) ??
+                  "Cooldown: ${spell.cooldowns}",
               style: Theme.of(context)
                   .textTheme
                   .bodySmall
@@ -63,7 +65,7 @@ class SpellInfo extends StatelessWidget {
           : null;
     } else {
       return Text(
-        "Passive",
+        AppLocalizations.of(context)?.passive ?? "Passive",
         style: Theme.of(context)
             .textTheme
             .bodySmall

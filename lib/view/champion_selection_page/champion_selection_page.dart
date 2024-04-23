@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:league_of_legends_library/core/repository/champion_repository.dart';
 import 'package:league_of_legends_library/view/champion_selection_page/champion_button.dart';
 import 'package:league_of_legends_library/view/search/impl_search_delegate.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ChampionSelectionPage extends StatefulWidget {
   final ChampionRepository championRepository;
@@ -36,7 +37,9 @@ class _ChampionSelectionPageState extends State<ChampionSelectionPage> {
                     },
                     icon: const Icon(Icons.search))
               ],
-              title: const Text("Choose a champion"),
+              title: Text(AppLocalizations.of(context)
+                      ?.championSelectionPageScaffoldTitle ??
+                  "Choose a champion"),
             ),
             body: _buildChampionsGrid(championsId: championsId),
           );

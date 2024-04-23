@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class InfoCategoryButton extends StatefulWidget {
   final ValueNotifier<InfoCategory> chosenCategory;
@@ -45,7 +46,7 @@ class _InfoCategoryButtonState extends State<InfoCategoryButton> {
             });
           },
           child: Text(
-            widget.category.toString(),
+            widget.category.getLocalizedDisplayName(context),
             style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                   fontWeight: FontWeight.bold,
                   fontStyle: FontStyle.italic,
@@ -67,7 +68,7 @@ class _InfoCategoryButtonState extends State<InfoCategoryButton> {
             });
           },
           child: Text(
-            widget.category.toString(),
+            widget.category.getLocalizedDisplayName(context),
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                   color: Theme.of(context).colorScheme.onSecondaryContainer,
                 ),
@@ -86,6 +87,13 @@ enum InfoCategory {
   const InfoCategory(this.name);
 
   final String name;
+
+  String getLocalizedDisplayName(BuildContext context) => switch (this) {
+        InfoCategory.lore => AppLocalizations.of(context)?.loreLabel ?? name,
+        InfoCategory.abilities =>
+          AppLocalizations.of(context)?.spellsLabel ?? name,
+        InfoCategory.tips => AppLocalizations.of(context)?.tipsLabel ?? name,
+      };
 
   @override
   String toString() => name;

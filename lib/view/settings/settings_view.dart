@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:league_of_legends_library/view/settings/language_settings/language_setting.dart';
 import 'package:league_of_legends_library/view/settings/theme_settings/theme_setting.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 enum Settings {
   theme,
@@ -8,13 +9,14 @@ enum Settings {
 }
 
 class SettingsView extends StatelessWidget {
+  // TODO Add an ink effect when settings are tapped
   const SettingsView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Settings"),
+        title: Text(AppLocalizations.of(context)?.settingsLabel ?? "Settings"),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),

@@ -8,6 +8,7 @@ import 'package:league_of_legends_library/view/champion_selection_page/champion_
 import 'package:league_of_legends_library/view/homepage/favorites_view.dart';
 import 'package:league_of_legends_library/view/homepage/recently_viewed_view.dart';
 import 'package:league_of_legends_library/view/settings/settings_view.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -27,8 +28,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 items:
                     // Implementing items like this ensure that the index will match the desired type of page
                     BodyPages.values
-                        .map((page) =>
-                            BodyPagesItem.getBottomNavigationBarItem(page))
+                        .map((page) => BodyPagesItem.getBottomNavigationBarItem(
+                            context, page))
                         .toList(),
                 onTap: (index) {
                   context
@@ -64,13 +65,17 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 extension BodyPagesItem on BodyPages {
-  static BottomNavigationBarItem getBottomNavigationBarItem(BodyPages page) =>
+  static BottomNavigationBarItem getBottomNavigationBarItem(
+          BuildContext context, BodyPages page) =>
       switch (page) {
-        BodyPages.homepage => const BottomNavigationBarItem(
-            icon: Icon(Icons.home_rounded), label: "Home"),
-        BodyPages.championPage => const BottomNavigationBarItem(
-            icon: Icon(Icons.group), label: "Champions"),
-        BodyPages.settings => const BottomNavigationBarItem(
-            icon: Icon(Icons.settings), label: "Settings"),
+        BodyPages.homepage => BottomNavigationBarItem(
+            icon: const Icon(Icons.home_rounded),
+            label: AppLocalizations.of(context)?.homeLabel ?? "Home"),
+        BodyPages.championPage => BottomNavigationBarItem(
+            icon: const Icon(Icons.group),
+            label: AppLocalizations.of(context)?.championsLabel ?? "Champions"),
+        BodyPages.settings => BottomNavigationBarItem(
+            icon: const Icon(Icons.settings),
+            label: AppLocalizations.of(context)?.settingsLabel ?? "Settings"),
       };
 }

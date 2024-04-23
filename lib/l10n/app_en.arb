@@ -1,0 +1,109 @@
+{
+    "@@locale": "en",
+    "recentlyViewedTitle": "Recently viewed",
+    "@recentlyViewedTitle": {
+        "description": "Title for recently viewed section"
+    },
+    "favoritesTitle": "Your favorites",
+    "@favoritesTitle": {
+        "description": "Title for favorites section"
+    },
+    "championsLabel": "Champions",
+    "@championsLabel": {
+        "description": "Label used for the navigation to champions selection page"
+    },
+    "settingsLabel": "Settings",
+    "@settingsLabel": {
+        "description": "Label used for the navigation to champions selection page"
+    },
+    "homeLabel": "Home",
+    "@homeLabel": {
+        "description": "Label used for the navigation to the homepage"
+    },
+    "themeSettingLabel": "Theme mode",
+    "@themeSettingLabel": {
+        "description": "Label for theme mode setting"
+    },
+    "themeModePopupTitle": "Choose theme mode",
+    "@themeModePopupTitle": {
+        "description": "Title for the theme mode setting popup"
+    },
+    "useSystemTheme": "Use system mode",
+    "@useSystemTheme": {
+        "description": "Radio button label for system mode theme setting"
+    },
+    "darkThemeMode": "Dark mode",
+    "@darkThemeMode": {
+        "description": "Radio button label for dark mode theme setting"
+    },
+    "lightThemeMode": "Light mode",
+    "@lightThemeMode": {
+        "description": "Radio button label for light mode theme setting"
+    },
+    "cancel": "Cancel",
+    "@cancel": {
+        "description": "Label used usually for buttons to cancel an action"
+    },
+    "apply": "Apply",
+    "@apply": {
+        "description": "Label used usually for buttons to apply action"
+    },
+    "languageSettingLabel": "Language",
+    "@languageSettingLabel": {
+        "description": "Label used for language setting"
+    },
+    "languagePopupTitle": "Choose a language",
+    "@languagePopupTitle": {
+        "description": "Title for the popup page shown when user needs to choose a language."
+    },
+    "championSelectionPageScaffoldTitle": "Choose a champion",
+    "@championSelectionPageScaffoldTitle": {
+        "description": "Title used for the app bar in the champion selection page"
+    },
+    "loreLabel": "Lore",
+    "@loreLabel": {
+        "description": "Lore label used for info selection in champion page."
+    },
+    "spellsLabel": "Spells",
+    "@spellsLabel": {
+        "description": "Spells label used for info selection in champion page."
+    },
+    "tipsLabel": "Tips",
+    "@tipsLabel": {
+        "description": "Tips label used for info selection in champion page."
+    },
+    "passive": "Passive",
+    "@passive": {
+        "description": "Used to identify passives spells."
+    },
+    "cooldown": "Cooldown: {spellCooldowns}",
+    "@cooldown": {
+        "description": "Used to identify spells cooldown.",
+        "placeholders": {
+            "spellCooldowns": {
+                "type": "String",
+                "example": "10/8/7/4/4"
+            }
+        }
+    },
+    "playingAsChampion": "Playing as {championName}",
+    "@playingAsChampion": {
+        "description": "Used as title for ally tips",
+        "placeholders": {
+            "championName": {
+                "type": "String",
+                "example": "Bard"
+            }
+        }
+    },
+    "playingAgainstChampion": "Playing against {championName}",
+    "@playingAgainstChampion": {
+        "description": "Used as title for enemy tips",
+        "placeholders": {
+            "championName": {
+                "type": "String",
+                "example": "Bard"
+            }
+        }
+    }
+}

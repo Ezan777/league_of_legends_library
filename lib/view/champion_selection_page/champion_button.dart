@@ -47,8 +47,7 @@ class _ChampionButtonState extends State<ChampionButton> {
           AvailableLanguages language) =>
       FutureBuilder(
           future: widget.championRepository.getChampionById(
-              championId: widget.championId,
-              languageCode: language.languageCode),
+              championId: widget.championId, languageCode: language.localeCode),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               Champion champion = snapshot.data!;

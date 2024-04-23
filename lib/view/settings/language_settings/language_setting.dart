@@ -36,7 +36,7 @@ class LanguageSetting extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Language",
+                          "Language", // I will keep this string in English in order to avoid miss-understanding if someone set the wrong one.
                           style: Theme.of(context).textTheme.bodyLarge,
                         ),
                         Text(

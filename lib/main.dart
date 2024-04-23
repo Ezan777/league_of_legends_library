@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:league_of_legends_library/app_bloc_observer.dart';
 import 'package:league_of_legends_library/app_model.dart';
 import 'package:league_of_legends_library/bloc/champion_skin/skin_bloc.dart';
@@ -20,6 +21,7 @@ import 'package:league_of_legends_library/bloc/settings/theme_bloc/theme_event.d
 import 'package:league_of_legends_library/bloc/settings/theme_bloc/theme_state.dart';
 import 'package:league_of_legends_library/view/homepage/homepage.dart';
 import 'package:league_of_legends_library/view/settings/language_settings/available_languages.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 late final AppModel appModel;
 
@@ -81,36 +83,54 @@ class MyApp extends StatelessWidget {
           ),
         ],
         child: BlocListener<LanguageBloc, LanguageState>(
-          listener: (context, state) {
-            if (state is LanguageLoaded) {
+          listener: (context, languageState) {
+            if (languageState is LanguageLoaded) {
               context
                   .read<RecentlyViewedBloc>()
-                  .add(ChangedLanguage(state.language));
+                  .add(ChangedLanguage(languageState.language));
               context
                   .read<FavoritesBloc>()
-                  .add(ApplicationLanguageChanged(state.language));
+                  .add(ApplicationLanguageChanged(languageState.language));
             }
           },
           child: BlocBuilder<ThemeBloc, ThemeState>(
-            builder: (context, state) => MaterialApp(
-              title: 'League of Legends library',
-              theme: ThemeData(
-                fontFamily: "BeaufortforLOL",
-                colorScheme: lightDynamic ??
-                    ColorScheme.fromSeed(
-                        seedColor: Colors.greenAccent,
-                        brightness: Brightness.light),
-                useMaterial3: true,
+            builder: (context, themeState) =>
+                BlocBuilder<LanguageBloc, LanguageState>(
+              builder: (context, languageState) => MaterialApp(
+                title: 'League of Legends library',
+                localizationsDelegates: const [
+                  AppLocalizations.delegate,
+                  GlobalMaterialLocalizations.delegate,
+                  GlobalWidgetsLocalizations.delegate,
+                  GlobalCupertinoLocalizations.delegate,
+                ],
+                supportedLocales: AvailableLanguages.values
+                    .map((language) => Locale(
+                        language.getLanguageCode(), language.getCountryCode()))
+                    .toList(),
+                locale: languageState is LanguageLoaded
+                    ? Locale(languageState.language.getLanguageCode(),
+                        languageState.language.getCountryCode())
+                    : const Locale("en", "US"),
+                theme: ThemeData(
+                  fontFamily: "BeaufortforLOL",
+                  colorScheme: lightDynamic ??
+                      ColorScheme.fromSeed(
+                          seedColor: Colors.greenAccent,
+                          brightness: Brightness.light),
+                  useMaterial3: true,
+                ),
+                darkTheme: ThemeData(
+                  fontFamily: "BeaufortforLOL",
+                  colorScheme: darkDynamic ??
+                      ColorScheme.fromSeed(
+                          seedColor: Colors.purple,
+                          brightness: Brightness.dark),
+                  useMaterial3: true,
+                ),
+                themeMode: _getTheme(themeState),
+                home: const MyHomePage(title: title),
               ),
-              darkTheme: ThemeData(
-                fontFamily: "BeaufortforLOL",
-                colorScheme: darkDynamic ??
-                    ColorScheme.fromSeed(
-                        seedColor: Colors.purple, brightness: Brightness.dark),
-                useMaterial3: true,
-              ),
-              themeMode: _getTheme(state),
-              home: const MyHomePage(title: title),
             ),
           ),
         ),

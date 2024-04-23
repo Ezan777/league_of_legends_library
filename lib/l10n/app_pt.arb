@@ -1,0 +1,26 @@
+
+{
+    "@@locale": "pt",
+    "recentlyViewedTitle": "Visualizados recentemente",
+    "favoritesTitle": "Favoritos",
+    "championsLabel": "Campeões",
+    "settingsLabel": "Configurações",
+    "homeLabel": " Início",
+    "themeSettingLabel": "Tema",
+    "themeModePopupTitle": "Escolher tema",
+    "useSystemTheme": "Usar tema do sistema",
+    "darkThemeMode": "Tema escuro",
+    "lightThemeMode": "Tema claro",
+    "cancel": "Cancelar",
+    "apply": "Aplicar",
+    "languageSettingLabel": "Idioma",
+    "languagePopupTitle": "Escolher idioma",
+    "championSelectionPageScaffoldTitle": "Escolher um campeão",
+    "loreLabel": "História",
+    "spellsLabel": "Habilidades",
+    "tipsLabel": "Dicas",
+    "passive": "Passiva",
+    "cooldown": "Recarga: {spellCooldowns}",
+    "playingAsChampion": "Jogando como {championName}",
+    "playingAgainstChampion": "Jogando contra {championName}"
+}

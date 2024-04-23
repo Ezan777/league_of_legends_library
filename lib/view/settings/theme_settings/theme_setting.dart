@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:league_of_legends_library/bloc/settings/theme_bloc/theme_bloc.dart';
 import 'package:league_of_legends_library/bloc/settings/theme_bloc/theme_state.dart';
 import 'package:league_of_legends_library/view/settings/theme_settings/theme_popup.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ThemeSetting extends StatelessWidget {
   const ThemeSetting({super.key});
@@ -35,11 +36,12 @@ class ThemeSetting extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Theme",
+                          AppLocalizations.of(context)?.themeSettingLabel ??
+                              "Theme mode",
                           style: Theme.of(context).textTheme.bodyLarge,
                         ),
                         Text(
-                          state.themeMode.displayName(),
+                          state.themeMode.localizedDisplayName(context),
                           style: Theme.of(context).textTheme.bodySmall,
                         ),
                       ],

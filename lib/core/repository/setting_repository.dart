@@ -27,6 +27,6 @@ class SettingRepository {
   }
 
   Future<bool> setLanguage(AvailableLanguages language) async {
-    return await _settingDataSource.setLanguageCode(language.languageCode);
+    return await _settingDataSource.setLanguageCode(language.localeCode);
   }
 }

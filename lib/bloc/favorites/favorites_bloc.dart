@@ -25,7 +25,7 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
       final favoriteChampions = await Future.wait(championRepository
           .favoritesChampions
           .map((championId) => championRepository.getChampionById(
-              championId: championId, languageCode: language.languageCode))
+              championId: championId, languageCode: language.localeCode))
           .toList());
       emit(FavoritesLoaded(favoriteChampions));
     } catch (_) {
@@ -75,7 +75,7 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
     final favoriteChampions = await Future.wait(championRepository
         .favoritesChampions
         .map((championId) => championRepository.getChampionById(
-            championId: championId, languageCode: language.languageCode))
+            championId: championId, languageCode: language.localeCode))
         .toList());
     emit(FavoritesLoaded(favoriteChampions, language: language));
   }

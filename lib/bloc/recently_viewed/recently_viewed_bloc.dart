@@ -28,7 +28,7 @@ class RecentlyViewedBloc
       final recentlyViewedChampions = await Future.wait(championRepository
           .recentlyViewedChampions
           .map((championId) => championRepository.getChampionById(
-              championId: championId, languageCode: language.languageCode))
+              championId: championId, languageCode: language.localeCode))
           .toList());
       emit(RecentlyViewedLoaded(Queue.from(recentlyViewedChampions)));
     } catch (_) {
@@ -73,7 +73,7 @@ class RecentlyViewedBloc
     final recentlyViewedChampions = await Future.wait(championRepository
         .recentlyViewedChampions
         .map((championId) => championRepository.getChampionById(
-            championId: championId, languageCode: language.languageCode))
+            championId: championId, languageCode: language.localeCode))
         .toList());
     emit(RecentlyViewedLoaded(Queue.from(recentlyViewedChampions),
         language: language));

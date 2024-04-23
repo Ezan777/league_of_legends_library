@@ -25,15 +25,15 @@ enum AvailableLanguages {
   chinese("zh_CN"),
   taiwaneseChinese("zh_TW");
 
-  final String languageCode;
-  const AvailableLanguages(this.languageCode);
+  final String localeCode;
+  const AvailableLanguages(this.localeCode);
 
   /// Given a [languageCode] will return the corresponding language.
   ///
   /// If the given [languageCode] is not valid or not available it will return american english (en_US).
   factory AvailableLanguages.fromLanguageCode(String languageCode) {
     final List<AvailableLanguages> compatibles = AvailableLanguages.values
-        .where((language) => language.languageCode.contains(languageCode))
+        .where((language) => language.localeCode.contains(languageCode))
         .toList();
 
     if (compatibles.isEmpty || compatibles.length > 1) {
@@ -42,6 +42,9 @@ enum AvailableLanguages {
       return compatibles.first;
     }
   }
+
+  String getLanguageCode() => localeCode.split("_")[0];
+  String getCountryCode() => localeCode.split("_")[1];
 
   String displayName() => switch (this) {
         AvailableLanguages.czech => "Čeština",
@@ -73,7 +76,7 @@ enum AvailableLanguages {
 
   static bool isLanguageCodeAvailable(String languageCode) =>
       AvailableLanguages.values
-          .map((language) => language.languageCode)
+          .map((language) => language.localeCode)
           .toList()
           .contains(languageCode);
 }

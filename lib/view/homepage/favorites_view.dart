@@ -4,6 +4,7 @@ import 'package:league_of_legends_library/bloc/favorites/favorites_bloc.dart';
 import 'package:league_of_legends_library/bloc/favorites/favorites_state.dart';
 import 'package:league_of_legends_library/main.dart';
 import 'package:league_of_legends_library/view/champion_selection_page/champion_button.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class FavoritesView extends StatelessWidget {
   const FavoritesView({super.key});
@@ -38,7 +39,7 @@ class FavoritesView extends StatelessWidget {
   Widget _favoritesTitle(BuildContext context) => Padding(
         padding: const EdgeInsets.only(left: 17),
         child: Text(
-          "Your Favorites",
+          AppLocalizations.of(context)?.favoritesTitle ?? "Your Favorites",
           style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                 fontWeight: FontWeight.bold,
                 fontStyle: FontStyle.italic,

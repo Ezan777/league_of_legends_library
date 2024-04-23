@@ -21,7 +21,7 @@ class _LanguageRadioListState extends State<LanguageRadioList> {
     _chosenLanguage ??= widget.language;
 
     return AlertDialog(
-      title: const Text("Choose language"),
+      title: const Text("Choose a language"),
       actions: [
         TextButton(
           onPressed: () => Navigator.pop(context),

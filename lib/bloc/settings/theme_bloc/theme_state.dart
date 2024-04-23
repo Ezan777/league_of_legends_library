@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 enum AppThemeMode {
   followSystem,
@@ -14,6 +15,15 @@ enum AppThemeMode {
       _ => throw Exception("Invalid theme mode string"),
     };
   }
+
+  String localizedDisplayName(BuildContext context) => switch (this) {
+        AppThemeMode.followSystem =>
+          AppLocalizations.of(context)?.useSystemTheme ?? "Use system mode",
+        AppThemeMode.dark =>
+          AppLocalizations.of(context)?.darkThemeMode ?? "Dark mode",
+        AppThemeMode.light =>
+          AppLocalizations.of(context)?.lightThemeMode ?? "Light mode",
+      };
 
   String displayName() => switch (this) {
         AppThemeMode.followSystem => "Use system mode",
