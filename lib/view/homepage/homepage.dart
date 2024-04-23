@@ -7,6 +7,7 @@ import 'package:league_of_legends_library/main.dart';
 import 'package:league_of_legends_library/view/champion_selection_page/champion_selection_page.dart';
 import 'package:league_of_legends_library/view/homepage/favorites_view.dart';
 import 'package:league_of_legends_library/view/homepage/recently_viewed_view.dart';
+import 'package:league_of_legends_library/view/settings/settings_view.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -44,9 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
         BodyPages.homepage => _buildHomePage(),
         BodyPages.championPage => ChampionSelectionPage(
             championRepository: appModel.championRepository),
-        BodyPages.settings => const Center(
-            child: Text("Settings"),
-          ),
+        BodyPages.settings => const SettingsView(),
       };
 
   // TODO: Add a custom sliver list to homepage to improve scrolling

@@ -1,6 +1,6 @@
 import 'dart:collection';
 
-import 'package:league_of_legends_library/data/local_data_source.dart';
+import 'package:league_of_legends_library/data/champion_local_data_source.dart';
 import 'package:league_of_legends_library/data/shared_preferences_keys.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

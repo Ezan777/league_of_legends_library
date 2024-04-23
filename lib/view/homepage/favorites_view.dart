@@ -49,7 +49,8 @@ class FavoritesView extends StatelessWidget {
   Widget _favoritesGrid(FavoritesLoaded state) => Expanded(
         child: GridView.builder(
           itemCount: state.favoriteChampions.length,
-          gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(maxCrossAxisExtent: 200, mainAxisExtent: 200),
+          gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+              maxCrossAxisExtent: 200, mainAxisExtent: 200),
           itemBuilder: (context, index) => ChampionButton(
               championId: state.favoriteChampions[index].id,
               championRepository: appModel.championRepository),

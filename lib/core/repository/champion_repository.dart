@@ -2,7 +2,7 @@ import 'dart:collection';
 
 import 'package:league_of_legends_library/core/model/champion.dart';
 import 'package:league_of_legends_library/core/model/skin.dart';
-import 'package:league_of_legends_library/data/local_data_source.dart';
+import 'package:league_of_legends_library/data/champion_local_data_source.dart';
 import 'package:league_of_legends_library/data/remote_data_source.dart';
 
 class ChampionRepository {

@@ -10,6 +10,9 @@ import 'package:league_of_legends_library/bloc/favorites/favorites_event.dart';
 import 'package:league_of_legends_library/bloc/navigation/navigation_bloc.dart';
 import 'package:league_of_legends_library/bloc/recently_viewed/recently_viewed_bloc.dart';
 import 'package:league_of_legends_library/bloc/recently_viewed/recently_viewed_event.dart';
+import 'package:league_of_legends_library/bloc/settings/theme_bloc/theme_bloc.dart';
+import 'package:league_of_legends_library/bloc/settings/theme_bloc/theme_event.dart';
+import 'package:league_of_legends_library/bloc/settings/theme_bloc/theme_state.dart';
 import 'package:league_of_legends_library/view/homepage/homepage.dart';
 
 late final AppModel appModel;
@@ -51,28 +54,43 @@ class MyApp extends StatelessWidget {
                 SkinsBloc(championRepository: appModel.championRepository)
                   ..add(SkinsStarted()),
           ),
+          BlocProvider(
+            create: (_) =>
+                ThemeBloc(settingRepository: appModel.settingRepository)
+                  ..add(
+                    ThemeStarted(),
+                  ),
+          )
         ],
-        child: MaterialApp(
-          title: 'League of Legends library',
-          theme: ThemeData(
-            fontFamily: "BeaufortforLOL",
-            colorScheme: lightDynamic ??
-                ColorScheme.fromSeed(
-                    seedColor: Colors.greenAccent,
-                    brightness: Brightness.light),
-            useMaterial3: true,
+        child: BlocBuilder<ThemeBloc, ThemeState>(
+          builder: (context, state) => MaterialApp(
+            title: 'League of Legends library',
+            theme: ThemeData(
+              fontFamily: "BeaufortforLOL",
+              colorScheme: lightDynamic ??
+                  ColorScheme.fromSeed(
+                      seedColor: Colors.greenAccent,
+                      brightness: Brightness.light),
+              useMaterial3: true,
+            ),
+            darkTheme: ThemeData(
+              fontFamily: "BeaufortforLOL",
+              colorScheme: darkDynamic ??
+                  ColorScheme.fromSeed(
+                      seedColor: Colors.purple, brightness: Brightness.dark),
+              useMaterial3: true,
+            ),
+            themeMode: _getTheme(state),
+            home: const MyHomePage(title: title),
           ),
-          darkTheme: ThemeData(
-            fontFamily: "BeaufortforLOL",
-            colorScheme: darkDynamic ??
-                ColorScheme.fromSeed(
-                    seedColor: Colors.purple, brightness: Brightness.dark),
-            useMaterial3: true,
-          ),
-          themeMode: ThemeMode.system,
-          home: const MyHomePage(title: title),
         ),
       ),
     );
+  }
+
+  ThemeMode _getTheme(ThemeState state) {
+    return state is ThemeLoaded
+        ? state.themeMode.toMaterialThemeMode()
+        : ThemeMode.system;
   }
 }
