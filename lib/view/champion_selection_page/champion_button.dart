@@ -114,6 +114,7 @@ class _ChampionButtonState extends State<ChampionButton> {
           {required Champion champion, required BuildContext context}) =>
       Text(
         champion.name,
+        overflow: TextOverflow.ellipsis,
         style: Theme.of(context).textTheme.headlineSmall?.copyWith(
               color: Theme.of(context).colorScheme.onSurface,
               fontWeight: FontWeight.bold,
