@@ -15,7 +15,6 @@ class ChampionRepository {
   final LocalDataSource _localDataSource;
   static const String baseUrl =
       "https://league-of-legends-library.web.app"; //https://dragontail.enricozangrando.com";
-  final String _championDataPath = "14.7.1/data/en_US/champion";
 
   ChampionRepository(
       {required RemoteDataSource remoteDataSource,
@@ -70,25 +69,15 @@ class ChampionRepository {
   }
 
   /// Return the champion with the given [championId].
-  Future<Champion> getChampionById({required String championId}) async {
-    final json = await _remoteDataSource
-        .fetchJson("$baseUrl/$_championDataPath/$championId.json");
+  Future<Champion> getChampionById(
+      {required String championId, required String languageCode}) async {
+    final json = await _remoteDataSource.fetchJson(
+        "$baseUrl/14.7.1/data/$languageCode/champion/$championId.json");
 
     return Champion.fromJson(
       id: championId,
       json: json,
     );
-  }
-
-  Future<List<Champion>> getChampionsById(
-      {required List<String> championsIds}) async {
-    return Future.wait(championsIds
-        .map((id) async => Champion.fromJson(
-              id: id,
-              json: await _remoteDataSource
-                  .fetchJson("$baseUrl/$_championDataPath/$id.json"),
-            ))
-        .toList());
   }
 
   /// Return a list containing all champions ids. If the data obtained from json is invalid it will return an empty list.

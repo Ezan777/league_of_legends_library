@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:league_of_legends_library/core/model/champion.dart';
+import 'package:league_of_legends_library/view/settings/language_settings/available_languages.dart';
 
 sealed class FavoritesEvent extends Equatable {
   const FavoritesEvent();
@@ -29,4 +30,13 @@ class RemovedChampionFromFavorites extends FavoritesEvent {
 
   @override
   List<Object?> get props => [removedChampion];
+}
+
+final class ApplicationLanguageChanged extends FavoritesEvent {
+  final AvailableLanguages newLanguage;
+
+  const ApplicationLanguageChanged(this.newLanguage);
+
+  @override
+  List<Object?> get props => [newLanguage];
 }

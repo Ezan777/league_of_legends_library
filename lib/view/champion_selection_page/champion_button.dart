@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:league_of_legends_library/bloc/champion_skin/skin_bloc.dart';
 import 'package:league_of_legends_library/bloc/champion_skin/skin_state.dart';
+import 'package:league_of_legends_library/bloc/settings/language_bloc/language_bloc.dart';
+import 'package:league_of_legends_library/bloc/settings/language_bloc/language_state.dart';
 import 'package:league_of_legends_library/core/model/champion.dart';
 import 'package:league_of_legends_library/core/repository/champion_repository.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:league_of_legends_library/view/champion_page/champion_view.dart';
+import 'package:league_of_legends_library/view/settings/language_settings/available_languages.dart';
 
 class ChampionButton extends StatefulWidget {
   final String championId;
@@ -21,37 +24,17 @@ class _ChampionButtonState extends State<ChampionButton> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SkinsBloc, SkinState>(
-      builder: (context, state) => switch (state) {
-        SkinsLoaded() => FutureBuilder(
-            future: widget.championRepository
-                .getChampionById(championId: widget.championId),
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                Champion champion = snapshot.data!;
-
-                return GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => ChampionView(
-                              champion: champion,
-                              skinCode:
-                                  state.championIdActiveSkin[champion.id] ?? 0,
-                            )));
-                  },
-                  child: _buildChampionColumn(
-                      champion: champion,
-                      context: context,
-                      skinCode:
-                          state.championIdActiveSkin[widget.championId] ?? 0),
-                );
-              } else if (snapshot.hasError) {
-                return Text(snapshot.error.toString());
-              }
-
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            }),
+      builder: (context, skinState) => switch (skinState) {
+        SkinsLoaded() => BlocBuilder<LanguageBloc, LanguageState>(
+            builder: (context, languageState) => switch (languageState) {
+              LanguageLoaded() => _buildChampionButton(
+                  skinState, context, languageState.language),
+              LanguageLoading() => const CircularProgressIndicator(),
+              LanguageError() => const Center(
+                  child: Text("Unable to get language"),
+                )
+            },
+          ),
         SkinsLoading() => const CircularProgressIndicator(),
         SkinsError() => const Center(
             child: Text("Unable to retrieve champion data"),
@@ -59,6 +42,40 @@ class _ChampionButtonState extends State<ChampionButton> {
       },
     );
   }
+
+  Widget _buildChampionButton(SkinsLoaded state, BuildContext context,
+          AvailableLanguages language) =>
+      FutureBuilder(
+          future: widget.championRepository.getChampionById(
+              championId: widget.championId,
+              languageCode: language.languageCode),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              Champion champion = snapshot.data!;
+
+              return GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => ChampionView(
+                            champion: champion,
+                            skinCode:
+                                state.championIdActiveSkin[champion.id] ?? 0,
+                          )));
+                },
+                child: _buildChampionColumn(
+                    champion: champion,
+                    context: context,
+                    skinCode:
+                        state.championIdActiveSkin[widget.championId] ?? 0),
+              );
+            } else if (snapshot.hasError) {
+              return Text(snapshot.error.toString());
+            }
+
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          });
 
   Widget _buildChampionColumn(
           {required Champion champion,

@@ -15,4 +15,13 @@ class SettingDataSource {
     return await _sharedPreferences.setString(
         SharedPreferencesKeys.themeMode.key, themeMode.toString());
   }
+
+  String? getLanguageCode() {
+    return _sharedPreferences.getString(SharedPreferencesKeys.language.key);
+  }
+
+  Future<bool> setLanguageCode(String languageCode) async {
+    return await _sharedPreferences.setString(
+        SharedPreferencesKeys.language.key, languageCode);
+  }
 }

@@ -3,11 +3,15 @@ import 'package:league_of_legends_library/bloc/favorites/favorites_event.dart';
 import 'package:league_of_legends_library/bloc/favorites/favorites_state.dart';
 import 'package:league_of_legends_library/core/model/champion.dart';
 import 'package:league_of_legends_library/core/repository/champion_repository.dart';
+import 'package:league_of_legends_library/view/settings/language_settings/available_languages.dart';
 
 class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
   final ChampionRepository championRepository;
+  AvailableLanguages language;
 
-  FavoritesBloc({required this.championRepository})
+  FavoritesBloc(
+      {required this.championRepository,
+      this.language = AvailableLanguages.americanEnglish})
       : super(FavoritesLoading()) {
     on<FavoritesStarted>(_onStarted);
     on<AddedChampionToFavorites>(_onChampionAdded);
@@ -18,8 +22,11 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
       FavoritesStarted event, Emitter<FavoritesState> emit) async {
     emit(FavoritesLoading());
     try {
-      final favoriteChampions = await championRepository.getChampionsById(
-          championsIds: championRepository.favoritesChampions);
+      final favoriteChampions = await Future.wait(championRepository
+          .favoritesChampions
+          .map((championId) => championRepository.getChampionById(
+              championId: championId, languageCode: language.languageCode))
+          .toList());
       emit(FavoritesLoaded(favoriteChampions));
     } catch (_) {
       emit(FavoritesError());
@@ -60,5 +67,16 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
         emit(FavoritesError());
       }
     }
+  }
+
+  Future<void> _onLanguageChanged(
+      ApplicationLanguageChanged event, Emitter<FavoritesState> emit) async {
+    language = event.newLanguage;
+    final favoriteChampions = await Future.wait(championRepository
+        .favoritesChampions
+        .map((championId) => championRepository.getChampionById(
+            championId: championId, languageCode: language.languageCode))
+        .toList());
+    emit(FavoritesLoaded(favoriteChampions, language: language));
   }
 }
