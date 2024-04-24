@@ -16,7 +16,6 @@ class CategorySelector extends StatefulWidget {
 }
 
 class _CategorySelectorState extends State<CategorySelector> {
-  // FIXME In some languages the info button overflows
   final ValueNotifier<InfoCategory> _chosenCategory =
       ValueNotifier(InfoCategory.lore);
 

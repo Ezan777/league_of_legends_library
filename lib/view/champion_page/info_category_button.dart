@@ -16,10 +16,6 @@ class _InfoCategoryButtonState extends State<InfoCategoryButton> {
   Widget build(BuildContext context) {
     bool isChosen = widget.chosenCategory.value == widget.category;
 
-    /* widget.chosenCategory.addListener(() {
-      setState(() {});
-    }); */
-
     return AnimatedSwitcher(
       duration: const Duration(milliseconds: 175),
       transitionBuilder: (child, animation) => ScaleTransition(
@@ -47,6 +43,7 @@ class _InfoCategoryButtonState extends State<InfoCategoryButton> {
           },
           child: Text(
             widget.category.getLocalizedDisplayName(context),
+            overflow: TextOverflow.ellipsis,
             style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                   fontWeight: FontWeight.bold,
                   fontStyle: FontStyle.italic,
@@ -69,6 +66,7 @@ class _InfoCategoryButtonState extends State<InfoCategoryButton> {
           },
           child: Text(
             widget.category.getLocalizedDisplayName(context),
+            overflow: TextOverflow.ellipsis,
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                   color: Theme.of(context).colorScheme.onSecondaryContainer,
                 ),
