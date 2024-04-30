@@ -32,7 +32,9 @@ void main() async {
   appModel = await AppModel.initializeDataSource();
   Bloc.observer = const AppBlocObserver();
 
-  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]).then((_) => runApp(const MyApp()));
+  SystemChrome.setPreferredOrientations(
+          [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown])
+      .then((_) => runApp(const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -89,9 +91,9 @@ class MyApp extends StatelessWidget {
               context
                   .read<RecentlyViewedBloc>()
                   .add(ChangedLanguage(languageState.language));
-              context
+              /* context
                   .read<FavoritesBloc>()
-                  .add(ApplicationLanguageChanged(languageState.language));
+                  .add(ApplicationLanguageChanged(languageState.language)); */
             }
           },
           child: BlocBuilder<ThemeBloc, ThemeState>(

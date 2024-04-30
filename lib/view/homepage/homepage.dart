@@ -5,8 +5,7 @@ import 'package:league_of_legends_library/bloc/navigation/navigation_event.dart'
 import 'package:league_of_legends_library/bloc/navigation/navigation_state.dart';
 import 'package:league_of_legends_library/main.dart';
 import 'package:league_of_legends_library/view/champion_selection_page/champion_selection_page.dart';
-import 'package:league_of_legends_library/view/homepage/favorites_view.dart';
-import 'package:league_of_legends_library/view/homepage/recently_viewed_view.dart';
+import 'package:league_of_legends_library/view/homepage/homepage_view.dart';
 import 'package:league_of_legends_library/view/settings/settings_view.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -43,25 +42,11 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget _buildBody(BodyPages selectedPage) => switch (selectedPage) {
-        BodyPages.homepage => _buildHomePage(),
+        BodyPages.homepage => const HomepageView(),
         BodyPages.championPage => ChampionSelectionPage(
             championRepository: appModel.championRepository),
         BodyPages.settings => const SettingsView(),
       };
-
-  // TODO: Add a custom sliver list to homepage to improve scrolling
-  Widget _buildHomePage() => Scaffold(
-        appBar: AppBar(
-          forceMaterialTransparency: true,
-          title: const Text("League of Legends library"),
-        ),
-        body: const Column(
-          children: [
-            RecentlyViewedView(),
-            FavoritesView(),
-          ],
-        ),
-      );
 }
 
 extension BodyPagesItem on BodyPages {
