@@ -3,6 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:league_of_legends_library/bloc/favorites/favorites_bloc.dart';
 import 'package:league_of_legends_library/bloc/favorites/favorites_state.dart';
+import 'package:league_of_legends_library/bloc/navigation/navigation_bloc.dart';
+import 'package:league_of_legends_library/bloc/navigation/navigation_event.dart';
+import 'package:league_of_legends_library/bloc/navigation/navigation_state.dart';
 import 'package:league_of_legends_library/bloc/recently_viewed/recently_viewed_bloc.dart';
 import 'package:league_of_legends_library/bloc/recently_viewed/recently_viewed_state.dart';
 import 'package:league_of_legends_library/main.dart';
@@ -49,14 +52,38 @@ class HomepageView extends StatelessWidget {
                 padding:
                     const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
                 height: 275,
-                child: ListView.separated(
-                  separatorBuilder: (context, index) => const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 5)),
-                  scrollDirection: Axis.horizontal,
-                  itemCount: state.recentlyViewedChampions.length,
-                  itemBuilder: (context, index) => ChampionCard(
-                      champion: state.recentlyViewedChampions.toList()[index]),
-                ),
+                child: state.recentlyViewedChampions.isNotEmpty
+                    ? ListView.separated(
+                        separatorBuilder: (context, index) => const Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 5)),
+                        scrollDirection: Axis.horizontal,
+                        itemCount: state.recentlyViewedChampions.length,
+                        itemBuilder: (context, index) => ChampionCard(
+                            champion:
+                                state.recentlyViewedChampions.toList()[index]),
+                      )
+                    : Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Center(
+                            child: Text(
+                              "No recently viewed champions.",
+                              style: Theme.of(context).textTheme.bodyLarge,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 10),
+                            child: FilledButton(
+                              onPressed: () {
+                                context.read<NavigationBloc>().add(
+                                    const SetNavigationPage(
+                                        BodyPages.championPage));
+                              },
+                              child: const Text("See all champions"),
+                            ),
+                          ),
+                        ],
+                      ),
               ),
             ),
           RecentlyViewedLoading() => const SliverToBoxAdapter(
@@ -85,14 +112,24 @@ class HomepageView extends StatelessWidget {
 
   Widget _favoritesView() => BlocBuilder<FavoritesBloc, FavoritesState>(
         builder: (context, state) => switch (state) {
-          FavoritesLoaded() => SliverGrid.builder(
-              itemCount: state.favoriteChampions.length,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2),
-              itemBuilder: (context, index) => ChampionButton(
-                  championId: state.favoriteChampions[index].id,
-                  championRepository: appModel.championRepository),
-            ),
+          FavoritesLoaded() => state.favoriteChampions.isNotEmpty
+              ? SliverGrid.builder(
+                  itemCount: state.favoriteChampions.length,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2),
+                  itemBuilder: (context, index) => ChampionButton(
+                      championId: state.favoriteChampions[index].id,
+                      championRepository: appModel.championRepository),
+                )
+              : SliverToBoxAdapter(
+                  child: Center(
+                    child: Container(
+                      padding: const EdgeInsets.all(15),
+                      child: const Text(
+                          "No favorites champion found. To save a champion as a favorite one tap on the heart icon that you can find in the champion page."),
+                    ),
+                  ),
+                ),
           FavoritesLoading() => const SliverToBoxAdapter(
               child: Center(
                 child: CircularProgressIndicator(),
