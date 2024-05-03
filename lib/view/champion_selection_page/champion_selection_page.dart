@@ -26,8 +26,12 @@ class _ChampionSelectionPageState extends State<ChampionSelectionPage> {
           return Scaffold(
             appBar: AppBar(
               forceMaterialTransparency: true,
-              actions: [
-                IconButton(
+              title: Text(AppLocalizations.of(context)
+                      ?.championSelectionPageScaffoldTitle ??
+                  "Choose a champion"),
+            ),
+            body: _buildChampionsGrid(championsId: championsId),
+            floatingActionButton: FloatingActionButton(
                     onPressed: () {
                       showSearch(
                           context: context,
@@ -35,13 +39,7 @@ class _ChampionSelectionPageState extends State<ChampionSelectionPage> {
                               searchable: championsId,
                               textController: _textController));
                     },
-                    icon: const Icon(Icons.search))
-              ],
-              title: Text(AppLocalizations.of(context)
-                      ?.championSelectionPageScaffoldTitle ??
-                  "Choose a champion"),
-            ),
-            body: _buildChampionsGrid(championsId: championsId),
+                    child: const Icon(Icons.search)),
           );
         } else if (snapshot.hasError) {
           return Text(snapshot.error.toString());
