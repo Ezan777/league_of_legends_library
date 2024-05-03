@@ -28,12 +28,12 @@ class _CategorySelectorState extends State<CategorySelector> {
     return Column(
       children: [
         Wrap(
-            spacing: 15,
-            runSpacing: 5,
-            direction: Axis.horizontal,
-            alignment: WrapAlignment.spaceEvenly,
-            children: _buildCategoriesButton(),
-          ),
+          spacing: 15,
+          runSpacing: 5,
+          direction: Axis.horizontal,
+          alignment: WrapAlignment.spaceEvenly,
+          children: _buildCategoriesButton(),
+        ),
         _buildInfoView(),
       ],
     );

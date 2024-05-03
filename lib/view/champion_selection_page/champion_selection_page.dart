@@ -32,14 +32,14 @@ class _ChampionSelectionPageState extends State<ChampionSelectionPage> {
             ),
             body: _buildChampionsGrid(championsId: championsId),
             floatingActionButton: FloatingActionButton(
-                    onPressed: () {
-                      showSearch(
-                          context: context,
-                          delegate: ImplSearchDelegate(
-                              searchable: championsId,
-                              textController: _textController));
-                    },
-                    child: const Icon(Icons.search)),
+                onPressed: () {
+                  showSearch(
+                      context: context,
+                      delegate: ImplSearchDelegate(
+                          searchable: championsId,
+                          textController: _textController));
+                },
+                child: const Icon(Icons.search)),
           );
         } else if (snapshot.hasError) {
           return Text(snapshot.error.toString());
