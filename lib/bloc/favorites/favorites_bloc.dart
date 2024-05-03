@@ -16,6 +16,7 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
     on<FavoritesStarted>(_onStarted);
     on<AddedChampionToFavorites>(_onChampionAdded);
     on<RemovedChampionFromFavorites>(_onChampionRemoved);
+    on<ApplicationLanguageChanged>(_onLanguageChanged);
   }
 
   Future<void> _onStarted(
