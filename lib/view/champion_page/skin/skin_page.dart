@@ -13,6 +13,7 @@ class SkinPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        // TODO Translate skins
         title: const Text("Skins"),
       ),
       body: BlocBuilder<SkinsBloc, SkinState>(

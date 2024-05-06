@@ -22,78 +22,82 @@ class SkinCard extends StatelessWidget {
             onTap: () {
               context.read<SkinsBloc>().add(AddSkinToChampion(champion, skin));
             },
-            child: Container(
-              height: 200,
-              decoration: BoxDecoration(
-                borderRadius: const BorderRadius.all(Radius.circular(26)),
-                border: (state.championIdActiveSkin[champion.id] ?? 0) ==
-                        skin.skinCode
-                    ? Border.all(
-                        color: Theme.of(context).colorScheme.primary, width: 6)
-                    : null,
-              ),
-              child: ClipRRect(
-                borderRadius: const BorderRadius.all(Radius.circular(20)),
-                child: Stack(
-                  fit: StackFit.expand,
-                  children: [
-                    CachedNetworkImage(
-                      imageUrl: ChampionRepository.getFullChampionImageUrl(
-                          championId: champion.id, skinCode: skin.skinCode),
-                      progressIndicatorBuilder: (context, string, _) =>
-                          const Center(
-                        child: SizedBox(
-                          height: 20,
-                          width: 20,
-                          child: CircularProgressIndicator(),
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxHeight: 300),
+              child: Container(
+                height: 0.3 * MediaQuery.of(context).size.height,
+                decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.all(Radius.circular(26)),
+                  border: (state.championIdActiveSkin[champion.id] ?? 0) ==
+                          skin.skinCode
+                      ? Border.all(
+                          color: Theme.of(context).colorScheme.primary,
+                          width: 6)
+                      : null,
+                ),
+                child: ClipRRect(
+                  borderRadius: const BorderRadius.all(Radius.circular(20)),
+                  child: Stack(
+                    fit: StackFit.expand,
+                    children: [
+                      CachedNetworkImage(
+                        imageUrl: ChampionRepository.getFullChampionImageUrl(
+                            championId: champion.id, skinCode: skin.skinCode),
+                        progressIndicatorBuilder: (context, string, _) =>
+                            const Center(
+                          child: SizedBox(
+                            height: 20,
+                            width: 20,
+                            child: CircularProgressIndicator(),
+                          ),
                         ),
+                        fit: BoxFit.cover,
                       ),
-                      fit: BoxFit.cover,
-                    ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 20, horizontal: 10),
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [
-                            Colors.transparent,
-                            Colors.black.withOpacity(0.5)
-                          ],
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 20, horizontal: 10),
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [
+                              Colors.transparent,
+                              Colors.black.withOpacity(0.5)
+                            ],
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                          ),
                         ),
-                      ),
-                      child: Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Text(
-                              skin.name != "default"
-                                  ? skin.name
-                                  : champion.name,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyLarge
-                                  ?.copyWith(color: Colors.white),
-                              maxLines: 1,
-                              overflow: TextOverflow.clip,
-                            ),
-                            if ((state.championIdActiveSkin[champion.id] ??
-                                    0) ==
-                                skin.skinCode)
+                        child: Align(
+                          alignment: Alignment.bottomCenter,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
                               Text(
-                                "(In use)",
+                                skin.name != "default"
+                                    ? skin.name
+                                    : champion.name,
                                 style: Theme.of(context)
                                     .textTheme
-                                    .bodySmall
+                                    .bodyLarge
                                     ?.copyWith(color: Colors.white),
+                                maxLines: 1,
+                                overflow: TextOverflow.clip,
                               ),
-                          ],
+                              if ((state.championIdActiveSkin[champion.id] ??
+                                      0) ==
+                                  skin.skinCode)
+                                Text(
+                                  "(In use)",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodySmall
+                                      ?.copyWith(color: Colors.white),
+                                ),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),

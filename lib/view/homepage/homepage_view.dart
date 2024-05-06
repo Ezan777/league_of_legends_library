@@ -48,42 +48,47 @@ class HomepageView extends StatelessWidget {
       BlocBuilder<RecentlyViewedBloc, RecentlyViewedState>(
         builder: (context, state) => switch (state) {
           RecentlyViewedLoaded() => SliverToBoxAdapter(
-              child: Container(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-                height: 275,
-                child: state.recentlyViewedChampions.isNotEmpty
-                    ? ListView.separated(
-                        separatorBuilder: (context, index) => const Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 5)),
-                        scrollDirection: Axis.horizontal,
-                        itemCount: state.recentlyViewedChampions.length,
-                        itemBuilder: (context, index) => ChampionCard(
-                            champion:
-                                state.recentlyViewedChampions.toList()[index]),
-                      )
-                    : Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Center(
-                            child: Text(
-                              "No recently viewed champions.",
-                              style: Theme.of(context).textTheme.bodyLarge,
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(
+                  maxHeight: 300,
+                ),
+                child: Container(
+                  height: 0.35 * MediaQuery.of(context).size.height,
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                  child: state.recentlyViewedChampions.isNotEmpty
+                      ? ListView.separated(
+                          separatorBuilder: (context, index) => const Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 5)),
+                          scrollDirection: Axis.horizontal,
+                          itemCount: state.recentlyViewedChampions.length,
+                          itemBuilder: (context, index) => ChampionCard(
+                              champion: state.recentlyViewedChampions
+                                  .toList()[index]),
+                        )
+                      : Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Center(
+                              child: Text(
+                                "No recently viewed champions.",
+                                style: Theme.of(context).textTheme.bodyLarge,
+                              ),
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 10),
-                            child: FilledButton(
-                              onPressed: () {
-                                context.read<NavigationBloc>().add(
-                                    const SetNavigationPage(
-                                        BodyPages.championPage));
-                              },
-                              child: const Text("See all champions"),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 10),
+                              child: FilledButton(
+                                onPressed: () {
+                                  context.read<NavigationBloc>().add(
+                                      const SetNavigationPage(
+                                          BodyPages.championPage));
+                                },
+                                child: const Text("See all champions"),
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
+                          ],
+                        ),
+                ),
               ),
             ),
           RecentlyViewedLoading() => const SliverToBoxAdapter(
