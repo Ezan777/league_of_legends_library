@@ -11,7 +11,7 @@ class LanguageSetting extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<LanguageBloc, LanguageState>(
       builder: (context, state) => state is LanguageLoaded
-          ? GestureDetector(
+          ? InkWell(
               onTap: () async {
                 await showDialog(
                   context: context,

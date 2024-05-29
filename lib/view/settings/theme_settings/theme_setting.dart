@@ -12,7 +12,7 @@ class ThemeSetting extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ThemeBloc, ThemeState>(
       builder: (context, state) => state is ThemeLoaded
-          ? GestureDetector(
+          ? InkWell(
               onTap: () async {
                 await showDialog(
                     context: context,
