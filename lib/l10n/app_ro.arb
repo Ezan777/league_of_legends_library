@@ -21,5 +21,13 @@
     "passive": "Pasivă",
     "cooldown": "Reîncărcare: {spellCooldowns}",
     "playingAsChampion": "Joci ca {championName}",
-    "playingAgainstChampion": "Joci contra {championName}"
+    "playingAgainstChampion": "Joci contra {championName}",
+    "noFavoritesSaved": "Nu s-au găsit campioni favoriți. Pentru a salva un campion ca favorit, atingeți pictograma inimii pe pagina campionului.",
+    "noRecentlyViewed": "Nu există campioni vizualizați recent.",
+    "seeAllChampionsLabel": "Vezi toți campionii",
+    "errorRecentlyViewed": "Eroare la încărcarea campionilor vizualizați recent. Încercați din nou.",
+    "errorFavorites": "Eroare la încărcarea campionilor favoriți. Încercați din nou.",
+    "inUseSkin": "În uz",
+    "skinTitle": "Skinuri",
+    "skinsError": "Nu se pot încărca skinurile campionilor. Încercați din nou."
 }

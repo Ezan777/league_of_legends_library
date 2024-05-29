@@ -21,5 +21,13 @@
     "passive": "Passiva",
     "cooldown": "Ricarica: {spellCooldowns}",
     "playingAsChampion": "Giocando come {championName}",
-    "playingAgainstChampion": "Giocando contro {championName}"
+    "playingAgainstChampion": "Giocando contro {championName}",
+    "noFavoritesSaved": "Nessun campione preferito trovato. Per salvare un campione come preferito, tocca l'icona a forma di cuore che trovi nella pagina del campione.",
+    "noRecentlyViewed": "Nessun campione visualizzato di recente.",
+    "seeAllChampionsLabel": "Vedi tutti i campioni",
+    "errorRecentlyViewed": "Errore durante il caricamento dei campioni visualizzati di recente. Riprova.",
+    "errorFavorites": "Errore durante il caricamento dei campioni preferiti. Riprova.",
+    "inUseSkin": "In uso",
+    "skinTitle": "Skin",
+    "skinsError": "Impossibile caricare le skin del campione. Riprova."
 }

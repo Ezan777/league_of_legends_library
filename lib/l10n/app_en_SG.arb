@@ -21,5 +21,13 @@
     "passive": "Passive",
     "cooldown": "Cooldown: {spellCooldowns}",
     "playingAsChampion": "Playing as {championName}",
-    "playingAgainstChampion": "Playing against {championName}"
+    "playingAgainstChampion": "Playing against {championName}",
+    "noFavoritesSaved": "No favourite champions found. To save a champion as a favourite, tap the heart icon on the champion page.",
+    "noRecentlyViewed": "No recently viewed champions.",
+    "seeAllChampionsLabel": "See all champions",
+    "errorRecentlyViewed": "Error loading recently viewed champions. Please try again.",
+    "errorFavorites": "Error loading favourite champions. Please try again.",
+    "inUseSkin": "In use",
+    "skinTitle": "Skins",
+    "skinsError": "Unable to load champion skins. Please try again."
 }

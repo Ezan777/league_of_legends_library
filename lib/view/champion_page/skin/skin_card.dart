@@ -7,6 +7,7 @@ import 'package:league_of_legends_library/bloc/champion_skin/skin_state.dart';
 import 'package:league_of_legends_library/core/model/champion.dart';
 import 'package:league_of_legends_library/core/model/skin.dart';
 import 'package:league_of_legends_library/core/repository/champion_repository.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SkinCard extends StatelessWidget {
   final Champion champion;
@@ -86,7 +87,7 @@ class SkinCard extends StatelessWidget {
                                       0) ==
                                   skin.skinCode)
                                 Text(
-                                  "(In use)",
+                                  "(${AppLocalizations.of(context)?.inUseSkin ?? "(In use)"})",
                                   style: Theme.of(context)
                                       .textTheme
                                       .bodySmall
@@ -108,10 +109,10 @@ class SkinCard extends StatelessWidget {
               child: CircularProgressIndicator(),
             ),
           ),
-        SkinsError() => const Center(
+        SkinsError() =>  Center(
             child: Padding(
-              padding: EdgeInsets.all(20),
-              child: Text("Unable to get champion skin"),
+              padding: const EdgeInsets.all(20),
+              child: Text(AppLocalizations.of(context)?.skinsError ?? "Unable to load champion skins, please try again"),
             ),
           )
       },

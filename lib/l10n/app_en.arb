@@ -105,5 +105,37 @@
                 "example": "Bard"
             }
         }
+    },
+    "noFavoritesSaved": "No favorites champion found. To save a champion as a favorite one tap on the heart icon that you can find in the champion page.",
+    "@noFavoritesSaved": {
+        "description": "Used if favorites list is empty."
+    },
+    "noRecentlyViewed": "No recently viewed champions.",
+    "@noRecentlyViewed": {
+        "description": "Used if recently viewed list is empty."
+    },
+    "seeAllChampionsLabel": "See all champions",
+    "@seeAllChampionsLabel": {
+        "description": "Used for the button that route to champion selection page."
+    },
+    "errorRecentlyViewed": "Error while loading recently viewed champions, please try again",
+    "@errorRecentlyViewed": {
+        "description": "Used if there are errors while loading recently viewed champions."
+    },
+    "errorFavorites": "Error while loading favorites champions, please try again",
+    "@errorFavorites": {
+        "description": "Used if there are errors while loading favorites champions."
+    },
+    "inUseSkin": "In use",
+    "@inUseSkin": {
+        "description": "Label to identify currently chosen skin."
+    },
+    "skinTitle": "Skins",
+    "@skinTitle": {
+        "description": "Title for skin page"
+    },
+    "skinsError": "Unable to load champion skins, please try again",
+    "@skinsError": {
+        "description": "Used if there are errors while loading champion's skins."
     }
 }

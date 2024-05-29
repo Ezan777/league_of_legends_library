@@ -21,5 +21,13 @@
     "passive": "สกิลติดตัว",
     "cooldown": "คูลดาวน์: {spellCooldowns}",
     "playingAsChampion": "เล่นเป็น {championName}",
-    "playingAgainstChampion": "เล่นสู้กับ {championName}"
+    "playingAgainstChampion": "เล่นสู้กับ {championName}",
+    "noFavoritesSaved": "ไม่พบแชมเปี้ยนที่ชื่นชอบ โปรดแตะที่ไอคอนหัวใจบนหน้าแชมเปี้ยนเพื่อบันทึกแชมเปี้ยนเป็นรายการโปรด",
+    "noRecentlyViewed": "ไม่มีแชมเปี้ยนที่ดูล่าสุด",
+    "seeAllChampionsLabel": "ดูแชมเปี้ยนทั้งหมด",
+    "errorRecentlyViewed": "เกิดข้อผิดพลาดขณะโหลดแชมเปี้ยนที่ดูล่าสุด โปรดลองอีกครั้ง",
+    "errorFavorites": "เกิดข้อผิดพลาดขณะโหลดแชมเปี้ยนที่ชื่นชอบ โปรดลองอีกครั้ง",
+    "inUseSkin": "ใช้งานอยู่",
+    "skinTitle": "สกิน",
+    "skinsError": "ไม่สามารถโหลดสกินแชมเปี้ยนได้ โปรดลองอีกครั้ง"
 }

@@ -21,5 +21,13 @@
     "passive": "Παθητική",
     "cooldown": "Επαναφόρτιση: {spellCooldowns}",
     "playingAsChampion": "Παίζετε ως {championName}",
-    "playingAgainstChampion": "Παίζετε εναντίον {championName}"
+    "playingAgainstChampion": "Παίζετε εναντίον {championName}",
+    "noFavoritesSaved": "Δεν βρέθηκαν αγαπημένοι πρωταθλητές. Για να αποθηκεύσετε έναν πρωταθλητή ως αγαπημένο, πατήστε το εικονίδιο καρδιάς στη σελίδα του πρωταθλητή.",
+    "noRecentlyViewed": "Δεν υπάρχουν πρόσφατα προβεβλημένοι πρωταθλητές.",
+    "seeAllChampionsLabel": "Δείτε όλους τους πρωταθλητές",
+    "errorRecentlyViewed": "Σφάλμα κατά τη φόρτωση των πρόσφατα προβεβλημένων πρωταθλητών. Δοκιμάστε ξανά.",
+    "errorFavorites": "Σφάλμα κατά τη φόρτωση των αγαπημένων πρωταθλητών. Δοκιμάστε ξανά.",
+    "inUseSkin": "Σε χρήση",
+    "skinTitle": "Σκίν",
+    "skinsError": "Αδυναμία φόρτωσης των σκίν του πρωταθλητή. Δοκιμάστε ξανά."
 }

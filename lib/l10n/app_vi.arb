@@ -21,5 +21,13 @@
     "passive": "Nội tại",
     "cooldown": "Hồi chiêu: {spellCooldowns}",
     "playingAsChampion": "Chơi với {championName}",
-    "playingAgainstChampion": "Chơi chống {championName}"
+    "playingAgainstChampion": "Chơi chống {championName}",
+    "noFavoritesSaved": "Không tìm thấy tướng yêu thích. Để lưu tướng yêu thích, hãy chạm vào biểu tượng trái tim trên trang tướng.",
+    "noRecentlyViewed": "Không có tướng xem gần đây.",
+    "seeAllChampionsLabel": "Xem tất cả tướng",
+    "errorRecentlyViewed": "Lỗi khi tải tướng xem gần đây. Vui lòng thử lại.",
+    "errorFavorites": "Lỗi khi tải tướng yêu thích. Vui lòng thử lại.",
+    "inUseSkin": "Đang sử dụng",
+    "skinTitle": "Trang phục",
+    "skinsError": "Không thể tải trang phục tướng. Vui lòng thử lại."
 }

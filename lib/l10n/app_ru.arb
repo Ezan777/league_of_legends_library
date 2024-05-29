@@ -21,5 +21,13 @@
     "passive": "Пассивная",
     "cooldown": "Откат: {spellCooldowns}",
     "playingAsChampion": "Играть за {championName}",
-    "playingAgainstChampion": "Играть против {championName}"
+    "playingAgainstChampion": "Играть против {championName}",
+    "noFavoritesSaved": "Не найдено избранных чемпионов. Чтобы сохранить чемпиона как избранного, нажмите на значок сердца на странице чемпиона.",
+    "noRecentlyViewed": "Недавно просмотренных чемпионов нет.",
+    "seeAllChampionsLabel": "Посмотреть всех чемпионов",
+    "errorRecentlyViewed": "Ошибка загрузки недавно просмотренных чемпионов. Попробуйте еще раз.",
+    "errorFavorites": "Ошибка загрузки избранных чемпионов. Попробуйте еще раз.",
+    "inUseSkin": "В использовании",
+    "skinTitle": "Скины",
+    "skinsError": "Не удалось загрузить скины чемпиона. Попробуйте еще раз."
 }

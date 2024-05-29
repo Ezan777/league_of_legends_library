@@ -71,7 +71,7 @@ class HomepageView extends StatelessWidget {
                           children: [
                             Center(
                               child: Text(
-                                "No recently viewed champions.",
+                                AppLocalizations.of(context)?.noRecentlyViewed ?? "No recently viewed champions.",
                                 style: Theme.of(context).textTheme.bodyLarge,
                               ),
                             ),
@@ -83,7 +83,7 @@ class HomepageView extends StatelessWidget {
                                       const SetNavigationPage(
                                           BodyPages.championPage));
                                 },
-                                child: const Text("See all champions"),
+                                child: Text(AppLocalizations.of(context)?.seeAllChampionsLabel ?? "See all champions"),
                               ),
                             ),
                           ],
@@ -96,9 +96,9 @@ class HomepageView extends StatelessWidget {
                 child: CircularProgressIndicator(),
               ),
             ),
-          RecentlyViewedError() => const SliverToBoxAdapter(
+          RecentlyViewedError() => SliverToBoxAdapter(
               child: Center(
-                child: Text("Error while loading favorites champions"),
+                child: Text(AppLocalizations.of(context)?.errorRecentlyViewed ?? "Error while loading recently viewed champions, please try again"),
               ),
             ),
         },
@@ -130,8 +130,8 @@ class HomepageView extends StatelessWidget {
                   child: Center(
                     child: Container(
                       padding: const EdgeInsets.all(15),
-                      child: const Text(
-                          "No favorites champion found. To save a champion as a favorite one tap on the heart icon that you can find in the champion page."),
+                      child: Text(
+                        AppLocalizations.of(context)?.noFavoritesSaved  ?? "No favorites champion found. To save a champion as a favorite one tap on the heart icon that you can find in the champion page."),
                     ),
                   ),
                 ),
@@ -140,9 +140,9 @@ class HomepageView extends StatelessWidget {
                 child: CircularProgressIndicator(),
               ),
             ),
-          FavoritesError() => const SliverToBoxAdapter(
+          FavoritesError() => SliverToBoxAdapter(
               child: Center(
-                child: Text("Error while loading favorites champions"),
+                child: Text(AppLocalizations.of(context)?.errorFavorites ?? "Error while loading favorites champions, please try again"),
               ),
             ),
         },

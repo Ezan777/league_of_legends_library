@@ -22,5 +22,13 @@
     "passive": "Passiva",
     "cooldown": "Recarga: {spellCooldowns}",
     "playingAsChampion": "Jogando como {championName}",
-    "playingAgainstChampion": "Jogando contra {championName}"
+    "playingAgainstChampion": "Jogando contra {championName}",
+    "noFavoritesSaved": "Nenhum campeão favorito encontrado. Para salvar um campeão como favorito, toque no ícone de coração que você encontra na página do campeão.",
+    "noRecentlyViewed": "Nenhum campeão visto recentemente.",
+    "seeAllChampionsLabel": "Ver todos os campeões",
+    "errorRecentlyViewed": "Erro ao carregar campeões visualizados recentemente. Tente novamente.",
+    "errorFavorites": "Erro ao carregar campeões favoritos. Tente novamente.",
+    "inUseSkin": "Em uso",
+    "skinTitle": "Skins",
+    "skinsError": "Não foi possível carregar as skins do campeão. Tente novamente."
 }

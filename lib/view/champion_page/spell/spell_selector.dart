@@ -18,6 +18,7 @@ class _SpellSelectorState extends State<SpellSelector> {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
+      shrinkWrap: true,
       scrollDirection: Axis.horizontal,
       itemCount: widget.champion.spells.length + 1,
       itemBuilder: (context, index) {

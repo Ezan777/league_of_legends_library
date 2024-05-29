@@ -4,6 +4,7 @@ import 'package:league_of_legends_library/bloc/champion_skin/skin_bloc.dart';
 import 'package:league_of_legends_library/bloc/champion_skin/skin_state.dart';
 import 'package:league_of_legends_library/core/model/champion.dart';
 import 'package:league_of_legends_library/view/champion_page/skin/skin_card.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SkinPage extends StatelessWidget {
   final Champion champion;
@@ -13,8 +14,7 @@ class SkinPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // TODO Translate skins
-        title: const Text("Skins"),
+        title: Text(AppLocalizations.of(context)?.skinTitle ?? "Skins"),
       ),
       body: BlocBuilder<SkinsBloc, SkinState>(
         builder: (context, state) => Padding(

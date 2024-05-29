@@ -21,5 +21,13 @@
     "passive": "Pasivní",
     "cooldown": "Dobití: {spellCooldowns}",
     "playingAsChampion": "Hraješ za {championName}",
-    "playingAgainstChampion": "Hraješ proti {championName}"
+    "playingAgainstChampion": "Hraješ proti {championName}",
+    "noFavoritesSaved": "Nebyly nalezeny žádné oblíbené šampiony. Chcete-li šampiona uložit jako oblíbeného, klepněte na ikonu srdce na stránce šampiona.",
+    "noRecentlyViewed": "Žádní šampioni nebyli nedávno prohlédnuto.",
+    "seeAllChampionsLabel": "Zobrazit všechny šampiony",
+    "errorRecentlyViewed": "Došlo k chybě při načítání nedávno prohlédnutých šampionů. Zkuste to znovu.",
+    "errorFavorites": "Došlo k chybě při načítání oblíbených šampionů. Zkuste to znovu.",
+    "inUseSkin": "Používá se",
+    "skinTitle": "Skiny",
+    "skinsError": "Nepodařilo se načíst skiny šampionů. Zkuste to znovu."
 }

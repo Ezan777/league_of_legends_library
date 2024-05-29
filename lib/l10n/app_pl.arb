@@ -21,5 +21,13 @@
     "passive": "Pasywna",
     "cooldown": "Czas odnowienia: {spellCooldowns}",
     "playingAsChampion": "Gra jako {championName}",
-    "playingAgainstChampion": "Gra przeciwko {championName}"
+    "playingAgainstChampion": "Gra przeciwko {championName}",
+    "noFavoritesSaved": "Nie znaleziono ulubionych bohaterów. Aby zapisać bohatera jako ulubionego, dotknij ikony serca na stronie bohatera.",
+    "noRecentlyViewed": "Brak ostatnio oglądanych bohaterów.",
+    "seeAllChampionsLabel": "Zobacz wszystkich bohaterów",
+    "errorRecentlyViewed": "Błąd podczas ładowania ostatnio oglądanych bohaterów. Spróbuj ponownie.",
+    "errorFavorites": "Błąd podczas ładowania ulubionych bohaterów. Spróbuj ponownie.",
+    "inUseSkin": "W użyciu",
+    "skinTitle": "Skiny",
+    "skinsError": "Nie można wczytać skórek bohaterów. Spróbuj ponownie."
 }

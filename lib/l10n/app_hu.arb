@@ -21,5 +21,13 @@
     "passive": "Passzív",
     "cooldown": "Újratöltés: {spellCooldowns}",
     "playingAsChampion": "{championName} játéka",
-    "playingAgainstChampion": "Játék {championName} ellen"
+    "playingAgainstChampion": "Játék {championName} ellen",
+    "noFavoritesSaved": "Nem találtunk kedvenc bajnokot. Ahhoz, hogy kedvencként ments el egy bajnokot, koppints a szív ikonra a bajnok oldalán.",
+    "noRecentlyViewed": "Nincsenek nemrégiben megtekintett bajnokok.",
+    "seeAllChampionsLabel": "Összes bajnok megtekintése",
+    "errorRecentlyViewed": "Hiba történt a nemrégiben megtekintett bajnokok betöltése közben. Próbálja újra!",
+    "errorFavorites": "Hiba történt a kedvenc bajnokok betöltése közben. Próbálja újra!",
+    "inUseSkin": "Használatban",
+    "skinTitle": "Skinek",
+    "skinsError": "Nem sikerült betölteni a bajnok skineket. Próbálja újra!"
 }

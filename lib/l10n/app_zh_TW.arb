@@ -21,5 +21,13 @@
     "passive": "被動",
     "cooldown": "冷却時間: {spellCooldowns}",
     "playingAsChampion": "使用 {championName} 進行遊戲",
-    "playingAgainstChampion": "对抗 {championName}"
+    "playingAgainstChampion": "对抗 {championName}",
+    "noFavoritesSaved": "找不到收藏英雄。要將英雄保存為收藏，請點擊英雄頁面上的心形圖示。",
+    "noRecentlyViewed": "沒有最近查看的英雄。",
+    "seeAllChampionsLabel": "查看所有英雄",
+    "errorRecentlyViewed": "加載最近查看的英雄時發生錯誤。請稍後再試。",
+    "errorFavorites": "加載收藏英雄時發生錯誤。請稍後再試。",
+    "inUseSkin": "正在使用",
+    "skinTitle": "皮膚",
+    "skinsError": "無法加載英雄皮膚。請稍後再試。"
 }
