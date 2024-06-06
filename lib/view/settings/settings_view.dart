@@ -9,7 +9,6 @@ enum Settings {
 }
 
 class SettingsView extends StatelessWidget {
-  // TODO Add an ink effect when settings are tapped
   const SettingsView({super.key});
 
   @override
