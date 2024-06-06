@@ -29,5 +29,11 @@
     "errorFavorites": "Favori şampiyonlar yüklenirken hata oluştu. Lütfen tekrar deneyin.",
     "inUseSkin": "Kullanılıyor",
     "skinTitle": "Skinler",
-    "skinsError": "Şampiyon skinleri yüklenemedi. Lütfen tekrar deneyin."
+    "skinsError": "Şampiyon skinleri yüklenemedi. Lütfen tekrar deneyin.",
+    "changeLanguageSettingTooltip": "Dili Değiştir",
+    "changeThemeSettingTooltip": "Temayı Değiştir",
+    "championTileLabel": "{championName}'nin Yakın Planı",
+    "championTileTooltip": "Görünümü Değiştir",
+    "removeFromFavoritesTooltip": "Favorilerden Kaldır",
+    "addToFavoriteTooltip": "Favorilere Ekle"
 }

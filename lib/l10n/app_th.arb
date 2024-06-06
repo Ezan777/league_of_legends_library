@@ -29,5 +29,11 @@
     "errorFavorites": "เกิดข้อผิดพลาดขณะโหลดแชมเปี้ยนที่ชื่นชอบ โปรดลองอีกครั้ง",
     "inUseSkin": "ใช้งานอยู่",
     "skinTitle": "สกิน",
-    "skinsError": "ไม่สามารถโหลดสกินแชมเปี้ยนได้ โปรดลองอีกครั้ง"
+    "skinsError": "ไม่สามารถโหลดสกินแชมเปี้ยนได้ โปรดลองอีกครั้ง",
+    "changeLanguageSettingTooltip": "เปลี่ยนภาษา",
+    "changeThemeSettingTooltip": "เปลี่ยนธีม",
+    "championTileLabel": "การซูมเข้าใกล้ {championName}",
+    "championTileTooltip": "เปลี่ยนสกิน",
+    "removeFromFavoritesTooltip": "ลบออกจากรายการโปรด",
+    "addToFavoriteTooltip": "เพิ่มไปยังรายการโปรด"
 }

@@ -29,5 +29,11 @@
     "errorFavorites": "Ошибка загрузки избранных чемпионов. Попробуйте еще раз.",
     "inUseSkin": "В использовании",
     "skinTitle": "Скины",
-    "skinsError": "Не удалось загрузить скины чемпиона. Попробуйте еще раз."
+    "skinsError": "Не удалось загрузить скины чемпиона. Попробуйте еще раз.",
+    "changeLanguageSettingTooltip": "Изменить язык",
+    "changeThemeSettingTooltip": "Изменить тему",
+    "championTileLabel": "Портрет {championName}",
+    "championTileTooltip": "Сменить облик",
+    "removeFromFavoritesTooltip": "Убрать из избранного",
+    "addToFavoriteTooltip": "Добавить в избранное"
 }

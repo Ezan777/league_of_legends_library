@@ -29,5 +29,11 @@
     "errorFavorites": "Eroare la încărcarea campionilor favoriți. Încercați din nou.",
     "inUseSkin": "În uz",
     "skinTitle": "Skinuri",
-    "skinsError": "Nu se pot încărca skinurile campionilor. Încercați din nou."
+    "skinsError": "Nu se pot încărca skinurile campionilor. Încercați din nou.",
+    "changeLanguageSettingTooltip": "Schimbă limba",
+    "changeThemeSettingTooltip": "Schimbă tema",
+    "championTileLabel": "Un prim plan al lui {championName}",
+    "championTileTooltip": "Schimbă skin-ul",
+    "removeFromFavoritesTooltip": "Elimină din favorite",
+    "addToFavoriteTooltip": "Adaugă la favorite"
 }

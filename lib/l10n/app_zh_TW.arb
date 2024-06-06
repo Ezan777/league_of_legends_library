@@ -29,5 +29,11 @@
     "errorFavorites": "加載收藏英雄時發生錯誤。請稍後再試。",
     "inUseSkin": "正在使用",
     "skinTitle": "皮膚",
-    "skinsError": "無法加載英雄皮膚。請稍後再試。"
+    "skinsError": "無法加載英雄皮膚。請稍後再試。",
+    "changeLanguageSettingTooltip": "更改語言",
+    "changeThemeSettingTooltip": "更改主題",
+    "championTileLabel": "{championName}的頭像",
+    "championTileTooltip": "更改皮膚",
+    "removeFromFavoritesTooltip": "從收藏中刪除",
+    "addToFavoriteTooltip": "添加到收藏"
 }

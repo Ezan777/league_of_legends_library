@@ -29,5 +29,11 @@
     "errorFavorites": "Lỗi khi tải tướng yêu thích. Vui lòng thử lại.",
     "inUseSkin": "Đang sử dụng",
     "skinTitle": "Trang phục",
-    "skinsError": "Không thể tải trang phục tướng. Vui lòng thử lại."
+    "skinsError": "Không thể tải trang phục tướng. Vui lòng thử lại.",
+    "changeLanguageSettingTooltip": "Thay đổi ngôn ngữ",
+    "changeThemeSettingTooltip": "Thay đổi giao diện",
+    "championTileLabel": "Chân dung {championName}",
+    "championTileTooltip": "Đổi trang phục",
+    "removeFromFavoritesTooltip": "Bỏ khỏi danh sách yêu thích",
+    "addToFavoriteTooltip": "Thêm vào danh sách yêu thích"
 }

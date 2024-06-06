@@ -29,5 +29,11 @@
     "errorFavorites": "Došlo k chybě při načítání oblíbených šampionů. Zkuste to znovu.",
     "inUseSkin": "Používá se",
     "skinTitle": "Skiny",
-    "skinsError": "Nepodařilo se načíst skiny šampionů. Zkuste to znovu."
+    "skinsError": "Nepodařilo se načíst skiny šampionů. Zkuste to znovu.",
+    "changeLanguageSettingTooltip": "Změnit jazyk",
+    "changeThemeSettingTooltip": "Změnit motiv",
+    "championTileLabel": "Detailní pohled na {championName}",
+    "championTileTooltip": "Změnit skin",
+    "removeFromFavoritesTooltip": "Odebrat z oblíbených",
+    "addToFavoriteTooltip": "Přidat do oblíbených"
 }

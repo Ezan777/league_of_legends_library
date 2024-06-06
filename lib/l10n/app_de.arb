@@ -29,5 +29,11 @@
     "errorFavorites": "Fehler beim Laden der Lieblingschampions. Bitte versuchen Sie es erneut.",
     "inUseSkin": "In Benutzung",
     "skinTitle": "Skins",
-    "skinsError": "Die Champion-Skins konnten nicht geladen werden. Bitte versuchen Sie es erneut."
+    "skinsError": "Die Champion-Skins konnten nicht geladen werden. Bitte versuchen Sie es erneut.",
+    "changeLanguageSettingTooltip": "Sprache ändern",
+    "changeThemeSettingTooltip": "Design ändern",
+    "championTileLabel": "Nahaufnahme von {championName}",
+    "championTileTooltip": "Skin ändern",
+    "removeFromFavoritesTooltip": "Aus Favoriten entfernen",
+    "addToFavoriteTooltip": "Zu Favoriten hinzufügen"
 }

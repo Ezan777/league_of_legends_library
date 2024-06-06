@@ -30,5 +30,11 @@
     "errorFavorites": "Erro ao carregar campeões favoritos. Tente novamente.",
     "inUseSkin": "Em uso",
     "skinTitle": "Skins",
-    "skinsError": "Não foi possível carregar as skins do campeão. Tente novamente."
+    "skinsError": "Não foi possível carregar as skins do campeão. Tente novamente.",
+    "changeLanguageSettingTooltip": "Alterar idioma",
+    "changeThemeSettingTooltip": "Alterar tema",
+    "championTileLabel": "Plano próximo de {championName}",
+    "championTileTooltip": "Alterar skin",
+    "removeFromFavoritesTooltip": "Remover dos favoritos",
+    "addToFavoriteTooltip": "Adicionar aos favoritos"
 }

@@ -29,5 +29,11 @@
     "errorFavorites": "Błąd podczas ładowania ulubionych bohaterów. Spróbuj ponownie.",
     "inUseSkin": "W użyciu",
     "skinTitle": "Skiny",
-    "skinsError": "Nie można wczytać skórek bohaterów. Spróbuj ponownie."
+    "skinsError": "Nie można wczytać skórek bohaterów. Spróbuj ponownie.",
+    "changeLanguageSettingTooltip": "Zmień język",
+    "changeThemeSettingTooltip": "Zmień motyw",
+    "championTileLabel": "Zbliżenie na {championName}",
+    "championTileTooltip": "Zmień skórkę",
+    "removeFromFavoritesTooltip": "Usuń z ulubionych",
+    "addToFavoriteTooltip": "Dodaj do ulubionych"
 }

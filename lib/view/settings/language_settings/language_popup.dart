@@ -21,11 +21,13 @@ class _LanguageRadioListState extends State<LanguageRadioList> {
     _chosenLanguage ??= widget.language;
 
     return AlertDialog(
-      title: const Text("Choose a language"),
+      title: const Text.rich(
+          TextSpan(text: "Choose a language", locale: Locale('en'))),
       actions: [
         TextButton(
           onPressed: () => Navigator.pop(context),
-          child: const Text('Cancel'),
+          child:
+              const Text.rich(TextSpan(text: "Cancel", locale: Locale('en'))),
         ),
         TextButton(
           onPressed: () {
@@ -34,7 +36,7 @@ class _LanguageRadioListState extends State<LanguageRadioList> {
                 .add(ChangeLanguage(_chosenLanguage ?? widget.language));
             Navigator.pop(context);
           },
-          child: const Text('Apply'),
+          child: const Text.rich(TextSpan(text: "Apply", locale: Locale('en'))),
         ),
       ],
       content: SizedBox(
@@ -43,7 +45,10 @@ class _LanguageRadioListState extends State<LanguageRadioList> {
           shrinkWrap: true,
           itemCount: AvailableLanguages.values.length,
           itemBuilder: (context, index) => RadioListTile<AvailableLanguages>(
-            title: Text(AvailableLanguages.values[index].displayName()),
+            title: Text.rich(TextSpan(
+                text: AvailableLanguages.values[index].displayName(),
+                locale: Locale(
+                    AvailableLanguages.values[index].getLanguageCode()))),
             value: AvailableLanguages.values[index],
             groupValue: _chosenLanguage,
             onChanged: (_) {

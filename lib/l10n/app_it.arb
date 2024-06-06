@@ -29,5 +29,11 @@
     "errorFavorites": "Errore durante il caricamento dei campioni preferiti. Riprova.",
     "inUseSkin": "In uso",
     "skinTitle": "Skin",
-    "skinsError": "Impossibile caricare le skin del campione. Riprova."
+    "skinsError": "Impossibile caricare le skin del campione. Riprova.",
+    "changeLanguageSettingTooltip": "Cambia lingua",
+    "changeThemeSettingTooltip": "Cambia tema",
+    "championTileLabel": "Un primo piano di {championName}",
+    "championTileTooltip": "Cambia skin",
+    "removeFromFavoritesTooltip": "Rimuovi dai preferiti",
+    "addToFavoriteTooltip": "Aggiungi ai preferiti"
 }

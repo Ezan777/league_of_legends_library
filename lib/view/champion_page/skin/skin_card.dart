@@ -109,10 +109,11 @@ class SkinCard extends StatelessWidget {
               child: CircularProgressIndicator(),
             ),
           ),
-        SkinsError() =>  Center(
+        SkinsError() => Center(
             child: Padding(
               padding: const EdgeInsets.all(20),
-              child: Text(AppLocalizations.of(context)?.skinsError ?? "Unable to load champion skins, please try again"),
+              child: Text(AppLocalizations.of(context)?.skinsError ??
+                  "Unable to load champion skins, please try again"),
             ),
           )
       },

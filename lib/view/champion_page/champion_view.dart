@@ -8,6 +8,7 @@ import 'package:league_of_legends_library/bloc/recently_viewed/recently_viewed_e
 import 'package:league_of_legends_library/core/model/champion.dart';
 import 'package:league_of_legends_library/view/champion_page/champion_banner.dart';
 import 'package:league_of_legends_library/view/champion_page/category_selector.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ChampionView extends StatefulWidget {
   final Champion champion;
@@ -67,6 +68,11 @@ class _ChampionViewState extends State<ChampionView> {
         if (state is FavoritesLoaded) {
           bool isFavorite = state.favoriteChampions.contains(widget.champion);
           return IconButton(
+            tooltip: isFavorite
+                ? (AppLocalizations.of(context)?.removeFromFavoritesTooltip ??
+                    "Remove from favorites")
+                : (AppLocalizations.of(context)?.addToFavoriteTooltip ??
+                    "Add to favorites"),
             onPressed: () {
               if (isFavorite) {
                 context.read<FavoritesBloc>().add(RemovedChampionFromFavorites(

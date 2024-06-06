@@ -29,5 +29,11 @@
     "errorFavorites": "Σφάλμα κατά τη φόρτωση των αγαπημένων πρωταθλητών. Δοκιμάστε ξανά.",
     "inUseSkin": "Σε χρήση",
     "skinTitle": "Σκίν",
-    "skinsError": "Αδυναμία φόρτωσης των σκίν του πρωταθλητή. Δοκιμάστε ξανά."
+    "skinsError": "Αδυναμία φόρτωσης των σκίν του πρωταθλητή. Δοκιμάστε ξανά.",
+    "changeLanguageSettingTooltip": "Αλλαγή γλώσσας",
+    "changeThemeSettingTooltip": "Αλλαγή θέματος",
+    "championTileLabel": "Κοντινό πλάνο του {championName}",
+    "championTileTooltip": "Αλλαγή skin",
+    "removeFromFavoritesTooltip": "Αφαίρεση από τα αγαπημένα",
+    "addToFavoriteTooltip": "Προσθήκη στα αγαπημένα"
 }

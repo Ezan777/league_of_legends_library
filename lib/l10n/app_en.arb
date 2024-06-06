@@ -137,5 +137,35 @@
     "skinsError": "Unable to load champion skins, please try again",
     "@skinsError": {
         "description": "Used if there are errors while loading champion's skins."
+    },
+    "changeLanguageSettingTooltip": "Change language",
+    "@changeLanguageSettingTooltip": {
+        "description": "Used as tooltip for change language button."
+    },
+    "changeThemeSettingTooltip": "Change theme",
+    "@changeThemeSettingTooltip": {
+        "description": "Used as tooltip for change theme button."
+    },
+    "championTileLabel": "A closeup of {championName}",
+    "@championTileLabel": {
+        "description": "Tooltip for champion's tile",
+        "placeholders": {
+            "championName": {
+                "type": "String",
+                "example": "Bard"
+            }
+        }
+    },
+    "championTileTooltip": "Change skin",
+    "@championTileTooltip": {
+        "description": "Tooltip for champion's tile button"
+    },
+    "removeFromFavoritesTooltip": "Remove from favorites",
+    "@removeFromFavoritesTooltip": {
+        "description": "Tooltip for the remove action of favorites button"
+    },
+    "addToFavoriteTooltip": "Add to favorites",
+    "@addToFavoriteTooltip": {
+        "description": "Tooltip for the add action of favorties button"
     }
 }

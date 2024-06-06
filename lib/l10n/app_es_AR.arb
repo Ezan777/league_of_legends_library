@@ -29,5 +29,11 @@
     "errorFavorites": "Error al cargar los campeones favoritos. Vuelve a intentarlo.",
     "inUseSkin": "En uso",
     "skinTitle": "Aspectos",
-    "skinsError": "No se pudieron cargar los aspectos del campeón. Vuelve a intentarlo."
+    "skinsError": "No se pudieron cargar los aspectos del campeón. Vuelve a intentarlo.",
+    "changeLanguageSettingTooltip": "Cambiar idioma",
+    "changeThemeSettingTooltip": "Cambiar tema",
+    "championTileLabel": "Un primer plano de {championName}",
+    "championTileTooltip": "Cambiar aspecto",
+    "removeFromFavoritesTooltip": "Eliminar de favoritos",
+    "addToFavoriteTooltip": "Añadir a favoritos"
 }

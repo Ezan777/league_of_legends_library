@@ -6,6 +6,7 @@ import 'package:league_of_legends_library/bloc/champion_skin/skin_state.dart';
 import 'package:league_of_legends_library/core/model/champion.dart';
 import 'package:league_of_legends_library/core/repository/champion_repository.dart';
 import 'package:league_of_legends_library/view/champion_page/skin/skin_page.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ChampionBanner extends StatefulWidget {
   final Champion champion;
@@ -38,53 +39,60 @@ class _ChampionBannerState extends State<ChampionBanner> {
   Widget _buildChampionTile(BuildContext context, int skinCode) =>
       BlocBuilder<SkinsBloc, SkinState>(
         builder: (context, state) => switch (state) {
-          SkinsLoaded() => GestureDetector(
-              onTap: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => SkinPage(champion: widget.champion),
-                  ),
-                );
-              },
-              child: Container(
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Theme.of(context).colorScheme.onSurface,
-                    width: 2,
-                  ),
-                  shape: BoxShape.circle,
-                ),
-                child: Stack(
-                  children: [
-                    ClipOval(
-                      child: CachedNetworkImage(
-                        imageUrl: ChampionRepository.getChampionTileUrl(
-                            championId: widget.champion.id,
-                            skinCode: state
-                                    .championIdActiveSkin[widget.champion.id] ??
-                                0),
-                        height: 140,
-                        width: 140,
-                      ),
+          SkinsLoaded() => Semantics(
+              label: AppLocalizations.of(context)
+                      ?.championTileLabel(widget.champion.name) ??
+                  "A tile representing ${widget.champion.name}",
+              tooltip: AppLocalizations.of(context)?.championTileTooltip ??
+                  "Change skin",
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => SkinPage(champion: widget.champion),
                     ),
-                    Positioned(
-                      top: 100,
-                      left: 95,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Theme.of(context).colorScheme.onSurface,
+                  );
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Theme.of(context).colorScheme.onSurface,
+                      width: 2,
+                    ),
+                    shape: BoxShape.circle,
+                  ),
+                  child: Stack(
+                    children: [
+                      ClipOval(
+                        child: CachedNetworkImage(
+                          imageUrl: ChampionRepository.getChampionTileUrl(
+                              championId: widget.champion.id,
+                              skinCode: state.championIdActiveSkin[
+                                      widget.champion.id] ??
+                                  0),
+                          height: 140,
+                          width: 140,
                         ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(7),
-                          child: Icon(
-                            Icons.edit,
-                            color: Theme.of(context).colorScheme.surface,
+                      ),
+                      Positioned(
+                        top: 100,
+                        left: 95,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Theme.of(context).colorScheme.onSurface,
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(7),
+                            child: Icon(
+                              Icons.edit,
+                              color: Theme.of(context).colorScheme.surface,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),

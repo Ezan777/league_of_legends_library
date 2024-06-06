@@ -29,5 +29,11 @@
     "errorFavorites": "Erreur lors du chargement des champions favoris. Veuillez réessayer.",
     "inUseSkin": "En cours d'utilisation",
     "skinTitle": "Skins",
-    "skinsError": "Impossible de charger les skins du champion. Veuillez réessayer."
+    "skinsError": "Impossible de charger les skins du champion. Veuillez réessayer.",
+    "changeLanguageSettingTooltip": "Changer de langue",
+    "changeThemeSettingTooltip": "Changer de thème",
+    "championTileLabel": "Gros plan de {championName}",
+    "championTileTooltip": "Changer de skin",
+    "removeFromFavoritesTooltip": "Supprimer des favoris",
+    "addToFavoriteTooltip": "Ajouter aux favoris"
 }

@@ -29,15 +29,19 @@ class SpellButton extends StatelessWidget {
             onTap: () {
               chosenAbility.value = ability;
             },
-            child: CachedNetworkImage(
-              imageUrl: ability is Spell
-                  ? ChampionRepository.getSpellTileUrl(
-                      spellId: (ability as Spell).id)
-                  : ability.tileUrl ?? "",
-              placeholder: ((context, url) =>
-                  const CircularProgressIndicator()),
-              height: 64,
-              width: 64,
+            child: Semantics(
+              label: ability.name,
+              selected: isChosen,
+              child: CachedNetworkImage(
+                imageUrl: ability is Spell
+                    ? ChampionRepository.getSpellTileUrl(
+                        spellId: (ability as Spell).id)
+                    : ability.tileUrl ?? "",
+                placeholder: ((context, url) =>
+                    const CircularProgressIndicator()),
+                height: 64,
+                width: 64,
+              ),
             ),
           ),
         ),

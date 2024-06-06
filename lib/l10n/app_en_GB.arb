@@ -29,5 +29,11 @@
     "errorFavorites": "Error while loading favorites champions, please try again",
     "inUseSkin": "In use",
     "skinTitle": "Skins",
-    "skinsError": "Unable to load champion skins, please try again"
+    "skinsError": "Unable to load champion skins, please try again",
+    "changeLanguageSettingTooltip": "Change language",
+    "changeThemeSettingTooltip": "Change theme",
+    "championTileLabel": "A closeup of {championName}",
+    "championTileTooltip": "Change skin",
+    "removeFromFavoritesTooltip": "Remove from favourites",
+    "addToFavoriteTooltip": "Add to favourites"
 }

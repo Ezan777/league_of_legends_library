@@ -29,5 +29,11 @@
     "errorFavorites": "Hiba történt a kedvenc bajnokok betöltése közben. Próbálja újra!",
     "inUseSkin": "Használatban",
     "skinTitle": "Skinek",
-    "skinsError": "Nem sikerült betölteni a bajnok skineket. Próbálja újra!"
+    "skinsError": "Nem sikerült betölteni a bajnok skineket. Próbálja újra!",
+    "changeLanguageSettingTooltip": "Nyelv módosítása",
+    "changeThemeSettingTooltip": "Téma módosítása",
+    "championTileLabel": "{championName} közelkép",
+    "championTileTooltip": "Skin váltás",
+    "removeFromFavoritesTooltip": "Eltávolítás a kedvencekből",
+    "addToFavoriteTooltip": "Hozzáadás a kedvencekhez"
 }
