@@ -1,44 +1,87 @@
 import 'package:flutter/material.dart';
 import 'package:league_of_legends_library/core/model/champion.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:league_of_legends_library/view/champion_page/info_category_button.dart';
 
 class TipsWidget extends StatelessWidget {
   final Champion champion;
+  final InfoCategory category = InfoCategory.tips;
+  final Function(InfoCategory) onSwipeRight, onSwipeLeft;
 
-  const TipsWidget({super.key, required this.champion});
+  const TipsWidget(
+      {super.key,
+      required this.champion,
+      required this.onSwipeLeft,
+      required this.onSwipeRight});
 
   @override
   Widget build(BuildContext context) {
-    if (champion.allyTips.isEmpty && champion.enemyTips.isEmpty) {
-      return const Center(
-        child: Text("No tips available."),
-      );
-    }
+    double? nStartX, nStartY;
 
-    return Column(
-      children: [
-        // Build ally tips
-        if (champion.allyTips.isNotEmpty)
-          _buildTipsContainer(
-              context: context,
-              tips: champion.allyTips,
-              title: AppLocalizations.of(context)
-                      ?.playingAsChampion(champion.name) ??
-                  "Playing as ${champion.name}:",
-              backgroundColor: Theme.of(context).colorScheme.tertiaryContainer,
-              textColor: Theme.of(context).colorScheme.onTertiaryContainer),
-        const Padding(padding: EdgeInsets.only(top: 20)),
-        // Build enemy tips
-        if (champion.enemyTips.isNotEmpty)
-          _buildTipsContainer(
-              context: context,
-              tips: champion.enemyTips,
-              title: AppLocalizations.of(context)
-                      ?.playingAgainstChampion(champion.name) ??
-                  "Playing against ${champion.name}",
-              backgroundColor: Theme.of(context).colorScheme.errorContainer,
-              textColor: Theme.of(context).colorScheme.onErrorContainer),
-      ],
+    return GestureDetector(
+      onHorizontalDragStart: (details) {
+        nStartX = details.localPosition.dx;
+        nStartY = details.localPosition.dy;
+      },
+      onHorizontalDragCancel: () {
+        nStartX = null;
+        nStartY = null;
+      },
+      onHorizontalDragEnd: (details) {
+        final startX = nStartX;
+        final startY = nStartY;
+        if (startX != null && startY != null) {
+          double endX = details.localPosition.dx,
+              endY = details.localPosition.dy;
+          int acceptableHorizontalSwipeConstraint = 45,
+              acceptableVerticalSwipeConstraint = 175;
+
+          if ((startX - endX).abs() >= acceptableHorizontalSwipeConstraint &&
+              (startY - endY).abs() <= acceptableVerticalSwipeConstraint) {
+            if (endX < startX) {
+              onSwipeRight(category);
+            }
+
+            if (endX > startX) {
+              onSwipeLeft(category);
+            }
+          }
+        }
+      },
+      child: champion.allyTips.isNotEmpty && champion.enemyTips.isNotEmpty
+          ? Column(
+              children: [
+                // Build ally tips
+                if (champion.allyTips.isNotEmpty)
+                  _buildTipsContainer(
+                      context: context,
+                      tips: champion.allyTips,
+                      title: AppLocalizations.of(context)
+                              ?.playingAsChampion(champion.name) ??
+                          "Playing as ${champion.name}:",
+                      backgroundColor:
+                          Theme.of(context).colorScheme.tertiaryContainer,
+                      textColor:
+                          Theme.of(context).colorScheme.onTertiaryContainer),
+                const Padding(padding: EdgeInsets.only(top: 20)),
+                // Build enemy tips
+                if (champion.enemyTips.isNotEmpty)
+                  _buildTipsContainer(
+                      context: context,
+                      tips: champion.enemyTips,
+                      title: AppLocalizations.of(context)
+                              ?.playingAgainstChampion(champion.name) ??
+                          "Playing against ${champion.name}",
+                      backgroundColor:
+                          Theme.of(context).colorScheme.errorContainer,
+                      textColor:
+                          Theme.of(context).colorScheme.onErrorContainer),
+              ],
+            )
+          : Center(
+              child: Text(AppLocalizations.of(context)?.noTipsAvailable ??
+                  "No tips available."),
+            ),
     );
   }
 

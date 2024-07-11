@@ -2,14 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:league_of_legends_library/core/model/champion.dart';
 import 'package:league_of_legends_library/core/model/passive.dart';
 import 'package:league_of_legends_library/core/model/spell.dart';
+import 'package:league_of_legends_library/view/champion_page/info_category_button.dart';
 import 'package:league_of_legends_library/view/champion_page/spell/spell_info.dart';
 import 'package:league_of_legends_library/view/champion_page/spell/spell_selector.dart';
 
 class SpellWidget extends StatefulWidget {
   final Champion champion;
+  final InfoCategory category = InfoCategory.abilities;
+  final Function(InfoCategory) onSwipeRight, onSwipeLeft;
   final ValueNotifier<Passive> chosenAbility;
 
-  SpellWidget({super.key, required this.champion})
+  SpellWidget(
+      {super.key,
+      required this.champion,
+      required this.onSwipeRight,
+      required this.onSwipeLeft})
       : chosenAbility = ValueNotifier(champion.passive);
 
   @override
@@ -63,6 +70,8 @@ class _SpellWidgetState extends State<SpellWidget> {
     } else if (currentSpell != widget.champion.spells.last) {
       widget.chosenAbility.value = widget.champion
           .spells[widget.champion.spells.indexOf(currentSpell as Spell) + 1];
+    } else {
+      widget.onSwipeRight(widget.category);
     }
   }
 
@@ -74,8 +83,10 @@ class _SpellWidgetState extends State<SpellWidget> {
       widget.chosenAbility.value = widget
           .champion.spells[widget.champion.spells.indexOf(currentSpell) - 1];
     } else if (widget.champion.passive != currentSpell &&
-        widget.champion.spells.indexOf(currentSpell as Spell) == 0) {
+        widget.champion.spells.first == currentSpell) {
       widget.chosenAbility.value = widget.champion.passive;
+    } else if (widget.champion.passive == currentSpell) {
+      widget.onSwipeLeft(widget.category);
     }
   }
 }

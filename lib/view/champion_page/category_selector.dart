@@ -16,12 +16,12 @@ class CategorySelector extends StatefulWidget {
 }
 
 class _CategorySelectorState extends State<CategorySelector> {
-  final ValueNotifier<InfoCategory> _chosenCategory =
+  final ValueNotifier<InfoCategory> chosenCategory =
       ValueNotifier(InfoCategory.lore);
 
   @override
   Widget build(BuildContext context) {
-    _chosenCategory.addListener(() {
+    chosenCategory.addListener(() {
       setState(() {});
     });
 
@@ -41,7 +41,7 @@ class _CategorySelectorState extends State<CategorySelector> {
 
   List<Widget> _buildCategoriesButton() => InfoCategory.values
       .map((category) => InfoCategoryButton(
-          chosenCategory: _chosenCategory, category: category))
+          chosenCategory: chosenCategory, category: category))
       .toList();
 
   Widget _buildInfoView() => Padding(
@@ -57,15 +57,37 @@ class _CategorySelectorState extends State<CategorySelector> {
               child: child,
             ),
           ),
-          child: switch (_chosenCategory.value) {
-            InfoCategory.lore => LoreWidget(champion: widget.champion),
+          child: switch (chosenCategory.value) {
+            InfoCategory.lore => LoreWidget(
+                champion: widget.champion,
+                onSwipeRight: _nextCategory,
+                onSwipeLeft: _previousCategory,
+              ),
             InfoCategory.abilities => SpellWidget(
                 champion: widget.champion,
+                onSwipeLeft: _previousCategory,
+                onSwipeRight: _nextCategory,
               ),
             InfoCategory.tips => TipsWidget(
                 champion: widget.champion,
+                onSwipeLeft: _previousCategory,
+                onSwipeRight: _nextCategory,
               ),
           },
         ),
       );
+
+  void _nextCategory(InfoCategory widgetCategory) {
+    if (InfoCategory.values.last != widgetCategory) {
+      chosenCategory.value =
+          InfoCategory.values[InfoCategory.values.indexOf(widgetCategory) + 1];
+    }
+  }
+
+  void _previousCategory(InfoCategory widgetCategory) {
+    if (InfoCategory.values.first != widgetCategory) {
+      chosenCategory.value =
+          InfoCategory.values[InfoCategory.values.indexOf(widgetCategory) - 1];
+    }
+  }
 }

@@ -12,7 +12,7 @@ class SpellInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const double horizontalPadding = 30.0, verticalPadding = 22.0;
-  double? nStartX;
+    double? nStartX;
 
     return GestureDetector(
       onHorizontalDragStart: (details) {
