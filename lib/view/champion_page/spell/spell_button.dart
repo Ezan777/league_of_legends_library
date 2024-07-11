@@ -14,6 +14,12 @@ class SpellButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    chosenAbility.addListener(() {
+      if (chosenAbility.value == ability) {
+        Scrollable.ensureVisible(context);
+      }
+    });
+
     return AnimatedSwitcher(
       duration: const Duration(milliseconds: 120),
       child: _buildButton(

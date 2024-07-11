@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:league_of_legends_library/core/model/champion.dart';
 import 'package:league_of_legends_library/core/model/passive.dart';
+import 'package:league_of_legends_library/core/model/spell.dart';
 import 'package:league_of_legends_library/view/champion_page/spell/spell_info.dart';
 import 'package:league_of_legends_library/view/champion_page/spell/spell_selector.dart';
 
@@ -43,11 +44,38 @@ class _SpellWidgetState extends State<SpellWidget> {
               ),
             ),
             child: SpellInfo(
-                key: ValueKey(widget.chosenAbility.value.name),
-                ability: widget.chosenAbility.value),
+              key: ValueKey(widget.chosenAbility.value.name),
+              ability: widget.chosenAbility.value,
+              onSwipeRight: _nextSpell,
+              onSwipeLeft: _previousSpell,
+            ),
           ),
         ),
       ],
     );
+  }
+
+  void _nextSpell() {
+    final currentSpell = widget.chosenAbility.value;
+
+    if (widget.champion.passive == currentSpell) {
+      widget.chosenAbility.value = widget.champion.spells[0];
+    } else if (currentSpell != widget.champion.spells.last) {
+      widget.chosenAbility.value = widget.champion
+          .spells[widget.champion.spells.indexOf(currentSpell as Spell) + 1];
+    }
+  }
+
+  void _previousSpell() {
+    final currentSpell = widget.chosenAbility.value;
+
+    if (widget.champion.passive != currentSpell &&
+        widget.champion.spells.indexOf(currentSpell as Spell) != 0) {
+      widget.chosenAbility.value = widget
+          .champion.spells[widget.champion.spells.indexOf(currentSpell) - 1];
+    } else if (widget.champion.passive != currentSpell &&
+        widget.champion.spells.indexOf(currentSpell as Spell) == 0) {
+      widget.chosenAbility.value = widget.champion.passive;
+    }
   }
 }
