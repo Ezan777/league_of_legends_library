@@ -7,8 +7,11 @@ import 'package:league_of_legends_library/bloc/settings/language_bloc/language_s
 import 'package:league_of_legends_library/core/model/champion.dart';
 import 'package:league_of_legends_library/core/repository/champion_repository.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:league_of_legends_library/data/remote_data_source.dart';
 import 'package:league_of_legends_library/view/champion_page/champion_view.dart';
+import 'package:league_of_legends_library/view/errors/image_not_available.dart';
 import 'package:league_of_legends_library/view/settings/language_settings/available_languages.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ChampionButton extends StatefulWidget {
   final String championId;
@@ -68,6 +71,19 @@ class _ChampionButtonState extends State<ChampionButton> {
                         state.championIdActiveSkin[widget.championId] ?? 0),
               );
             } else if (snapshot.hasError) {
+              if (snapshot.error is InternetConnectionUnavailable) {
+                return Column(
+                  children: [
+                    const ImageNotAvailable(),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Text(AppLocalizations.of(context)
+                            ?.noConnectionAvailableTitle ??
+                        "Connection Error"),
+                  ],
+                );
+              }
               return Text(snapshot.error.toString());
             }
 
@@ -103,6 +119,7 @@ class _ChampionButtonState extends State<ChampionButton> {
             imageUrl: ChampionRepository.getChampionTileUrl(
                 championId: widget.championId, skinCode: skinCode),
             placeholder: (context, url) => const CircularProgressIndicator(),
+            errorWidget: (context, url, error) => const ImageNotAvailable(),
             height: 90,
             width: 90,
           ),

@@ -166,6 +166,32 @@
     },
     "addToFavoriteTooltip": "Add to favorites",
     "@addToFavoriteTooltip": {
-        "description": "Tooltip for the add action of favorties button"
+        "description": "Tooltip for the add action of favorites button"
+    },
+
+    
+    "noConnectionAvailableTitle": "Connection error",
+    "@noConnectionAvailableTitle": {
+        "description": "Title for the internet connection alert dialog."
+    },
+    "noConnectionAvailableDescription": "You are not connected to the internet. Check your connection and try again.",
+    "@noConnectionAvailableDescription": {
+        "description": "Description for the internet connection alert dialog"
+    },
+    "retryButton": "Retry",
+    "@retryButton": {
+        "description": "Button for retry action"
+    },
+    "exitButton": "Exit",
+    "@exitButton": {
+        "description": "Text for buttons to exit the app"
+    },
+    "genericErrorTitle": "Error occurred",
+    "@genericErrorTitle": {
+        "description": "Generic error title"
+    },
+    "genericErrorDescription": "We had some problems retrieving data. Please try again later.",
+    "@genericErrorDescription": {
+        "description": "Generic error description"
     }
 }

@@ -7,6 +7,7 @@ import 'package:league_of_legends_library/core/model/champion.dart';
 import 'package:league_of_legends_library/core/repository/champion_repository.dart';
 import 'package:league_of_legends_library/view/champion_page/skin/skin_page.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:league_of_legends_library/view/errors/image_not_available.dart';
 
 class ChampionBanner extends StatefulWidget {
   final Champion champion;
@@ -70,6 +71,8 @@ class _ChampionBannerState extends State<ChampionBanner> {
                               skinCode: state.championIdActiveSkin[
                                       widget.champion.id] ??
                                   0),
+                          errorWidget: (context, url, error) =>
+                              const ImageNotAvailable(),
                           height: 140,
                           width: 140,
                         ),

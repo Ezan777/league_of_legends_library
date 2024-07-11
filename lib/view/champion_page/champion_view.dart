@@ -63,32 +63,34 @@ class _ChampionViewState extends State<ChampionView> {
     );
   }
 
-  Widget _buildFavoriteButton() =>
-      BlocBuilder<FavoritesBloc, FavoritesState>(builder: (context, state) {
-        if (state is FavoritesLoaded) {
-          bool isFavorite = state.favoriteChampions.contains(widget.champion);
-          return IconButton(
-            tooltip: isFavorite
-                ? (AppLocalizations.of(context)?.removeFromFavoritesTooltip ??
-                    "Remove from favorites")
-                : (AppLocalizations.of(context)?.addToFavoriteTooltip ??
-                    "Add to favorites"),
-            onPressed: () {
-              if (isFavorite) {
-                context.read<FavoritesBloc>().add(RemovedChampionFromFavorites(
-                    removedChampion: widget.champion));
-              } else {
-                context.read<FavoritesBloc>().add(
-                    AddedChampionToFavorites(addedChampion: widget.champion));
-              }
-            },
-            icon: Icon(
-              isFavorite ? Icons.favorite : Icons.favorite_border,
-              color: Theme.of(context).colorScheme.primary,
-            ),
-          );
-        } else {
-          return const CircularProgressIndicator();
-        }
-      });
+  Widget _buildFavoriteButton() => BlocBuilder<FavoritesBloc, FavoritesState>(
+      builder: (context, state) => switch (state) {
+            FavoritesLoading() => const CircularProgressIndicator(),
+            FavoritesLoaded() => IconButton(
+                tooltip: state.favoriteChampions.contains(widget.champion)
+                    ? (AppLocalizations.of(context)
+                            ?.removeFromFavoritesTooltip ??
+                        "Remove from favorites")
+                    : (AppLocalizations.of(context)?.addToFavoriteTooltip ??
+                        "Add to favorites"),
+                onPressed: () {
+                  if (state.favoriteChampions.contains(widget.champion)) {
+                    context.read<FavoritesBloc>().add(
+                        RemovedChampionFromFavorites(
+                            removedChampion: widget.champion));
+                  } else {
+                    context.read<FavoritesBloc>().add(AddedChampionToFavorites(
+                        addedChampion: widget.champion));
+                  }
+                },
+                icon: Icon(
+                  state.favoriteChampions.contains(widget.champion)
+                      ? Icons.favorite
+                      : Icons.favorite_border,
+                  color: Theme.of(context).colorScheme.primary,
+                ),
+              ),
+            FavoritesNoConnection() => const Icon(Icons.wifi_off),
+            _ => const SizedBox(),
+          });
 }

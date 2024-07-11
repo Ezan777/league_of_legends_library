@@ -8,6 +8,7 @@ import 'package:league_of_legends_library/core/model/champion.dart';
 import 'package:league_of_legends_library/core/model/skin.dart';
 import 'package:league_of_legends_library/core/repository/champion_repository.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:league_of_legends_library/view/errors/image_not_available.dart';
 
 class SkinCard extends StatelessWidget {
   final Champion champion;
@@ -52,6 +53,8 @@ class SkinCard extends StatelessWidget {
                             child: CircularProgressIndicator(),
                           ),
                         ),
+                        errorWidget: (context, url, error) =>
+                            const ImageNotAvailable(),
                         fit: BoxFit.cover,
                       ),
                       Container(

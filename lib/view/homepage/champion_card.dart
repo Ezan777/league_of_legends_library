@@ -6,6 +6,7 @@ import 'package:league_of_legends_library/bloc/champion_skin/skin_state.dart';
 import 'package:league_of_legends_library/core/model/champion.dart';
 import 'package:league_of_legends_library/core/repository/champion_repository.dart';
 import 'package:league_of_legends_library/view/champion_page/champion_view.dart';
+import 'package:league_of_legends_library/view/errors/image_not_available.dart';
 
 class ChampionCard extends StatelessWidget {
   final Champion champion;
@@ -36,6 +37,8 @@ class ChampionCard extends StatelessWidget {
                           championId: champion.id,
                           skinCode:
                               state.championIdActiveSkin[champion.id] ?? 0),
+                      errorWidget: (context, url, error) =>
+                          const ImageNotAvailable(),
                       fit: BoxFit.cover,
                     ),
                     Container(

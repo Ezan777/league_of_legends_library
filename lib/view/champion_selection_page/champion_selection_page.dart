@@ -1,6 +1,11 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:league_of_legends_library/core/repository/champion_repository.dart';
+import 'package:league_of_legends_library/data/remote_data_source.dart';
 import 'package:league_of_legends_library/view/champion_selection_page/champion_button.dart';
+import 'package:league_of_legends_library/view/errors/connection_unavailable_view.dart';
+import 'package:league_of_legends_library/view/errors/generic_error_view.dart';
 import 'package:league_of_legends_library/view/search/impl_search_delegate.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -42,7 +47,19 @@ class _ChampionSelectionPageState extends State<ChampionSelectionPage> {
                 child: const Icon(Icons.search)),
           );
         } else if (snapshot.hasError) {
-          return Text(snapshot.error.toString());
+          log("Error: ${snapshot.error.toString()}");
+          if (snapshot.error is InternetConnectionUnavailable) {
+            return Scaffold(
+              appBar: AppBar(
+                title: const Text("League of Legends library"),
+              ),
+              body: ConnectionUnavailableView(retryCallback: () {
+                setState(() {});
+              }),
+            );
+          } else {
+            return const GenericErrorView();
+          }
         } else {
           return const Scaffold(
               body: Center(child: CircularProgressIndicator()));

@@ -22,3 +22,5 @@ final class RecentlyViewedLoaded extends RecentlyViewedState {
 }
 
 final class RecentlyViewedError extends RecentlyViewedState {}
+
+final class RecentlyViewedNoConnection extends RecentlyViewedState {}

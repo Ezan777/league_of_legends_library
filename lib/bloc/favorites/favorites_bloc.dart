@@ -3,6 +3,7 @@ import 'package:league_of_legends_library/bloc/favorites/favorites_event.dart';
 import 'package:league_of_legends_library/bloc/favorites/favorites_state.dart';
 import 'package:league_of_legends_library/core/model/champion.dart';
 import 'package:league_of_legends_library/core/repository/champion_repository.dart';
+import 'package:league_of_legends_library/data/remote_data_source.dart';
 import 'package:league_of_legends_library/view/settings/language_settings/available_languages.dart';
 
 class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
@@ -29,6 +30,8 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
               championId: championId, languageCode: language.localeCode))
           .toList());
       emit(FavoritesLoaded(favoriteChampions));
+    } on InternetConnectionUnavailable catch (_) {
+      emit(FavoritesNoConnection());
     } catch (_) {
       emit(FavoritesError());
     }

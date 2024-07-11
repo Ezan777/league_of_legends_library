@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:league_of_legends_library/core/model/passive.dart';
 import 'package:league_of_legends_library/core/model/spell.dart';
 import 'package:league_of_legends_library/core/repository/champion_repository.dart';
+import 'package:league_of_legends_library/view/errors/image_not_available.dart';
 
 class SpellButton extends StatelessWidget {
   final Passive ability;
@@ -39,6 +40,7 @@ class SpellButton extends StatelessWidget {
                     : ability.tileUrl ?? "",
                 placeholder: ((context, url) =>
                     const CircularProgressIndicator()),
+                errorWidget: (context, url, error) => const ImageNotAvailable(),
                 height: 64,
                 width: 64,
               ),
