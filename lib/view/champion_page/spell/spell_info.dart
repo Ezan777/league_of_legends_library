@@ -6,23 +6,23 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class SpellInfo extends StatelessWidget {
   final Passive ability;
   final Function()? onSwipeRight, onSwipeLeft;
-  double? startX;
-  SpellInfo(
+  const SpellInfo(
       {super.key, required this.ability, this.onSwipeRight, this.onSwipeLeft});
 
   @override
   Widget build(BuildContext context) {
     const double horizontalPadding = 30.0, verticalPadding = 22.0;
+  double? nStartX;
 
     return GestureDetector(
       onHorizontalDragStart: (details) {
-        startX = details.localPosition.dx;
+        nStartX = details.localPosition.dx;
       },
       onHorizontalDragCancel: () {
-        startX = null;
+        nStartX = null;
       },
       onHorizontalDragEnd: (details) {
-        final startX = this.startX;
+        final startX = nStartX;
         if (startX != null) {
           double endX = details.localPosition.dx;
           int acceptableSwipeConstraint = 45;
