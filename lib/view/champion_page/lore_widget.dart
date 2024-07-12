@@ -51,6 +51,9 @@ class _LoreWidgetState extends State<LoreWidget> {
             }
           }
         }
+
+        nStartX = null;
+        nStartY = null;
       },
       child: Container(
         decoration: BoxDecoration(

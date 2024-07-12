@@ -19,6 +19,7 @@ class TipsWidget extends StatelessWidget {
     double? nStartX, nStartY;
 
     return GestureDetector(
+      behavior: HitTestBehavior.translucent,
       onHorizontalDragStart: (details) {
         nStartX = details.localPosition.dx;
         nStartY = details.localPosition.dy;
@@ -47,6 +48,9 @@ class TipsWidget extends StatelessWidget {
             }
           }
         }
+
+        nStartX = null;
+        nStartY = null;
       },
       child: champion.allyTips.isNotEmpty && champion.enemyTips.isNotEmpty
           ? Column(

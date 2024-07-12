@@ -11,13 +11,16 @@ class SpellWidget extends StatefulWidget {
   final InfoCategory category = InfoCategory.abilities;
   final Function(InfoCategory) onSwipeRight, onSwipeLeft;
   final ValueNotifier<Passive> chosenAbility;
+  final Function(Passive)? onSpellChange;
 
   SpellWidget(
       {super.key,
       required this.champion,
       required this.onSwipeRight,
-      required this.onSwipeLeft})
-      : chosenAbility = ValueNotifier(champion.passive);
+      required this.onSwipeLeft,
+      this.onSpellChange,
+      Passive? chosenSpell})
+      : chosenAbility = ValueNotifier(chosenSpell ?? champion.passive);
 
   @override
   State<SpellWidget> createState() => _SpellWidgetState();
@@ -28,6 +31,10 @@ class _SpellWidgetState extends State<SpellWidget> {
   Widget build(BuildContext context) {
     widget.chosenAbility.addListener(() {
       setState(() {});
+      final callback = widget.onSpellChange;
+      if (callback != null) {
+        callback(widget.chosenAbility.value);
+      }
     });
 
     return Column(

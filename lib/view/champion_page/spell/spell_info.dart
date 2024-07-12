@@ -15,6 +15,7 @@ class SpellInfo extends StatelessWidget {
     double? nStartX;
 
     return GestureDetector(
+      behavior: HitTestBehavior.translucent,
       onHorizontalDragStart: (details) {
         nStartX = details.localPosition.dx;
       },
@@ -39,6 +40,8 @@ class SpellInfo extends StatelessWidget {
             onSwipeLeft!();
           }
         }
+
+        nStartX = null;
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

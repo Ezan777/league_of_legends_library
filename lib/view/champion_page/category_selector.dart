@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:league_of_legends_library/core/model/champion.dart';
+import 'package:league_of_legends_library/core/model/passive.dart';
 import 'package:league_of_legends_library/view/champion_page/info_category_button.dart';
 import 'package:league_of_legends_library/view/champion_page/lore_widget.dart';
 import 'package:league_of_legends_library/view/champion_page/spell/spell_widget.dart';
@@ -18,6 +19,7 @@ class CategorySelector extends StatefulWidget {
 class _CategorySelectorState extends State<CategorySelector> {
   final ValueNotifier<InfoCategory> chosenCategory =
       ValueNotifier(InfoCategory.lore);
+  Passive? _lastSpellChosen;
 
   @override
   Widget build(BuildContext context) {
@@ -67,6 +69,8 @@ class _CategorySelectorState extends State<CategorySelector> {
                 champion: widget.champion,
                 onSwipeLeft: _previousCategory,
                 onSwipeRight: _nextCategory,
+                onSpellChange: _onNewSpellChosen,
+                chosenSpell: _lastSpellChosen,
               ),
             InfoCategory.tips => TipsWidget(
                 champion: widget.champion,
@@ -89,5 +93,9 @@ class _CategorySelectorState extends State<CategorySelector> {
       chosenCategory.value =
           InfoCategory.values[InfoCategory.values.indexOf(widgetCategory) - 1];
     }
+  }
+
+  void _onNewSpellChosen(Passive newSpell) {
+    _lastSpellChosen = newSpell;
   }
 }
