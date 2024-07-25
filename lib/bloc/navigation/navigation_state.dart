@@ -3,6 +3,7 @@ import 'package:equatable/equatable.dart';
 enum BodyPages {
   homepage,
   championPage,
+  userPage,
   settings,
 }
 

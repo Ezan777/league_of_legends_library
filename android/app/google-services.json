@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1020505928819",
+    "project_id": "league-of-legends-library",
+    "storage_bucket": "league-of-legends-library.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1020505928819:android:07b791b8693fd7f94d6606",
+        "android_client_info": {
+          "package_name": "com.example.league_of_legends_library"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAca_1vHQ4fiuzx56oBcDoNcefWqKiRIS4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

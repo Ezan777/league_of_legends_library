@@ -8,6 +8,7 @@ import 'package:league_of_legends_library/view/champion_selection_page/champion_
 import 'package:league_of_legends_library/view/homepage/homepage_view.dart';
 import 'package:league_of_legends_library/view/settings/settings_view.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:league_of_legends_library/view/user/user_view.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -24,6 +25,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return BlocBuilder<NavigationBloc, NavigationState>(
         builder: ((context, state) => Scaffold(
               bottomNavigationBar: BottomNavigationBar(
+                type: BottomNavigationBarType.fixed,
                 items:
                     // Implementing items like this ensure that the index will match the desired type of page
                     BodyPages.values
@@ -46,6 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
         BodyPages.championPage => ChampionSelectionPage(
             championRepository: appModel.championRepository),
         BodyPages.settings => const SettingsView(),
+        BodyPages.userPage => const UserView(),
       };
 }
 
@@ -62,5 +65,8 @@ extension BodyPagesItem on BodyPages {
         BodyPages.settings => BottomNavigationBarItem(
             icon: const Icon(Icons.settings),
             label: AppLocalizations.of(context)?.settingsLabel ?? "Settings"),
+        BodyPages.userPage => BottomNavigationBarItem(
+            icon: const Icon(Icons.account_circle),
+            label: AppLocalizations.of(context)?.userPageLabel ?? "Summoner"),
       };
 }

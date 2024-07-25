@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dynamic_color/dynamic_color.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,7 +12,9 @@ import 'package:league_of_legends_library/bloc/champion_skin/skin_bloc.dart';
 import 'package:league_of_legends_library/bloc/champion_skin/skin_event.dart';
 import 'package:league_of_legends_library/bloc/favorites/favorites_bloc.dart';
 import 'package:league_of_legends_library/bloc/favorites/favorites_event.dart';
+import 'package:league_of_legends_library/bloc/user/login/login_bloc.dart';
 import 'package:league_of_legends_library/bloc/navigation/navigation_bloc.dart';
+import 'package:league_of_legends_library/bloc/user/password_reset.dart/password_reset_bloc.dart';
 import 'package:league_of_legends_library/bloc/recently_viewed/recently_viewed_bloc.dart';
 import 'package:league_of_legends_library/bloc/recently_viewed/recently_viewed_event.dart';
 import 'package:league_of_legends_library/bloc/settings/language_bloc/language_bloc.dart';
@@ -20,6 +23,10 @@ import 'package:league_of_legends_library/bloc/settings/language_bloc/language_s
 import 'package:league_of_legends_library/bloc/settings/theme_bloc/theme_bloc.dart';
 import 'package:league_of_legends_library/bloc/settings/theme_bloc/theme_event.dart';
 import 'package:league_of_legends_library/bloc/settings/theme_bloc/theme_state.dart';
+import 'package:league_of_legends_library/bloc/user/sign_up/sign_up_bloc.dart';
+import 'package:league_of_legends_library/bloc/user/user_bloc.dart';
+import 'package:league_of_legends_library/bloc/user/user_event.dart';
+import 'package:league_of_legends_library/firebase_options.dart';
 import 'package:league_of_legends_library/view/homepage/homepage.dart';
 import 'package:league_of_legends_library/view/settings/language_settings/available_languages.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -28,10 +35,11 @@ late final AppModel appModel;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   appModel = await AppModel.initializeDataSource();
-  Bloc.observer = const AppBlocObserver();
 
+  Bloc.observer = const AppBlocObserver();
   SystemChrome.setPreferredOrientations(
           [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown])
       .then((_) => runApp(const MyApp()));
@@ -83,6 +91,23 @@ class MyApp extends StatelessWidget {
                   ..add(
                     ThemeStarted(),
                   ),
+          ),
+          BlocProvider(
+            create: (_) =>
+                UserBloc(appModel.userRepository, appModel.authSource)
+                  ..add(
+                    UserStarted(),
+                  ),
+          ),
+          BlocProvider(
+            create: (_) => LoginBloc(appModel.authSource),
+          ),
+          BlocProvider(
+            create: (_) => PasswordResetBloc(appModel.authSource),
+          ),
+          BlocProvider(
+            create: (_) =>
+                SignUpBloc(appModel.authSource, appModel.userRepository),
           ),
         ],
         child: BlocListener<LanguageBloc, LanguageState>(

@@ -197,5 +197,41 @@
     "noTipsAvailable": "No tips available",
     "@noTipsAvailable": {
         "description": "Used when there are no tips for the chosen champion"
-    }
+    },
+    "userPageLabel": "Summoner",
+    "@userPageLabel": {
+        "description": "Label used for the bottom navigation bar"
+    },
+    "signUp": "Sign up",
+    "invalidMailAddressError": "Please insert a valid email address",
+    "@invalidMailAddressError": {
+        "description": "To be used in forms when the email address is not valid"
+    },
+    "emailLabel": "Email",
+    "nameLabel": "Name",
+    "emptyName": "Please insert your name",
+    "surnameLabel": "Surname",
+    "emptySurname": "Please insert your surname",
+    "summonerNameLabel": "Summoner name",
+    "emptySummonerName": "Please insert your summoner name",
+    "passwordLabel": "Password",
+    "emptyPassword": "Please insert your password",
+    "notMatchingPasswords": "Passwords do not match",
+    "repeatPasswordLabel": "Repeat password",
+    "passwordResetLabel": "Password reset",
+    "passwordResetGenericError": "An error occurred while resetting your password. Please try again later.",
+    "send": "Send",
+    "passwordResetSuccess": "An email has been sent to {emailAddress} with instructions to reset your password.",
+    "@passwordResetSuccess": {
+        "description": "Message shown when the password reset email has been sent",
+        "placeholders": {
+            "emailAddress": {
+                "type": "String"}}},
+    "loginErrorAlertTitle": "Login error",
+    "loginErrorAlertDescription": "An error occurred while logging in. Please try again.",
+    "login": "Login",
+    "wrongCredentials": "Wrong credentials",
+    "forgotPassword": "Forgot password?",
+    "summonerLabel": "Summoner",
+    "logout": "Logout"
 }
