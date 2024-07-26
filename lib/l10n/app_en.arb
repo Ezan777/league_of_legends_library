@@ -167,9 +167,7 @@
     "addToFavoriteTooltip": "Add to favorites",
     "@addToFavoriteTooltip": {
         "description": "Tooltip for the add action of favorites button"
-    },
-
-    
+    },    
     "noConnectionAvailableTitle": "Connection error",
     "@noConnectionAvailableTitle": {
         "description": "Title for the internet connection alert dialog."
@@ -233,5 +231,12 @@
     "wrongCredentials": "Wrong credentials",
     "forgotPassword": "Forgot password?",
     "summonerLabel": "Summoner",
-    "logout": "Logout"
+    "logout": "Logout",
+    "emptyTagLine": "Please enter your account's tagline",
+    "tagLine": "Tagline",
+    "invalidName": "Please insert a valid name, special characters or numbers are not admitted",
+    "invalidSurname": "Please insert a valid surname, special characters or numbers are not admitted",
+    "invalidTagline": "Tagline is composed only by numbers",
+    "serverDropDownLabel": "Select your server",
+    "emptyServer": "Please select the server in which the account is registered"
 }

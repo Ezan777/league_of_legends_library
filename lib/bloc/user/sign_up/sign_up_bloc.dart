@@ -21,12 +21,13 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
       final userId = await _authSource.singUp(event.email, event.password);
       if (userId != null) {
         final appUser = AppUser(
-          id: userId,
-          email: event.email,
-          summonerName: event.summonerName,
-          name: event.name,
-          surname: event.surname,
-        );
+            id: userId,
+            email: event.email,
+            summonerName: event.summonerName,
+            tagLine: event.tagLine,
+            name: event.name,
+            surname: event.surname,
+            serverCode: event.server.serverCode);
         try {
           await _userRepository.saveUser(appUser);
         } catch (_) {

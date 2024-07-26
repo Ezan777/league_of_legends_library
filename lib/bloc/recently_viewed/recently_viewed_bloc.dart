@@ -5,7 +5,7 @@ import 'package:league_of_legends_library/bloc/recently_viewed/recently_viewed_e
 import 'package:league_of_legends_library/bloc/recently_viewed/recently_viewed_state.dart';
 import 'package:league_of_legends_library/core/model/champion.dart';
 import 'package:league_of_legends_library/core/repository/champion_repository.dart';
-import 'package:league_of_legends_library/data/remote_data_source.dart';
+import 'package:league_of_legends_library/data/assets_data_source.dart';
 import 'package:league_of_legends_library/view/settings/language_settings/available_languages.dart';
 
 class RecentlyViewedBloc

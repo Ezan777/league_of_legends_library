@@ -12,6 +12,7 @@ import 'package:league_of_legends_library/bloc/champion_skin/skin_bloc.dart';
 import 'package:league_of_legends_library/bloc/champion_skin/skin_event.dart';
 import 'package:league_of_legends_library/bloc/favorites/favorites_bloc.dart';
 import 'package:league_of_legends_library/bloc/favorites/favorites_event.dart';
+import 'package:league_of_legends_library/bloc/summoner/summoner_bloc.dart';
 import 'package:league_of_legends_library/bloc/user/login/login_bloc.dart';
 import 'package:league_of_legends_library/bloc/navigation/navigation_bloc.dart';
 import 'package:league_of_legends_library/bloc/user/password_reset.dart/password_reset_bloc.dart';
@@ -108,6 +109,9 @@ class MyApp extends StatelessWidget {
           BlocProvider(
             create: (_) =>
                 SignUpBloc(appModel.authSource, appModel.userRepository),
+          ),
+          BlocProvider(
+            create: (_) => SummonerBloc(appModel.summonerRepository),
           ),
         ],
         child: BlocListener<LanguageBloc, LanguageState>(

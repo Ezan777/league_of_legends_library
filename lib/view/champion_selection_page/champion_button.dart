@@ -7,7 +7,7 @@ import 'package:league_of_legends_library/bloc/settings/language_bloc/language_s
 import 'package:league_of_legends_library/core/model/champion.dart';
 import 'package:league_of_legends_library/core/repository/champion_repository.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:league_of_legends_library/data/remote_data_source.dart';
+import 'package:league_of_legends_library/data/assets_data_source.dart';
 import 'package:league_of_legends_library/view/champion_page/champion_view.dart';
 import 'package:league_of_legends_library/view/errors/image_not_available.dart';
 import 'package:league_of_legends_library/view/settings/language_settings/available_languages.dart';

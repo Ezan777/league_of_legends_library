@@ -3,7 +3,7 @@ import 'dart:collection';
 import 'package:league_of_legends_library/core/model/champion.dart';
 import 'package:league_of_legends_library/core/model/skin.dart';
 import 'package:league_of_legends_library/data/champion_local_data_source.dart';
-import 'package:league_of_legends_library/data/remote_data_source.dart';
+import 'package:league_of_legends_library/data/assets_data_source.dart';
 
 class ChampionRepository {
   // TODO: I should clean some code, move varibales to remote data source
@@ -11,13 +11,13 @@ class ChampionRepository {
   Queue<String>? _recentlyViewedChampions;
   Map<String, int>? _championIdActiveSkin;
   final int maxRecentlyViewedChampions = 6;
-  final RemoteDataSource _remoteDataSource;
+  final AssetsDataSource _remoteDataSource;
   final LocalDataSource _localDataSource;
   static const String baseUrl =
       "https://league-of-legends-library.web.app"; //https://dragontail.enricozangrando.com";
 
   ChampionRepository(
-      {required RemoteDataSource remoteDataSource,
+      {required AssetsDataSource remoteDataSource,
       required LocalDataSource localDataSource})
       : _remoteDataSource = remoteDataSource,
         _localDataSource = localDataSource {

@@ -5,20 +5,28 @@ import 'package:league_of_legends_library/bloc/user/sign_up/sign_up_bloc.dart';
 import 'package:league_of_legends_library/bloc/user/sign_up/sign_up_event.dart';
 import 'package:league_of_legends_library/bloc/user/sign_up/sign_up_state.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:league_of_legends_library/data/riot_api.dart';
 
-class SignUpPage extends StatelessWidget {
+class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final formKey = GlobalKey<FormState>();
-    final emailController = TextEditingController(),
-        nameController = TextEditingController(),
-        surnameController = TextEditingController(),
-        summonerNameController = TextEditingController(),
-        passwordController = TextEditingController(),
-        passwordCheckController = TextEditingController();
+  State<SignUpPage> createState() => _SignUpPageState();
+}
 
+class _SignUpPageState extends State<SignUpPage> {
+  RiotServer? chosenServer;
+  final formKey = GlobalKey<FormState>();
+  final emailController = TextEditingController(),
+      nameController = TextEditingController(),
+      surnameController = TextEditingController(),
+      summonerNameController = TextEditingController(),
+      tagLineController = TextEditingController(),
+      passwordController = TextEditingController(),
+      passwordCheckController = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(AppLocalizations.of(context)?.signUp ?? "Sign up"),
@@ -46,15 +54,10 @@ class SignUpPage extends StatelessWidget {
         },
         child: BlocBuilder<SignUpBloc, SignUpState>(
           builder: (context, state) => switch (state) {
-            SignUpInitial() || SignUpSuccess() || SignUpError() => _signUpForm(
-                context,
-                formKey,
-                emailController,
-                nameController,
-                surnameController,
-                summonerNameController,
-                passwordController,
-                passwordCheckController),
+            SignUpInitial() ||
+            SignUpSuccess() ||
+            SignUpError() =>
+              _signUpForm(context),
             SignUpLoading() => const Center(
                 child: CircularProgressIndicator(),
               ),
@@ -64,24 +67,22 @@ class SignUpPage extends StatelessWidget {
     );
   }
 
-  Widget _signUpForm(
-      BuildContext context,
-      GlobalKey<FormState> formKey,
-      TextEditingController emailController,
-      TextEditingController nameController,
-      TextEditingController surnameController,
-      TextEditingController summonerNameController,
-      TextEditingController passwordController,
-      TextEditingController passwordCheckController) {
+  Widget _signUpForm(BuildContext context) {
+    final RegExp specialCharOrNumberRegex =
+        RegExp(r'[!@#<>?":_`~;[\]\\|=+)(*&^%0-9-]');
+    final RegExp specialCharOrLettersRegex =
+        RegExp(r'[!@#<>?":_`~;[\]\\|=+)(*&^%\s-]');
+
     submitForm() {
       if (formKey.currentState != null && formKey.currentState!.validate()) {
         context.read<SignUpBloc>().add(SignUpButtonPressed(
-              emailController.text,
-              passwordController.text,
-              summonerNameController.text,
-              nameController.text,
-              surnameController.text,
-            ));
+            emailController.text,
+            passwordController.text,
+            summonerNameController.text,
+            tagLineController.text,
+            chosenServer ?? RiotServer.europeWest,
+            nameController.text,
+            surnameController.text));
       }
     }
 
@@ -124,10 +125,17 @@ class SignUpPage extends StatelessWidget {
               TextFormField(
                 controller: nameController,
                 textInputAction: TextInputAction.next,
-                validator: (value) => value == null || value.isEmpty
-                    ? AppLocalizations.of(context)?.emptyName ??
-                        "Please enter your name"
-                    : null,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return AppLocalizations.of(context)?.emptyName ??
+                        "Please enter your name";
+                  } else if (specialCharOrNumberRegex.hasMatch(value)) {
+                    return AppLocalizations.of(context)?.invalidName ??
+                        "Please insert a valid name";
+                  } else {
+                    return null;
+                  }
+                },
                 decoration: InputDecoration(
                   border: const OutlineInputBorder(),
                   labelText: AppLocalizations.of(context)?.nameLabel ?? "Name",
@@ -139,10 +147,17 @@ class SignUpPage extends StatelessWidget {
               TextFormField(
                 controller: surnameController,
                 textInputAction: TextInputAction.next,
-                validator: (value) => value == null || value.isEmpty
-                    ? AppLocalizations.of(context)?.emptySurname ??
-                        "Please enter your surname"
-                    : null,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return AppLocalizations.of(context)?.emptySurname ??
+                        "Please enter your surname";
+                  } else if (specialCharOrNumberRegex.hasMatch(value)) {
+                    return AppLocalizations.of(context)?.invalidSurname ??
+                        "Please insert a valid surname";
+                  } else {
+                    return null;
+                  }
+                },
                 decoration: InputDecoration(
                   border: const OutlineInputBorder(),
                   labelText:
@@ -165,6 +180,33 @@ class SignUpPage extends StatelessWidget {
                       "Summoner name",
                 ),
               ),
+              const SizedBox(
+                height: 30,
+              ),
+              TextFormField(
+                controller: tagLineController,
+                keyboardType: const TextInputType.numberWithOptions(),
+                textInputAction: TextInputAction.next,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return AppLocalizations.of(context)?.emptyTagLine ??
+                        "Please enter your account tagline";
+                  } else if (specialCharOrLettersRegex.hasMatch(value)) {
+                    return AppLocalizations.of(context)?.invalidTagline ??
+                        "Tagline is composed only by numbers";
+                  } else {
+                    return null;
+                  }
+                },
+                decoration: InputDecoration(
+                  border: const OutlineInputBorder(),
+                  labelText: AppLocalizations.of(context)?.tagLine ?? "Tagline",
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              _serverDropDownMenu(context),
               const SizedBox(
                 height: 30,
               ),
@@ -222,4 +264,43 @@ class SignUpPage extends StatelessWidget {
       ),
     );
   }
+
+  Widget _serverDropDownMenu(BuildContext context) =>
+      DropdownButtonFormField<RiotServer>(
+        value: chosenServer,
+        decoration: InputDecoration(
+          label: Text(AppLocalizations.of(context)?.serverDropDownLabel ??
+              "Select your server"),
+        ),
+        validator: (value) => value == null
+            ? AppLocalizations.of(context)?.emptyServer ??
+                "Please select a server"
+            : null,
+        onChanged: (value) {
+          setState(() {
+            chosenServer = value ?? RiotServer.europeWest;
+          });
+        },
+        items: RiotServer.values
+            .map((server) => DropdownMenuItem(
+                  value: server,
+                  child: Row(
+                    children: [
+                      if (chosenServer == server)
+                        Container(
+                          height: 6,
+                          width: 6,
+                          margin: const EdgeInsets.only(right: 10, left: 4),
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).colorScheme.onSurface,
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(50)),
+                          ),
+                        ),
+                      Text(server.serverCode),
+                    ],
+                  ),
+                ))
+            .toList(),
+      );
 }

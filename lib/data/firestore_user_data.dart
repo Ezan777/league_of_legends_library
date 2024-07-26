@@ -25,6 +25,8 @@ class FirestoreUserData implements UserRemoteDataSource {
       "name": user.name,
       "surname": user.surname,
       "summonerName": user.summonerName,
+      "tagLine": user.tagLine,
+      "serverCode": user.serverCode,
     };
 
     await users.doc(user.id).set(firestoreUser);

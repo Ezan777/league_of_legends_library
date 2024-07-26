@@ -10,9 +10,9 @@ import 'package:league_of_legends_library/bloc/user/sign_up/sign_up_state.dart';
 import 'package:league_of_legends_library/bloc/user/user_bloc.dart';
 import 'package:league_of_legends_library/bloc/user/user_state.dart';
 import 'package:league_of_legends_library/data/auth_source.dart';
-import 'package:league_of_legends_library/view/user/form_error_box.dart';
-import 'package:league_of_legends_library/view/user/password_reset_page.dart';
-import 'package:league_of_legends_library/view/user/sign_up_page.dart';
+import 'package:league_of_legends_library/view/user/auth/form_error_box.dart';
+import 'package:league_of_legends_library/view/user/auth/password_reset_page.dart';
+import 'package:league_of_legends_library/view/user/auth/sign_up_page.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LoginView extends StatefulWidget {
@@ -119,100 +119,107 @@ class _LoginViewState extends State<LoginView> {
         padding: const EdgeInsets.symmetric(horizontal: 15),
         child: Form(
           key: formKey,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                AppLocalizations.of(context)?.login ?? "Login",
-                style: Theme.of(context).textTheme.displayLarge?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
-              ),
-              const SizedBox(
-                height: 40,
-              ),
-              if (areCredentialsWrong)
-                FormErrorBox(
-                    errorMessage:
-                        AppLocalizations.of(context)?.wrongCredentials ??
-                            "Wrong credentials"),
-              const SizedBox(
-                height: 20,
-              ),
-              TextFormField(
-                controller: emailController,
-                keyboardType: TextInputType.emailAddress,
-                textInputAction: TextInputAction.next,
-                validator: (value) => value == null ||
-                        value.isEmpty ||
-                        !value.contains("@")
-                    ? AppLocalizations.of(context)?.invalidMailAddressError ??
-                        "Please insert a valid email address"
-                    : null,
-                decoration: InputDecoration(
-                  border: const OutlineInputBorder(),
-                  labelText:
-                      AppLocalizations.of(context)?.emailLabel ?? "Email",
+          child: AutofillGroup(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  AppLocalizations.of(context)?.login ?? "Login",
+                  style: Theme.of(context).textTheme.displayLarge?.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
                 ),
-              ),
-              const SizedBox(
-                height: 40,
-              ),
-              TextFormField(
-                controller: passwordController,
-                obscureText: true,
-                onFieldSubmitted: (value) {
-                  submitForm();
-                },
-                validator: (value) => value == null || value.isEmpty
-                    ? AppLocalizations.of(context)?.emptyPassword ??
-                        "Please enter your password"
-                    : null,
-                decoration: InputDecoration(
-                  border: const OutlineInputBorder(),
-                  labelText:
-                      AppLocalizations.of(context)?.passwordLabel ?? "Password",
+                const SizedBox(
+                  height: 40,
                 ),
-              ),
-              const SizedBox(
-                height: 25,
-              ),
-              Row(
-                children: [
-                  TextButton(
+                if (areCredentialsWrong)
+                  FormErrorBox(
+                      errorMessage:
+                          AppLocalizations.of(context)?.wrongCredentials ??
+                              "Wrong credentials"),
+                const SizedBox(
+                  height: 20,
+                ),
+                TextFormField(
+                  controller: emailController,
+                  keyboardType: TextInputType.emailAddress,
+                  textInputAction: TextInputAction.next,
+                  autofillHints: const [AutofillHints.email],
+                  validator: (value) => value == null ||
+                          value.isEmpty ||
+                          !value.contains("@")
+                      ? AppLocalizations.of(context)?.invalidMailAddressError ??
+                          "Please insert a valid email address"
+                      : null,
+                  decoration: InputDecoration(
+                    border: const OutlineInputBorder(),
+                    labelText:
+                        AppLocalizations.of(context)?.emailLabel ?? "Email",
+                  ),
+                ),
+                const SizedBox(
+                  height: 40,
+                ),
+                TextFormField(
+                  controller: passwordController,
+                  obscureText: true,
+                  onFieldSubmitted: (value) {
+                    submitForm();
+                  },
+                  autofillHints: const [AutofillHints.password],
+                  validator: (value) => value == null || value.isEmpty
+                      ? AppLocalizations.of(context)?.emptyPassword ??
+                          "Please enter your password"
+                      : null,
+                  decoration: InputDecoration(
+                    border: const OutlineInputBorder(),
+                    labelText: AppLocalizations.of(context)?.passwordLabel ??
+                        "Password",
+                  ),
+                ),
+                const SizedBox(
+                  height: 25,
+                ),
+                Row(
+                  children: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const PasswordResetPage(),
+                        ));
+                      },
+                      child: Text(
+                          AppLocalizations.of(context)?.forgotPassword ??
+                              "Reset password"),
+                    )
+                  ],
+                ),
+                ConstrainedBox(
+                  constraints:
+                      const BoxConstraints(minWidth: 120, minHeight: 48),
+                  child: FilledButton(
+                    onPressed: submitForm,
+                    child: Text(AppLocalizations.of(context)?.login ?? "Login"),
+                  ),
+                ),
+                const SizedBox(
+                  height: 16,
+                ),
+                ConstrainedBox(
+                  constraints:
+                      const BoxConstraints(minWidth: 120, minHeight: 48),
+                  child: FilledButton.tonal(
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const PasswordResetPage(),
+                        builder: (context) => const SignUpPage(),
                       ));
                     },
-                    child: Text(AppLocalizations.of(context)?.forgotPassword ??
-                        "Reset password"),
-                  )
-                ],
-              ),
-              ConstrainedBox(
-                constraints: const BoxConstraints(minWidth: 120, minHeight: 48),
-                child: FilledButton(
-                  onPressed: submitForm,
-                  child: Text(AppLocalizations.of(context)?.login ?? "Login"),
+                    child:
+                        Text(AppLocalizations.of(context)?.signUp ?? "Sign up"),
+                  ),
                 ),
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-              ConstrainedBox(
-                constraints: const BoxConstraints(minWidth: 120, minHeight: 48),
-                child: FilledButton.tonal(
-                  onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const SignUpPage(),
-                    ));
-                  },
-                  child:
-                      Text(AppLocalizations.of(context)?.signUp ?? "Sign up"),
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

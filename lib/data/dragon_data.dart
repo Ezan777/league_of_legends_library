@@ -1,9 +1,10 @@
 import 'dart:convert';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:http/http.dart' as http;
+import 'package:league_of_legends_library/data/assets_data_source.dart';
 import 'package:league_of_legends_library/data/remote_data_source.dart';
 
-class Server implements RemoteDataSource {
+class DragonData implements AssetsDataSource, RemoteDataSource {
   @override
   Future<Map<String, dynamic>> fetchJson(String jsonUrl) async {
     await checkConnection();

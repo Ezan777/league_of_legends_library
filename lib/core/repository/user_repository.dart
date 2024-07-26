@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:league_of_legends_library/core/model/app_user.dart';
 import 'package:league_of_legends_library/data/user_local_data_source.dart';
 import 'package:league_of_legends_library/data/user_remote_data_source.dart';
@@ -31,6 +30,8 @@ class UserRepository {
       id: userData["id"],
       email: userData["email"],
       summonerName: userData["summonerName"],
+      tagLine: userData["tagLine"],
+      serverCode: userData["serverCode"],
       name: userData["name"],
       surname: userData["surname"],
     );
