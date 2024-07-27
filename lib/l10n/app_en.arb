@@ -238,5 +238,16 @@
     "invalidSurname": "Please insert a valid surname, special characters or numbers are not admitted",
     "invalidTagline": "Tagline is composed only by numbers",
     "serverDropDownLabel": "Select your server",
-    "emptyServer": "Please select the server in which the account is registered"
+    "emptyServer": "Please select the server in which the account is registered",
+    "summonerLevel": "Level: {level}",
+    "@summonerLevel": {
+        "placeholders": {
+            "level": {
+                "type": "int"
+            }
+        }
+    },
+    "logoutAlertContent": "Are you sure you want to logout?",
+    "viewAccountInfo": "View your account info",
+    "summonerErrorBoxContent": "Something went wrong while loading summoner info, please try again."
 }

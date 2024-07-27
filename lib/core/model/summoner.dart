@@ -8,7 +8,7 @@ class Summoner {
   final String serverCode;
   final List<Rank> ranks;
   final int profileIconId;
-  final int summonerLevel;
+  final int level;
 
   const Summoner({
     required this.summonerId,
@@ -18,6 +18,6 @@ class Summoner {
     required this.serverCode,
     required this.ranks,
     required this.profileIconId,
-    required this.summonerLevel,
+    required this.level,
   });
 }

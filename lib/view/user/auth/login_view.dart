@@ -28,50 +28,55 @@ class _LoginViewState extends State<LoginView> {
     final emailController = TextEditingController();
     final passwordController = TextEditingController();
 
-    return MultiBlocListener(
-      listeners: [
-        BlocListener<SignUpBloc, SignUpState>(
-          listener: (context, state) {
-            if (state is SignUpSuccess) {
-              context
-                  .read<LoginBloc>()
-                  .add(LoginButtonPressed(state.email, state.password));
-            }
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("League of Legends library"),
+      ),
+      body: MultiBlocListener(
+        listeners: [
+          BlocListener<SignUpBloc, SignUpState>(
+            listener: (context, state) {
+              if (state is SignUpSuccess) {
+                context
+                    .read<LoginBloc>()
+                    .add(LoginButtonPressed(state.email, state.password));
+              }
+            },
+          ),
+          BlocListener<UserBloc, UserState>(
+            listener: (context, state) {
+              if (UserState is NoUserLogged) {
+                context.read<LoginBloc>().add(LoginStarted());
+              }
+            },
+          ),
+          BlocListener<PasswordResetBloc, PasswordResetState>(
+            listener: (context, state) {
+              if (state is PasswordResetSuccess) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(AppLocalizations.of(context)
+                            ?.passwordResetSuccess(state.email) ??
+                        "Email sent successfully to: ${state.email}"),
+                  ),
+                );
+              }
+            },
+          ),
+        ],
+        child: BlocBuilder<LoginBloc, LoginState>(
+          builder: (context, state) => switch (state) {
+            LoginLoading() => const Center(
+                child: CircularProgressIndicator(),
+              ),
+            LoginInitial() ||
+            LoginSuccess() =>
+              _loginScreen(context, emailController, passwordController),
+            LoginError() => _loginScreen(
+                context, emailController, passwordController,
+                error: state.error),
           },
         ),
-        BlocListener<UserBloc, UserState>(
-          listener: (context, state) {
-            if (UserState is NoUserLogged) {
-              context.read<LoginBloc>().add(LoginStarted());
-            }
-          },
-        ),
-        BlocListener<PasswordResetBloc, PasswordResetState>(
-          listener: (context, state) {
-            if (state is PasswordResetSuccess) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(AppLocalizations.of(context)
-                          ?.passwordResetSuccess(state.email) ??
-                      "Email sent successfully to: ${state.email}"),
-                ),
-              );
-            }
-          },
-        ),
-      ],
-      child: BlocBuilder<LoginBloc, LoginState>(
-        builder: (context, state) => switch (state) {
-          LoginLoading() => const Center(
-              child: CircularProgressIndicator(),
-            ),
-          LoginInitial() ||
-          LoginSuccess() =>
-            _loginScreen(context, emailController, passwordController),
-          LoginError() => _loginScreen(
-              context, emailController, passwordController,
-              error: state.error),
-        },
       ),
     );
   }

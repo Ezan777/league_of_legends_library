@@ -5,6 +5,8 @@ import 'package:league_of_legends_library/data/assets_data_source.dart';
 import 'package:league_of_legends_library/data/remote_data_source.dart';
 
 class DragonData implements AssetsDataSource, RemoteDataSource {
+  final String _baseUrl = "https://league-of-legends-library.web.app";
+
   @override
   Future<Map<String, dynamic>> fetchJson(String jsonUrl) async {
     await checkConnection();
@@ -29,4 +31,8 @@ class DragonData implements AssetsDataSource, RemoteDataSource {
       throw InternetConnectionUnavailable();
     }
   }
+
+  @override
+  String getProfileIconUri(String profileIconId) =>
+      "$_baseUrl/14.7.1/img/profileicon/$profileIconId.png";
 }

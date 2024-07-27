@@ -30,9 +30,11 @@ class AppModel {
   static Future<AppModel> initializeDataSource() async {
     final SharedPreferences sharedPreferences =
         await SharedPreferences.getInstance();
+    final assetSource = DragonData();
+
     return AppModel._(
       championRepository: ChampionRepository(
-        remoteDataSource: DragonData(),
+        remoteDataSource: assetSource,
         localDataSource:
             ImplLocalDataSource(sharedPreferences: sharedPreferences),
       ),
@@ -42,7 +44,8 @@ class AppModel {
       userRepository:
           UserRepository(FirebaseLocalUserData(), FirestoreUserData()),
       authSource: AuthFirebase(),
-      summonerRepository: const SummonerRepository(RiotApi(RIOT_API_KEY)),
+      summonerRepository:
+          SummonerRepository(const RiotApi(RIOT_API_KEY), assetSource),
     );
   }
 }

@@ -16,42 +16,37 @@ class UserView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("League of Legends library"),
-      ),
-      body: MultiBlocListener(
-        listeners: [
-          BlocListener<LoginBloc, LoginState>(
-            listener: (context, state) {
-              if (state is LoginSuccess) {
-                context.read<UserBloc>().add(UserStarted());
-              }
-            },
-          ),
-          BlocListener<UserBloc, UserState>(
-            listener: (context, state) {
-              if (state is UserLogged) {
-                context.read<SummonerBloc>().add(SummonerStarted(
-                    state.appUser.summonerName,
-                    state.appUser.tagLine,
-                    RiotServer.fromServerCode(state.appUser.serverCode)));
-              }
-            },
-          ),
-        ],
-        child: BlocBuilder<UserBloc, UserState>(
-          builder: (context, state) => switch (state) {
-            UserLoading() => const Center(
-                child: CircularProgressIndicator(),
-              ),
-            UserLogged() => const SummonerView(),
-            NoUserLogged() => const LoginView(),
-            UserError() => Center(
-                child: Text(state.error.toString()),
-              ),
+    return MultiBlocListener(
+      listeners: [
+        BlocListener<LoginBloc, LoginState>(
+          listener: (context, state) {
+            if (state is LoginSuccess) {
+              context.read<UserBloc>().add(UserStarted());
+            }
           },
         ),
+        BlocListener<UserBloc, UserState>(
+          listener: (context, state) {
+            if (state is UserLogged) {
+              context.read<SummonerBloc>().add(SummonerStarted(
+                  state.appUser.summonerName,
+                  state.appUser.tagLine,
+                  RiotServer.fromServerCode(state.appUser.serverCode)));
+            }
+          },
+        ),
+      ],
+      child: BlocBuilder<UserBloc, UserState>(
+        builder: (context, state) => switch (state) {
+          UserLoading() => const Center(
+              child: CircularProgressIndicator(),
+            ),
+          UserLogged() => const SummonerView(),
+          NoUserLogged() => const LoginView(),
+          UserError() => Center(
+              child: Text(state.error.toString()),
+            ),
+        },
       ),
     );
   }
