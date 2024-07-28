@@ -9,6 +9,7 @@ class Summoner {
   final List<Rank> ranks;
   final int profileIconId;
   final int level;
+  final String profileIconUri;
 
   const Summoner({
     required this.summonerId,
@@ -19,5 +20,6 @@ class Summoner {
     required this.ranks,
     required this.profileIconId,
     required this.level,
+    required this.profileIconUri
   });
 }

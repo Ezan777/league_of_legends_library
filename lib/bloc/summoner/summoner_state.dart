@@ -12,9 +12,8 @@ final class SummonerLoading extends SummonerState {}
 
 final class SummonerSuccess extends SummonerState {
   final Summoner summoner;
-  final String summonerProfilePicUri;
 
-  const SummonerSuccess(this.summoner, this.summonerProfilePicUri);
+  const SummonerSuccess(this.summoner);
 
   @override
   List<Object?> get props => [summoner.summonerId];

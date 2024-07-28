@@ -106,7 +106,14 @@ class SummonerView extends StatelessWidget {
                     ),
                     child: ClipOval(
                       child: CachedNetworkImage(
-                        imageUrl: state.summonerProfilePicUri,
+                        imageUrl: state.summoner.profileIconUri,
+                        progressIndicatorBuilder: (context, uri, progress) => const Center(
+                          child: SizedBox(
+                            height: 20,
+                            width: 20,
+                            child: CircularProgressIndicator(),
+                          ),
+                        ),
                         errorWidget: (context, url, error) =>
                             const ImageNotAvailable(),
                         height: 128,

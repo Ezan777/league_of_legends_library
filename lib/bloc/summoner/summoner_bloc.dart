@@ -16,9 +16,7 @@ class SummonerBloc extends Bloc<SummonerEvent, SummonerState> {
     try {
       final summoner = await _summonerRepository.getSummonerByNameAndTagLine(
           event.name, event.tagLine, event.server);
-      final profilePicUri = _summonerRepository
-          .getProfileIconUri(summoner.profileIconId.toString());
-      emit(SummonerSuccess(summoner, profilePicUri));
+      emit(SummonerSuccess(summoner));
     } catch (e) {
       emit(SummonerError(e));
     }

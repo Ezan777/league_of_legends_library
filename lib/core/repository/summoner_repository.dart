@@ -26,9 +26,7 @@ class SummonerRepository {
         serverCode: server.serverCode,
         ranks: ranks,
         profileIconId: summonerDto.profileIconId,
-        level: summonerDto.summonerLevel);
+        level: summonerDto.summonerLevel,
+        profileIconUri: _assetsDataSource.getProfileIconUri(summonerDto.profileIconId.toString()));
   }
-
-  String getProfileIconUri(String profileIconId) =>
-      _assetsDataSource.getProfileIconUri(profileIconId);
 }
