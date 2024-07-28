@@ -1,3 +1,4 @@
+import 'package:league_of_legends_library/core/model/rank.dart';
 import 'package:league_of_legends_library/core/model/summoner.dart';
 import 'package:league_of_legends_library/data/assets_data_source.dart';
 import 'package:league_of_legends_library/data/riot_api.dart';
@@ -15,8 +16,20 @@ class SummonerRepository {
         name, tagLine, RiotRegion.fromServer(server).regionCode);
     final summonerDto = await _summonerDataSource.getSummonerDataByPuuid(
         puuid, server.serverCode);
-    final ranks = await _summonerDataSource.getSummonerRanksBySummonerId(
+    final ranksDto = await _summonerDataSource.getSummonerRanksBySummonerId(
         summonerDto.id, server.serverCode);
+    final ranks = ranksDto
+        .map(
+          (rankDto) => Rank(
+              tier: rankDto.tier,
+              rank: rankDto.rank,
+              leaguePoints: rankDto.leaguePoints,
+              queueType: rankDto.queueType,
+              wins: rankDto.wins,
+              losses: rankDto.losses,
+              tierIconUri: _assetsDataSource.getTierIconUri(rankDto.tier)),
+        )
+        .toList();
 
     return Summoner(
         summonerId: summonerDto.id,
@@ -27,6 +40,7 @@ class SummonerRepository {
         ranks: ranks,
         profileIconId: summonerDto.profileIconId,
         level: summonerDto.summonerLevel,
-        profileIconUri: _assetsDataSource.getProfileIconUri(summonerDto.profileIconId.toString()));
+        profileIconUri: _assetsDataSource
+            .getProfileIconUri(summonerDto.profileIconId.toString()));
   }
 }

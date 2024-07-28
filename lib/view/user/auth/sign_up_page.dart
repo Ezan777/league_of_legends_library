@@ -70,8 +70,6 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget _signUpForm(BuildContext context) {
     final RegExp specialCharOrNumberRegex =
         RegExp(r'[!@#<>?":_`~;[\]\\|=+)(*&^%0-9-]');
-    final RegExp specialCharOrLettersRegex =
-        RegExp(r'[!@#<>?":_`~;[\]\\|=+)(*&^%\s-]');
 
     submitForm() {
       if (formKey.currentState != null && formKey.currentState!.validate()) {
@@ -185,15 +183,11 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
               TextFormField(
                 controller: tagLineController,
-                keyboardType: const TextInputType.numberWithOptions(),
                 textInputAction: TextInputAction.next,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return AppLocalizations.of(context)?.emptyTagLine ??
                         "Please enter your account tagline";
-                  } else if (specialCharOrLettersRegex.hasMatch(value)) {
-                    return AppLocalizations.of(context)?.invalidTagline ??
-                        "Tagline is composed only by numbers";
                   } else {
                     return null;
                   }

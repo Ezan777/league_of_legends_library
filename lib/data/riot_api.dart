@@ -4,6 +4,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:league_of_legends_library/core/model/rank.dart';
 import 'package:http/http.dart' as http;
 import 'package:league_of_legends_library/data/assets_data_source.dart';
+import 'package:league_of_legends_library/data/dto/rank_dto.dart';
 import 'package:league_of_legends_library/data/dto/summoner_dto.dart';
 import 'package:league_of_legends_library/data/remote_data_source.dart';
 import 'package:league_of_legends_library/data/summoner_data_source.dart';
@@ -52,7 +53,7 @@ class RiotApi implements SummonerDataSource, RemoteDataSource {
   }
 
   @override
-  Future<List<Rank>> getSummonerRanksBySummonerId(
+  Future<List<RankDto>> getSummonerRanksBySummonerId(
       String summonerId, String serverCode) async {
     await checkConnection();
 
@@ -61,20 +62,12 @@ class RiotApi implements SummonerDataSource, RemoteDataSource {
 
     if (response.statusCode == 200) {
       final json = jsonDecode(utf8.decode(response.bodyBytes));
-      List<Rank> ranks = List.empty(growable: true);
+      List<RankDto> ranks = List.empty(growable: true);
       for (Map<String, dynamic> rankData in json) {
         if (rankData["queueType"] == RiotQueueType.soloDuo.queueCode ||
             rankData["queueType"] == RiotQueueType.flex.queueCode) {
           ranks.add(
-            Rank(
-              tier: rankData["tier"],
-              rank: rankData["rank"],
-              leaguePoints: rankData["leaguePoints"],
-              queueType:
-                  RiotQueueType.fromString(rankData["queueType"]).toQueueType(),
-              wins: rankData["wins"],
-              losses: rankData["losses"],
-            ),
+            RankDto.fromJson(rankData),
           );
         }
       }
@@ -179,7 +172,7 @@ enum RiotRegion {
 
 enum RiotQueueType {
   soloDuo("RANKED_SOLO_5x5"),
-  flex("RANKED_TEAM_5x5");
+  flex("RANKED_FLEX_SR");
 
   final String queueCode;
 
@@ -187,7 +180,7 @@ enum RiotQueueType {
 
   factory RiotQueueType.fromString(String queueCode) => switch (queueCode) {
         "RANKED_SOLO_5x5" => RiotQueueType.soloDuo,
-        "RANKED_TEAM_5x5" => RiotQueueType.flex,
+        "RANKED_FLEX_SR" => RiotQueueType.flex,
         _ => throw Exception("$queueCode is not a valid queue code"),
       };
 

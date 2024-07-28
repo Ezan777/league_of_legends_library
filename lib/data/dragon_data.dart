@@ -35,4 +35,8 @@ class DragonData implements AssetsDataSource, RemoteDataSource {
   @override
   String getProfileIconUri(String profileIconId) =>
       "$_baseUrl/14.7.1/img/profileicon/$profileIconId.png";
+
+  @override
+  String getTierIconUri(String tier) =>
+      "$_baseUrl/rankedEmblems/${tier.toLowerCase()}.png";
 }

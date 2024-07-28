@@ -11,15 +11,14 @@ class Summoner {
   final int level;
   final String profileIconUri;
 
-  const Summoner({
-    required this.summonerId,
-    required this.puuid,
-    required this.name,
-    required this.tag,
-    required this.serverCode,
-    required this.ranks,
-    required this.profileIconId,
-    required this.level,
-    required this.profileIconUri
-  });
+  const Summoner(
+      {required this.summonerId,
+      required this.puuid,
+      required this.name,
+      required this.tag,
+      required this.serverCode,
+      required this.ranks,
+      required this.profileIconId,
+      required this.level,
+      required this.profileIconUri});
 }

@@ -8,11 +8,17 @@ import 'package:league_of_legends_library/bloc/user/user_event.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:league_of_legends_library/view/errors/image_not_available.dart';
 import 'package:league_of_legends_library/view/user/edit_user_data.dart';
+import 'package:league_of_legends_library/view/user/summoner/rank_container.dart';
 import 'package:text_scroll/text_scroll.dart';
 
-class SummonerView extends StatelessWidget {
+class SummonerView extends StatefulWidget {
   const SummonerView({super.key});
 
+  @override
+  State<SummonerView> createState() => _SummonerViewState();
+}
+
+class _SummonerViewState extends State<SummonerView> {
   @override
   Widget build(BuildContext context) {
     void viewAccountInfo() {
@@ -81,96 +87,187 @@ class SummonerView extends StatelessWidget {
               child: CircularProgressIndicator(),
             ),
           SummonerSuccess() => _buildView(context, state),
-          SummonerError() => _errorBox(context),
+          SummonerError() => _errorBox(context, state.error),
         },
       ),
     );
   }
 
-  Widget _buildView(BuildContext context, SummonerSuccess state) => Center(
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Row(
-                children: [
-                  Container(
-                    margin: const EdgeInsets.symmetric(
-                        horizontal: 25, vertical: 10),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Theme.of(context).colorScheme.onSurface,
-                        width: 2,
-                      ),
-                      shape: BoxShape.circle,
-                    ),
-                    child: ClipOval(
-                      child: CachedNetworkImage(
-                        imageUrl: state.summoner.profileIconUri,
-                        progressIndicatorBuilder: (context, uri, progress) => const Center(
-                          child: SizedBox(
-                            height: 20,
-                            width: 20,
-                            child: CircularProgressIndicator(),
-                          ),
-                        ),
-                        errorWidget: (context, url, error) =>
-                            const ImageNotAvailable(),
-                        height: 128,
-                        width: 128,
+  Widget _buildView(BuildContext context, SummonerSuccess state) {
+    const collapsedHeight = 75.0;
+    final ranks = state.summoner.ranks;
+    ranks.sort((rank1, rank2) => rank1.compareTo(rank2));
+
+    return Center(
+      child: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            pinned: true,
+            flexibleSpace: LayoutBuilder(
+              builder: (context, constraints) {
+                final top = constraints.biggest.height;
+                return FlexibleSpaceBar(
+                  centerTitle: true,
+                  title: AnimatedOpacity(
+                    duration: const Duration(milliseconds: 300),
+                    opacity: top == collapsedHeight ? 1.0 : 0,
+                    child: _buildCollapsedInfo(context, state),
+                  ),
+                  background: _buildSummonerInfo(context, state),
+                );
+              },
+            ),
+            expandedHeight: 175,
+            collapsedHeight: collapsedHeight,
+          ),
+          state.summoner.ranks.isNotEmpty
+              ? SliverList.builder(
+                  itemCount: ranks.length,
+                  itemBuilder: (context, index) => RankContainer(
+                    rank: ranks[index],
+                  ),
+                )
+              : SliverToBoxAdapter(
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 45),
+                      child: Text(
+                        "Unranked",
+                        style: Theme.of(context)
+                            .textTheme
+                            .headlineLarge
+                            ?.copyWith(
+                              color: Theme.of(context).colorScheme.onSurface,
+                              fontWeight: FontWeight.bold,
+                              fontStyle: FontStyle.italic,
+                            ),
                       ),
                     ),
                   ),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        TextScroll(
-                          state.summoner.name,
-                          style: Theme.of(context)
-                              .textTheme
-                              .headlineLarge
-                              ?.copyWith(
-                                fontWeight: FontWeight.bold,
-                                fontStyle: FontStyle.italic,
-                              ),
-                          velocity:
-                              const Velocity(pixelsPerSecond: Offset(50, 0)),
-                          pauseBetween: const Duration(milliseconds: 1600),
-                          selectable: true,
-                          intervalSpaces: 6,
-                          mode: TextScrollMode.endless,
-                        ),
-                        Text(
-                          "#${state.summoner.tag}",
-                          style:
-                              Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                    fontStyle: FontStyle.italic,
-                                  ),
-                        ),
-                        Text(
-                          AppLocalizations.of(context)
-                                  ?.summonerLevel(state.summoner.level) ??
-                              "Level: ${state.summoner.level}",
-                          style: Theme.of(context)
-                              .textTheme
-                              .headlineSmall
-                              ?.copyWith(
-                                fontWeight: FontWeight.bold,
-                                fontStyle: FontStyle.italic,
-                              ),
-                        )
-                      ],
-                    ),
-                  ),
-                ],
+                ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildCollapsedInfo(BuildContext context, SummonerSuccess state) =>
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: Theme.of(context).colorScheme.onSurface,
+                width: 2,
               ),
-            ]),
+              shape: BoxShape.circle,
+            ),
+            child: ClipOval(
+              child: CachedNetworkImage(
+                imageUrl: state.summoner.profileIconUri,
+                progressIndicatorBuilder: (context, uri, progress) =>
+                    const Center(
+                  child: SizedBox(
+                    height: 20,
+                    width: 20,
+                    child: CircularProgressIndicator(),
+                  ),
+                ),
+                errorWidget: (context, url, error) => const ImageNotAvailable(),
+                height: 45,
+                width: 45,
+              ),
+            ),
+          ),
+          Container(
+            constraints: const BoxConstraints(maxWidth: 200),
+            child: TextScroll(
+              state.summoner.name,
+              style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                    fontWeight: FontWeight.bold,
+                    fontStyle: FontStyle.italic,
+                  ),
+              velocity: const Velocity(pixelsPerSecond: Offset(50, 0)),
+              pauseBetween: const Duration(milliseconds: 1600),
+              selectable: true,
+              intervalSpaces: 6,
+              mode: TextScrollMode.endless,
+            ),
+          ),
+        ],
       );
 
-  Widget _errorBox(BuildContext context) => Column(
+  Widget _buildSummonerInfo(BuildContext context, SummonerSuccess state) => Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            margin: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: Theme.of(context).colorScheme.onSurface,
+                width: 2,
+              ),
+              shape: BoxShape.circle,
+            ),
+            child: ClipOval(
+              child: CachedNetworkImage(
+                imageUrl: state.summoner.profileIconUri,
+                progressIndicatorBuilder: (context, uri, progress) =>
+                    const Center(
+                  child: SizedBox(
+                    height: 20,
+                    width: 20,
+                    child: CircularProgressIndicator(),
+                  ),
+                ),
+                errorWidget: (context, url, error) => const ImageNotAvailable(),
+                height: 128,
+                width: 128,
+              ),
+            ),
+          ),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextScroll(
+                  state.summoner.name,
+                  style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        fontStyle: FontStyle.italic,
+                      ),
+                  velocity: const Velocity(pixelsPerSecond: Offset(50, 0)),
+                  pauseBetween: const Duration(milliseconds: 1600),
+                  selectable: true,
+                  intervalSpaces: 6,
+                  mode: TextScrollMode.endless,
+                ),
+                Text(
+                  "#${state.summoner.tag}",
+                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        fontStyle: FontStyle.italic,
+                      ),
+                ),
+                Text(
+                  AppLocalizations.of(context)
+                          ?.summonerLevel(state.summoner.level) ??
+                      "Level: ${state.summoner.level}",
+                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        fontStyle: FontStyle.italic,
+                      ),
+                )
+              ],
+            ),
+          ),
+        ],
+      );
+
+  Widget _errorBox(BuildContext context, Object? error) => Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
@@ -192,7 +289,7 @@ class SummonerView extends StatelessWidget {
                 ),
                 Text(
                   AppLocalizations.of(context)?.summonerErrorBoxContent ??
-                      "Something went wrong while loading summoner info, please try again.",
+                      "Something went wrong while loading summoner info, please try again. - Error: ${error.toString()}",
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         color: Theme.of(context).colorScheme.onErrorContainer,
                       ),

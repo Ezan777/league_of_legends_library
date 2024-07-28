@@ -45,7 +45,7 @@ class AppModel {
           UserRepository(FirebaseLocalUserData(), FirestoreUserData()),
       authSource: AuthFirebase(),
       summonerRepository:
-          SummonerRepository(const RiotApi(RIOT_API_KEY), assetSource),
+          SummonerRepository(const RiotApi(riotApiKey), assetSource),
     );
   }
 }
