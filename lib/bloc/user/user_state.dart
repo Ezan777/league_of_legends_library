@@ -10,6 +10,15 @@ sealed class UserState extends Equatable {
 
 final class UserLoading extends UserState {}
 
+final class UpdatingUserData extends UserState {
+  final AppUser newUser;
+
+  const UpdatingUserData(this.newUser);
+
+  @override
+  List<Object?> get props => [newUser];
+}
+
 final class UserLogged extends UserState {
   final AppUser appUser;
 

@@ -299,9 +299,12 @@ class _SummonerViewState extends State<SummonerView> {
           ),
           FilledButton(
               onPressed: () {
-                context.read<UserBloc>().add(LogoutButtonPressed());
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const EditUserData()),
+                );
               },
-              child: const Text("Login again")),
+              child: Text(AppLocalizations.of(context)?.editAccountInfoLabel ??
+                  "Edit your account info")),
         ],
       );
 }

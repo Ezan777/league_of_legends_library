@@ -237,7 +237,7 @@
     "invalidName": "Please insert a valid name, special characters or numbers are not admitted",
     "invalidSurname": "Please insert a valid surname, special characters or numbers are not admitted",
     "invalidTagline": "Tagline is composed only by numbers",
-    "serverDropDownLabel": "Select your server",
+    "serverDropDownLabel": "Server",
     "emptyServer": "Please select the server in which the account is registered",
     "summonerLevel": "Level: {level}",
     "@summonerLevel": {
@@ -249,5 +249,16 @@
     },
     "logoutAlertContent": "Are you sure you want to logout?",
     "viewAccountInfo": "View your account info",
-    "summonerErrorBoxContent": "Something went wrong while loading summoner info, please try again."
+    "summonerErrorBoxContent": "Something went wrong while loading summoner info. Please check your summoner name and your tag line then try again.",
+    "editAccountInfoLabel": "Edit account info",
+    "dataUpdateSuccessfully": "Data updated successfully",
+    "somethingWentWrong": "Something went wrong. Error: {error}",
+    "@somethingWentWrong": {
+        "placeholders": {
+            "error": {
+                "type": "String"
+            }
+        }
+    },
+    "saveChanges": "Save changes"
 }

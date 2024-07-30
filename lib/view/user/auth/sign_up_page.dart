@@ -193,6 +193,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   }
                 },
                 decoration: InputDecoration(
+                  prefix: const Text("#"),
                   border: const OutlineInputBorder(),
                   labelText: AppLocalizations.of(context)?.tagLine ?? "Tagline",
                 ),

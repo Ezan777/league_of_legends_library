@@ -11,6 +11,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   UserBloc(this._userRepository, this._authSource) : super(UserLoading()) {
     on<UserStarted>(_onStarted);
     on<LogoutButtonPressed>(_logout);
+    on<UpdateUserData>(_updateUserData);
   }
 
   Future<void> _onStarted(UserStarted event, Emitter<UserState> emit) async {
@@ -33,6 +34,17 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     try {
       await _authSource.logout();
       emit(NoUserLogged());
+    } catch (e) {
+      emit(UserError(e));
+    }
+  }
+
+  Future<void> _updateUserData(
+      UpdateUserData event, Emitter<UserState> emit) async {
+    emit(UpdatingUserData(event.newUser));
+    try {
+      await _userRepository.saveUser(event.newUser);
+      emit(UserLogged(event.newUser));
     } catch (e) {
       emit(UserError(e));
     }
