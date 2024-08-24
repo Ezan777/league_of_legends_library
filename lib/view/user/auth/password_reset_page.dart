@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:league_of_legends_library/bloc/user/password_reset.dart/password_reset_event.dart';
-import 'package:league_of_legends_library/bloc/user/password_reset.dart/password_reset_bloc.dart';
-import 'package:league_of_legends_library/bloc/user/password_reset.dart/password_reset_state.dart';
+import 'package:league_of_legends_library/bloc/user/password_reset/password_reset_event.dart';
+import 'package:league_of_legends_library/bloc/user/password_reset/password_reset_bloc.dart';
+import 'package:league_of_legends_library/bloc/user/password_reset/password_reset_state.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class PasswordResetPage extends StatelessWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:league_of_legends_library/bloc/user/password_reset.dart/password_reset_event.dart';
-import 'package:league_of_legends_library/bloc/user/password_reset.dart/password_reset_state.dart';
+import 'package:league_of_legends_library/bloc/user/password_reset/password_reset_event.dart';
+import 'package:league_of_legends_library/bloc/user/password_reset/password_reset_state.dart';
 import 'package:league_of_legends_library/data/auth_source.dart';
 
 class PasswordResetBloc extends Bloc<PasswordResetEvent, PasswordResetState> {

@@ -13,9 +13,10 @@ import 'package:league_of_legends_library/bloc/champion_skin/skin_event.dart';
 import 'package:league_of_legends_library/bloc/favorites/favorites_bloc.dart';
 import 'package:league_of_legends_library/bloc/favorites/favorites_event.dart';
 import 'package:league_of_legends_library/bloc/summoner/summoner_bloc.dart';
+import 'package:league_of_legends_library/bloc/user/change_password/change_password_bloc.dart';
 import 'package:league_of_legends_library/bloc/user/login/login_bloc.dart';
 import 'package:league_of_legends_library/bloc/navigation/navigation_bloc.dart';
-import 'package:league_of_legends_library/bloc/user/password_reset.dart/password_reset_bloc.dart';
+import 'package:league_of_legends_library/bloc/user/password_reset/password_reset_bloc.dart';
 import 'package:league_of_legends_library/bloc/recently_viewed/recently_viewed_bloc.dart';
 import 'package:league_of_legends_library/bloc/recently_viewed/recently_viewed_event.dart';
 import 'package:league_of_legends_library/bloc/settings/language_bloc/language_bloc.dart';
@@ -112,6 +113,9 @@ class MyApp extends StatelessWidget {
           ),
           BlocProvider(
             create: (_) => SummonerBloc(appModel.summonerRepository),
+          ),
+          BlocProvider(
+            create: (_) => ChangePasswordBloc(appModel.authSource),
           ),
         ],
         child: BlocListener<LanguageBloc, LanguageState>(

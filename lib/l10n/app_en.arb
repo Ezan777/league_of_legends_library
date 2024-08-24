@@ -213,7 +213,7 @@
     "summonerNameLabel": "Summoner name",
     "emptySummonerName": "Please insert your summoner name",
     "passwordLabel": "Password",
-    "emptyPassword": "Please insert your password",
+    "emptyPassword": "Please insert a password",
     "notMatchingPasswords": "Passwords do not match",
     "repeatPasswordLabel": "Repeat password",
     "passwordResetLabel": "Password reset",
@@ -260,5 +260,15 @@
             }
         }
     },
-    "saveChanges": "Save changes"
+    "saveChanges": "Save changes",
+    "authenticationDataTitle": "Authentication",
+    "accountInfoTitle": "Account info",
+    "changePasswordPageTitle": "Change your password",
+    "changeYourPasswordLabel": "Change password",
+    "newPasswordLabel": "New password",
+    "repeatNewPassword": "Repeat new password",
+    "oldPasswordIsWrong": "Old password is not correct",
+    "changePasswordError": "An error has occurred please try again",
+    "passwordChangedMessage": "Password changed successfully",
+    "shortPasswordMessage": "Password should have at least 6 characters"
 }

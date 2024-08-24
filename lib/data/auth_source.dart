@@ -4,6 +4,8 @@ abstract class AuthSource {
   Future<String?> singUp(String email, String password);
   Future<void> sendPasswordReset(String email);
   Future<void> deleteUser(String email, String password);
+  Future<bool> checkCredentials(String email, String password);
+  Future<void> changePassword(String newPassword);
 }
 
 class InvalidCredentials implements Exception {}

@@ -54,7 +54,7 @@
     "summonerNameLabel": "Nome dell'evocatore",
     "emptySummonerName": "Per favore, inserisci il nome dell'evocatore",
     "passwordLabel": "Password",
-    "emptyPassword": "Per favore, inserisci la tua password",
+    "emptyPassword": "Per favore, inserisci una password",
     "notMatchingPasswords": "Le password non corrispondono",
     "repeatPasswordLabel": "Ripeti la password",
     "passwordResetLabel": "Reimposta la password",

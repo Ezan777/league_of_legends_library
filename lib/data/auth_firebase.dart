@@ -52,4 +52,29 @@ class AuthFirebase implements AuthSource {
         email: email, password: password);
     await credentials.user?.delete();
   }
+
+  @override
+  Future<bool> checkCredentials(String email, String password) async {
+    try {
+      await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: password);
+      return true;
+    } on FirebaseAuthException catch (e) {
+      if (e.code == "invalid-credential") {
+        return false;
+      } else {
+        rethrow;
+      }
+    }
+  }
+
+  @override
+  Future<void> changePassword(String newPassword) async {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      await user.updatePassword(newPassword);
+    } else {
+      throw Exception("No user logged in");
+    }
+  }
 }

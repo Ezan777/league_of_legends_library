@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:league_of_legends_library/bloc/user/change_password/change_password_bloc.dart';
+import 'package:league_of_legends_library/bloc/user/change_password/change_password_state.dart';
 import 'package:league_of_legends_library/bloc/user/user_bloc.dart';
 import 'package:league_of_legends_library/bloc/user/user_event.dart';
 import 'package:league_of_legends_library/bloc/user/user_state.dart';
 import 'package:league_of_legends_library/core/model/app_user.dart';
 import 'package:league_of_legends_library/data/riot_api.dart';
+import 'package:league_of_legends_library/view/errors/generic_error_view.dart';
 import 'package:league_of_legends_library/view/user/auth/login_view.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:league_of_legends_library/view/user/change_password_page.dart';
 
 class EditUserData extends StatefulWidget {
   const EditUserData({super.key});
@@ -49,22 +53,35 @@ class _EditUserDataState extends State<EditUserData>
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<UserBloc, UserState>(
-      listener: (context, state) {
-        if (state is UserLogged) {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text(
-                AppLocalizations.of(context)?.dataUpdateSuccessfully ??
-                    "Data updated successfully"),
-          ));
-        } else if (state is UserError) {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text(AppLocalizations.of(context)
-                    ?.somethingWentWrong(state.error?.toString() ?? "null") ??
-                "Something went wrong while updating your data"),
-          ));
-        }
-      },
+    return MultiBlocListener(
+      listeners: [
+        BlocListener<UserBloc, UserState>(listener: (context, state) {
+          if (state is UserLogged) {
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text(
+                  AppLocalizations.of(context)?.dataUpdateSuccessfully ??
+                      "Data updated successfully"),
+            ));
+          } else if (state is UserError) {
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text(AppLocalizations.of(context)
+                      ?.somethingWentWrong(state.error?.toString() ?? "null") ??
+                  "Something went wrong while updating your data"),
+            ));
+          }
+        }),
+        BlocListener<ChangePasswordBloc, ChangePasswordState>(
+          listener: (context, state) {
+            if (state is PasswordChanged) {
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: Text(
+                    AppLocalizations.of(context)?.passwordChangedMessage ??
+                        "Password changed successfully"),
+              ));
+            }
+          },
+        ),
+      ],
       child: BlocBuilder<UserBloc, UserState>(
         builder: (context, state) => switch (state) {
           UserLoading() => const Scaffold(
@@ -89,7 +106,7 @@ class _EditUserDataState extends State<EditUserData>
               ),
             ),
           NoUserLogged() => const LoginView(),
-          UserError() => throw UnimplementedError(),
+          UserError() => const GenericErrorView(),
         },
       ),
     );
@@ -138,6 +155,17 @@ class _EditUserDataState extends State<EditUserData>
           key: formKey,
           child: Column(
             children: [
+              Text(
+                AppLocalizations.of(context)?.accountInfoTitle ??
+                    "Account info",
+                style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                      fontStyle: FontStyle.italic,
+                      fontWeight: FontWeight.bold,
+                    ),
+              ),
+              const SizedBox(
+                height: 25,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -298,6 +326,29 @@ class _EditUserDataState extends State<EditUserData>
                                     ?.editAccountInfoLabel ??
                                 "Edit data"),
                           ),
+              ),
+              const SizedBox(
+                height: 25,
+              ),
+              Text(
+                AppLocalizations.of(context)?.authenticationDataTitle ??
+                    "Authentication",
+                style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                      fontStyle: FontStyle.italic,
+                      fontWeight: FontWeight.bold,
+                    ),
+              ),
+              const SizedBox(
+                height: 25,
+              ),
+              FilledButton(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const ChangePasswordPage()));
+                },
+                child: Text(
+                    AppLocalizations.of(context)?.changeYourPasswordLabel ??
+                        "Change password"),
               ),
             ],
           ),

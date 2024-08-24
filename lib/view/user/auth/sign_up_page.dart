@@ -234,6 +234,9 @@ class _SignUpPageState extends State<SignUpPage> {
                       passwordCheckController.text) {
                     return AppLocalizations.of(context)?.notMatchingPasswords ??
                         "Passwords doesn't match";
+                  } else if (value.length < 6) {
+                    return AppLocalizations.of(context)?.shortPasswordMessage ??
+                        "Password should have at least 6 characters";
                   } else {
                     return null;
                   }

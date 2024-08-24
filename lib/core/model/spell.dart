@@ -6,11 +6,10 @@ class Spell extends Passive {
 
   Spell(
       {required this.id,
-      required String name,
+      required super.name,
       required this.cooldowns,
-      required String description,
-      String? tileUrl})
-      : super(name: name, description: description, tileUrl: tileUrl);
+      required super.description,
+      super.tileUrl});
 
   factory Spell.fromJson({required Map<String, dynamic> jsonData}) {
     String id = jsonData["id"];
