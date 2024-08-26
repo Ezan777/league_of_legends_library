@@ -6,7 +6,6 @@ import 'package:league_of_legends_library/view/champion_page/lore_widget.dart';
 import 'package:league_of_legends_library/view/champion_page/spell/spell_widget.dart';
 import 'package:league_of_legends_library/view/champion_page/tips_widget.dart';
 
-/// This widget lets the user choose what information of the champions he likes to view
 class CategorySelector extends StatefulWidget {
   final Champion champion;
 

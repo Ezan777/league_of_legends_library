@@ -30,6 +30,9 @@ class SummonerRepository {
               tierIconUri: _assetsDataSource.getTierIconUri(rankDto.tier)),
         )
         .toList();
+    ranks.sort(
+      (a, b) => a.compareTo(b),
+    );
 
     return Summoner(
         summonerId: summonerDto.id,

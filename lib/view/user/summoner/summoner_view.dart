@@ -8,7 +8,7 @@ import 'package:league_of_legends_library/bloc/user/user_event.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:league_of_legends_library/view/errors/image_not_available.dart';
 import 'package:league_of_legends_library/view/user/edit_user_data.dart';
-import 'package:league_of_legends_library/view/user/summoner/rank_container.dart';
+import 'package:league_of_legends_library/view/user/summoner/rank_selector.dart';
 import 'package:text_scroll/text_scroll.dart';
 
 class SummonerView extends StatefulWidget {
@@ -96,7 +96,6 @@ class _SummonerViewState extends State<SummonerView> {
   Widget _buildView(BuildContext context, SummonerSuccess state) {
     const collapsedHeight = 75.0;
     final ranks = state.summoner.ranks;
-    ranks.sort((rank1, rank2) => rank1.compareTo(rank2));
 
     return Center(
       child: CustomScrollView(
@@ -120,12 +119,9 @@ class _SummonerViewState extends State<SummonerView> {
             expandedHeight: 175,
             collapsedHeight: collapsedHeight,
           ),
-          state.summoner.ranks.isNotEmpty
-              ? SliverList.builder(
-                  itemCount: ranks.length,
-                  itemBuilder: (context, index) => RankContainer(
-                    rank: ranks[index],
-                  ),
+          ranks.isNotEmpty
+              ? SliverToBoxAdapter(
+                  child: RankSelector(ranks: ranks),
                 )
               : SliverToBoxAdapter(
                   child: Center(

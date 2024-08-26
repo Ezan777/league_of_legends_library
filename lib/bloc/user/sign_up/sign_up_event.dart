@@ -23,7 +23,8 @@ class SignUpButtonPressed extends SignUpEvent {
   );
 
   @override
-  List<Object?> get props => [email, password];
+  List<Object?> get props =>
+      [email, password, summonerName, tagLine, name, surname, server];
 }
 
 class ResetSignUpView extends SignUpEvent {}
