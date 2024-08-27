@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:league_of_legends_library/core/model/passive.dart';
-import 'package:league_of_legends_library/core/model/spell.dart';
+import 'package:league_of_legends_library/core/model/league_of_legends/passive.dart';
+import 'package:league_of_legends_library/core/model/league_of_legends/spell.dart';
 import 'package:league_of_legends_library/core/repository/champion_repository.dart';
 import 'package:league_of_legends_library/view/errors/image_not_available.dart';
 

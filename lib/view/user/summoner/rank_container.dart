@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:league_of_legends_library/core/model/rank.dart';
+import 'package:league_of_legends_library/core/model/league_of_legends/rank.dart';
 
 class RankContainer extends StatelessWidget {
   final Rank rank;

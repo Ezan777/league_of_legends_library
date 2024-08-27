@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:league_of_legends_library/bloc/champion_skin/skin_bloc.dart';
 import 'package:league_of_legends_library/bloc/champion_skin/skin_state.dart';
-import 'package:league_of_legends_library/core/model/champion.dart';
+import 'package:league_of_legends_library/core/model/league_of_legends/champion.dart';
 import 'package:league_of_legends_library/core/repository/champion_repository.dart';
 import 'package:league_of_legends_library/view/champion_page/champion_view.dart';
 import 'package:league_of_legends_library/view/errors/image_not_available.dart';

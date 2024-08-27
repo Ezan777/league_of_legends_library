@@ -1,4 +1,5 @@
 import 'package:league_of_legends_library/core/repository/champion_repository.dart';
+import 'package:league_of_legends_library/core/repository/match_repository.dart';
 import 'package:league_of_legends_library/core/repository/setting_repository.dart';
 import 'package:league_of_legends_library/core/repository/summoner_repository.dart';
 import 'package:league_of_legends_library/core/repository/user_repository.dart';
@@ -8,7 +9,8 @@ import 'package:league_of_legends_library/data/firebase_local_user_data.dart';
 import 'package:league_of_legends_library/data/firestore_user_data.dart';
 import 'package:league_of_legends_library/data/impl_champion_local_data_source.dart';
 import 'package:league_of_legends_library/data/dragon_data.dart';
-import 'package:league_of_legends_library/data/riot_api.dart';
+import 'package:league_of_legends_library/data/riot_match_api.dart';
+import 'package:league_of_legends_library/data/riot_summoner_api.dart';
 import 'package:league_of_legends_library/data/setting_data_source.dart';
 import 'package:league_of_legends_library/riot_secret.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -19,13 +21,16 @@ class AppModel {
   UserRepository userRepository;
   AuthSource authSource;
   SummonerRepository summonerRepository;
+  MatchRepository matchRepository;
 
-  AppModel._(
-      {required this.championRepository,
-      required this.settingRepository,
-      required this.userRepository,
-      required this.authSource,
-      required this.summonerRepository});
+  AppModel._({
+    required this.championRepository,
+    required this.settingRepository,
+    required this.userRepository,
+    required this.authSource,
+    required this.summonerRepository,
+    required this.matchRepository,
+  });
 
   static Future<AppModel> initializeDataSource() async {
     final SharedPreferences sharedPreferences =
@@ -45,7 +50,9 @@ class AppModel {
           UserRepository(FirebaseLocalUserData(), FirestoreUserData()),
       authSource: AuthFirebase(),
       summonerRepository:
-          SummonerRepository(const RiotApi(riotApiKey), assetSource),
+          SummonerRepository(const RiotSummonerApi(riotApiKey), assetSource),
+      matchRepository:
+          MatchRepository(const RiotMatchApi(riotApiKey), assetSource),
     );
   }
 }

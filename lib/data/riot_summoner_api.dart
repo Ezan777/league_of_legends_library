@@ -1,18 +1,17 @@
 import 'dart:convert';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:league_of_legends_library/core/model/rank.dart';
+import 'package:league_of_legends_library/core/model/league_of_legends/rank.dart';
 import 'package:http/http.dart' as http;
-import 'package:league_of_legends_library/data/assets_data_source.dart';
 import 'package:league_of_legends_library/data/dto/rank_dto.dart';
 import 'package:league_of_legends_library/data/dto/summoner_dto.dart';
 import 'package:league_of_legends_library/data/remote_data_source.dart';
 import 'package:league_of_legends_library/data/summoner_data_source.dart';
 
-class RiotApi implements SummonerDataSource, RemoteDataSource {
+class RiotSummonerApi implements SummonerDataSource, RemoteDataSource {
   final String _apiKey;
 
-  const RiotApi(this._apiKey);
+  const RiotSummonerApi(this._apiKey);
 
   @override
   Future<String> getPuuidByNameAndTagLine(

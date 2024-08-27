@@ -1,4 +1,4 @@
-import 'package:league_of_legends_library/core/model/rank.dart';
+import 'package:league_of_legends_library/core/model/league_of_legends/rank.dart';
 
 class Summoner {
   final String summonerId;

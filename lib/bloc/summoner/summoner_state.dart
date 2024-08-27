@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:league_of_legends_library/core/model/summoner.dart';
+import 'package:league_of_legends_library/core/model/league_of_legends/summoner.dart';
 
 sealed class SummonerState extends Equatable {
   const SummonerState();

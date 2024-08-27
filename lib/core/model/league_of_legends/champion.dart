@@ -1,6 +1,6 @@
-import 'package:league_of_legends_library/core/model/passive.dart';
-import 'package:league_of_legends_library/core/model/skin.dart';
-import 'package:league_of_legends_library/core/model/spell.dart';
+import 'package:league_of_legends_library/core/model/league_of_legends/passive.dart';
+import 'package:league_of_legends_library/core/model/league_of_legends/skin.dart';
+import 'package:league_of_legends_library/core/model/league_of_legends/spell.dart';
 
 class Champion {
   /// Champion id

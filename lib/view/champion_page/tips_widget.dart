@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:league_of_legends_library/core/model/champion.dart';
+import 'package:league_of_legends_library/core/model/league_of_legends/champion.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:league_of_legends_library/view/champion_page/info_category_button.dart';
 

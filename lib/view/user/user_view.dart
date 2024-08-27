@@ -7,7 +7,7 @@ import 'package:league_of_legends_library/bloc/user/login/login_state.dart';
 import 'package:league_of_legends_library/bloc/user/user_bloc.dart';
 import 'package:league_of_legends_library/bloc/user/user_event.dart';
 import 'package:league_of_legends_library/bloc/user/user_state.dart';
-import 'package:league_of_legends_library/data/riot_api.dart';
+import 'package:league_of_legends_library/data/riot_summoner_api.dart';
 import 'package:league_of_legends_library/view/user/auth/login_view.dart';
 import 'package:league_of_legends_library/view/user/summoner/summoner_view.dart';
 

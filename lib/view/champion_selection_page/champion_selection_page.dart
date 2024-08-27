@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:league_of_legends_library/core/repository/champion_repository.dart';
-import 'package:league_of_legends_library/data/assets_data_source.dart';
+import 'package:league_of_legends_library/data/remote_data_source.dart';
 import 'package:league_of_legends_library/view/champion_selection_page/champion_button.dart';
 import 'package:league_of_legends_library/view/errors/connection_unavailable_view.dart';
 import 'package:league_of_legends_library/view/errors/generic_error_view.dart';

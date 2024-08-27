@@ -8,6 +8,7 @@ import 'package:league_of_legends_library/bloc/user/user_event.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:league_of_legends_library/view/errors/image_not_available.dart';
 import 'package:league_of_legends_library/view/user/edit_user_data.dart';
+import 'package:league_of_legends_library/view/user/summoner/match_history.dart';
 import 'package:league_of_legends_library/view/user/summoner/rank_selector.dart';
 import 'package:text_scroll/text_scroll.dart';
 
@@ -121,7 +122,10 @@ class _SummonerViewState extends State<SummonerView> {
           ),
           ranks.isNotEmpty
               ? SliverToBoxAdapter(
-                  child: RankSelector(ranks: ranks),
+                  child: RankSelector(
+                    summoner: state.summoner,
+                    selectedRank: ValueNotifier(ranks.first),
+                  ),
                 )
               : SliverToBoxAdapter(
                   child: Center(
@@ -141,6 +145,7 @@ class _SummonerViewState extends State<SummonerView> {
                     ),
                   ),
                 ),
+          if (ranks.isNotEmpty) const MatchHistory(),
         ],
       ),
     );

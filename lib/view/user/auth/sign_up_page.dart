@@ -5,7 +5,7 @@ import 'package:league_of_legends_library/bloc/user/sign_up/sign_up_bloc.dart';
 import 'package:league_of_legends_library/bloc/user/sign_up/sign_up_event.dart';
 import 'package:league_of_legends_library/bloc/user/sign_up/sign_up_state.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:league_of_legends_library/data/riot_api.dart';
+import 'package:league_of_legends_library/data/riot_summoner_api.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});

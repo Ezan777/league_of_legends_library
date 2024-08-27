@@ -1,7 +1,7 @@
 import 'dart:collection';
 
-import 'package:league_of_legends_library/core/model/champion.dart';
-import 'package:league_of_legends_library/core/model/skin.dart';
+import 'package:league_of_legends_library/core/model/league_of_legends/champion.dart';
+import 'package:league_of_legends_library/core/model/league_of_legends/skin.dart';
 import 'package:league_of_legends_library/data/champion_local_data_source.dart';
 import 'package:league_of_legends_library/data/assets_data_source.dart';
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:league_of_legends_library/core/model/champion.dart';
-import 'package:league_of_legends_library/core/model/passive.dart';
-import 'package:league_of_legends_library/core/model/spell.dart';
+import 'package:league_of_legends_library/core/model/league_of_legends/champion.dart';
+import 'package:league_of_legends_library/core/model/league_of_legends/passive.dart';
+import 'package:league_of_legends_library/core/model/league_of_legends/spell.dart';
 import 'package:league_of_legends_library/view/champion_page/info_category_button.dart';
 import 'package:league_of_legends_library/view/champion_page/spell/spell_info.dart';
 import 'package:league_of_legends_library/view/champion_page/spell/spell_selector.dart';

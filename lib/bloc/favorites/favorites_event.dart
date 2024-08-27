@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:league_of_legends_library/core/model/champion.dart';
+import 'package:league_of_legends_library/core/model/league_of_legends/champion.dart';
 import 'package:league_of_legends_library/view/settings/language_settings/available_languages.dart';
 
 sealed class FavoritesEvent extends Equatable {

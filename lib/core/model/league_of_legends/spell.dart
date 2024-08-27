@@ -1,4 +1,4 @@
-import 'package:league_of_legends_library/core/model/passive.dart';
+import 'package:league_of_legends_library/core/model/league_of_legends/passive.dart';
 
 class Spell extends Passive {
   final String id;

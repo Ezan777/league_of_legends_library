@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:league_of_legends_library/core/model/passive.dart';
-import 'package:league_of_legends_library/core/model/spell.dart';
+import 'package:league_of_legends_library/core/model/league_of_legends/passive.dart';
+import 'package:league_of_legends_library/core/model/league_of_legends/spell.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SpellInfo extends StatelessWidget {

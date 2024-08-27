@@ -1,7 +1,7 @@
-import 'package:league_of_legends_library/core/model/rank.dart';
-import 'package:league_of_legends_library/core/model/summoner.dart';
+import 'package:league_of_legends_library/core/model/league_of_legends/rank.dart';
+import 'package:league_of_legends_library/core/model/league_of_legends/summoner.dart';
 import 'package:league_of_legends_library/data/assets_data_source.dart';
-import 'package:league_of_legends_library/data/riot_api.dart';
+import 'package:league_of_legends_library/data/riot_summoner_api.dart';
 import 'package:league_of_legends_library/data/summoner_data_source.dart';
 
 class SummonerRepository {

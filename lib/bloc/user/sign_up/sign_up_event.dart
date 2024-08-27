@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:league_of_legends_library/data/riot_api.dart';
+import 'package:league_of_legends_library/data/riot_summoner_api.dart';
 
 abstract class SignUpEvent extends Equatable {
   const SignUpEvent();

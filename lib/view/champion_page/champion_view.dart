@@ -5,7 +5,7 @@ import 'package:league_of_legends_library/bloc/favorites/favorites_event.dart';
 import 'package:league_of_legends_library/bloc/favorites/favorites_state.dart';
 import 'package:league_of_legends_library/bloc/recently_viewed/recently_viewed_bloc.dart';
 import 'package:league_of_legends_library/bloc/recently_viewed/recently_viewed_event.dart';
-import 'package:league_of_legends_library/core/model/champion.dart';
+import 'package:league_of_legends_library/core/model/league_of_legends/champion.dart';
 import 'package:league_of_legends_library/view/champion_page/champion_banner.dart';
 import 'package:league_of_legends_library/view/champion_page/category_selector.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';

@@ -1,26 +1,42 @@
 import 'package:flutter/material.dart';
-import 'package:league_of_legends_library/core/model/rank.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:league_of_legends_library/bloc/match_history/match_history_bloc.dart';
+import 'package:league_of_legends_library/bloc/match_history/match_history_event.dart';
+import 'package:league_of_legends_library/core/model/league_of_legends/rank.dart';
+import 'package:league_of_legends_library/core/model/league_of_legends/summoner.dart';
+import 'package:league_of_legends_library/data/riot_summoner_api.dart';
 import 'package:league_of_legends_library/view/user/summoner/rank_container.dart';
 
 class RankSelector extends StatefulWidget {
-  final List<Rank> ranks;
+  final Summoner summoner;
+  final ValueNotifier<Rank> selectedRank;
 
-  const RankSelector({super.key, required this.ranks});
+  const RankSelector(
+      {super.key, required this.summoner, required this.selectedRank});
 
   @override
   State<RankSelector> createState() => _RankSelectorState();
+
+  void loadMatchHistory(BuildContext context) {
+    context.read<MatchHistoryBloc>().add(MatchHistoryStarted(
+        RiotRegion.fromServer(RiotServer.fromServerCode(summoner.serverCode))
+            .name,
+        summoner.puuid,
+        selectedRank.value.queueType));
+  }
 }
 
 class _RankSelectorState extends State<RankSelector> {
-  late final ValueNotifier<Rank> selectedRank =
-      ValueNotifier(widget.ranks.first);
-
   @override
   Widget build(BuildContext context) {
-    final ranks = widget.ranks;
-    selectedRank.addListener(
+    final summoner = widget.summoner;
+    final ranks = summoner.ranks;
+
+    widget.loadMatchHistory(context);
+    widget.selectedRank.addListener(
       () {
         setState(() {});
+        widget.loadMatchHistory(context);
       },
     );
 
@@ -35,10 +51,10 @@ class _RankSelectorState extends State<RankSelector> {
                       opacity: animation,
                       child: child,
                     ),
-                    child: rank == selectedRank.value
+                    child: rank == widget.selectedRank.value
                         ? FilledButton.icon(
                             onPressed: () {
-                              selectedRank.value = rank;
+                              widget.selectedRank.value = rank;
                             },
                             icon: Icon(rank.queueType == QueueType.soloDuo
                                 ? Icons.person
@@ -49,7 +65,7 @@ class _RankSelectorState extends State<RankSelector> {
                           )
                         : OutlinedButton.icon(
                             onPressed: () {
-                              selectedRank.value = rank;
+                              widget.selectedRank.value = rank;
                             },
                             icon: Icon(rank.queueType == QueueType.soloDuo
                                 ? Icons.person
@@ -72,31 +88,31 @@ class _RankSelectorState extends State<RankSelector> {
               child: child,
             ),
           ),
-          child: _buildRankContainer(),
+          child: _buildRankContainer(context),
         ),
       ],
     );
   }
 
-  Widget _buildRankContainer() {
-    final ranks = widget.ranks;
+  Widget _buildRankContainer(BuildContext context) {
+    final ranks = widget.summoner.ranks;
     RankContainer rankContainer;
 
     if (ranks.length == 1) {
-      rankContainer = RankContainer(rank: selectedRank.value);
+      rankContainer = RankContainer(rank: widget.selectedRank.value);
     } else {
-      rankContainer = selectedRank.value.queueType == QueueType.soloDuo
+      rankContainer = widget.selectedRank.value.queueType == QueueType.soloDuo
           ? RankContainer(
-              key: Key(selectedRank.value.queueType.name),
-              rank: selectedRank.value,
+              key: Key(widget.selectedRank.value.queueType.name),
+              rank: widget.selectedRank.value,
               onSwipeRight: () {
-                selectedRank.value = ranks.last;
+                widget.selectedRank.value = ranks.last;
               })
           : RankContainer(
-              key: Key(selectedRank.value.queueType.name),
-              rank: selectedRank.value,
+              key: Key(widget.selectedRank.value.queueType.name),
+              rank: widget.selectedRank.value,
               onSwipeLeft: () {
-                selectedRank.value = ranks.first;
+                widget.selectedRank.value = ranks.first;
               },
             );
     }

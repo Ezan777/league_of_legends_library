@@ -1,5 +1,5 @@
-import 'package:league_of_legends_library/core/model/rank.dart';
-import 'package:league_of_legends_library/data/riot_api.dart';
+import 'package:league_of_legends_library/core/model/league_of_legends/rank.dart';
+import 'package:league_of_legends_library/data/riot_summoner_api.dart';
 
 class RankDto {
   final String tier;
