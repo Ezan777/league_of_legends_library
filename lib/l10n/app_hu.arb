@@ -66,5 +66,47 @@
     "login": "Bejelentkezés",
     "wrongCredentials": "Rossz hitelesítő adatok",
     "forgotPassword": "Elfelejtette a jelszavát?",
-    "summonerLabel": "Summoner"
+    "summonerLabel": "Summoner",
+    "logout": "Kijelentkezés",
+    "emptyTagLine": "Kérjük, adja meg a fiók tagline-ját",
+    "tagLine": "Tagline",
+    "invalidName": "Kérjük, adjon meg egy érvényes nevet, különleges karakterek vagy számok nem engedélyezettek",
+    "invalidSurname": "Kérjük, adjon meg egy érvényes vezetéknevet, különleges karakterek vagy számok nem engedélyezettek",
+    "invalidTagline": "A tagline csak számokból áll",
+    "serverDropDownLabel": "Szerver",
+    "emptyServer": "Kérjük, válassza ki a szervert, ahol a fiók regisztrálva van",
+    "summonerLevel": "Szint: {level}",
+    "@summonerLevel": {
+        "placeholders": {
+            "level": {
+                "type": "int"
+            }
+        }
+    },
+    "logoutAlertContent": "Biztosan ki szeretne jelentkezni?",
+    "viewAccountInfo": "Fiókadatok megtekintése",
+    "summonerErrorBoxContent": "Hiba történt a summoner adatok betöltésekor. Kérjük, ellenőrizze a summoner nevét és a tagline-ját, majd próbálja újra.",
+    "editAccountInfoLabel": "Fiókadatok szerkesztése",
+    "dataUpdateSuccessfully": "Adatok sikeresen frissítve",
+    "somethingWentWrong": "Valami hiba történt. Hiba: {error}",
+    "@somethingWentWrong": {
+        "placeholders": {
+            "error": {
+                "type": "String"
+            }
+        }
+    },
+    "saveChanges": "Változások mentése",
+    "authenticationDataTitle": "Hitelesítés",
+    "accountInfoTitle": "Fiókadatok",
+    "changePasswordPageTitle": "Változtassa meg a jelszavát",
+    "changeYourPasswordLabel": "Jelszó módosítása",
+    "newPasswordLabel": "Új jelszó",
+    "repeatNewPassword": "Új jelszó ismétlése",
+    "oldPasswordIsWrong": "A régi jelszó helytelen",
+    "changePasswordError": "Hiba történt, kérjük próbálja újra",
+    "passwordChangedMessage": "A jelszó sikeresen megváltozott",
+    "shortPasswordMessage": "A jelszónak legalább 6 karakterből kell állnia",
+    "wonMatchLabel": "GYŐZELEM",
+    "lostMatchLabel": "VERESÉG"
 }

@@ -66,5 +66,47 @@
     "login": "Zaloguj się",
     "wrongCredentials": "Niepoprawne dane logowania",
     "forgotPassword": "Zapomniałeś hasła?",
-    "summonerLabel": "Przywoływacz"
+    "summonerLabel": "Przywoływacz",
+    "logout": "Wyloguj się",
+    "emptyTagLine": "Proszę wprowadzić tagline swojego konta",
+    "tagLine": "Tagline",
+    "invalidName": "Proszę wprowadzić poprawne imię, znaki specjalne lub cyfry nie są dozwolone",
+    "invalidSurname": "Proszę wprowadzić poprawne nazwisko, znaki specjalne lub cyfry nie są dozwolone",
+    "invalidTagline": "Tagline składa się wyłącznie z cyfr",
+    "serverDropDownLabel": "Serwer",
+    "emptyServer": "Proszę wybrać serwer, na którym zarejestrowane jest konto",
+    "summonerLevel": "Poziom: {level}",
+    "@summonerLevel": {
+        "placeholders": {
+            "level": {
+                "type": "int"
+            }
+        }
+    },
+    "logoutAlertContent": "Czy na pewno chcesz się wylogować?",
+    "viewAccountInfo": "Zobacz informacje o koncie",
+    "summonerErrorBoxContent": "Wystąpił błąd podczas ładowania informacji o summonerze. Proszę sprawdzić nazwę summonera oraz tagline, a następnie spróbować ponownie.",
+    "editAccountInfoLabel": "Edytuj informacje o koncie",
+    "dataUpdateSuccessfully": "Dane zostały pomyślnie zaktualizowane",
+    "somethingWentWrong": "Wystąpił błąd. Błąd: {error}",
+    "@somethingWentWrong": {
+        "placeholders": {
+            "error": {
+                "type": "String"
+            }
+        }
+    },
+    "saveChanges": "Zapisz zmiany",
+    "authenticationDataTitle": "Uwierzytelnianie",
+    "accountInfoTitle": "Informacje o koncie",
+    "changePasswordPageTitle": "Zmień swoje hasło",
+    "changeYourPasswordLabel": "Zmień hasło",
+    "newPasswordLabel": "Nowe hasło",
+    "repeatNewPassword": "Powtórz nowe hasło",
+    "oldPasswordIsWrong": "Stare hasło jest nieprawidłowe",
+    "changePasswordError": "Wystąpił błąd, spróbuj ponownie",
+    "passwordChangedMessage": "Hasło zostało pomyślnie zmienione",
+    "shortPasswordMessage": "Hasło powinno mieć co najmniej 6 znaków",
+    "wonMatchLabel": "WYGRANA",
+    "lostMatchLabel": "PRZEGRANA"
 }

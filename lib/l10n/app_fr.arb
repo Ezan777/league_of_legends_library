@@ -66,5 +66,47 @@
     "login": "Se connecter",
     "wrongCredentials": "Identifiants incorrects",
     "forgotPassword": "Mot de passe oublié ?",
-    "summonerLabel": "Invocateur"
+    "summonerLabel": "Invocateur",
+    "logout": "Déconnexion",
+    "emptyTagLine": "Veuillez entrer le tagline de votre compte",
+    "tagLine": "Tagline",
+    "invalidName": "Veuillez entrer un nom valide, les caractères spéciaux ou les chiffres ne sont pas autorisés",
+    "invalidSurname": "Veuillez entrer un nom de famille valide, les caractères spéciaux ou les chiffres ne sont pas autorisés",
+    "invalidTagline": "Le tagline est composé uniquement de chiffres",
+    "serverDropDownLabel": "Serveur",
+    "emptyServer": "Veuillez sélectionner le serveur sur lequel le compte est enregistré",
+    "summonerLevel": "Niveau : {level}",
+    "@summonerLevel": {
+        "placeholders": {
+            "level": {
+                "type": "int"
+            }
+        }
+    },
+    "logoutAlertContent": "Êtes-vous sûr de vouloir vous déconnecter ?",
+    "viewAccountInfo": "Voir les informations de votre compte",
+    "summonerErrorBoxContent": "Un problème est survenu lors du chargement des informations de l'invocateur. Veuillez vérifier votre nom d'invocateur et votre tagline, puis réessayez.",
+    "editAccountInfoLabel": "Modifier les informations du compte",
+    "dataUpdateSuccessfully": "Données mises à jour avec succès",
+    "somethingWentWrong": "Un problème est survenu. Erreur : {error}",
+    "@somethingWentWrong": {
+        "placeholders": {
+            "error": {
+                "type": "String"
+            }
+        }
+    },
+    "saveChanges": "Enregistrer les modifications",
+    "authenticationDataTitle": "Authentification",
+    "accountInfoTitle": "Informations du compte",
+    "changePasswordPageTitle": "Changez votre mot de passe",
+    "changeYourPasswordLabel": "Changer le mot de passe",
+    "newPasswordLabel": "Nouveau mot de passe",
+    "repeatNewPassword": "Répéter le nouveau mot de passe",
+    "oldPasswordIsWrong": "L'ancien mot de passe est incorrect",
+    "changePasswordError": "Une erreur s'est produite, veuillez réessayer",
+    "passwordChangedMessage": "Mot de passe changé avec succès",
+    "shortPasswordMessage": "Le mot de passe doit contenir au moins 6 caractères",
+    "wonMatchLabel": "VICTOIRE",
+    "lostMatchLabel": "DÉFAITE"
 }

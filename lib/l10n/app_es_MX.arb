@@ -66,5 +66,47 @@
     "login": "Iniciar sesión",
     "wrongCredentials": "Credenciales incorrectas",
     "forgotPassword": "¿Olvidaste tu contraseña?",
-    "summonerLabel": "Invocador"
+    "summonerLabel": "Invocador",
+    "logout": "Cerrar sesión",
+    "emptyTagLine": "Por favor, ingrese el tagline de su cuenta",
+    "tagLine": "Tagline",
+    "invalidName": "Por favor, ingrese un nombre válido, no se permiten caracteres especiales o números",
+    "invalidSurname": "Por favor, ingrese un apellido válido, no se permiten caracteres especiales o números",
+    "invalidTagline": "El tagline está compuesto solo por números",
+    "serverDropDownLabel": "Servidor",
+    "emptyServer": "Por favor, seleccione el servidor en el que está registrada la cuenta",
+    "summonerLevel": "Nivel: {level}",
+    "@summonerLevel": {
+        "placeholders": {
+            "level": {
+                "type": "int"
+            }
+        }
+    },
+    "logoutAlertContent": "¿Estás seguro de que quieres cerrar sesión?",
+    "viewAccountInfo": "Ver la información de tu cuenta",
+    "summonerErrorBoxContent": "Algo salió mal al cargar la información del invocador. Verifique su nombre de invocador y su tagline, luego intente nuevamente.",
+    "editAccountInfoLabel": "Editar información de la cuenta",
+    "dataUpdateSuccessfully": "Datos actualizados con éxito",
+    "somethingWentWrong": "Algo salió mal. Error: {error}",
+    "@somethingWentWrong": {
+        "placeholders": {
+            "error": {
+                "type": "String"
+            }
+        }
+    },
+    "saveChanges": "Guardar cambios",
+    "authenticationDataTitle": "Autenticación",
+    "accountInfoTitle": "Información de la cuenta",
+    "changePasswordPageTitle": "Cambiar su contraseña",
+    "changeYourPasswordLabel": "Cambiar contraseña",
+    "newPasswordLabel": "Nueva contraseña",
+    "repeatNewPassword": "Repetir nueva contraseña",
+    "oldPasswordIsWrong": "La contraseña antigua no es correcta",
+    "changePasswordError": "Ocurrió un error, inténtelo de nuevo",
+    "passwordChangedMessage": "Contraseña cambiada con éxito",
+    "shortPasswordMessage": "La contraseña debe tener al menos 6 caracteres",
+    "wonMatchLabel": "VICTORIA",
+    "lostMatchLabel": "DERROTA"
 }

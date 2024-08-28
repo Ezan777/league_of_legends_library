@@ -66,5 +66,47 @@
     "login": "Login",
     "wrongCredentials": "Wrong credentials",
     "forgotPassword": "Forgot password?",
-    "summonerLabel": "Summoner"
+    "summonerLabel": "Summoner",
+    "logout": "Logout",
+    "emptyTagLine": "Please enter your account's tagline",
+    "tagLine": "Tagline",
+    "invalidName": "Please insert a valid name, special characters or numbers are not admitted",
+    "invalidSurname": "Please insert a valid surname, special characters or numbers are not admitted",
+    "invalidTagline": "Tagline is composed only by numbers",
+    "serverDropDownLabel": "Server",
+    "emptyServer": "Please select the server in which the account is registered",
+    "summonerLevel": "Level: {level}",
+    "@summonerLevel": {
+        "placeholders": {
+            "level": {
+                "type": "int"
+            }
+        }
+    },
+    "logoutAlertContent": "Are you sure you want to logout?",
+    "viewAccountInfo": "View your account info",
+    "summonerErrorBoxContent": "Something went wrong while loading summoner info. Please check your summoner name and your tag line then try again.",
+    "editAccountInfoLabel": "Edit account info",
+    "dataUpdateSuccessfully": "Data updated successfully",
+    "somethingWentWrong": "Something went wrong. Error: {error}",
+    "@somethingWentWrong": {
+        "placeholders": {
+            "error": {
+                "type": "String"
+            }
+        }
+    },
+    "saveChanges": "Save changes",
+    "authenticationDataTitle": "Authentication",
+    "accountInfoTitle": "Account info",
+    "changePasswordPageTitle": "Change your password",
+    "changeYourPasswordLabel": "Change password",
+    "newPasswordLabel": "New password",
+    "repeatNewPassword": "Repeat new password",
+    "oldPasswordIsWrong": "Old password is not correct",
+    "changePasswordError": "An error has occurred please try again",
+    "passwordChangedMessage": "Password changed successfully",
+    "shortPasswordMessage": "Password should have at least 6 characters",
+    "wonMatchLabel": "WIN",
+    "lostMatchLabel": "LOSS"
 }

@@ -66,5 +66,47 @@
     "login": "ログイン",
     "wrongCredentials": "認証情報が正しくありません",
     "forgotPassword": "パスワードを忘れましたか？",
-    "summonerLabel": "サモナー"
+    "summonerLabel": "サモナー",
+    "logout": "ログアウト",
+    "emptyTagLine": "アカウントのタグラインを入力してください",
+    "tagLine": "タグライン",
+    "invalidName": "有効な名前を入力してください。特殊文字や数字は使用できません",
+    "invalidSurname": "有効な苗字を入力してください。特殊文字や数字は使用できません",
+    "invalidTagline": "タグラインは数字のみで構成されています",
+    "serverDropDownLabel": "サーバー",
+    "emptyServer": "アカウントが登録されているサーバーを選択してください",
+    "summonerLevel": "レベル: {level}",
+    "@summonerLevel": {
+        "placeholders": {
+            "level": {
+                "type": "int"
+            }
+        }
+    },
+    "logoutAlertContent": "ログアウトしてもよろしいですか？",
+    "viewAccountInfo": "アカウント情報を見る",
+    "summonerErrorBoxContent": "召喚者情報の読み込み中にエラーが発生しました。召喚者名とタグラインを確認して、再度お試しください。",
+    "editAccountInfoLabel": "アカウント情報の編集",
+    "dataUpdateSuccessfully": "データが正常に更新されました",
+    "somethingWentWrong": "エラーが発生しました。エラー: {error}",
+    "@somethingWentWrong": {
+        "placeholders": {
+            "error": {
+                "type": "String"
+            }
+        }
+    },
+    "saveChanges": "変更を保存",
+    "authenticationDataTitle": "認証",
+    "accountInfoTitle": "アカウント情報",
+    "changePasswordPageTitle": "パスワードを変更する",
+    "changeYourPasswordLabel": "パスワードを変更",
+    "newPasswordLabel": "新しいパスワード",
+    "repeatNewPassword": "新しいパスワードを再入力",
+    "oldPasswordIsWrong": "古いパスワードが正しくありません",
+    "changePasswordError": "エラーが発生しました。もう一度お試しください",
+    "passwordChangedMessage": "パスワードが正常に変更されました",
+    "shortPasswordMessage": "パスワードは6文字以上である必要があります",
+    "wonMatchLabel": "勝利",
+    "lostMatchLabel": "敗北"
 }

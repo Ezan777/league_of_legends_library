@@ -67,5 +67,47 @@
     "login": "Entrar",
     "wrongCredentials": "Credenciais incorretas",
     "forgotPassword": "Esqueceu sua senha?",
-    "summonerLabel": "Invocador"
+    "summonerLabel": "Invocador",
+    "logout": "Sair",
+    "emptyTagLine": "Por favor, insira o tagline da sua conta",
+    "tagLine": "Tagline",
+    "invalidName": "Por favor, insira um nome válido, caracteres especiais ou números não são permitidos",
+    "invalidSurname": "Por favor, insira um sobrenome válido, caracteres especiais ou números não são permitidos",
+    "invalidTagline": "O tagline é composto apenas por números",
+    "serverDropDownLabel": "Servidor",
+    "emptyServer": "Por favor, selecione o servidor em que a conta está registrada",
+    "summonerLevel": "Nível: {level}",
+    "@summonerLevel": {
+        "placeholders": {
+            "level": {
+                "type": "int"
+            }
+        }
+    },
+    "logoutAlertContent": "Tem certeza de que deseja sair?",
+    "viewAccountInfo": "Ver informações da conta",
+    "summonerErrorBoxContent": "Ocorreu um erro ao carregar as informações do summoner. Verifique o nome do summoner e o tagline, depois tente novamente.",
+    "editAccountInfoLabel": "Editar informações da conta",
+    "dataUpdateSuccessfully": "Dados atualizados com sucesso",
+    "somethingWentWrong": "Algo deu errado. Erro: {error}",
+    "@somethingWentWrong": {
+        "placeholders": {
+            "error": {
+                "type": "String"
+            }
+        }
+    },
+    "saveChanges": "Salvar alterações",
+    "authenticationDataTitle": "Autenticação",
+    "accountInfoTitle": "Informações da conta",
+    "changePasswordPageTitle": "Mude sua senha",
+    "changeYourPasswordLabel": "Mudar senha",
+    "newPasswordLabel": "Nova senha",
+    "repeatNewPassword": "Repita a nova senha",
+    "oldPasswordIsWrong": "A senha antiga está incorreta",
+    "changePasswordError": "Ocorreu um erro, por favor tente novamente",
+    "passwordChangedMessage": "Senha alterada com sucesso",
+    "shortPasswordMessage": "A senha deve ter pelo menos 6 caracteres",
+    "wonMatchLabel": "VITÓRIA",
+    "lostMatchLabel": "DERROTA"
 }

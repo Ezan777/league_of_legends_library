@@ -66,5 +66,47 @@
     "login": "Войти",
     "wrongCredentials": "Неверные учетные данные",
     "forgotPassword": "Забыли пароль?",
-    "summonerLabel": "Призыватель"
+    "summonerLabel": "Призыватель",
+    "logout": "Выйти",
+    "emptyTagLine": "Пожалуйста, введите теглайн вашего аккаунта",
+    "tagLine": "Теглайн",
+    "invalidName": "Пожалуйста, введите действительное имя, специальные символы или цифры не допускаются",
+    "invalidSurname": "Пожалуйста, введите действительную фамилию, специальные символы или цифры не допускаются",
+    "invalidTagline": "Теглайн состоит только из цифр",
+    "serverDropDownLabel": "Сервер",
+    "emptyServer": "Пожалуйста, выберите сервер, на котором зарегистрирован аккаунт",
+    "summonerLevel": "Уровень: {level}",
+    "@summonerLevel": {
+        "placeholders": {
+            "level": {
+                "type": "int"
+            }
+        }
+    },
+    "logoutAlertContent": "Вы уверены, что хотите выйти?",
+    "viewAccountInfo": "Просмотр информации о аккаунте",
+    "summonerErrorBoxContent": "Произошла ошибка при загрузке информации о призывателе. Пожалуйста, проверьте имя призывателя и теглайн, затем попробуйте снова.",
+    "editAccountInfoLabel": "Редактировать информацию о аккаунте",
+    "dataUpdateSuccessfully": "Данные успешно обновлены",
+    "somethingWentWrong": "Что-то пошло не так. Ошибка: {error}",
+    "@somethingWentWrong": {
+        "placeholders": {
+            "error": {
+                "type": "String"
+            }
+        }
+    },
+    "saveChanges": "Сохранить изменения",
+    "authenticationDataTitle": "Аутентификация",
+    "accountInfoTitle": "Информация о аккаунте",
+    "changePasswordPageTitle": "Изменить пароль",
+    "changeYourPasswordLabel": "Изменить пароль",
+    "newPasswordLabel": "Новый пароль",
+    "repeatNewPassword": "Повторите новый пароль",
+    "oldPasswordIsWrong": "Старый пароль неверен",
+    "changePasswordError": "Произошла ошибка, попробуйте снова",
+    "passwordChangedMessage": "Пароль успешно изменен",
+    "shortPasswordMessage": "Пароль должен содержать не менее 6 символов",
+    "wonMatchLabel": "ПОБЕДА",
+    "lostMatchLabel": "ПОРАЖЕНИЕ"
 }

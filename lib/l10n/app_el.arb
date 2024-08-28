@@ -66,5 +66,47 @@
     "login": "Σύνδεση",
     "wrongCredentials": "Λάθος διαπιστευτήρια",
     "forgotPassword": "Ξεχάσατε τον κωδικό;",
-    "summonerLabel": "Επικαλεστής"
+    "summonerLabel": "Επικαλεστής",
+    "logout": "Αποσύνδεση",
+    "emptyTagLine": "Παρακαλώ εισάγετε το tagline του λογαριασμού σας",
+    "tagLine": "Tagline",
+    "invalidName": "Παρακαλώ εισάγετε ένα έγκυρο όνομα, δεν επιτρέπονται ειδικοί χαρακτήρες ή αριθμοί",
+    "invalidSurname": "Παρακαλώ εισάγετε ένα έγκυρο επώνυμο, δεν επιτρέπονται ειδικοί χαρακτήρες ή αριθμοί",
+    "invalidTagline": "Το tagline αποτελείται μόνο από αριθμούς",
+    "serverDropDownLabel": "Διακομιστής",
+    "emptyServer": "Παρακαλώ επιλέξτε τον διακομιστή στον οποίο είναι εγγεγραμμένος ο λογαριασμός",
+    "summonerLevel": "Επίπεδο: {level}",
+    "@summonerLevel": {
+        "placeholders": {
+            "level": {
+                "type": "int"
+            }
+        }
+    },
+    "logoutAlertContent": "Είστε βέβαιοι ότι θέλετε να αποσυνδεθείτε;",
+    "viewAccountInfo": "Προβολή πληροφοριών λογαριασμού",
+    "summonerErrorBoxContent": "Κάτι πήγε στραβά κατά τη φόρτωση των πληροφοριών του summoner. Ελέγξτε το όνομα summoner και το tagline σας και δοκιμάστε ξανά.",
+    "editAccountInfoLabel": "Επεξεργασία πληροφοριών λογαριασμού",
+    "dataUpdateSuccessfully": "Τα δεδομένα ενημερώθηκαν με επιτυχία",
+    "somethingWentWrong": "Κάτι πήγε στραβά. Σφάλμα: {error}",
+    "@somethingWentWrong": {
+        "placeholders": {
+            "error": {
+                "type": "String"
+            }
+        }
+    },
+    "saveChanges": "Αποθήκευση αλλαγών",
+    "authenticationDataTitle": "Επαλήθευση",
+    "accountInfoTitle": "Πληροφορίες λογαριασμού",
+    "changePasswordPageTitle": "Αλλάξτε τον κωδικό σας",
+    "changeYourPasswordLabel": "Αλλαγή κωδικού",
+    "newPasswordLabel": "Νέος κωδικός",
+    "repeatNewPassword": "Επαναλάβετε τον νέο κωδικό",
+    "oldPasswordIsWrong": "Ο παλιός κωδικός δεν είναι σωστός",
+    "changePasswordError": "Παρουσιάστηκε σφάλμα, δοκιμάστε ξανά",
+    "passwordChangedMessage": "Ο κωδικός άλλαξε με επιτυχία",
+    "shortPasswordMessage": "Ο κωδικός πρέπει να έχει τουλάχιστον 6 χαρακτήρες",
+    "wonMatchLabel": "ΝΙΚΗ",
+    "lostMatchLabel": "ΗΤΤΑ"
 }

@@ -66,5 +66,47 @@
     "login": "Giriş yap",
     "wrongCredentials": "Hatalı kimlik bilgileri",
     "forgotPassword": "Şifrenizi mi unuttunuz?",
-    "summonerLabel": "Çağırıcı"
+    "summonerLabel": "Çağırıcı",
+    "logout": "Çıkış Yap",
+    "emptyTagLine": "Lütfen hesabınızın tagline'ını girin",
+    "tagLine": "Tagline",
+    "invalidName": "Lütfen geçerli bir ad girin, özel karakterler veya sayılar kabul edilmez",
+    "invalidSurname": "Lütfen geçerli bir soyad girin, özel karakterler veya sayılar kabul edilmez",
+    "invalidTagline": "Tagline yalnızca sayılardan oluşur",
+    "serverDropDownLabel": "Sunucu",
+    "emptyServer": "Lütfen hesabınızın kayıtlı olduğu sunucuyu seçin",
+    "summonerLevel": "Seviye: {level}",
+    "@summonerLevel": {
+        "placeholders": {
+            "level": {
+                "type": "int"
+            }
+        }
+    },
+    "logoutAlertContent": "Çıkış yapmak istediğinizden emin misiniz?",
+    "viewAccountInfo": "Hesap bilgilerinizi görüntüleyin",
+    "summonerErrorBoxContent": "Summoner bilgileri yüklenirken bir sorun oluştu. Lütfen summoner adınızı ve tagline'ınızı kontrol edip tekrar deneyin.",
+    "editAccountInfoLabel": "Hesap bilgilerini düzenle",
+    "dataUpdateSuccessfully": "Veriler başarıyla güncellendi",
+    "somethingWentWrong": "Bir şeyler ters gitti. Hata: {error}",
+    "@somethingWentWrong": {
+        "placeholders": {
+            "error": {
+                "type": "String"
+            }
+        }
+    },
+    "saveChanges": "Değişiklikleri kaydet",
+    "authenticationDataTitle": "Kimlik Doğrulama",
+    "accountInfoTitle": "Hesap Bilgileri",
+    "changePasswordPageTitle": "Şifrenizi Değiştirin",
+    "changeYourPasswordLabel": "Şifre Değiştir",
+    "newPasswordLabel": "Yeni şifre",
+    "repeatNewPassword": "Yeni şifreyi tekrar edin",
+    "oldPasswordIsWrong": "Eski şifre doğru değil",
+    "changePasswordError": "Bir hata oluştu, lütfen tekrar deneyin",
+    "passwordChangedMessage": "Şifre başarıyla değiştirildi",
+    "shortPasswordMessage": "Şifre en az 6 karakter olmalıdır",
+    "wonMatchLabel": "KAZAN",
+    "lostMatchLabel": "KAYBET"
 }

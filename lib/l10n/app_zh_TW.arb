@@ -66,5 +66,47 @@
     "login": "登錄",
     "wrongCredentials": "憑證錯誤",
     "forgotPassword": "忘記密碼？",
-    "summonerLabel": "召喚師"
+    "summonerLabel": "召喚師",
+    "logout": "登出",
+    "emptyTagLine": "請輸入您的帳號標語",
+    "tagLine": "標語",
+    "invalidName": "請輸入有效的名稱，不允許特殊字符或數字",
+    "invalidSurname": "請輸入有效的姓氏，不允許特殊字符或數字",
+    "invalidTagline": "標語僅由數字組成",
+    "serverDropDownLabel": "伺服器",
+    "emptyServer": "請選擇註冊帳號的伺服器",
+    "summonerLevel": "等級: {level}",
+    "@summonerLevel": {
+        "placeholders": {
+            "level": {
+                "type": "int"
+            }
+        }
+    },
+    "logoutAlertContent": "您確定要登出嗎？",
+    "viewAccountInfo": "查看您的帳號資訊",
+    "summonerErrorBoxContent": "加載召喚師資訊時出錯。請檢查您的召喚師名稱和標語，然後再試一次。",
+    "editAccountInfoLabel": "編輯帳號資訊",
+    "dataUpdateSuccessfully": "數據更新成功",
+    "somethingWentWrong": "發生錯誤。錯誤: {error}",
+    "@somethingWentWrong": {
+        "placeholders": {
+            "error": {
+                "type": "String"
+            }
+        }
+    },
+    "saveChanges": "保存更改",
+    "authenticationDataTitle": "身份驗證",
+    "accountInfoTitle": "帳號資訊",
+    "changePasswordPageTitle": "更改您的密碼",
+    "changeYourPasswordLabel": "更改密碼",
+    "newPasswordLabel": "新密碼",
+    "repeatNewPassword": "重複新密碼",
+    "oldPasswordIsWrong": "舊密碼不正確",
+    "changePasswordError": "發生錯誤，請再試一次",
+    "passwordChangedMessage": "密碼更改成功",
+    "shortPasswordMessage": "密碼應至少有 6 個字符",
+    "wonMatchLabel": "勝利",
+    "lostMatchLabel": "失敗"
 }

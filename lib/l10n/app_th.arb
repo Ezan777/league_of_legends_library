@@ -66,5 +66,47 @@
     "login": "เข้าสู่ระบบ",
     "wrongCredentials": "ข้อมูลรับรองไม่ถูกต้อง",
     "forgotPassword": "ลืมรหัสผ่าน?",
-    "summonerLabel": "ซัมมอนเนอร์"
+    "summonerLabel": "ซัมมอนเนอร์",
+    "logout": "ออกจากระบบ",
+    "emptyTagLine": "กรุณาใส่ tagline ของบัญชีของคุณ",
+    "tagLine": "Tagline",
+    "invalidName": "กรุณาใส่ชื่อที่ถูกต้อง ห้ามใช้อักขระพิเศษหรือหมายเลข",
+    "invalidSurname": "กรุณาใส่นามสกุลที่ถูกต้อง ห้ามใช้อักขระพิเศษหรือหมายเลข",
+    "invalidTagline": "Tagline ประกอบด้วยตัวเลขเท่านั้น",
+    "serverDropDownLabel": "เซิร์ฟเวอร์",
+    "emptyServer": "กรุณาเลือกเซิร์ฟเวอร์ที่บัญชีของคุณลงทะเบียนไว้",
+    "summonerLevel": "ระดับ: {level}",
+    "@summonerLevel": {
+        "placeholders": {
+            "level": {
+                "type": "int"
+            }
+        }
+    },
+    "logoutAlertContent": "คุณแน่ใจหรือว่าต้องการออกจากระบบ?",
+    "viewAccountInfo": "ดูข้อมูลบัญชีของคุณ",
+    "summonerErrorBoxContent": "มีข้อผิดพลาดเกิดขึ้นขณะโหลดข้อมูล Summoner กรุณาตรวจสอบชื่อ Summoner และ Tagline ของคุณแล้วลองใหม่อีกครั้ง",
+    "editAccountInfoLabel": "แก้ไขข้อมูลบัญชี",
+    "dataUpdateSuccessfully": "อัปเดตข้อมูลเรียบร้อยแล้ว",
+    "somethingWentWrong": "มีบางอย่างผิดพลาด ข้อผิดพลาด: {error}",
+    "@somethingWentWrong": {
+        "placeholders": {
+            "error": {
+                "type": "String"
+            }
+        }
+    },
+    "saveChanges": "บันทึกการเปลี่ยนแปลง",
+    "authenticationDataTitle": "การตรวจสอบตัวตน",
+    "accountInfoTitle": "ข้อมูลบัญชี",
+    "changePasswordPageTitle": "เปลี่ยนรหัสผ่าน",
+    "changeYourPasswordLabel": "เปลี่ยนรหัสผ่าน",
+    "newPasswordLabel": "รหัสผ่านใหม่",
+    "repeatNewPassword": "ยืนยันรหัสผ่านใหม่",
+    "oldPasswordIsWrong": "รหัสผ่านเก่าไม่ถูกต้อง",
+    "changePasswordError": "เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง",
+    "passwordChangedMessage": "เปลี่ยนรหัสผ่านสำเร็จ",
+    "shortPasswordMessage": "รหัสผ่านต้องมีอย่างน้อย 6 ตัวอักษร",
+    "wonMatchLabel": "ชนะ",
+    "lostMatchLabel": "แพ้"
 }

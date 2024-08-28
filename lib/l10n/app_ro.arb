@@ -66,5 +66,47 @@
     "login": "Conectare",
     "wrongCredentials": "Date de autentificare incorecte",
     "forgotPassword": "Ai uitat parola?",
-    "summonerLabel": "Invocator"
+    "summonerLabel": "Invocator",
+    "logout": "Deconectare",
+    "emptyTagLine": "Vă rugăm să introduceți tagline-ul contului",
+    "tagLine": "Tagline",
+    "invalidName": "Vă rugăm să introduceți un nume valid, caracterele speciale sau cifrele nu sunt permise",
+    "invalidSurname": "Vă rugăm să introduceți un prenume valid, caracterele speciale sau cifrele nu sunt permise",
+    "invalidTagline": "Tagline-ul este compus doar din cifre",
+    "serverDropDownLabel": "Server",
+    "emptyServer": "Vă rugăm să selectați serverul pe care este înregistrat contul",
+    "summonerLevel": "Nivel: {level}",
+    "@summonerLevel": {
+        "placeholders": {
+            "level": {
+                "type": "int"
+            }
+        }
+    },
+    "logoutAlertContent": "Sigur doriți să vă deconectați?",
+    "viewAccountInfo": "Vizualizați informațiile contului",
+    "summonerErrorBoxContent": "A apărut o problemă la încărcarea informațiilor despre invocator. Vă rugăm să verificați numele invocatorului și tagline-ul, apoi încercați din nou.",
+    "editAccountInfoLabel": "Editați informațiile contului",
+    "dataUpdateSuccessfully": "Datele au fost actualizate cu succes",
+    "somethingWentWrong": "Ceva nu a mers bine. Eroare: {error}",
+    "@somethingWentWrong": {
+        "placeholders": {
+            "error": {
+                "type": "String"
+            }
+        }
+    },
+    "saveChanges": "Salvați modificările",
+    "authenticationDataTitle": "Autentificare",
+    "accountInfoTitle": "Informații cont",
+    "changePasswordPageTitle": "Schimbați parola",
+    "changeYourPasswordLabel": "Schimbați parola",
+    "newPasswordLabel": "Parolă nouă",
+    "repeatNewPassword": "Repetați parola nouă",
+    "oldPasswordIsWrong": "Parola veche nu este corectă",
+    "changePasswordError": "A apărut o eroare, vă rugăm să încercați din nou",
+    "passwordChangedMessage": "Parola a fost schimbată cu succes",
+    "shortPasswordMessage": "Parola trebuie să aibă cel puțin 6 caractere",
+    "wonMatchLabel": "VICTORIE",
+    "lostMatchLabel": "ÎNFRÂNGERE"
 }

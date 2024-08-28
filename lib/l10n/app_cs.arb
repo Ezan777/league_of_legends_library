@@ -66,5 +66,47 @@
     "login": "Přihlásit se",
     "wrongCredentials": "Špatné přihlašovací údaje",
     "forgotPassword": "Zapomenuté heslo?",
-    "summonerLabel": "Vyvolávač"
+    "summonerLabel": "Vyvolávač",
+    "logout": "Odhlásit se",
+    "emptyTagLine": "Zadejte prosím tagline svého účtu",
+    "tagLine": "Tagline",
+    "invalidName": "Zadejte prosím platné jméno, speciální znaky nebo čísla nejsou povolena",
+    "invalidSurname": "Zadejte prosím platné příjmení, speciální znaky nebo čísla nejsou povolena",
+    "invalidTagline": "Tagline se skládá pouze z čísel",
+    "serverDropDownLabel": "Server",
+    "emptyServer": "Vyberte prosím server, na kterém je účet registrován",
+    "summonerLevel": "Úroveň: {level}",
+    "@summonerLevel": {
+        "placeholders": {
+            "level": {
+                "type": "int"
+            }
+        }
+    },
+    "logoutAlertContent": "Opravdu se chcete odhlásit?",
+    "viewAccountInfo": "Zobrazit informace o účtu",
+    "summonerErrorBoxContent": "Při načítání informací o vyvolávači došlo k chybě. Zkontrolujte prosím své jméno vyvolávače a tagline a zkuste to znovu.",
+    "editAccountInfoLabel": "Upravit informace o účtu",
+    "dataUpdateSuccessfully": "Data byla úspěšně aktualizována",
+    "somethingWentWrong": "Něco se pokazilo. Chyba: {error}",
+    "@somethingWentWrong": {
+        "placeholders": {
+            "error": {
+                "type": "String"
+            }
+        }
+    },
+    "saveChanges": "Uložit změny",
+    "authenticationDataTitle": "Ověření",
+    "accountInfoTitle": "Informace o účtu",
+    "changePasswordPageTitle": "Změňte své heslo",
+    "changeYourPasswordLabel": "Změnit heslo",
+    "newPasswordLabel": "Nové heslo",
+    "repeatNewPassword": "Zopakujte nové heslo",
+    "oldPasswordIsWrong": "Staré heslo není správné",
+    "changePasswordError": "Došlo k chybě, zkuste to prosím znovu",
+    "passwordChangedMessage": "Heslo bylo úspěšně změněno",
+    "shortPasswordMessage": "Heslo musí mít alespoň 6 znaků",
+    "wonMatchLabel": "VÝHRA",
+    "lostMatchLabel": "PROHRA"
 }

@@ -66,5 +66,47 @@
     "login": "Đăng nhập",
     "wrongCredentials": "Thông tin đăng nhập không đúng",
     "forgotPassword": "Quên mật khẩu?",
-    "summonerLabel": "Triệu hồi sư"
+    "summonerLabel": "Triệu hồi sư",
+    "logout": "Đăng xuất",
+    "emptyTagLine": "Vui lòng nhập tagline của tài khoản của bạn",
+    "tagLine": "Tagline",
+    "invalidName": "Vui lòng nhập tên hợp lệ, không được phép có ký tự đặc biệt hoặc số",
+    "invalidSurname": "Vui lòng nhập họ hợp lệ, không được phép có ký tự đặc biệt hoặc số",
+    "invalidTagline": "Tagline chỉ bao gồm các chữ số",
+    "serverDropDownLabel": "Máy chủ",
+    "emptyServer": "Vui lòng chọn máy chủ mà tài khoản của bạn đã đăng ký",
+    "summonerLevel": "Cấp độ: {level}",
+    "@summonerLevel": {
+        "placeholders": {
+            "level": {
+                "type": "int"
+            }
+        }
+    },
+    "logoutAlertContent": "Bạn có chắc chắn muốn đăng xuất không?",
+    "viewAccountInfo": "Xem thông tin tài khoản của bạn",
+    "summonerErrorBoxContent": "Đã xảy ra sự cố khi tải thông tin summoner. Vui lòng kiểm tra tên summoner và tagline của bạn rồi thử lại.",
+    "editAccountInfoLabel": "Chỉnh sửa thông tin tài khoản",
+    "dataUpdateSuccessfully": "Dữ liệu đã được cập nhật thành công",
+    "somethingWentWrong": "Đã xảy ra lỗi. Lỗi: {error}",
+    "@somethingWentWrong": {
+        "placeholders": {
+            "error": {
+                "type": "String"
+            }
+        }
+    },
+    "saveChanges": "Lưu thay đổi",
+    "authenticationDataTitle": "Xác thực",
+    "accountInfoTitle": "Thông tin tài khoản",
+    "changePasswordPageTitle": "Đổi mật khẩu của bạn",
+    "changeYourPasswordLabel": "Đổi mật khẩu",
+    "newPasswordLabel": "Mật khẩu mới",
+    "repeatNewPassword": "Nhập lại mật khẩu mới",
+    "oldPasswordIsWrong": "Mật khẩu cũ không đúng",
+    "changePasswordError": "Đã xảy ra lỗi, vui lòng thử lại",
+    "passwordChangedMessage": "Đã thay đổi mật khẩu thành công",
+    "shortPasswordMessage": "Mật khẩu phải có ít nhất 6 ký tự",
+    "wonMatchLabel": "THẮNG",
+    "lostMatchLabel": "THUA"
 }

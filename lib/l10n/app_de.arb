@@ -66,5 +66,47 @@
     "login": "Anmelden",
     "wrongCredentials": "Falsche Anmeldedaten",
     "forgotPassword": "Passwort vergessen?",
-    "summonerLabel": "Beschwörer"
+    "summonerLabel": "Beschwörer",
+    "logout": "Abmelden",
+    "emptyTagLine": "Bitte geben Sie den Tagline Ihres Kontos ein",
+    "tagLine": "Tagline",
+    "invalidName": "Bitte geben Sie einen gültigen Namen ein, Sonderzeichen oder Zahlen sind nicht erlaubt",
+    "invalidSurname": "Bitte geben Sie einen gültigen Nachnamen ein, Sonderzeichen oder Zahlen sind nicht erlaubt",
+    "invalidTagline": "Der Tagline besteht nur aus Zahlen",
+    "serverDropDownLabel": "Server",
+    "emptyServer": "Bitte wählen Sie den Server aus, auf dem das Konto registriert ist",
+    "summonerLevel": "Stufe: {level}",
+    "@summonerLevel": {
+        "placeholders": {
+            "level": {
+                "type": "int"
+            }
+        }
+    },
+    "logoutAlertContent": "Sind Sie sicher, dass Sie sich abmelden möchten?",
+    "viewAccountInfo": "Kontoinformationen anzeigen",
+    "summonerErrorBoxContent": "Beim Laden der Beschwörerinformationen ist ein Fehler aufgetreten. Bitte überprüfen Sie Ihren Beschwörernamen und Ihren Tagline und versuchen Sie es erneut.",
+    "editAccountInfoLabel": "Kontoinformationen bearbeiten",
+    "dataUpdateSuccessfully": "Daten erfolgreich aktualisiert",
+    "somethingWentWrong": "Etwas ist schiefgelaufen. Fehler: {error}",
+    "@somethingWentWrong": {
+        "placeholders": {
+            "error": {
+                "type": "String"
+            }
+        }
+    },
+    "saveChanges": "Änderungen speichern",
+    "authenticationDataTitle": "Authentifizierung",
+    "accountInfoTitle": "Kontoinformationen",
+    "changePasswordPageTitle": "Ändern Sie Ihr Passwort",
+    "changeYourPasswordLabel": "Passwort ändern",
+    "newPasswordLabel": "Neues Passwort",
+    "repeatNewPassword": "Neues Passwort wiederholen",
+    "oldPasswordIsWrong": "Altes Passwort ist nicht korrekt",
+    "changePasswordError": "Es ist ein Fehler aufgetreten, bitte versuchen Sie es erneut",
+    "passwordChangedMessage": "Passwort erfolgreich geändert",
+    "shortPasswordMessage": "Das Passwort sollte mindestens 6 Zeichen lang sein",
+    "wonMatchLabel": "GEWONNEN",
+    "lostMatchLabel": "VERLOREN"
 }
