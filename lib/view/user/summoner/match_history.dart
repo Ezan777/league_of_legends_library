@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -5,8 +7,10 @@ import 'package:league_of_legends_library/bloc/match_history/match_history_bloc.
 import 'package:league_of_legends_library/bloc/match_history/match_history_state.dart';
 import 'package:league_of_legends_library/bloc/summoner/summoner_bloc.dart';
 import 'package:league_of_legends_library/bloc/summoner/summoner_state.dart';
+import 'package:league_of_legends_library/core/model/league_of_legends/matches/league_match.dart';
 import 'package:league_of_legends_library/core/model/league_of_legends/matches/participant.dart';
 import 'package:league_of_legends_library/view/errors/generic_error_view.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MatchHistory extends StatelessWidget {
   const MatchHistory({super.key});
@@ -26,7 +30,9 @@ class MatchHistory extends StatelessWidget {
                     child: CircularProgressIndicator(),
                   ),
                 ),
-              MatchHistoryError() => const GenericErrorView(),
+              MatchHistoryError() => const SliverToBoxAdapter(
+                  child: GenericErrorView(),
+                ),
               MatchHistoryLoaded() =>
                 _buildView(context, summonerState.summoner.puuid, matchesState),
             },
@@ -37,177 +43,221 @@ class MatchHistory extends StatelessWidget {
 
   Widget _buildView(
       BuildContext context, String summonerPuuid, MatchHistoryLoaded state) {
+    final winnerColor = Theme.of(context).brightness == Brightness.light
+        ? const Color.fromARGB(87, 13, 228, 31)
+        : const Color.fromARGB(133, 3, 117, 13);
+    final onWinnerColor = Theme.of(context).brightness == Brightness.light
+        ? const Color.fromARGB(244, 1, 41, 4)
+        : const Color.fromARGB(244, 204, 240, 207);
+    final loserColor = Theme.of(context).brightness == Brightness.light
+        ? const Color.fromARGB(85, 252, 136, 136)
+        : const Color.fromARGB(232, 109, 45, 45);
+    final onLoserColor = Theme.of(context).brightness == Brightness.light
+        ? const Color.fromARGB(255, 97, 23, 23)
+        : const Color.fromARGB(255, 252, 213, 213);
+
     return SliverList(
       delegate: SliverChildBuilderDelegate((context, index) {
         if (index < state.matches.length) {
           final participant = state.matches[index].participants
               .firstWhere((participant) => participant.puuid == summonerPuuid);
-          return _buildMatchBanner(context, participant);
+          return _buildMatchBanner(
+            context,
+            state.matches[index],
+            summonerPuuid,
+            participant.isWinner ? winnerColor : loserColor,
+            participant.isWinner ? onWinnerColor : onLoserColor,
+          );
         } else {
           return null;
         }
-      }),
+      }, childCount: state.matches.length),
     );
   }
 
-  Widget _buildMatchBanner(BuildContext context, Participant participant) {
-    final maxWidth = 0.85 * MediaQuery.of(context).size.width;
+  Widget _buildMatchBanner(BuildContext context, LeagueMatch match,
+      String summonerPuuid, Color containerColor, Color onContainerColor) {
+    final maxWidth =
+        min(0.9 * MediaQuery.of(context).size.width, 575).toDouble();
+    final participant = match.participants
+        .firstWhere((participant) => participant.puuid == summonerPuuid);
 
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+      margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 15),
+      padding: const EdgeInsets.all(5),
       constraints: BoxConstraints(maxWidth: maxWidth),
-      child: FittedBox(
-        fit: BoxFit.fitWidth,
-        child: Row(
-          children: [
-            // Champion Tile
-            Padding(
-              padding: const EdgeInsets.all(3),
-              child: SizedBox(
-                width: 0.24 * maxWidth,
-                height: 0.25 * maxWidth,
-                child: Stack(
-                  children: [
-                    Container(
-                      width: 0.23 * maxWidth,
-                      height: 0.23 * maxWidth,
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: Colors.grey.shade900,
-                          width: 1,
-                        ),
-                        shape: BoxShape.circle,
-                      ),
-                      child: ClipOval(
-                        child: CachedNetworkImage(
-                            imageUrl: participant.championIconUri),
-                      ),
+      decoration: BoxDecoration(
+        color: containerColor,
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(
+          width: 1,
+          color: onContainerColor,
+        ),
+      ),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Text(
+                participant.isWinner
+                    ? AppLocalizations.of(context)?.wonMatchLabel ?? "WIN"
+                    : AppLocalizations.of(context)?.lostMatchLabel ?? "LOSS",
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: onContainerColor,
                     ),
-                    Positioned(
-                      top: 0.19 * maxWidth,
-                      left: 0.07 * maxWidth,
-                      child: Container(
-                        width: 0.1 * maxWidth,
-                        height: 0.06 * maxWidth,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color: Colors.grey.shade900,
-                          border: Border.all(
-                            color: Colors.yellowAccent.shade700,
+              ),
+              Text(
+                match.gameDurationString,
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      color: onContainerColor,
+                    ),
+              ),
+              Text(
+                match.gameCreationDateString,
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      color: onContainerColor,
+                    ),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 5,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              // Champion Tile
+              _championTile(context, maxWidth, participant),
+              // Summoner's spells
+              _summonerSpells(maxWidth, participant),
+              // KDA and CS
+              Padding(
+                padding: const EdgeInsets.all(3),
+                child: Column(
+                  children: [
+                    Text(
+                      "${participant.kills}/${participant.deaths}/${participant.assists}",
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                            color: onContainerColor,
                           ),
-                        ),
-                        child: Center(
-                          child: Text(
-                            participant.championLevel.toString(),
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyMedium!
-                                .copyWith(color: Colors.white),
+                    ),
+                    Text(
+                      "${participant.minionsKilled.toString()} CS",
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            color: onContainerColor,
                           ),
-                        ),
-                      ),
                     ),
                   ],
                 ),
               ),
-            ),
-            // Summoner's name and spells
-            Padding(
-              padding: const EdgeInsets.all(2),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: participant.summonerSpellsIconUri
-                    .map(
-                      (summonerSpellIconUri) => Padding(
-                        padding: const EdgeInsets.all(2),
-                        child: SizedBox(
-                          width: 0.09 * maxWidth,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(10),
-                            child: CachedNetworkImage(
-                                imageUrl: summonerSpellIconUri),
-                          ),
+              // Items
+              Padding(
+                padding: const EdgeInsets.all(10),
+                child: Row(
+                  children: [
+                    Column(
+                      children: [
+                        Row(
+                          children: participant.itemsIconUri
+                              .sublist(0, 3)
+                              .map((itemIconUri) =>
+                                  _itemTile(context, maxWidth, itemIconUri))
+                              .toList(),
                         ),
-                      ),
-                    )
-                    .toList(),
-              ),
-            ),
-            // KDA and CS
-            Padding(
-              padding: const EdgeInsets.all(3),
-              child: Column(
-                children: [
-                  Text(
-                    "${participant.kills}/${participant.deaths}/${participant.assists}",
-                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                          fontSize: 18,
+                        Row(
+                          children: participant.itemsIconUri
+                              .sublist(3)
+                              .map((itemIconUri) =>
+                                  _itemTile(context, maxWidth, itemIconUri))
+                              .toList(),
                         ),
-                  ),
-                  Text(
-                    "${participant.minionsKilled.toString()} CS",
-                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                          fontSize: 15,
-                        ),
-                  ),
-                ],
-              ),
-            ),
-            // Items
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: Row(
-                children: [
-                  Column(
-                    children: [
-                      Row(
-                        children: participant.itemsIconUri
-                            .sublist(0, 3)
-                            .map((itemIconUri) =>
-                                _itemTile(context, maxWidth, itemIconUri))
-                            .toList(),
-                      ),
-                      Row(
-                        children: participant.itemsIconUri
-                            .sublist(3)
-                            .map((itemIconUri) =>
-                                _itemTile(context, maxWidth, itemIconUri))
-                            .toList(),
-                      ),
-                    ],
-                  ),
-                  _itemTile(context, maxWidth, participant.trinketIconUri),
-                ],
-              ),
-            ),
-            // Gold earned
-            Text.rich(
-              TextSpan(
-                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                      fontSize: 18,
-                      color: Colors.yellow.shade800,
+                      ],
                     ),
-                text: "${(participant.goldEarned / 1000).toStringAsFixed(1)} k",
-                children: [
-                  WidgetSpan(
-                      child: SizedBox(
-                    width: 0.01 * maxWidth,
-                  )),
-                  WidgetSpan(
-                    child: Icon(
-                      Icons.paid_outlined,
-                      color: Colors.yellow.shade800,
-                      size: 18,
-                    ),
-                  ),
-                ],
+                    _itemTile(context, maxWidth, participant.trinketIconUri),
+                  ],
+                ),
               ),
-            ),
-          ],
-        ),
+            ],
+          ),
+        ],
       ),
     );
   }
+
+  Widget _championTile(
+          BuildContext context, double maxWidth, Participant participant) =>
+      Padding(
+        padding: const EdgeInsets.all(3),
+        child: SizedBox(
+          width: 0.24 * maxWidth,
+          height: 0.25 * maxWidth,
+          child: Stack(
+            children: [
+              Container(
+                width: 0.23 * maxWidth,
+                height: 0.23 * maxWidth,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.grey.shade900,
+                    width: 1,
+                  ),
+                  shape: BoxShape.circle,
+                ),
+                child: ClipOval(
+                  child:
+                      CachedNetworkImage(imageUrl: participant.championIconUri),
+                ),
+              ),
+              Positioned(
+                top: 0.19 * maxWidth,
+                left: 0.07 * maxWidth,
+                child: Container(
+                  width: 0.1 * maxWidth,
+                  height: 0.06 * maxWidth,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.grey.shade900,
+                    border: Border.all(
+                      color: Colors.yellowAccent.shade700,
+                    ),
+                  ),
+                  child: Center(
+                    child: Text(
+                      participant.championLevel.toString(),
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            color: Colors.white,
+                          ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+
+  Widget _summonerSpells(double maxWidth, Participant participant) => Padding(
+        padding: const EdgeInsets.all(2),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: participant.summonerSpellsIconUri
+              .map(
+                (summonerSpellIconUri) => Padding(
+                  padding: const EdgeInsets.all(2),
+                  child: SizedBox(
+                    width: 0.09 * maxWidth,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: CachedNetworkImage(imageUrl: summonerSpellIconUri),
+                    ),
+                  ),
+                ),
+              )
+              .toList(),
+        ),
+      );
 
   Widget _itemTile(BuildContext context, double maxWidth, String itemIconUri) =>
       Container(

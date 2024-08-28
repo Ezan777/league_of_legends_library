@@ -28,6 +28,9 @@ class MatchRepository {
         .map((matchDto) => LeagueMatch(
             gameId: matchDto.gameId,
             queueType: matchDto.queueType,
+            gameCreation: DateTime.fromMillisecondsSinceEpoch(
+                matchDto.gameCreationTimeStamp),
+            gameDuration: Duration(seconds: matchDto.gameDurationInSeconds),
             participants: matchDto.participants
                 .map((participantDto) => participantDto.toParticipant(
                       _assetsDataSource

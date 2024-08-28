@@ -270,5 +270,7 @@
     "oldPasswordIsWrong": "Old password is not correct",
     "changePasswordError": "An error has occurred please try again",
     "passwordChangedMessage": "Password changed successfully",
-    "shortPasswordMessage": "Password should have at least 6 characters"
+    "shortPasswordMessage": "Password should have at least 6 characters",
+    "wonMatchLabel": "WIN",
+    "lostMatchLabel": "LOSS"
 }

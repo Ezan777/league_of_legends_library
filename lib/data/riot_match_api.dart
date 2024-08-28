@@ -38,7 +38,11 @@ class RiotMatchApi implements MatchDataSource, RemoteDataSource {
           .toList();
 
       return MatchDto(
-          gameId: matchId, queueType: queueType, participants: participants);
+          gameId: matchId,
+          queueType: queueType,
+          participants: participants,
+          gameCreationTimeStamp: json["info"]["gameCreation"],
+          gameDurationInSeconds: json["info"]["gameDuration"]);
     } else {
       throw Exception(
           "An error has occurred while retrieving summoner puuid - Error code: ${response.statusCode}");

@@ -22,7 +22,8 @@ class RankSelector extends StatefulWidget {
         RiotRegion.fromServer(RiotServer.fromServerCode(summoner.serverCode))
             .name,
         summoner.puuid,
-        selectedRank.value.queueType));
+        selectedRank.value.queueType,
+        count: 8));
   }
 }
 

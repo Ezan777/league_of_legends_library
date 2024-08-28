@@ -5,9 +5,13 @@ class MatchDto {
   final String gameId;
   final QueueType queueType;
   final List<ParticipantDto> participants;
+  final int gameCreationTimeStamp;
+  final int gameDurationInSeconds;
 
   const MatchDto(
       {required this.gameId,
       required this.queueType,
-      required this.participants});
+      required this.participants,
+      required this.gameCreationTimeStamp,
+      required this.gameDurationInSeconds});
 }
