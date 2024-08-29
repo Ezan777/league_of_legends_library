@@ -89,6 +89,8 @@ class _LoginViewState extends State<LoginView> {
   }) {
     final formKey = GlobalKey<FormState>();
     bool areCredentialsWrong = error is InvalidCredentials;
+    final emailRegex =
+        RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$');
 
     submitForm() {
       if (formKey.currentState != null && formKey.currentState!.validate()) {
@@ -152,7 +154,7 @@ class _LoginViewState extends State<LoginView> {
                   autofillHints: const [AutofillHints.email],
                   validator: (value) => value == null ||
                           value.isEmpty ||
-                          !value.contains("@")
+                          !emailRegex.hasMatch(value)
                       ? AppLocalizations.of(context)?.invalidMailAddressError ??
                           "Please insert a valid email address"
                       : null,

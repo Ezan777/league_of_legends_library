@@ -70,6 +70,8 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget _signUpForm(BuildContext context) {
     final RegExp specialCharOrNumberRegex =
         RegExp(r'[!@#<>?":_`~;[\]\\|=+)(*&^%0-9-]');
+    final emailRegex =
+        RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$');
 
     submitForm() {
       if (formKey.currentState != null && formKey.currentState!.validate()) {
@@ -107,7 +109,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 textInputAction: TextInputAction.next,
                 validator: (value) => value == null ||
                         value.isEmpty ||
-                        !value.contains("@")
+                        !emailRegex.hasMatch(value)
                     ? AppLocalizations.of(context)?.invalidMailAddressError ??
                         "Please insert a valid email address"
                     : null,

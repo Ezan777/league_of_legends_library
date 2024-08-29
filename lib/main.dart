@@ -15,6 +15,7 @@ import 'package:league_of_legends_library/bloc/favorites/favorites_event.dart';
 import 'package:league_of_legends_library/bloc/match_history/match_history_bloc.dart';
 import 'package:league_of_legends_library/bloc/summoner/summoner_bloc.dart';
 import 'package:league_of_legends_library/bloc/user/change_password/change_password_bloc.dart';
+import 'package:league_of_legends_library/bloc/user/delete_user/delete_user_bloc.dart';
 import 'package:league_of_legends_library/bloc/user/login/login_bloc.dart';
 import 'package:league_of_legends_library/bloc/navigation/navigation_bloc.dart';
 import 'package:league_of_legends_library/bloc/user/password_reset/password_reset_bloc.dart';
@@ -120,7 +121,11 @@ class MyApp extends StatelessWidget {
           ),
           BlocProvider(
             create: (_) => MatchHistoryBloc(appModel.matchRepository),
-          )
+          ),
+          BlocProvider(
+            create: (_) =>
+                DeleteUserBloc(appModel.userRepository, appModel.authSource),
+          ),
         ],
         child: BlocListener<LanguageBloc, LanguageState>(
           listener: (context, languageState) {

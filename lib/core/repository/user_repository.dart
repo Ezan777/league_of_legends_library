@@ -36,4 +36,8 @@ class UserRepository {
       surname: userData["surname"],
     );
   }
+
+  Future<void> deleteUserData(AppUser user) async {
+    await _userRemoteDataSource.deleteUserData(user);
+  }
 }

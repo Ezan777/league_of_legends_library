@@ -31,4 +31,9 @@ class FirestoreUserData implements UserRemoteDataSource {
 
     await users.doc(user.id).set(firestoreUser);
   }
+
+  @override
+  Future<void> deleteUserData(AppUser user) async {
+    await db.collection("users").doc(user.id).delete();
+  }
 }

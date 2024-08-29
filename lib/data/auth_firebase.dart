@@ -48,9 +48,17 @@ class AuthFirebase implements AuthSource {
   @override
   Future<void> deleteUser(String email, String password) async {
     final firebaseAuth = FirebaseAuth.instance;
-    final credentials = await firebaseAuth.signInWithEmailAndPassword(
-        email: email, password: password);
-    await credentials.user?.delete();
+    try {
+      final credentials = await firebaseAuth.signInWithEmailAndPassword(
+          email: email, password: password);
+      await credentials.user?.delete();
+    } on FirebaseAuthException catch (e) {
+      if (e.code == "invalid-credential") {
+        throw InvalidCredentials();
+      } else {
+        rethrow;
+      }
+    }
   }
 
   @override

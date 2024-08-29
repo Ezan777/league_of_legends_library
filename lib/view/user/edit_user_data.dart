@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:league_of_legends_library/bloc/user/change_password/change_password_bloc.dart';
 import 'package:league_of_legends_library/bloc/user/change_password/change_password_state.dart';
+import 'package:league_of_legends_library/bloc/user/delete_user/delete_user_bloc.dart';
+import 'package:league_of_legends_library/bloc/user/delete_user/delete_user_event.dart';
+import 'package:league_of_legends_library/bloc/user/delete_user/delete_user_state.dart';
 import 'package:league_of_legends_library/bloc/user/user_bloc.dart';
 import 'package:league_of_legends_library/bloc/user/user_event.dart';
 import 'package:league_of_legends_library/bloc/user/user_state.dart';
@@ -11,6 +14,7 @@ import 'package:league_of_legends_library/view/errors/generic_error_view.dart';
 import 'package:league_of_legends_library/view/user/auth/login_view.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:league_of_legends_library/view/user/change_password_page.dart';
+import 'package:league_of_legends_library/view/user/delete_user_page.dart';
 
 class EditUserData extends StatefulWidget {
   const EditUserData({super.key});
@@ -78,6 +82,13 @@ class _EditUserDataState extends State<EditUserData>
                     AppLocalizations.of(context)?.passwordChangedMessage ??
                         "Password changed successfully"),
               ));
+            }
+          },
+        ),
+        BlocListener<DeleteUserBloc, DeleteUserState>(
+          listener: (context, state) {
+            if (state is DeleteUserSuccess) {
+              Navigator.of(context).pop();
             }
           },
         ),
@@ -350,6 +361,28 @@ class _EditUserDataState extends State<EditUserData>
                     AppLocalizations.of(context)?.changeYourPasswordLabel ??
                         "Change password"),
               ),
+              const SizedBox(
+                height: 10,
+              ),
+              FilledButton(
+                onPressed: () {
+                  context.read<DeleteUserBloc>().add(DeleteUserStarted(user));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const DeleteUserPage()));
+                },
+                style: ButtonStyle(
+                  backgroundColor: WidgetStatePropertyAll(
+                      Theme.of(context).colorScheme.error),
+                  textStyle: WidgetStatePropertyAll(
+                      Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            color: Theme.of(context).colorScheme.onError,
+                            fontWeight: FontWeight.w500,
+                          )),
+                ),
+                child: Text(
+                    AppLocalizations.of(context)?.deleteUserButtonLabel ??
+                        "Delete your account"),
+              )
             ],
           ),
         ),
