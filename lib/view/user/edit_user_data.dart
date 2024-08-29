@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:league_of_legends_library/bloc/user/change_password/change_password_bloc.dart';
@@ -350,16 +352,29 @@ class _EditUserDataState extends State<EditUserData>
                     ),
               ),
               const SizedBox(
-                height: 25,
+                height: 15,
+              ),
+              Text(
+                AppLocalizations.of(context)?.currentlyLoggedInAs(user.email) ??
+                    "Currently logged in as: ${user.email}",
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+              const SizedBox(
+                height: 15,
               ),
               FilledButton(
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => const ChangePasswordPage()));
                 },
-                child: Text(
-                    AppLocalizations.of(context)?.changeYourPasswordLabel ??
-                        "Change password"),
+                child: SizedBox(
+                  width: min(0.5 * MediaQuery.of(context).size.width, 150),
+                  child: Center(
+                    child: Text(
+                        AppLocalizations.of(context)?.changeYourPasswordLabel ??
+                            "Change password"),
+                  ),
+                ),
               ),
               const SizedBox(
                 height: 10,
@@ -379,9 +394,14 @@ class _EditUserDataState extends State<EditUserData>
                             fontWeight: FontWeight.w500,
                           )),
                 ),
-                child: Text(
-                    AppLocalizations.of(context)?.deleteUserButtonLabel ??
-                        "Delete your account"),
+                child: SizedBox(
+                  width: min(0.5 * MediaQuery.of(context).size.width, 150),
+                  child: Center(
+                    child: Text(
+                        AppLocalizations.of(context)?.deleteUserButtonLabel ??
+                            "Delete your account"),
+                  ),
+                ),
               )
             ],
           ),

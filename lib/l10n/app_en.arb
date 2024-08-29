@@ -282,5 +282,13 @@
     "@incorrectMailAddressError": {
         "description": "To be used in delete user form when the email address is not the same of the logged account"
     },
-    "userDeletedSuccess": "User deleted"
+    "userDeletedSuccess": "User deleted",
+    "currentlyLoggedInAs": "Currently logged in as: {email}",
+    "@currentlyLoggedInAs": {
+        "placeholders": {
+            "email": {
+                "type": "String"
+            }
+        }
+    }
 }
