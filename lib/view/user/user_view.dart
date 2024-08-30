@@ -42,7 +42,7 @@ class UserView extends StatelessWidget {
           UserLoading() || UpdatingUserData() => const Center(
               child: CircularProgressIndicator(),
             ),
-          UserLogged() => const SummonerView(),
+          UserLogged() => SummonerView(),
           NoUserLogged() => const LoginView(),
           UserError() => GenericErrorView(
               error: state.error,

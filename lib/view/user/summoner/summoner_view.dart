@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:league_of_legends_library/bloc/match_history/match_history_bloc.dart';
+import 'package:league_of_legends_library/bloc/match_history/match_history_event.dart';
 import 'package:league_of_legends_library/bloc/summoner/summoner_bloc.dart';
 import 'package:league_of_legends_library/bloc/summoner/summoner_event.dart';
 import 'package:league_of_legends_library/bloc/summoner/summoner_state.dart';
@@ -8,6 +10,7 @@ import 'package:league_of_legends_library/bloc/user/user_bloc.dart';
 import 'package:league_of_legends_library/bloc/user/user_event.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:league_of_legends_library/bloc/user/user_state.dart';
+import 'package:league_of_legends_library/core/model/league_of_legends/rank.dart';
 import 'package:league_of_legends_library/data/remote_data_source.dart';
 import 'package:league_of_legends_library/data/riot_summoner_api.dart';
 import 'package:league_of_legends_library/data/summoner_data_source.dart';
@@ -20,7 +23,9 @@ import 'package:league_of_legends_library/view/user/summoner/rank_selector.dart'
 import 'package:text_scroll/text_scroll.dart';
 
 class SummonerView extends StatefulWidget {
-  const SummonerView({super.key});
+  final ValueNotifier<QueueType> selectedQueue =
+      ValueNotifier(QueueType.soloDuo);
+  SummonerView({super.key});
 
   @override
   State<SummonerView> createState() => _SummonerViewState();
@@ -29,6 +34,10 @@ class SummonerView extends StatefulWidget {
 class _SummonerViewState extends State<SummonerView> {
   @override
   Widget build(BuildContext context) {
+    widget.selectedQueue.addListener(() {
+      setState(() {});
+    });
+
     void viewAccountInfo() {
       Navigator.of(context).push(
         MaterialPageRoute(
@@ -89,21 +98,34 @@ class _SummonerViewState extends State<SummonerView> {
           ),
         ],
       ),
-      body: BlocBuilder<SummonerBloc, SummonerState>(
-        builder: (context, state) => switch (state) {
-          SummonerLoading() => const Center(
-              child: CircularProgressIndicator(),
+      body: MultiBlocListener(
+          listeners: [
+            BlocListener<SummonerBloc, SummonerState>(
+              listener: (context, state) {
+                if (state is SummonerSuccess) {
+                  context.read<MatchHistoryBloc>().add(MatchHistoryStarted(
+                      RiotRegion.fromServer(RiotServer.fromServerCode(
+                              state.summoner.serverCode))
+                          .name,
+                      state.summoner.puuid));
+                }
+              },
             ),
-          SummonerSuccess() => _buildView(context, state),
-          SummonerError() => _errorBox(context, state.error),
-        },
-      ),
+          ],
+          child: BlocBuilder<SummonerBloc, SummonerState>(
+            builder: (context, state) => switch (state) {
+              SummonerLoading() => const Center(
+                  child: CircularProgressIndicator(),
+                ),
+              SummonerSuccess() => _buildView(context, state),
+              SummonerError() => _errorBox(context, state.error),
+            },
+          )),
     );
   }
 
   Widget _buildView(BuildContext context, SummonerSuccess state) {
     const collapsedHeight = 75.0;
-    final ranks = state.summoner.ranks;
 
     return Center(
       child: CustomScrollView(
@@ -127,32 +149,24 @@ class _SummonerViewState extends State<SummonerView> {
             expandedHeight: 175,
             collapsedHeight: collapsedHeight,
           ),
-          ranks.isNotEmpty
-              ? SliverToBoxAdapter(
-                  child: RankSelector(
-                    summoner: state.summoner,
-                    selectedRank: ValueNotifier(ranks.first),
+          SliverToBoxAdapter(
+            child: RankSelector(
+              summoner: state.summoner,
+              selectedQueue: widget.selectedQueue,
+            ),
+          ),
+          SliverAppBar(
+            pinned: true,
+            centerTitle: true,
+            title: Text(
+              AppLocalizations.of(context)?.matchHistoryListTitle ??
+                  "Match history",
+              style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                    fontWeight: FontWeight.bold,
                   ),
-                )
-              : SliverToBoxAdapter(
-                  child: Center(
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 45),
-                      child: Text(
-                        "Unranked",
-                        style: Theme.of(context)
-                            .textTheme
-                            .headlineLarge
-                            ?.copyWith(
-                              color: Theme.of(context).colorScheme.onSurface,
-                              fontWeight: FontWeight.bold,
-                              fontStyle: FontStyle.italic,
-                            ),
-                      ),
-                    ),
-                  ),
-                ),
-          if (ranks.isNotEmpty) const MatchHistory(),
+            ),
+          ),
+          MatchHistory(state.summoner, widget.selectedQueue.value),
         ],
       ),
     );

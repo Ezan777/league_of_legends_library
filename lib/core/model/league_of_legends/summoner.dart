@@ -6,7 +6,7 @@ class Summoner {
   final String name;
   final String tag;
   final String serverCode;
-  final List<Rank> ranks;
+  final Map<QueueType, Rank> ranks;
   final int profileIconId;
   final int level;
   final String profileIconUri;

@@ -10,13 +10,12 @@ sealed class MatchHistoryState extends Equatable {
 }
 
 final class MatchHistoryLoaded extends MatchHistoryState {
-  final List<LeagueMatch> matches;
-  final QueueType queueType;
+  final Map<QueueType, List<LeagueMatch>> matches;
 
-  const MatchHistoryLoaded(this.matches, this.queueType);
+  const MatchHistoryLoaded(this.matches);
 
   @override
-  List<Object?> get props => [matches, queueType];
+  List<Object?> get props => [matches];
 }
 
 final class MatchHistoryLoading extends MatchHistoryState {}

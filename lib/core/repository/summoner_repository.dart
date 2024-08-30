@@ -18,21 +18,17 @@ class SummonerRepository {
         puuid, server.serverCode);
     final ranksDto = await _summonerDataSource.getSummonerRanksBySummonerId(
         summonerDto.id, server.serverCode);
-    final ranks = ranksDto
-        .map(
-          (rankDto) => Rank(
-              tier: rankDto.tier,
-              rank: rankDto.rank,
-              leaguePoints: rankDto.leaguePoints,
-              queueType: rankDto.queueType,
-              wins: rankDto.wins,
-              losses: rankDto.losses,
-              tierIconUri: _assetsDataSource.getTierIconUri(rankDto.tier)),
-        )
-        .toList();
-    ranks.sort(
-      (a, b) => a.compareTo(b),
-    );
+    final Map<QueueType, Rank> ranks = {};
+    for (var rankDto in ranksDto) {
+      ranks[rankDto.queueType] = Rank(
+          tier: rankDto.tier,
+          rank: rankDto.rank,
+          leaguePoints: rankDto.leaguePoints,
+          queueType: rankDto.queueType,
+          wins: rankDto.wins,
+          losses: rankDto.losses,
+          tierIconUri: _assetsDataSource.getTierIconUri(rankDto.tier));
+    }
 
     return Summoner(
         summonerId: summonerDto.id,

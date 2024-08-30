@@ -4,49 +4,76 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:league_of_legends_library/bloc/match_history/match_history_bloc.dart';
+import 'package:league_of_legends_library/bloc/match_history/match_history_event.dart';
 import 'package:league_of_legends_library/bloc/match_history/match_history_state.dart';
-import 'package:league_of_legends_library/bloc/summoner/summoner_bloc.dart';
-import 'package:league_of_legends_library/bloc/summoner/summoner_state.dart';
 import 'package:league_of_legends_library/core/model/league_of_legends/matches/league_match.dart';
 import 'package:league_of_legends_library/core/model/league_of_legends/matches/participant.dart';
+import 'package:league_of_legends_library/core/model/league_of_legends/rank.dart';
+import 'package:league_of_legends_library/core/model/league_of_legends/summoner.dart';
+import 'package:league_of_legends_library/data/riot_summoner_api.dart';
 import 'package:league_of_legends_library/view/errors/generic_error_view.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MatchHistory extends StatelessWidget {
-  const MatchHistory({super.key});
+  final QueueType queueType;
+  final Summoner summoner;
+  const MatchHistory(this.summoner, this.queueType, {super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SummonerBloc, SummonerState>(
-      builder: (context, summonerState) => switch (summonerState) {
-        SummonerLoading() => const Center(
-            child: CircularProgressIndicator(),
+    return BlocBuilder<MatchHistoryBloc, MatchHistoryState>(
+      builder: (context, matchesState) => switch (matchesState) {
+        MatchHistoryLoading() => const SliverToBoxAdapter(
+            child: Padding(
+              padding: EdgeInsets.only(top: 20),
+              child: Center(
+                child: CircularProgressIndicator(),
+              ),
+            ),
           ),
-        SummonerError() => GenericErrorView(
-            error: summonerState.error,
+        MatchHistoryError() => SliverToBoxAdapter(
+            child: GenericErrorView(
+              error: matchesState.error,
+              retryCallback: () {
+                context.read<MatchHistoryBloc>().add(MatchHistoryStarted(
+                    RiotRegion.fromServer(
+                            RiotServer.fromServerCode(summoner.serverCode))
+                        .name,
+                    summoner.puuid));
+              },
+            ),
           ),
-        SummonerSuccess() => BlocBuilder<MatchHistoryBloc, MatchHistoryState>(
-            builder: (context, matchesState) => switch (matchesState) {
-              MatchHistoryLoading() => const SliverToBoxAdapter(
-                  child: Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                ),
-              MatchHistoryError() => SliverToBoxAdapter(
-                  child: GenericErrorView(
-                    error: matchesState.error,
-                  ),
-                ),
-              MatchHistoryLoaded() =>
-                _buildView(context, summonerState.summoner.puuid, matchesState),
-            },
-          ),
+        MatchHistoryLoaded() =>
+          _buildView(context, summoner.puuid, matchesState),
       },
     );
   }
 
   Widget _buildView(
       BuildContext context, String summonerPuuid, MatchHistoryLoaded state) {
+    final matches = state.matches[queueType];
+    if (matches != null) {
+      return _buildList(context, matches, summonerPuuid);
+    } else {
+      return _noMatchesFound(context);
+    }
+  }
+
+  Widget _noMatchesFound(BuildContext context) => SliverToBoxAdapter(
+        child: Container(
+          margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+          child: Center(
+            child: Text(
+              AppLocalizations.of(context)?.noMatchesFound ??
+                  "No matches found for this queue.",
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
+          ),
+        ),
+      );
+
+  Widget _buildList(
+      BuildContext context, List<LeagueMatch> matches, String summonerPuuid) {
     final winnerColor = Theme.of(context).brightness == Brightness.light
         ? const Color.fromARGB(87, 13, 228, 31)
         : const Color.fromARGB(133, 3, 117, 13);
@@ -62,12 +89,13 @@ class MatchHistory extends StatelessWidget {
 
     return SliverList(
       delegate: SliverChildBuilderDelegate((context, index) {
-        if (index < state.matches.length) {
-          final participant = state.matches[index].participants
+        if (index < matches.length) {
+          final participant = matches[index]
+              .participants
               .firstWhere((participant) => participant.puuid == summonerPuuid);
           return _buildMatchBanner(
             context,
-            state.matches[index],
+            matches[index],
             summonerPuuid,
             participant.isWinner ? winnerColor : loserColor,
             participant.isWinner ? onWinnerColor : onLoserColor,
@@ -75,7 +103,7 @@ class MatchHistory extends StatelessWidget {
         } else {
           return null;
         }
-      }, childCount: state.matches.length),
+      }, childCount: matches.length),
     );
   }
 

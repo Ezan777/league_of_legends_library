@@ -290,5 +290,7 @@
                 "type": "String"
             }
         }
-    }
+    },
+    "noMatchesFound": "No matches found for this queue",
+    "matchHistoryListTitle": "Match history"
 }
