@@ -34,6 +34,8 @@ class RiotMatchApi with RemoteDataSource implements MatchDataSource {
           participants: participants,
           gameCreationTimeStamp: json["info"]["gameCreation"],
           gameDurationInSeconds: json["info"]["gameDuration"]);
+    } else if (response.statusCode == 429) {
+      throw RateLimitExceeded();
     } else {
       throw Exception(
           "An error has occurred while retrieving summoner puuid - Error code: ${response.statusCode}");
@@ -57,6 +59,8 @@ class RiotMatchApi with RemoteDataSource implements MatchDataSource {
         matchesId.add(matchId);
       }
       return matchesId;
+    } else if (response.statusCode == 429) {
+      throw RateLimitExceeded();
     } else {
       throw Exception(
           "An error has occurred while retrieving summoner puuid - Error code: ${response.statusCode}");

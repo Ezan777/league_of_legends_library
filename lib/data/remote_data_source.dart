@@ -13,3 +13,8 @@ class InternetConnectionUnavailable implements Exception {
   @override
   String toString() => "Internet connection unavailable";
 }
+
+class RateLimitExceeded implements Exception {
+  @override
+  String toString() => "Rate limit exceeded, try again in some minutes";
+}

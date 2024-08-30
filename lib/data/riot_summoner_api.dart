@@ -44,6 +44,8 @@ class RiotSummonerApi with RemoteDataSource implements SummonerDataSource {
       return SummonerDto.fromJson(json);
     } else if (response.statusCode == 404) {
       throw SummonerNotFound();
+    } else if (response.statusCode == 429) {
+      throw RateLimitExceeded();
     } else {
       throw Exception(
           "An error has occurred while retrieving summoner data - Error code: ${response.statusCode}");
@@ -71,6 +73,8 @@ class RiotSummonerApi with RemoteDataSource implements SummonerDataSource {
       }
 
       return ranks;
+    } else if (response.statusCode == 429) {
+      throw RateLimitExceeded();
     } else {
       throw Exception(
           "An error has occurred while retrieving rank data - Error code: ${response.statusCode}");
