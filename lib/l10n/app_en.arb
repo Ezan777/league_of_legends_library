@@ -292,5 +292,7 @@
         }
     },
     "noMatchesFound": "No matches found for this queue",
-    "matchHistoryListTitle": "Match history"
+    "matchHistoryListTitle": "Match history",
+    "rankedSoloLabel": "Ranked solo",
+    "rankedFlexLabel": "Ranked flex"
 }

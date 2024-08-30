@@ -1,7 +1,11 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:league_of_legends_library/core/model/league_of_legends/rank.dart';
 import 'package:league_of_legends_library/core/model/league_of_legends/summoner.dart';
 import 'package:league_of_legends_library/view/user/summoner/rank_container.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:text_scroll/text_scroll.dart';
 
 class RankSelector extends StatefulWidget {
   final Summoner summoner;
@@ -17,6 +21,18 @@ class RankSelector extends StatefulWidget {
 class _RankSelectorState extends State<RankSelector> {
   @override
   Widget build(BuildContext context) {
+    buttonLabel(QueueType queueType) => TextScroll(
+          queueType == QueueType.soloDuo
+              ? AppLocalizations.of(context)?.rankedSoloLabel ?? "Ranked Solo"
+              : AppLocalizations.of(context)?.rankedFlexLabel ?? "Ranked Flex",
+          velocity: const Velocity(pixelsPerSecond: Offset(40, 0)),
+          pauseBetween: const Duration(milliseconds: 1600),
+          selectable: false,
+          intervalSpaces: 5,
+          numberOfReps: 3,
+          mode: TextScrollMode.endless,
+        );
+
     return Column(
       children: [
         Row(
@@ -28,29 +44,28 @@ class _RankSelectorState extends State<RankSelector> {
                       opacity: animation,
                       child: child,
                     ),
-                    child: queueType == widget.selectedQueue.value
-                        ? FilledButton.icon(
-                            onPressed: () {
-                              widget.selectedQueue.value = queueType;
-                            },
-                            icon: Icon(queueType == QueueType.soloDuo
-                                ? Icons.person
-                                : Icons.group),
-                            label: Text(queueType == QueueType.soloDuo
-                                ? "Ranked Solo"
-                                : "Ranked Flex"),
-                          )
-                        : OutlinedButton.icon(
-                            onPressed: () {
-                              widget.selectedQueue.value = queueType;
-                            },
-                            icon: Icon(queueType == QueueType.soloDuo
-                                ? Icons.person
-                                : Icons.group),
-                            label: Text(queueType == QueueType.soloDuo
-                                ? "Ranked Solo"
-                                : "Ranked Flex"),
-                          ),
+                    child: SizedBox(
+                      width: min(0.4 * MediaQuery.of(context).size.width, 150),
+                      child: queueType == widget.selectedQueue.value
+                          ? FilledButton.icon(
+                              onPressed: () {
+                                widget.selectedQueue.value = queueType;
+                              },
+                              icon: Icon(queueType == QueueType.soloDuo
+                                  ? Icons.person
+                                  : Icons.group),
+                              label: buttonLabel(queueType),
+                            )
+                          : OutlinedButton.icon(
+                              onPressed: () {
+                                widget.selectedQueue.value = queueType;
+                              },
+                              icon: Icon(queueType == QueueType.soloDuo
+                                  ? Icons.person
+                                  : Icons.group),
+                              label: buttonLabel(queueType),
+                            ),
+                    ),
                   ))
               .toList(),
         ),

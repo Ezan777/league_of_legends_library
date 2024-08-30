@@ -107,7 +107,8 @@ class _SummonerViewState extends State<SummonerView> {
                       RiotRegion.fromServer(RiotServer.fromServerCode(
                               state.summoner.serverCode))
                           .name,
-                      state.summoner.puuid));
+                      state.summoner.puuid,
+                      count: 10));
                 }
               },
             ),
