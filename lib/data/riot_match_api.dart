@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:league_of_legends_library/core/model/league_of_legends/rank.dart';
 import 'package:league_of_legends_library/data/dto/match_dto.dart';
 import 'package:league_of_legends_library/data/dto/participant_dto.dart';
@@ -8,18 +7,10 @@ import 'package:league_of_legends_library/data/match_data_source.dart';
 import 'package:league_of_legends_library/data/remote_data_source.dart';
 import 'package:http/http.dart' as http;
 
-class RiotMatchApi implements MatchDataSource, RemoteDataSource {
+class RiotMatchApi with RemoteDataSource implements MatchDataSource {
   final String _apiKey;
 
   const RiotMatchApi(this._apiKey);
-
-  @override
-  Future<void> checkConnection() async {
-    final connection = await Connectivity().checkConnectivity();
-    if (connection.firstOrNull == ConnectivityResult.none) {
-      throw InternetConnectionUnavailable();
-    }
-  }
 
   @override
   Future<MatchDto> getMatchByMatchId(

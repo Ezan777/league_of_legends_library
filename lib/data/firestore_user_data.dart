@@ -1,8 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:league_of_legends_library/core/model/app_user.dart';
+import 'package:league_of_legends_library/data/remote_data_source.dart';
 import 'package:league_of_legends_library/data/user_remote_data_source.dart';
 
-class FirestoreUserData implements UserRemoteDataSource {
+class FirestoreUserData with RemoteDataSource implements UserRemoteDataSource {
   final FirebaseFirestore db = FirebaseFirestore.instance;
 
   @override

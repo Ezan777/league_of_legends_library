@@ -188,10 +188,6 @@
     "@genericErrorTitle": {
         "description": "Generic error title"
     },
-    "genericErrorDescription": "We had some problems retrieving data. Please try again later.",
-    "@genericErrorDescription": {
-        "description": "Generic error description"
-    },
     "noTipsAvailable": "No tips available",
     "@noTipsAvailable": {
         "description": "Used when there are no tips for the chosen champion"
@@ -283,6 +279,10 @@
         "description": "To be used in delete user form when the email address is not the same of the logged account"
     },
     "userDeletedSuccess": "User deleted",
+    "genericErrorDescription": "An error has occurred, please try again.",
+    "@genericErrorDescription": {
+        "description": "Generic error description"
+    },
     "currentlyLoggedInAs": "Currently logged in as: {email}",
     "@currentlyLoggedInAs": {
         "placeholders": {

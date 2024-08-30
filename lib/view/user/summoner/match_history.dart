@@ -22,7 +22,9 @@ class MatchHistory extends StatelessWidget {
         SummonerLoading() => const Center(
             child: CircularProgressIndicator(),
           ),
-        SummonerError() => const GenericErrorView(),
+        SummonerError() => GenericErrorView(
+            error: summonerState.error,
+          ),
         SummonerSuccess() => BlocBuilder<MatchHistoryBloc, MatchHistoryState>(
             builder: (context, matchesState) => switch (matchesState) {
               MatchHistoryLoading() => const SliverToBoxAdapter(
@@ -30,8 +32,10 @@ class MatchHistory extends StatelessWidget {
                     child: CircularProgressIndicator(),
                   ),
                 ),
-              MatchHistoryError() => const SliverToBoxAdapter(
-                  child: GenericErrorView(),
+              MatchHistoryError() => SliverToBoxAdapter(
+                  child: GenericErrorView(
+                    error: matchesState.error,
+                  ),
                 ),
               MatchHistoryLoaded() =>
                 _buildView(context, summonerState.summoner.puuid, matchesState),

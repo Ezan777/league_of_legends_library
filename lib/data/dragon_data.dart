@@ -1,10 +1,9 @@
 import 'dart:convert';
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:http/http.dart' as http;
 import 'package:league_of_legends_library/data/assets_data_source.dart';
 import 'package:league_of_legends_library/data/remote_data_source.dart';
 
-class DragonData implements AssetsDataSource, RemoteDataSource {
+class DragonData with RemoteDataSource implements AssetsDataSource {
   final String _baseUrl = "https://league-of-legends-library.web.app";
   final String _version = "14.7.1";
 
@@ -22,14 +21,6 @@ class DragonData implements AssetsDataSource, RemoteDataSource {
     } else {
       throw Exception(
           "Unable to retrieve data! Error: ${response.statusCode} - ${response.body}");
-    }
-  }
-
-  @override
-  Future<void> checkConnection() async {
-    final connection = await Connectivity().checkConnectivity();
-    if (connection.firstOrNull == ConnectivityResult.none) {
-      throw InternetConnectionUnavailable();
     }
   }
 

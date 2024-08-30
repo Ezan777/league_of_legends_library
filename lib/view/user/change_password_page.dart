@@ -5,6 +5,7 @@ import 'package:league_of_legends_library/bloc/user/change_password/change_passw
 import 'package:league_of_legends_library/bloc/user/change_password/change_password_event.dart';
 import 'package:league_of_legends_library/bloc/user/change_password/change_password_state.dart';
 import 'package:league_of_legends_library/bloc/user/user_bloc.dart';
+import 'package:league_of_legends_library/bloc/user/user_event.dart';
 import 'package:league_of_legends_library/bloc/user/user_state.dart';
 import 'package:league_of_legends_library/data/auth_source.dart';
 import 'package:league_of_legends_library/view/errors/generic_error_view.dart';
@@ -19,71 +20,79 @@ class ChangePasswordPage extends StatelessWidget {
         oldPasswordController = TextEditingController();
     final formKey = GlobalKey<FormState>();
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(AppLocalizations.of(context)?.changePasswordPageTitle ??
-            "Change your password"),
-      ),
-      body: BlocBuilder<UserBloc, UserState>(
-          builder: (context, userState) => switch (userState) {
-                UserLoading() => const Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                UpdatingUserData() => const Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                UserLogged() => MultiBlocListener(
-                      listeners: [
-                        BlocListener<ChangePasswordBloc, ChangePasswordState>(
-                          listener: (context, state) {
-                            if (state is PasswordChanged) {
-                              Navigator.of(context).pop();
-                            } else if (state is ChangePasswordError) {
-                              String message = AppLocalizations.of(context)
-                                      ?.changePasswordError ??
-                                  "An error has occurred please try again";
-                              if (state.error is InvalidCredentials) {
-                                message = AppLocalizations.of(context)
-                                        ?.oldPasswordIsWrong ??
-                                    "Old password is not correct";
+    return BlocListener<UserBloc, UserState>(
+      listener: (context, state) {
+        if (state is NoUserLogged) Navigator.of(context).pop();
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(AppLocalizations.of(context)?.changePasswordPageTitle ??
+              "Change your password"),
+        ),
+        body: BlocBuilder<UserBloc, UserState>(
+            builder: (context, userState) => switch (userState) {
+                  UserLoading() => const Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  UpdatingUserData() => const Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  UserLogged() => MultiBlocListener(
+                        listeners: [
+                          BlocListener<ChangePasswordBloc, ChangePasswordState>(
+                            listener: (context, state) {
+                              if (state is PasswordChanged) {
+                                Navigator.of(context).pop();
+                              } else if (state is ChangePasswordError) {
+                                String message = AppLocalizations.of(context)
+                                        ?.changePasswordError ??
+                                    "An error has occurred please try again";
+                                if (state.error is InvalidCredentials) {
+                                  message = AppLocalizations.of(context)
+                                          ?.oldPasswordIsWrong ??
+                                      "Old password is not correct";
+                                }
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(SnackBar(
+                                  content: Text(message),
+                                ));
                               }
-                              ScaffoldMessenger.of(context)
-                                  .showSnackBar(SnackBar(
-                                content: Text(message),
-                              ));
-                            }
-                          },
-                        ),
-                      ],
-                      child:
-                          BlocBuilder<ChangePasswordBloc, ChangePasswordState>(
-                              builder: (context, changePasswordState) =>
-                                  switch (changePasswordState) {
-                                    ChangePasswordIdle() ||
-                                    PasswordChanged() ||
-                                    ChangePasswordError() =>
-                                      _changePasswordForm(
-                                          context,
-                                          formKey,
-                                          oldPasswordController,
-                                          passwordController,
-                                          passwordCheckController, () {
-                                        if (formKey.currentState != null &&
-                                            formKey.currentState!.validate()) {
-                                          context
-                                              .read<ChangePasswordBloc>()
-                                              .add(ChangePassword(
-                                                  userState.appUser.email,
-                                                  passwordController.text,
-                                                  oldPasswordController.text));
-                                        }
-                                      }),
-                                    ChangingPassword() => const Center(
-                                        child: CircularProgressIndicator(),
-                                      ),
-                                  })),
-                NoUserLogged() || UserError() => const GenericErrorView(),
-              }),
+                            },
+                          ),
+                        ],
+                        child: BlocBuilder<ChangePasswordBloc,
+                                ChangePasswordState>(
+                            builder: (context, changePasswordState) =>
+                                switch (changePasswordState) {
+                                  ChangePasswordIdle() ||
+                                  PasswordChanged() ||
+                                  ChangePasswordError() =>
+                                    _changePasswordForm(
+                                        context,
+                                        formKey,
+                                        oldPasswordController,
+                                        passwordController,
+                                        passwordCheckController, () {
+                                      if (formKey.currentState != null &&
+                                          formKey.currentState!.validate()) {
+                                        context.read<ChangePasswordBloc>().add(
+                                            ChangePassword(
+                                                userState.appUser.email,
+                                                passwordController.text,
+                                                oldPasswordController.text));
+                                      }
+                                    }),
+                                  ChangingPassword() => const Center(
+                                      child: CircularProgressIndicator(),
+                                    ),
+                                })),
+                  NoUserLogged() || UserError() => GenericErrorView(
+                      retryCallback: () {
+                        context.read<UserBloc>().add(UserStarted());
+                      },
+                    ),
+                }),
+      ),
     );
   }
 

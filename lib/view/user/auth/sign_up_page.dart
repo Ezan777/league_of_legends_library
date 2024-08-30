@@ -45,9 +45,8 @@ class _SignUpPageState extends State<SignUpPage> {
             }
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                // TODO could improve error messages with translations
-                content: Text(
-                    errorMessage ?? "Something went wrong, please try again "),
+                content: Text(errorMessage ??
+                    "Something went wrong, please try again - Error: ${state.error}"),
               ),
             );
           }

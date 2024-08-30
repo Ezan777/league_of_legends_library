@@ -13,7 +13,6 @@ import 'package:league_of_legends_library/bloc/user/user_state.dart';
 import 'package:league_of_legends_library/core/model/app_user.dart';
 import 'package:league_of_legends_library/data/riot_summoner_api.dart';
 import 'package:league_of_legends_library/view/errors/generic_error_view.dart';
-import 'package:league_of_legends_library/view/user/auth/login_view.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:league_of_legends_library/view/user/change_password_page.dart';
 import 'package:league_of_legends_library/view/user/delete_user_page.dart';
@@ -71,9 +70,11 @@ class _EditUserDataState extends State<EditUserData>
           } else if (state is UserError) {
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               content: Text(AppLocalizations.of(context)
-                      ?.somethingWentWrong(state.error?.toString() ?? "null") ??
+                      ?.somethingWentWrong(state.error?.toString() ?? "") ??
                   "Something went wrong while updating your data"),
             ));
+          } else if (state is NoUserLogged) {
+            Navigator.of(context).pop();
           }
         }),
         BlocListener<ChangePasswordBloc, ChangePasswordState>(
@@ -118,8 +119,17 @@ class _EditUserDataState extends State<EditUserData>
                 isDataBeingUpdated: true,
               ),
             ),
-          NoUserLogged() => const LoginView(),
-          UserError() => const GenericErrorView(),
+          NoUserLogged() || UserError() => Scaffold(
+              appBar: AppBar(
+                title: Text(
+                    AppLocalizations.of(context)?.editAccountInfoLabel ??
+                        "Account info"),
+              ),
+              body: GenericErrorView(
+                retryCallback: () =>
+                    context.read<UserBloc>().add(UserStarted()),
+              ),
+            ),
         },
       ),
     );

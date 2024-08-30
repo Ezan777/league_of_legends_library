@@ -58,7 +58,12 @@ class _ChampionSelectionPageState extends State<ChampionSelectionPage> {
               }),
             );
           } else {
-            return const GenericErrorView();
+            return GenericErrorView(
+              error: snapshot.error,
+              retryCallback: () {
+                setState(() {});
+              },
+            );
           }
         } else {
           return const Scaffold(

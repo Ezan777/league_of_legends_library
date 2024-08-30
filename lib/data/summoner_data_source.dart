@@ -9,4 +9,7 @@ abstract class SummonerDataSource {
       String summonerId, String serverCode);
 }
 
-class SummonerNotFound implements Exception {}
+class SummonerNotFound implements Exception {
+  @override
+  String toString() => "Error 404 - Summoner not found";
+}

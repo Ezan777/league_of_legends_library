@@ -1,9 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:league_of_legends_library/data/auth_source.dart';
+import 'package:league_of_legends_library/data/remote_data_source.dart';
 
-class AuthFirebase implements AuthSource {
+class AuthFirebase with RemoteDataSource implements AuthSource {
   @override
   Future<void> login(String email, String password) async {
+    await checkConnection();
     try {
       await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
@@ -23,6 +25,7 @@ class AuthFirebase implements AuthSource {
 
   @override
   Future<String?> singUp(String email, String password) async {
+    await checkConnection();
     try {
       final credential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
@@ -34,6 +37,7 @@ class AuthFirebase implements AuthSource {
 
   @override
   Future<void> sendPasswordReset(String email) async {
+    await checkConnection();
     try {
       await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
     } on FirebaseAuthException catch (e) {
@@ -47,6 +51,7 @@ class AuthFirebase implements AuthSource {
 
   @override
   Future<void> deleteUser(String email, String password) async {
+    await checkConnection();
     final firebaseAuth = FirebaseAuth.instance;
     try {
       final credentials = await firebaseAuth.signInWithEmailAndPassword(
@@ -63,6 +68,7 @@ class AuthFirebase implements AuthSource {
 
   @override
   Future<bool> checkCredentials(String email, String password) async {
+    await checkConnection();
     try {
       await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
@@ -78,6 +84,7 @@ class AuthFirebase implements AuthSource {
 
   @override
   Future<void> changePassword(String newPassword) async {
+    await checkConnection();
     final user = FirebaseAuth.instance.currentUser;
     if (user != null) {
       await user.updatePassword(newPassword);

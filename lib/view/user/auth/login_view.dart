@@ -10,7 +10,9 @@ import 'package:league_of_legends_library/bloc/user/sign_up/sign_up_state.dart';
 import 'package:league_of_legends_library/bloc/user/user_bloc.dart';
 import 'package:league_of_legends_library/bloc/user/user_state.dart';
 import 'package:league_of_legends_library/data/auth_source.dart';
-import 'package:league_of_legends_library/view/user/auth/form_error_box.dart';
+import 'package:league_of_legends_library/data/remote_data_source.dart';
+import 'package:league_of_legends_library/view/errors/connection_unavailable_view.dart';
+import 'package:league_of_legends_library/view/errors/generic_error_view.dart';
 import 'package:league_of_legends_library/view/user/auth/password_reset_page.dart';
 import 'package:league_of_legends_library/view/user/auth/sign_up_page.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -28,12 +30,29 @@ class _LoginViewState extends State<LoginView> {
     final emailController = TextEditingController();
     final passwordController = TextEditingController();
 
+    reloadPage() {
+      context.read<LoginBloc>().add(LoginStarted());
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("League of Legends library"),
       ),
       body: MultiBlocListener(
         listeners: [
+          BlocListener<LoginBloc, LoginState>(
+            listener: (context, state) {
+              if (state is LoginError) {
+                if (state.error is InvalidCredentials) {
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: Text(
+                        AppLocalizations.of(context)?.wrongCredentials ??
+                            "Invalid credentials"),
+                  ));
+                }
+              }
+            },
+          ),
           BlocListener<SignUpBloc, SignUpState>(
             listener: (context, state) {
               if (state is SignUpSuccess) {
@@ -72,9 +91,16 @@ class _LoginViewState extends State<LoginView> {
             LoginInitial() ||
             LoginSuccess() =>
               _loginScreen(context, emailController, passwordController),
-            LoginError() => _loginScreen(
-                context, emailController, passwordController,
-                error: state.error),
+            LoginError() => switch (state.error) {
+                InvalidCredentials() =>
+                  _loginScreen(context, emailController, passwordController),
+                InternetConnectionUnavailable() =>
+                  ConnectionUnavailableView(retryCallback: reloadPage),
+                _ => GenericErrorView(
+                    error: state.error,
+                    retryCallback: reloadPage,
+                  ),
+              },
           },
         ),
       ),
@@ -84,11 +110,9 @@ class _LoginViewState extends State<LoginView> {
   Widget _loginScreen(
     BuildContext context,
     TextEditingController emailController,
-    TextEditingController passwordController, {
-    Object? error,
-  }) {
+    TextEditingController passwordController,
+  ) {
     final formKey = GlobalKey<FormState>();
-    bool areCredentialsWrong = error is InvalidCredentials;
     final emailRegex =
         RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$');
 
@@ -97,28 +121,6 @@ class _LoginViewState extends State<LoginView> {
         context.read<LoginBloc>().add(
             LoginButtonPressed(emailController.text, passwordController.text));
       }
-    }
-
-    if (error != null && !areCredentialsWrong) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        showDialog(
-          context: context,
-          builder: (context) => AlertDialog(
-            title: Text(AppLocalizations.of(context)?.loginErrorAlertTitle ??
-                "Login error"),
-            content: Text(
-                AppLocalizations.of(context)?.loginErrorAlertDescription ??
-                    "An error occurred during login, please try again later"),
-            actions: [
-              TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: const Text("Ok"))
-            ],
-          ),
-        );
-      });
     }
 
     return SingleChildScrollView(
@@ -138,14 +140,6 @@ class _LoginViewState extends State<LoginView> {
                 ),
                 const SizedBox(
                   height: 40,
-                ),
-                if (areCredentialsWrong)
-                  FormErrorBox(
-                      errorMessage:
-                          AppLocalizations.of(context)?.wrongCredentials ??
-                              "Wrong credentials"),
-                const SizedBox(
-                  height: 20,
                 ),
                 TextFormField(
                   controller: emailController,

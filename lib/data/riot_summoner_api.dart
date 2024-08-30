@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:league_of_legends_library/core/model/league_of_legends/rank.dart';
 import 'package:http/http.dart' as http;
 import 'package:league_of_legends_library/data/dto/rank_dto.dart';
@@ -8,7 +7,7 @@ import 'package:league_of_legends_library/data/dto/summoner_dto.dart';
 import 'package:league_of_legends_library/data/remote_data_source.dart';
 import 'package:league_of_legends_library/data/summoner_data_source.dart';
 
-class RiotSummonerApi implements SummonerDataSource, RemoteDataSource {
+class RiotSummonerApi with RemoteDataSource implements SummonerDataSource {
   final String _apiKey;
 
   const RiotSummonerApi(this._apiKey);
@@ -75,14 +74,6 @@ class RiotSummonerApi implements SummonerDataSource, RemoteDataSource {
     } else {
       throw Exception(
           "An error has occurred while retrieving rank data - Error code: ${response.statusCode}");
-    }
-  }
-
-  @override
-  Future<void> checkConnection() async {
-    final connection = await Connectivity().checkConnectivity();
-    if (connection.firstOrNull == ConnectivityResult.none) {
-      throw InternetConnectionUnavailable();
     }
   }
 }

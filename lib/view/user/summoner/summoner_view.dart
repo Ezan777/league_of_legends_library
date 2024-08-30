@@ -2,10 +2,17 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:league_of_legends_library/bloc/summoner/summoner_bloc.dart';
+import 'package:league_of_legends_library/bloc/summoner/summoner_event.dart';
 import 'package:league_of_legends_library/bloc/summoner/summoner_state.dart';
 import 'package:league_of_legends_library/bloc/user/user_bloc.dart';
 import 'package:league_of_legends_library/bloc/user/user_event.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:league_of_legends_library/bloc/user/user_state.dart';
+import 'package:league_of_legends_library/data/remote_data_source.dart';
+import 'package:league_of_legends_library/data/riot_summoner_api.dart';
+import 'package:league_of_legends_library/data/summoner_data_source.dart';
+import 'package:league_of_legends_library/view/errors/connection_unavailable_view.dart';
+import 'package:league_of_legends_library/view/errors/generic_error_view.dart';
 import 'package:league_of_legends_library/view/errors/image_not_available.dart';
 import 'package:league_of_legends_library/view/user/edit_user_data.dart';
 import 'package:league_of_legends_library/view/user/summoner/match_history.dart';
@@ -268,46 +275,86 @@ class _SummonerViewState extends State<SummonerView> {
         ],
       );
 
-  Widget _errorBox(BuildContext context, Object? error) => Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 15,
-              vertical: 12,
-            ),
-            margin: const EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.errorContainer,
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: Column(
-              children: [
-                Icon(
-                  Icons.error,
-                  size: 64,
-                  color: Theme.of(context).colorScheme.onErrorContainer,
-                ),
-                Text(
-                  AppLocalizations.of(context)?.summonerErrorBoxContent ??
-                      "Something went wrong while loading summoner info, please try again. - Error: ${error.toString()}",
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: Theme.of(context).colorScheme.onErrorContainer,
+  Widget _errorBox(BuildContext context, Object? error) => BlocBuilder<UserBloc,
+          UserState>(
+      builder: (context, state) => switch (state) {
+            UserLogged() => switch (error) {
+                InternetConnectionUnavailable() =>
+                  ConnectionUnavailableView(retryCallback: () {
+                    context.read<SummonerBloc>().add(SummonerStarted(
+                        state.appUser.summonerName,
+                        state.appUser.tagLine,
+                        RiotServer.fromServerCode(state.appUser.serverCode)));
+                  }),
+                SummonerNotFound() => Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 15,
+                          vertical: 12,
+                        ),
+                        margin: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).colorScheme.errorContainer,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Column(
+                          children: [
+                            Icon(
+                              Icons.error,
+                              size: 64,
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onErrorContainer,
+                            ),
+                            Text(
+                              AppLocalizations.of(context)
+                                      ?.summonerErrorBoxContent ??
+                                  "Something went wrong while loading summoner info, please try again. - Error: ${error.toString()}",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium
+                                  ?.copyWith(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onErrorContainer,
+                                  ),
+                            ),
+                          ],
+                        ),
                       ),
-                ),
-              ],
-            ),
-          ),
-          FilledButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => const EditUserData()),
-                );
+                      FilledButton(
+                          onPressed: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                  builder: (context) => const EditUserData()),
+                            );
+                          },
+                          child: Text(AppLocalizations.of(context)
+                                  ?.editAccountInfoLabel ??
+                              "Edit your account info")),
+                    ],
+                  ),
+                _ => GenericErrorView(
+                    error: error,
+                    retryCallback: () {
+                      context.read<SummonerBloc>().add(SummonerStarted(
+                          state.appUser.summonerName,
+                          state.appUser.tagLine,
+                          RiotServer.fromServerCode(state.appUser.serverCode)));
+                    },
+                  ),
               },
-              child: Text(AppLocalizations.of(context)?.editAccountInfoLabel ??
-                  "Edit your account info")),
-        ],
-      );
+            NoUserLogged() || UserError() => GenericErrorView(
+                retryCallback: () {
+                  context.read<UserBloc>().add(UserStarted());
+                },
+              ),
+            UserLoading() || UpdatingUserData() => const Center(
+                child: CircularProgressIndicator(),
+              ),
+          });
 }
 
 class SummonerViewAction {
