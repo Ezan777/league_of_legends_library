@@ -207,12 +207,12 @@ class MatchHistory extends StatelessWidget {
                       children: [
                         Row(
                           children: participant.itemsIconUri
-                              .sublist(0, 3)
+                              .sublist(0, participant.itemsIconUri.length > 3 ? 3 : participant.itemsIconUri.length)
                               .map((itemIconUri) =>
                                   _itemTile(context, maxWidth, itemIconUri))
                               .toList(),
                         ),
-                        Row(
+                        if (participant.itemsIconUri.length > 4) Row(
                           children: participant.itemsIconUri
                               .sublist(3)
                               .map((itemIconUri) =>

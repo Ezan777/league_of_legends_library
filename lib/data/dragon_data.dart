@@ -33,7 +33,7 @@ class DragonData with RemoteDataSource implements AssetsDataSource {
       "$_baseUrl/rankedEmblems/${tier.toLowerCase()}.png";
 
   @override
-  String getIemTileUri(String itemId) =>
+  String getItemTileUri(String itemId) =>
       "$_baseUrl/$_version/img/item/$itemId.png";
 
   @override

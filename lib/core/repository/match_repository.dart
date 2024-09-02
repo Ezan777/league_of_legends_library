@@ -37,7 +37,7 @@ class MatchRepository {
                           .getChampionTileUri(participantDto.championId),
                       participantDto.itemsId
                           .map((itemId) => _assetsDataSource
-                              .getIemTileUri(itemId.toString()))
+                              .getItemTileUri(itemId.toString()))
                           .toList(),
                       [
                         _assetsDataSource.getSummonerSpellTileBySpellId(
@@ -49,7 +49,7 @@ class MatchRepository {
                                     participantDto.secondSummonerSpellKey)
                                 .spellId),
                       ],
-                      _assetsDataSource.getIemTileUri(
+                      _assetsDataSource.getItemTileUri(
                         participantDto.trinketId.toString(),
                       ),
                     ))
