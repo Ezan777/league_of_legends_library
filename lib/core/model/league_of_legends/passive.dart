@@ -12,7 +12,7 @@ class Passive {
     String name = jsonData["name"];
     String description = jsonData["description"];
     String tileUrl =
-        "${ChampionRepository.baseUrl}/14.7.1/img/passive/${jsonData["image"]["full"]}";
+        "${ChampionRepository.baseUrl}/${ChampionRepository.version}/img/passive/${jsonData["image"]["full"]}";
 
     return Passive(name: name, description: description, tileUrl: tileUrl);
   }
