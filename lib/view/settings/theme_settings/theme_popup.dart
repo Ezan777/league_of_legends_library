@@ -25,10 +25,6 @@ class _ThemeModeRadioListState extends State<ThemeModeRadioList> {
           "Choose theme mode"),
       actions: [
         TextButton(
-          onPressed: () => Navigator.pop(context),
-          child: Text(AppLocalizations.of(context)?.cancel ?? 'Cancel'),
-        ),
-        TextButton(
           onPressed: () {
             context
                 .read<ThemeBloc>()
@@ -36,6 +32,10 @@ class _ThemeModeRadioListState extends State<ThemeModeRadioList> {
             Navigator.pop(context);
           },
           child: Text(AppLocalizations.of(context)?.apply ?? 'Apply'),
+        ),
+        TextButton(
+          onPressed: () => Navigator.pop(context),
+          child: Text(AppLocalizations.of(context)?.cancel ?? 'Cancel'),
         ),
       ],
       content: SizedBox(

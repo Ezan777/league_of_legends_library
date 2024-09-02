@@ -25,11 +25,6 @@ class _LanguageRadioListState extends State<LanguageRadioList> {
           TextSpan(text: "Choose a language", locale: Locale('en'))),
       actions: [
         TextButton(
-          onPressed: () => Navigator.pop(context),
-          child:
-              const Text.rich(TextSpan(text: "Cancel", locale: Locale('en'))),
-        ),
-        TextButton(
           onPressed: () {
             context
                 .read<LanguageBloc>()
@@ -37,6 +32,11 @@ class _LanguageRadioListState extends State<LanguageRadioList> {
             Navigator.pop(context);
           },
           child: const Text.rich(TextSpan(text: "Apply", locale: Locale('en'))),
+        ),
+        TextButton(
+          onPressed: () => Navigator.pop(context),
+          child:
+              const Text.rich(TextSpan(text: "Cancel", locale: Locale('en'))),
         ),
       ],
       content: SizedBox(
