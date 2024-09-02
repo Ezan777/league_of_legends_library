@@ -4,11 +4,11 @@ import 'package:league_of_legends_library/data/remote_data_source.dart';
 import 'package:league_of_legends_library/data/user_remote_data_source.dart';
 
 class FirestoreUserData with RemoteDataSource implements UserRemoteDataSource {
-  final FirebaseFirestore db = FirebaseFirestore.instance;
+  final usersCollection = FirebaseFirestore.instance.collection("users");
 
   @override
   Future<Map<String, dynamic>> getUserData(String userId) async {
-    final doc = await db.collection("users").doc(userId).get();
+    final doc = await usersCollection.doc(userId).get();
     final data = doc.data();
     if (data != null) {
       return data;
@@ -19,7 +19,6 @@ class FirestoreUserData with RemoteDataSource implements UserRemoteDataSource {
 
   @override
   Future<void> saveUserData(AppUser user) async {
-    final users = db.collection("users");
     final firestoreUser = <String, dynamic>{
       "id": user.id,
       "email": user.email,
@@ -30,11 +29,11 @@ class FirestoreUserData with RemoteDataSource implements UserRemoteDataSource {
       "serverCode": user.serverCode,
     };
 
-    await users.doc(user.id).set(firestoreUser);
+    await usersCollection.doc(user.id).set(firestoreUser);
   }
 
   @override
   Future<void> deleteUserData(AppUser user) async {
-    await db.collection("users").doc(user.id).delete();
+    await usersCollection.doc(user.id).delete();
   }
 }
