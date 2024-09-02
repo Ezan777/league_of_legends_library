@@ -41,7 +41,6 @@
     "retryButton": "Réessayer",
     "exitButton": "Quitter",
     "genericErrorTitle": "Une erreur s'est produite",
-    "genericErrorDescription": "Nous avons rencontré des problèmes pour récupérer les données. Veuillez réessayer plus tard.",
     "noTipsAvailable": "Pas de conseils disponibles",
     "userPageLabel": "Invocateur",
     "signUp": "S'inscrire",
@@ -108,5 +107,25 @@
     "passwordChangedMessage": "Mot de passe changé avec succès",
     "shortPasswordMessage": "Le mot de passe doit contenir au moins 6 caractères",
     "wonMatchLabel": "VICTOIRE",
-    "lostMatchLabel": "DÉFAITE"
+    "lostMatchLabel": "DÉFAITE",
+    "deleteUserButtonLabel": "Supprimer votre compte",
+    "deleteAccountPageTitle": "Supprimer votre compte",
+    "deleteConfirmDialogTitle": "Êtes-vous sûr ?",
+    "deleteConfirmDialogDescription": "Êtes-vous sûr de vouloir supprimer votre compte ? Si vous continuez, vous devrez créer un autre compte pour vérifier vos statistiques d'invocateur.",
+    "deleteConfirmDialogConfirmActionLabel": "Supprimer",
+    "incorrectMailAddressError": "Adresse email incorrecte",
+    "userDeletedSuccess": "Utilisateur supprimé",
+    "genericErrorDescription": "Une erreur s'est produite, veuillez réessayer.",
+    "currentlyLoggedInAs": "Actuellement connecté en tant que : {email}",
+    "@currentlyLoggedInAs": {
+        "placeholders": {
+            "email": {
+                "type": "String"
+            }
+        }
+    },
+    "noMatchesFound": "Aucun match trouvé pour cette file",
+    "matchHistoryListTitle": "Historique des matchs",
+    "rankedSoloLabel": "Classé solo",
+    "rankedFlexLabel": "Classé flex"
 }

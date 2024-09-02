@@ -41,7 +41,6 @@
     "retryButton": "重試",
     "exitButton": "退出",
     "genericErrorTitle": "發生錯誤",
-    "genericErrorDescription": "我們在檢索數據時遇到了一些問題。請稍後再試。",
     "noTipsAvailable": "沒有可用的提示",
     "userPageLabel": "召喚師",
     "signUp": "註冊",
@@ -108,5 +107,25 @@
     "passwordChangedMessage": "密碼更改成功",
     "shortPasswordMessage": "密碼應至少有 6 個字符",
     "wonMatchLabel": "勝利",
-    "lostMatchLabel": "失敗"
+    "lostMatchLabel": "失敗",
+    "deleteUserButtonLabel": "刪除帳號",
+    "deleteAccountPageTitle": "刪除帳號",
+    "deleteConfirmDialogTitle": "你確定嗎？",
+    "deleteConfirmDialogDescription": "你確定要刪除你的帳號嗎？如果你繼續，你將需要創建另一個帳號來查看你的召喚師統計數據。",
+    "deleteConfirmDialogConfirmActionLabel": "刪除",
+    "incorrectMailAddressError": "電子郵件地址錯誤",
+    "userDeletedSuccess": "用戶已刪除",
+    "genericErrorDescription": "發生錯誤，請重試。",
+    "currentlyLoggedInAs": "當前登錄為：{email}",
+    "@currentlyLoggedInAs": {
+        "placeholders": {
+            "email": {
+                "type": "String"
+            }
+        }
+    },
+    "noMatchesFound": "未找到此隊列的比賽",
+    "matchHistoryListTitle": "比賽歷史",
+    "rankedSoloLabel": "單人排位",
+    "rankedFlexLabel": "彈性排位"
 }

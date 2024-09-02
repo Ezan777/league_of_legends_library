@@ -41,7 +41,6 @@
     "retryButton": "Reintentar",
     "exitButton": "Salir",
     "genericErrorTitle": "Se produjo un error",
-    "genericErrorDescription": "Tuvimos algunos problemas al recuperar los datos. Por favor, inténtalo de nuevo más tarde.",
     "noTipsAvailable": "No hay consejos disponibles",
     "userPageLabel": "Invocador",
     "signUp": "Registrarse",
@@ -108,5 +107,25 @@
     "passwordChangedMessage": "Contraseña cambiada con éxito",
     "shortPasswordMessage": "La contraseña debe tener al menos 6 caracteres",
     "wonMatchLabel": "VICTORIA",
-    "lostMatchLabel": "DERROTA"
+    "lostMatchLabel": "DERROTA",
+    "deleteUserButtonLabel": "Eliminar cuenta",
+    "deleteAccountPageTitle": "Eliminar cuenta",
+    "deleteConfirmDialogTitle": "¿Estás seguro?",
+    "deleteConfirmDialogDescription": "¿Estás seguro de que quieres eliminar tu cuenta? Si procedes, necesitarás crear otra cuenta para revisar las estadísticas de tu invocador.",
+    "deleteConfirmDialogConfirmActionLabel": "Eliminar",
+    "incorrectMailAddressError": "Dirección de correo electrónico incorrecta",
+    "userDeletedSuccess": "Usuario eliminado",
+    "genericErrorDescription": "Ocurrió un error, por favor intenta de nuevo.",
+    "currentlyLoggedInAs": "Conectado como: {email}",
+    "@currentlyLoggedInAs": {
+        "placeholders": {
+            "email": {
+                "type": "String"
+            }
+        }
+    },
+    "noMatchesFound": "No se encontraron partidas para esta cola",
+    "matchHistoryListTitle": "Historial de partidas",
+    "rankedSoloLabel": "Clasificatoria solo",
+    "rankedFlexLabel": "Clasificatoria flex"
 }

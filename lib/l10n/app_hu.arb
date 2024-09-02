@@ -41,7 +41,6 @@
     "retryButton": "Újra",
     "exitButton": "Kilépés",
     "genericErrorTitle": "Hiba történt",
-    "genericErrorDescription": "Probléma merült fel az adatok lekérése közben. Kérjük, próbálja újra később.",
     "noTipsAvailable": "Nincs elérhető tipp",
     "userPageLabel": "Summoner",
     "signUp": "Regisztrálj",
@@ -108,5 +107,25 @@
     "passwordChangedMessage": "A jelszó sikeresen megváltozott",
     "shortPasswordMessage": "A jelszónak legalább 6 karakterből kell állnia",
     "wonMatchLabel": "GYŐZELEM",
-    "lostMatchLabel": "VERESÉG"
+    "lostMatchLabel": "VERESÉG",
+    "deleteUserButtonLabel": "Fiók törlése",
+    "deleteAccountPageTitle": "Fiók törlése",
+    "deleteConfirmDialogTitle": "Biztos vagy benne?",
+    "deleteConfirmDialogDescription": "Biztosan törölni szeretnéd a fiókodat? Ha folytatod, új fiókot kell létrehoznod, hogy megtekinthesd a summoner statisztikáidat.",
+    "deleteConfirmDialogConfirmActionLabel": "Törlés",
+    "incorrectMailAddressError": "Helytelen email cím",
+    "userDeletedSuccess": "Felhasználó törölve",
+    "genericErrorDescription": "Hiba történt, kérlek próbáld újra.",
+    "currentlyLoggedInAs": "Jelenleg bejelentkezve: {email}",
+    "@currentlyLoggedInAs": {
+        "placeholders": {
+            "email": {
+                "type": "String"
+            }
+        }
+    },
+    "noMatchesFound": "Nem található mérkőzés ehhez a várólistához",
+    "matchHistoryListTitle": "Mérkőzéstörténet",
+    "rankedSoloLabel": "Ranglista solo",
+    "rankedFlexLabel": "Ranglista flex"
 }

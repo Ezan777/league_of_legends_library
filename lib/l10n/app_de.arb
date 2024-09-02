@@ -41,7 +41,6 @@
     "retryButton": "Erneut versuchen",
     "exitButton": "Beenden",
     "genericErrorTitle": "Fehler aufgetreten",
-    "genericErrorDescription": "Beim Abrufen der Daten ist ein Problem aufgetreten. Bitte versuchen Sie es später erneut.",
     "noTipsAvailable": "Keine Tipps verfügbar",
     "userPageLabel": "Beschwörer",
     "signUp": "Registrieren",
@@ -108,5 +107,25 @@
     "passwordChangedMessage": "Passwort erfolgreich geändert",
     "shortPasswordMessage": "Das Passwort sollte mindestens 6 Zeichen lang sein",
     "wonMatchLabel": "GEWONNEN",
-    "lostMatchLabel": "VERLOREN"
+    "lostMatchLabel": "VERLOREN",
+    "deleteUserButtonLabel": "Konto löschen",
+    "deleteAccountPageTitle": "Konto löschen",
+    "deleteConfirmDialogTitle": "Bist du sicher?",
+    "deleteConfirmDialogDescription": "Möchtest du dein Konto wirklich löschen? Wenn du fortfährst, musst du ein neues Konto erstellen, um deine Summoner-Statistiken einsehen zu können.",
+    "deleteConfirmDialogConfirmActionLabel": "Löschen",
+    "incorrectMailAddressError": "Falsche E-Mail-Adresse",
+    "userDeletedSuccess": "Benutzer gelöscht",
+    "genericErrorDescription": "Es ist ein Fehler aufgetreten, bitte versuche es erneut.",
+    "currentlyLoggedInAs": "Derzeit angemeldet als: {email}",
+    "@currentlyLoggedInAs": {
+        "placeholders": {
+            "email": {
+                "type": "String"
+            }
+        }
+    },
+    "noMatchesFound": "Keine Spiele für diese Warteschlange gefunden",
+    "matchHistoryListTitle": "Spielverlauf",
+    "rankedSoloLabel": "Ranglisten-Solo",
+    "rankedFlexLabel": "Ranglisten-Flex"
 }

@@ -41,7 +41,6 @@
     "retryButton": "再試行",
     "exitButton": "終了",
     "genericErrorTitle": "エラーが発生しました",
-    "genericErrorDescription": "データの取得中に問題が発生しました。後でもう一度お試しください。",
     "noTipsAvailable": "利用可能なヒントはありません",
     "userPageLabel": "サモナー",
     "signUp": "サインアップ",
@@ -108,5 +107,25 @@
     "passwordChangedMessage": "パスワードが正常に変更されました",
     "shortPasswordMessage": "パスワードは6文字以上である必要があります",
     "wonMatchLabel": "勝利",
-    "lostMatchLabel": "敗北"
+    "lostMatchLabel": "敗北",
+    "deleteUserButtonLabel": "アカウントを削除する",
+    "deleteAccountPageTitle": "アカウントを削除する",
+    "deleteConfirmDialogTitle": "本当に削除しますか？",
+    "deleteConfirmDialogDescription": "アカウントを削除しますか？この操作を続行すると、サモナーステータスを確認するために別のアカウントを作成する必要があります。",
+    "deleteConfirmDialogConfirmActionLabel": "削除",
+    "incorrectMailAddressError": "メールアドレスが正しくありません",
+    "userDeletedSuccess": "ユーザーが削除されました",
+    "genericErrorDescription": "エラーが発生しました。もう一度お試しください。",
+    "currentlyLoggedInAs": "現在ログインしているメールアドレス: {email}",
+    "@currentlyLoggedInAs": {
+        "placeholders": {
+            "email": {
+                "type": "String"
+            }
+        }
+    },
+    "noMatchesFound": "このキューに一致するものが見つかりませんでした",
+    "matchHistoryListTitle": "試合履歴",
+    "rankedSoloLabel": "ランクソロ",
+    "rankedFlexLabel": "ランクフレックス"
 }

@@ -41,7 +41,6 @@
     "retryButton": "Spróbuj ponownie",
     "exitButton": "Wyjdź",
     "genericErrorTitle": "Wystąpił błąd",
-    "genericErrorDescription": "Wystąpiły problemy z pobieraniem danych. Proszę spróbować później.",
     "noTipsAvailable": "Brak dostępnych wskazówek",
     "userPageLabel": "Przywoływacz",
     "signUp": "Zarejestruj się",
@@ -108,5 +107,25 @@
     "passwordChangedMessage": "Hasło zostało pomyślnie zmienione",
     "shortPasswordMessage": "Hasło powinno mieć co najmniej 6 znaków",
     "wonMatchLabel": "WYGRANA",
-    "lostMatchLabel": "PRZEGRANA"
+    "lostMatchLabel": "PRZEGRANA",
+    "deleteUserButtonLabel": "Usuń konto",
+    "deleteAccountPageTitle": "Usuń konto",
+    "deleteConfirmDialogTitle": "Jesteś pewien?",
+    "deleteConfirmDialogDescription": "Czy na pewno chcesz usunąć swoje konto? Jeśli to zrobisz, będziesz musiał utworzyć nowe konto, aby sprawdzić statystyki swojego summonera.",
+    "deleteConfirmDialogConfirmActionLabel": "Usuń",
+    "incorrectMailAddressError": "Nieprawidłowy adres e-mail",
+    "userDeletedSuccess": "Użytkownik usunięty",
+    "genericErrorDescription": "Wystąpił błąd, spróbuj ponownie.",
+    "currentlyLoggedInAs": "Zalogowano jako: {email}",
+    "@currentlyLoggedInAs": {
+        "placeholders": {
+            "email": {
+                "type": "String"
+            }
+        }
+    },
+    "noMatchesFound": "Nie znaleziono żadnych meczów dla tej kolejki",
+    "matchHistoryListTitle": "Historia meczów",
+    "rankedSoloLabel": "Ranking solo",
+    "rankedFlexLabel": "Ranking flex"
 }

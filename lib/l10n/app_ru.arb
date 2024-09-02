@@ -41,7 +41,6 @@
     "retryButton": "Попробовать снова",
     "exitButton": "Выйти",
     "genericErrorTitle": "Произошла ошибка",
-    "genericErrorDescription": "Возникли проблемы с получением данных. Пожалуйста, попробуйте позже.",
     "noTipsAvailable": "Нет доступных подсказок",
     "userPageLabel": "Призыватель",
     "signUp": "Зарегистрироваться",
@@ -108,5 +107,25 @@
     "passwordChangedMessage": "Пароль успешно изменен",
     "shortPasswordMessage": "Пароль должен содержать не менее 6 символов",
     "wonMatchLabel": "ПОБЕДА",
-    "lostMatchLabel": "ПОРАЖЕНИЕ"
+    "lostMatchLabel": "ПОРАЖЕНИЕ",
+    "deleteUserButtonLabel": "Удалить аккаунт",
+    "deleteAccountPageTitle": "Удалить аккаунт",
+    "deleteConfirmDialogTitle": "Вы уверены?",
+    "deleteConfirmDialogDescription": "Вы уверены, что хотите удалить свой аккаунт? Если вы продолжите, вам придется создать новую учетную запись, чтобы проверять статистику призывателя.",
+    "deleteConfirmDialogConfirmActionLabel": "Удалить",
+    "incorrectMailAddressError": "Неверный адрес электронной почты",
+    "userDeletedSuccess": "Пользователь удален",
+    "genericErrorDescription": "Произошла ошибка, попробуйте еще раз.",
+    "currentlyLoggedInAs": "Вы вошли как: {email}",
+    "@currentlyLoggedInAs": {
+        "placeholders": {
+            "email": {
+                "type": "String"
+            }
+        }
+    },
+    "noMatchesFound": "Матчи для этой очереди не найдены",
+    "matchHistoryListTitle": "История матчей",
+    "rankedSoloLabel": "Рейтинговые одиночные",
+    "rankedFlexLabel": "Рейтинговые гибкие"
 }

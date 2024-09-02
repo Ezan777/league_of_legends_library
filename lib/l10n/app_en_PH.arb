@@ -41,7 +41,6 @@
     "retryButton": "Retry",
     "exitButton": "Exit",
     "genericErrorTitle": "Error occurred",
-    "genericErrorDescription": "We had some problems retrieving data. Please try again later.",
     "noTipsAvailable": "No tips available",
     "userPageLabel": "Summoner",
     "signUp": "Sign up",
@@ -108,5 +107,25 @@
     "passwordChangedMessage": "Password changed successfully",
     "shortPasswordMessage": "Password should have at least 6 characters",
     "wonMatchLabel": "WIN",
-    "lostMatchLabel": "LOSS"
+    "lostMatchLabel": "LOSS",
+    "deleteUserButtonLabel": "Delete your account",
+    "deleteAccountPageTitle": "Delete your account",
+    "deleteConfirmDialogTitle": "Are you sure?",
+    "deleteConfirmDialogDescription": "Are you sure you want to delete your account? If you proceed you will need to create another account in order to check your summoner stats.",
+    "deleteConfirmDialogConfirmActionLabel": "Delete",
+    "incorrectMailAddressError": "Incorrect email address",
+    "userDeletedSuccess": "User deleted",
+    "genericErrorDescription": "An error has occurred, please try again.",
+    "currentlyLoggedInAs": "Currently logged in as: {email}",
+    "@currentlyLoggedInAs": {
+        "placeholders": {
+            "email": {
+                "type": "String"
+            }
+        }
+    },
+    "noMatchesFound": "No matches found for this queue",
+    "matchHistoryListTitle": "Match history",
+    "rankedSoloLabel": "Ranked solo",
+    "rankedFlexLabel": "Ranked flex"
 }

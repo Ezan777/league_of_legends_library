@@ -41,7 +41,6 @@
     "retryButton": "Riprova",
     "exitButton": "Esci",
     "genericErrorTitle": "Si è verificato un errore",
-    "genericErrorDescription": "Abbiamo avuto dei problemi nel recuperare i dati. Per favore, riprova più tardi.",
     "noTipsAvailable": "Nessun consiglio disponibile",
     "userPageLabel": "Evocatore",
     "signUp": "Iscriviti",
@@ -108,5 +107,25 @@
     "passwordChangedMessage": "Password cambiata con successo",
     "shortPasswordMessage": "La password deve contenere almeno 6 caratteri",
     "wonMatchLabel": "VITTORIA",
-    "lostMatchLabel": "SCONFITTA"
+    "lostMatchLabel": "SCONFITTA",
+    "deleteUserButtonLabel": "Elimina il tuo account",
+    "deleteAccountPageTitle": "Elimina il tuo account",
+    "deleteConfirmDialogTitle": "Sei sicuro?",
+    "deleteConfirmDialogDescription": "Sei sicuro di voler eliminare il tuo account? Se procedi, dovrai creare un altro account per controllare le statistiche del tuo evocatore.",
+    "deleteConfirmDialogConfirmActionLabel": "Elimina",
+    "incorrectMailAddressError": "Indirizzo email errato",
+    "userDeletedSuccess": "Utente eliminato",
+    "genericErrorDescription": "Si è verificato un errore, riprova.",
+    "currentlyLoggedInAs": "Attualmente connesso come: {email}",
+    "@currentlyLoggedInAs": {
+        "placeholders": {
+            "email": {
+                "type": "String"
+            }
+        }
+    },
+    "noMatchesFound": "Nessuna partita trovata per questa coda",
+    "matchHistoryListTitle": "Cronologia delle partite",
+    "rankedSoloLabel": "Classificata solo",
+    "rankedFlexLabel": "Classificata flex"
 }

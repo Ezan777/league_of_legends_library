@@ -41,7 +41,6 @@
     "retryButton": "Thử lại",
     "exitButton": "Thoát",
     "genericErrorTitle": "Đã xảy ra lỗi",
-    "genericErrorDescription": "Chúng tôi đã gặp một số vấn đề khi truy xuất dữ liệu. Vui lòng thử lại sau.",
     "noTipsAvailable": "Không có mẹo nào",
     "userPageLabel": "Triệu hồi sư",
     "signUp": "Đăng ký",
@@ -108,5 +107,25 @@
     "passwordChangedMessage": "Đã thay đổi mật khẩu thành công",
     "shortPasswordMessage": "Mật khẩu phải có ít nhất 6 ký tự",
     "wonMatchLabel": "THẮNG",
-    "lostMatchLabel": "THUA"
+    "lostMatchLabel": "THUA",
+    "deleteUserButtonLabel": "Xóa tài khoản của bạn",
+    "deleteAccountPageTitle": "Xóa tài khoản của bạn",
+    "deleteConfirmDialogTitle": "Bạn có chắc không?",
+    "deleteConfirmDialogDescription": "Bạn có chắc chắn muốn xóa tài khoản của mình không? Nếu bạn tiếp tục, bạn sẽ cần tạo một tài khoản khác để kiểm tra số liệu thống kê của triệu hồi sư.",
+    "deleteConfirmDialogConfirmActionLabel": "Xóa",
+    "incorrectMailAddressError": "Địa chỉ email không chính xác",
+    "userDeletedSuccess": "Người dùng đã bị xóa",
+    "genericErrorDescription": "Đã xảy ra lỗi, vui lòng thử lại.",
+    "currentlyLoggedInAs": "Hiện đang đăng nhập dưới tên: {email}",
+    "@currentlyLoggedInAs": {
+        "placeholders": {
+            "email": {
+                "type": "String"
+            }
+        }
+    },
+    "noMatchesFound": "Không tìm thấy trận đấu nào cho hàng chờ này",
+    "matchHistoryListTitle": "Lịch sử trận đấu",
+    "rankedSoloLabel": "Xếp hạng đơn",
+    "rankedFlexLabel": "Xếp hạng linh hoạt"
 }

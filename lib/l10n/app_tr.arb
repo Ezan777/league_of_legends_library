@@ -41,7 +41,6 @@
     "retryButton": "Tekrar dene",
     "exitButton": "Çıkış",
     "genericErrorTitle": "Bir hata oluştu",
-    "genericErrorDescription": "Verileri alırken bazı sorunlar yaşandı. Lütfen daha sonra tekrar deneyin.",
     "noTipsAvailable": "Kullanılabilir ipucu yok",
     "userPageLabel": "Çağırıcı",
     "signUp": "Kaydol",
@@ -108,5 +107,25 @@
     "passwordChangedMessage": "Şifre başarıyla değiştirildi",
     "shortPasswordMessage": "Şifre en az 6 karakter olmalıdır",
     "wonMatchLabel": "KAZAN",
-    "lostMatchLabel": "KAYBET"
+    "lostMatchLabel": "KAYBET",
+    "deleteUserButtonLabel": "Hesabınızı silin",
+    "deleteAccountPageTitle": "Hesabınızı silin",
+    "deleteConfirmDialogTitle": "Emin misiniz?",
+    "deleteConfirmDialogDescription": "Hesabınızı silmek istediğinizden emin misiniz? Devam ederseniz, sihirdar istatistiklerinizi kontrol etmek için başka bir hesap oluşturmanız gerekecek.",
+    "deleteConfirmDialogConfirmActionLabel": "Sil",
+    "incorrectMailAddressError": "Yanlış e-posta adresi",
+    "userDeletedSuccess": "Kullanıcı silindi",
+    "genericErrorDescription": "Bir hata oluştu, lütfen tekrar deneyin.",
+    "currentlyLoggedInAs": "Şu anda giriş yaptınız: {email}",
+    "@currentlyLoggedInAs": {
+        "placeholders": {
+            "email": {
+                "type": "String"
+            }
+        }
+    },
+    "noMatchesFound": "Bu kuyruk için maç bulunamadı",
+    "matchHistoryListTitle": "Maç geçmişi",
+    "rankedSoloLabel": "Dereceli solo",
+    "rankedFlexLabel": "Dereceli flex"
 }

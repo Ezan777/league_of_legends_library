@@ -41,7 +41,6 @@
     "retryButton": "Încearcă din nou",
     "exitButton": "Ieși",
     "genericErrorTitle": "A apărut o eroare",
-    "genericErrorDescription": "Au apărut probleme la recuperarea datelor. Te rugăm să încerci din nou mai târziu.",
     "noTipsAvailable": "Nu sunt disponibile sfaturi",
     "userPageLabel": "Invocator",
     "signUp": "Înregistrează-te",
@@ -108,5 +107,25 @@
     "passwordChangedMessage": "Parola a fost schimbată cu succes",
     "shortPasswordMessage": "Parola trebuie să aibă cel puțin 6 caractere",
     "wonMatchLabel": "VICTORIE",
-    "lostMatchLabel": "ÎNFRÂNGERE"
+    "lostMatchLabel": "ÎNFRÂNGERE",
+    "deleteUserButtonLabel": "Șterge contul",
+    "deleteAccountPageTitle": "Șterge contul",
+    "deleteConfirmDialogTitle": "Ești sigur?",
+    "deleteConfirmDialogDescription": "Ești sigur că vrei să-ți ștergi contul? Dacă continui, va trebui să creezi un alt cont pentru a verifica statisticile invocatorului.",
+    "deleteConfirmDialogConfirmActionLabel": "Șterge",
+    "incorrectMailAddressError": "Adresă de email incorectă",
+    "userDeletedSuccess": "Utilizator șters",
+    "genericErrorDescription": "A apărut o eroare, vă rugăm să încercați din nou.",
+    "currentlyLoggedInAs": "Conectat ca: {email}",
+    "@currentlyLoggedInAs": {
+        "placeholders": {
+            "email": {
+                "type": "String"
+            }
+        }
+    },
+    "noMatchesFound": "Nu s-au găsit meciuri pentru această coadă",
+    "matchHistoryListTitle": "Istoricul meciurilor",
+    "rankedSoloLabel": "Clasat solo",
+    "rankedFlexLabel": "Clasat flex"
 }

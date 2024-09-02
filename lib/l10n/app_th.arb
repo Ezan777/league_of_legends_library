@@ -41,7 +41,6 @@
     "retryButton": "ลองใหม่",
     "exitButton": "ออก",
     "genericErrorTitle": "เกิดข้อผิดพลาด",
-    "genericErrorDescription": "เกิดปัญหาในการดึงข้อมูล โปรดลองใหม่อีกครั้งในภายหลัง",
     "noTipsAvailable": "ไม่มีคำแนะนำที่สามารถใช้ได้",
     "userPageLabel": "ซัมมอนเนอร์",
     "signUp": "ลงทะเบียน",
@@ -108,5 +107,25 @@
     "passwordChangedMessage": "เปลี่ยนรหัสผ่านสำเร็จ",
     "shortPasswordMessage": "รหัสผ่านต้องมีอย่างน้อย 6 ตัวอักษร",
     "wonMatchLabel": "ชนะ",
-    "lostMatchLabel": "แพ้"
+    "lostMatchLabel": "แพ้",
+    "deleteUserButtonLabel": "ลบบัญชีของคุณ",
+    "deleteAccountPageTitle": "ลบบัญชีของคุณ",
+    "deleteConfirmDialogTitle": "คุณแน่ใจหรือ?",
+    "deleteConfirmDialogDescription": "คุณแน่ใจหรือว่าต้องการลบบัญชีของคุณ? หากคุณดำเนินการต่อ คุณจะต้องสร้างบัญชีใหม่เพื่อเช็คสถิติของซัมมอนเนอร์",
+    "deleteConfirmDialogConfirmActionLabel": "ลบ",
+    "incorrectMailAddressError": "ที่อยู่อีเมลไม่ถูกต้อง",
+    "userDeletedSuccess": "ลบผู้ใช้เรียบร้อยแล้ว",
+    "genericErrorDescription": "เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง",
+    "currentlyLoggedInAs": "เข้าสู่ระบบเป็น: {email}",
+    "@currentlyLoggedInAs": {
+        "placeholders": {
+            "email": {
+                "type": "String"
+            }
+        }
+    },
+    "noMatchesFound": "ไม่พบแมตช์สำหรับคิวนี้",
+    "matchHistoryListTitle": "ประวัติการแข่งขัน",
+    "rankedSoloLabel": "จัดอันดับเดี่ยว",
+    "rankedFlexLabel": "จัดอันดับยืดหยุ่น"
 }

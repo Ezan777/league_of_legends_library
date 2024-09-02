@@ -41,7 +41,6 @@
     "retryButton": "Zkusit znovu",
     "exitButton": "Ukončit",
     "genericErrorTitle": "Došlo k chybě",
-    "genericErrorDescription": "Nastaly problémy s načítáním dat. Zkuste to prosím později.",
     "noTipsAvailable": "Žádné tipy nejsou k dispozici",
     "userPageLabel": "Vyvolávač",
     "signUp": "Zaregistrovat se",
@@ -108,5 +107,25 @@
     "passwordChangedMessage": "Heslo bylo úspěšně změněno",
     "shortPasswordMessage": "Heslo musí mít alespoň 6 znaků",
     "wonMatchLabel": "VÝHRA",
-    "lostMatchLabel": "PROHRA"
+    "lostMatchLabel": "PROHRA",
+    "deleteUserButtonLabel": "Smazat účet",
+    "deleteAccountPageTitle": "Smazat účet",
+    "deleteConfirmDialogTitle": "Jste si jistí?",
+    "deleteConfirmDialogDescription": "Opravdu chcete smazat svůj účet? Pokud budete pokračovat, budete si muset vytvořit nový účet, abyste mohli kontrolovat statistiky summonerů.",
+    "deleteConfirmDialogConfirmActionLabel": "Smazat",
+    "incorrectMailAddressError": "Nesprávná e-mailová adresa",
+    "userDeletedSuccess": "Uživatel byl smazán",
+    "genericErrorDescription": "Došlo k chybě, zkuste to prosím znovu.",
+    "currentlyLoggedInAs": "Přihlášeni jako: {email}",
+    "@currentlyLoggedInAs": {
+        "placeholders": {
+            "email": {
+                "type": "String"
+            }
+        }
+    },
+    "noMatchesFound": "Pro tuto frontu nebyly nalezeny žádné zápasy",
+    "matchHistoryListTitle": "Historie zápasů",
+    "rankedSoloLabel": "Hodnocený solo",
+    "rankedFlexLabel": "Hodnocený flex"
 }

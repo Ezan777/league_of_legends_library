@@ -11,6 +11,7 @@
 migrate_working_dir/
 .vscode/
 .idx/
+.odevio
 
 # IntelliJ related
 *.iml

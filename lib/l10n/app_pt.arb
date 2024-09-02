@@ -42,7 +42,6 @@
     "retryButton": "Tentar novamente",
     "exitButton": "Sair",
     "genericErrorTitle": "Erro ocorrido",
-    "genericErrorDescription": "Houve alguns problemas para recuperar os dados. Por favor, tente novamente mais tarde.",
     "noTipsAvailable": "Nenhuma dica disponível",
     "userPageLabel": "Invocador",
     "signUp": "Cadastrar",
@@ -109,5 +108,25 @@
     "passwordChangedMessage": "Senha alterada com sucesso",
     "shortPasswordMessage": "A senha deve ter pelo menos 6 caracteres",
     "wonMatchLabel": "VITÓRIA",
-    "lostMatchLabel": "DERROTA"
+    "lostMatchLabel": "DERROTA",
+    "deleteUserButtonLabel": "Excluir conta",
+    "deleteAccountPageTitle": "Excluir conta",
+    "deleteConfirmDialogTitle": "Você tem certeza?",
+    "deleteConfirmDialogDescription": "Tem certeza de que deseja excluir sua conta? Se continuar, você precisará criar outra conta para verificar as estatísticas do seu invocador.",
+    "deleteConfirmDialogConfirmActionLabel": "Excluir",
+    "incorrectMailAddressError": "Endereço de email incorreto",
+    "userDeletedSuccess": "Usuário excluído",
+    "genericErrorDescription": "Ocorreu um erro, por favor tente novamente.",
+    "currentlyLoggedInAs": "Atualmente logado como: {email}",
+    "@currentlyLoggedInAs": {
+        "placeholders": {
+            "email": {
+                "type": "String"
+            }
+        }
+    },
+    "noMatchesFound": "Nenhuma partida encontrada para esta fila",
+    "matchHistoryListTitle": "Histórico de partidas",
+    "rankedSoloLabel": "Ranqueada solo",
+    "rankedFlexLabel": "Ranqueada flex"
 }
