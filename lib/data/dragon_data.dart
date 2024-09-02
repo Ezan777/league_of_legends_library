@@ -5,7 +5,7 @@ import 'package:league_of_legends_library/data/remote_data_source.dart';
 
 class DragonData with RemoteDataSource implements AssetsDataSource {
   final String _baseUrl = "https://league-of-legends-library.web.app";
-  final String _version = "14.7.1";
+  final String _version = "14.17.1";
 
   @override
   Future<Map<String, dynamic>> fetchJson(String jsonUrl) async {

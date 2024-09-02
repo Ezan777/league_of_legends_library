@@ -12,7 +12,7 @@ class ChampionRepository {
   final int maxRecentlyViewedChampions = 6;
   final AssetsDataSource _remoteDataSource;
   final LocalDataSource _localDataSource;
-  static const version = "14.7.1";
+  static const version = "14.17.1";
   static const String baseUrl =
       "https://league-of-legends-library.web.app"; //https://dragontail.enricozangrando.com";
 
