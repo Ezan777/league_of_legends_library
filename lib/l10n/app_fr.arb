@@ -127,5 +127,51 @@
     "noMatchesFound": "Aucun match trouvé pour cette file",
     "matchHistoryListTitle": "Historique des matchs",
     "rankedSoloLabel": "Classé solo",
-    "rankedFlexLabel": "Classé flex"
+    "rankedFlexLabel": "Classé flex",
+    "championLevelSemantic": "Niveau : {level}",
+    "@championLevelSemantic": {
+        "placeholders": {
+            "level": {
+                "type": "int"
+            }
+        }
+    },
+    "durationSemanticLabel": "Durée : {duration}",
+    "@durationSemanticLabel": {
+        "placeholders": {
+            "duration": {
+                "type": "String"
+            }
+        }
+    },
+    "minionsKilledSemanticLabel": "Sbires tués : {minionsKilled}",
+    "@minionsKilledSemanticLabel": {
+        "placeholders": {
+            "minionsKilled": {
+                "type": "int"
+            }
+        }
+    },
+    "kdaSemanticLabel": "{kills} éliminations, {deaths} morts, {assists} assistances",
+    "@kdaSemanticLabel": {
+        "placeholders": {
+            "kills": {
+                "type": "int"
+            },
+            "deaths": {
+                "type": "int"
+            },
+            "assists": {
+                "type": "int"
+            }
+        }
+    },
+    "matchBannerChampionTileSemanticLabel": "Jouant comme : {championName}",
+    "@matchBannerChampionTileSemanticLabel": {
+        "placeholders": {
+            "championName": {
+                "type": "String"
+            }
+        }
+    }
 }

@@ -127,5 +127,51 @@
     "noMatchesFound": "Pro tuto frontu nebyly nalezeny žádné zápasy",
     "matchHistoryListTitle": "Historie zápasů",
     "rankedSoloLabel": "Hodnocený solo",
-    "rankedFlexLabel": "Hodnocený flex"
+    "rankedFlexLabel": "Hodnocený flex",
+    "championLevelSemantic": "Úroveň: {level}",
+    "@championLevelSemantic": {
+        "placeholders": {
+            "level": {
+                "type": "int"
+            }
+        }
+    },
+    "durationSemanticLabel": "Doba trvání: {duration}",
+    "@durationSemanticLabel": {
+        "placeholders": {
+            "duration": {
+                "type": "String"
+            }
+        }
+    },
+    "minionsKilledSemanticLabel": "Zabití minionů: {minionsKilled}",
+    "@minionsKilledSemanticLabel": {
+        "placeholders": {
+            "minionsKilled": {
+                "type": "int"
+            }
+        }
+    },
+    "kdaSemanticLabel": "{kills} zabití, {deaths} úmrtí, {assists} asistencí",
+    "@kdaSemanticLabel": {
+        "placeholders": {
+            "kills": {
+                "type": "int"
+            },
+            "deaths": {
+                "type": "int"
+            },
+            "assists": {
+                "type": "int"
+            }
+        }
+    },
+    "matchBannerChampionTileSemanticLabel": "Hraje jako: {championName}",
+    "@matchBannerChampionTileSemanticLabel": {
+        "placeholders": {
+            "championName": {
+                "type": "String"
+            }
+        }
+    }
 }

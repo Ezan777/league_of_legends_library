@@ -127,5 +127,51 @@
     "noMatchesFound": "Nie znaleziono żadnych meczów dla tej kolejki",
     "matchHistoryListTitle": "Historia meczów",
     "rankedSoloLabel": "Ranking solo",
-    "rankedFlexLabel": "Ranking flex"
+    "rankedFlexLabel": "Ranking flex",
+    "championLevelSemantic": "Poziom: {level}",
+    "@championLevelSemantic": {
+        "placeholders": {
+            "level": {
+                "type": "int"
+            }
+        }
+    },
+    "durationSemanticLabel": "Czas trwania: {duration}",
+    "@durationSemanticLabel": {
+        "placeholders": {
+            "duration": {
+                "type": "String"
+            }
+        }
+    },
+    "minionsKilledSemanticLabel": "Zabici minioni: {minionsKilled}",
+    "@minionsKilledSemanticLabel": {
+        "placeholders": {
+            "minionsKilled": {
+                "type": "int"
+            }
+        }
+    },
+    "kdaSemanticLabel": "{kills} zabójstw, {deaths} zgonów, {assists} asyst",
+    "@kdaSemanticLabel": {
+        "placeholders": {
+            "kills": {
+                "type": "int"
+            },
+            "deaths": {
+                "type": "int"
+            },
+            "assists": {
+                "type": "int"
+            }
+        }
+    },
+    "matchBannerChampionTileSemanticLabel": "Graj jako: {championName}",
+    "@matchBannerChampionTileSemanticLabel": {
+        "placeholders": {
+            "championName": {
+                "type": "String"
+            }
+        }
+    }
 }

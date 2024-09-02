@@ -127,5 +127,51 @@
     "noMatchesFound": "Nu s-au găsit meciuri pentru această coadă",
     "matchHistoryListTitle": "Istoricul meciurilor",
     "rankedSoloLabel": "Clasat solo",
-    "rankedFlexLabel": "Clasat flex"
+    "rankedFlexLabel": "Clasat flex",
+    "championLevelSemantic": "Nivel: {level}",
+    "@championLevelSemantic": {
+        "placeholders": {
+            "level": {
+                "type": "int"
+            }
+        }
+    },
+    "durationSemanticLabel": "Durată: {duration}",
+    "@durationSemanticLabel": {
+        "placeholders": {
+            "duration": {
+                "type": "String"
+            }
+        }
+    },
+    "minionsKilledSemanticLabel": "Minioni uciși: {minionsKilled}",
+    "@minionsKilledSemanticLabel": {
+        "placeholders": {
+            "minionsKilled": {
+                "type": "int"
+            }
+        }
+    },
+    "kdaSemanticLabel": "{kills} ucideri, {deaths} decese, {assists} asistențe",
+    "@kdaSemanticLabel": {
+        "placeholders": {
+            "kills": {
+                "type": "int"
+            },
+            "deaths": {
+                "type": "int"
+            },
+            "assists": {
+                "type": "int"
+            }
+        }
+    },
+    "matchBannerChampionTileSemanticLabel": "Jucând ca: {championName}",
+    "@matchBannerChampionTileSemanticLabel": {
+        "placeholders": {
+            "championName": {
+                "type": "String"
+            }
+        }
+    }
 }

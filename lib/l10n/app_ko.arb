@@ -127,5 +127,51 @@
     "noMatchesFound": "이 대기열에 대한 매치를 찾을 수 없습니다",
     "matchHistoryListTitle": "매치 기록",
     "rankedSoloLabel": "랭크 솔로",
-    "rankedFlexLabel": "랭크 플렉스"
+    "rankedFlexLabel": "랭크 플렉스",
+    "championLevelSemantic": "레벨: {level}",
+    "@championLevelSemantic": {
+        "placeholders": {
+            "level": {
+                "type": "int"
+            }
+        }
+    },
+    "durationSemanticLabel": "지속 시간: {duration}",
+    "@durationSemanticLabel": {
+        "placeholders": {
+            "duration": {
+                "type": "String"
+            }
+        }
+    },
+    "minionsKilledSemanticLabel": "처치한 미니언: {minionsKilled}",
+    "@minionsKilledSemanticLabel": {
+        "placeholders": {
+            "minionsKilled": {
+                "type": "int"
+            }
+        }
+    },
+    "kdaSemanticLabel": "{kills} 킬, {deaths} 데스, {assists} 어시스트",
+    "@kdaSemanticLabel": {
+        "placeholders": {
+            "kills": {
+                "type": "int"
+            },
+            "deaths": {
+                "type": "int"
+            },
+            "assists": {
+                "type": "int"
+            }
+        }
+    },
+    "matchBannerChampionTileSemanticLabel": "플레이 중: {championName}",
+    "@matchBannerChampionTileSemanticLabel": {
+        "placeholders": {
+            "championName": {
+                "type": "String"
+            }
+        }
+    }
 }

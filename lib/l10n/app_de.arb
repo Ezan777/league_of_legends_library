@@ -127,5 +127,51 @@
     "noMatchesFound": "Keine Spiele für diese Warteschlange gefunden",
     "matchHistoryListTitle": "Spielverlauf",
     "rankedSoloLabel": "Ranglisten-Solo",
-    "rankedFlexLabel": "Ranglisten-Flex"
+    "rankedFlexLabel": "Ranglisten-Flex",
+    "championLevelSemantic": "Stufe: {level}",
+    "@championLevelSemantic": {
+        "placeholders": {
+            "level": {
+                "type": "int"
+            }
+        }
+    },
+    "durationSemanticLabel": "Dauer: {duration}",
+    "@durationSemanticLabel": {
+        "placeholders": {
+            "duration": {
+                "type": "String"
+            }
+        }
+    },
+    "minionsKilledSemanticLabel": "Getötete Vasallen: {minionsKilled}",
+    "@minionsKilledSemanticLabel": {
+        "placeholders": {
+            "minionsKilled": {
+                "type": "int"
+            }
+        }
+    },
+    "kdaSemanticLabel": "{kills} Kills, {deaths} Tode, {assists} Assists",
+    "@kdaSemanticLabel": {
+        "placeholders": {
+            "kills": {
+                "type": "int"
+            },
+            "deaths": {
+                "type": "int"
+            },
+            "assists": {
+                "type": "int"
+            }
+        }
+    },
+    "matchBannerChampionTileSemanticLabel": "Spielt als: {championName}",
+    "@matchBannerChampionTileSemanticLabel": {
+        "placeholders": {
+            "championName": {
+                "type": "String"
+            }
+        }
+    }
 }

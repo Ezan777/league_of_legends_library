@@ -127,5 +127,47 @@
     "noMatchesFound": "No matches found for this queue",
     "matchHistoryListTitle": "Match history",
     "rankedSoloLabel": "Ranked solo",
-    "rankedFlexLabel": "Ranked flex"
+    "rankedFlexLabel": "Ranked flex",
+    "championLevelSemantic": "Level: {level}",
+    "@championLevelSemantic": {
+        "placeholders": {
+            "level": {
+                "type": "int"
+            }
+        }
+    },
+    "durationSemanticLabel": "Duration: {duration}",
+    "@durationSemanticLabel": {
+        "placeholders": {
+            "duration":{
+                "type": "String"
+            }
+        }
+    },
+    "minionsKilledSemanticLabel": "Minions killed: {minionsKilled}",
+    "@minionsKilledSemanticLabel": {
+        "placeholders": {
+            "minionsKilled":{
+                "type": "int"
+            }
+        }
+    },
+    "kdaSemanticLabel": "{kills} kills, {deaths} deaths, {assists} assists",
+    "@kdaSemanticLabel": {
+        "placeholders": {
+            "kills":{
+                "type": "int"
+            },
+            "deaths":{"type": "int"},
+            "assists":{"type": "int"}
+        }
+    },
+    "matchBannerChampionTileSemanticLabel": "Playing as: {championName}",
+    "@matchBannerChampionTileSemanticLabel":{
+        "placeholders": {
+            "championName":{
+                "type": "String"
+            }
+        }
+    }
 }

@@ -127,5 +127,51 @@
     "noMatchesFound": "Δεν βρέθηκαν αγώνες για αυτήν την ουρά",
     "matchHistoryListTitle": "Ιστορικό αγώνων",
     "rankedSoloLabel": "Κατάταξη solo",
-    "rankedFlexLabel": "Κατάταξη flex"
+    "rankedFlexLabel": "Κατάταξη flex",
+    "championLevelSemantic": "Επίπεδο: {level}",
+    "@championLevelSemantic": {
+        "placeholders": {
+            "level": {
+                "type": "int"
+            }
+        }
+    },
+    "durationSemanticLabel": "Διάρκεια: {duration}",
+    "@durationSemanticLabel": {
+        "placeholders": {
+            "duration": {
+                "type": "String"
+            }
+        }
+    },
+    "minionsKilledSemanticLabel": "Σκοτωμένοι υπηρέτες: {minionsKilled}",
+    "@minionsKilledSemanticLabel": {
+        "placeholders": {
+            "minionsKilled": {
+                "type": "int"
+            }
+        }
+    },
+    "kdaSemanticLabel": "{kills} σκοτωμοί, {deaths} θάνατοι, {assists} ασίστ",
+    "@kdaSemanticLabel": {
+        "placeholders": {
+            "kills": {
+                "type": "int"
+            },
+            "deaths": {
+                "type": "int"
+            },
+            "assists": {
+                "type": "int"
+            }
+        }
+    },
+    "matchBannerChampionTileSemanticLabel": "Παίζοντας ως: {championName}",
+    "@matchBannerChampionTileSemanticLabel": {
+        "placeholders": {
+            "championName": {
+                "type": "String"
+            }
+        }
+    }
 }

@@ -127,5 +127,51 @@
     "noMatchesFound": "No se encontraron partidas para esta cola",
     "matchHistoryListTitle": "Historial de partidas",
     "rankedSoloLabel": "Clasificatoria solo",
-    "rankedFlexLabel": "Clasificatoria flex"
+    "rankedFlexLabel": "Clasificatoria flex",
+    "championLevelSemantic": "Nivel: {level}",
+    "@championLevelSemantic": {
+        "placeholders": {
+            "level": {
+                "type": "int"
+            }
+        }
+    },
+    "durationSemanticLabel": "Duración: {duration}",
+    "@durationSemanticLabel": {
+        "placeholders": {
+            "duration": {
+                "type": "String"
+            }
+        }
+    },
+    "minionsKilledSemanticLabel": "Minions asesinados: {minionsKilled}",
+    "@minionsKilledSemanticLabel": {
+        "placeholders": {
+            "minionsKilled": {
+                "type": "int"
+            }
+        }
+    },
+    "kdaSemanticLabel": "{kills} eliminaciones, {deaths} muertes, {assists} asistencias",
+    "@kdaSemanticLabel": {
+        "placeholders": {
+            "kills": {
+                "type": "int"
+            },
+            "deaths": {
+                "type": "int"
+            },
+            "assists": {
+                "type": "int"
+            }
+        }
+    },
+    "matchBannerChampionTileSemanticLabel": "Jugando como: {championName}",
+    "@matchBannerChampionTileSemanticLabel": {
+        "placeholders": {
+            "championName": {
+                "type": "String"
+            }
+        }
+    }
 }

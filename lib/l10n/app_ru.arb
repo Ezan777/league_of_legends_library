@@ -127,5 +127,51 @@
     "noMatchesFound": "Матчи для этой очереди не найдены",
     "matchHistoryListTitle": "История матчей",
     "rankedSoloLabel": "Рейтинговые одиночные",
-    "rankedFlexLabel": "Рейтинговые гибкие"
+    "rankedFlexLabel": "Рейтинговые гибкие",
+    "championLevelSemantic": "Уровень: {level}",
+    "@championLevelSemantic": {
+        "placeholders": {
+            "level": {
+                "type": "int"
+            }
+        }
+    },
+    "durationSemanticLabel": "Продолжительность: {duration}",
+    "@durationSemanticLabel": {
+        "placeholders": {
+            "duration": {
+                "type": "String"
+            }
+        }
+    },
+    "minionsKilledSemanticLabel": "Убито миньонов: {minionsKilled}",
+    "@minionsKilledSemanticLabel": {
+        "placeholders": {
+            "minionsKilled": {
+                "type": "int"
+            }
+        }
+    },
+    "kdaSemanticLabel": "{kills} убийств, {deaths} смертей, {assists} ассистов",
+    "@kdaSemanticLabel": {
+        "placeholders": {
+            "kills": {
+                "type": "int"
+            },
+            "deaths": {
+                "type": "int"
+            },
+            "assists": {
+                "type": "int"
+            }
+        }
+    },
+    "matchBannerChampionTileSemanticLabel": "Играет как: {championName}",
+    "@matchBannerChampionTileSemanticLabel": {
+        "placeholders": {
+            "championName": {
+                "type": "String"
+            }
+        }
+    }
 }

@@ -127,5 +127,51 @@
     "noMatchesFound": "Không tìm thấy trận đấu nào cho hàng chờ này",
     "matchHistoryListTitle": "Lịch sử trận đấu",
     "rankedSoloLabel": "Xếp hạng đơn",
-    "rankedFlexLabel": "Xếp hạng linh hoạt"
+    "rankedFlexLabel": "Xếp hạng linh hoạt",
+    "championLevelSemantic": "Cấp độ: {level}",
+    "@championLevelSemantic": {
+        "placeholders": {
+            "level": {
+                "type": "int"
+            }
+        }
+    },
+    "durationSemanticLabel": "Thời gian: {duration}",
+    "@durationSemanticLabel": {
+        "placeholders": {
+            "duration": {
+                "type": "String"
+            }
+        }
+    },
+    "minionsKilledSemanticLabel": "Lính bị tiêu diệt: {minionsKilled}",
+    "@minionsKilledSemanticLabel": {
+        "placeholders": {
+            "minionsKilled": {
+                "type": "int"
+            }
+        }
+    },
+    "kdaSemanticLabel": "{kills} hạ gục, {deaths} cái chết, {assists} hỗ trợ",
+    "@kdaSemanticLabel": {
+        "placeholders": {
+            "kills": {
+                "type": "int"
+            },
+            "deaths": {
+                "type": "int"
+            },
+            "assists": {
+                "type": "int"
+            }
+        }
+    },
+    "matchBannerChampionTileSemanticLabel": "Đang chơi như: {championName}",
+    "@matchBannerChampionTileSemanticLabel": {
+        "placeholders": {
+            "championName": {
+                "type": "String"
+            }
+        }
+    }
 }

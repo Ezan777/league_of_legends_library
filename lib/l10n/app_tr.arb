@@ -127,5 +127,51 @@
     "noMatchesFound": "Bu kuyruk için maç bulunamadı",
     "matchHistoryListTitle": "Maç geçmişi",
     "rankedSoloLabel": "Dereceli solo",
-    "rankedFlexLabel": "Dereceli flex"
+    "rankedFlexLabel": "Dereceli flex",
+    "championLevelSemantic": "Seviye: {level}",
+    "@championLevelSemantic": {
+        "placeholders": {
+            "level": {
+                "type": "int"
+            }
+        }
+    },
+    "durationSemanticLabel": "Süre: {duration}",
+    "@durationSemanticLabel": {
+        "placeholders": {
+            "duration": {
+                "type": "String"
+            }
+        }
+    },
+    "minionsKilledSemanticLabel": "Öldürülen minyonlar: {minionsKilled}",
+    "@minionsKilledSemanticLabel": {
+        "placeholders": {
+            "minionsKilled": {
+                "type": "int"
+            }
+        }
+    },
+    "kdaSemanticLabel": "{kills} öldürme, {deaths} ölüm, {assists} asist",
+    "@kdaSemanticLabel": {
+        "placeholders": {
+            "kills": {
+                "type": "int"
+            },
+            "deaths": {
+                "type": "int"
+            },
+            "assists": {
+                "type": "int"
+            }
+        }
+    },
+    "matchBannerChampionTileSemanticLabel": "Oynuyor olarak: {championName}",
+    "@matchBannerChampionTileSemanticLabel": {
+        "placeholders": {
+            "championName": {
+                "type": "String"
+            }
+        }
+    }
 }

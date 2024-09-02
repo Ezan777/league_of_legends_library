@@ -127,5 +127,51 @@
     "noMatchesFound": "ไม่พบแมตช์สำหรับคิวนี้",
     "matchHistoryListTitle": "ประวัติการแข่งขัน",
     "rankedSoloLabel": "จัดอันดับเดี่ยว",
-    "rankedFlexLabel": "จัดอันดับยืดหยุ่น"
+    "rankedFlexLabel": "จัดอันดับยืดหยุ่น",
+    "championLevelSemantic": "ระดับ: {level}",
+    "@championLevelSemantic": {
+        "placeholders": {
+            "level": {
+                "type": "int"
+            }
+        }
+    },
+    "durationSemanticLabel": "ระยะเวลา: {duration}",
+    "@durationSemanticLabel": {
+        "placeholders": {
+            "duration": {
+                "type": "String"
+            }
+        }
+    },
+    "minionsKilledSemanticLabel": "มินเนี่ยนที่ถูกฆ่า: {minionsKilled}",
+    "@minionsKilledSemanticLabel": {
+        "placeholders": {
+            "minionsKilled": {
+                "type": "int"
+            }
+        }
+    },
+    "kdaSemanticLabel": "{kills} การฆ่า, {deaths} การตาย, {assists} การช่วยเหลือ",
+    "@kdaSemanticLabel": {
+        "placeholders": {
+            "kills": {
+                "type": "int"
+            },
+            "deaths": {
+                "type": "int"
+            },
+            "assists": {
+                "type": "int"
+            }
+        }
+    },
+    "matchBannerChampionTileSemanticLabel": "เล่นเป็น: {championName}",
+    "@matchBannerChampionTileSemanticLabel": {
+        "placeholders": {
+            "championName": {
+                "type": "String"
+            }
+        }
+    }
 }

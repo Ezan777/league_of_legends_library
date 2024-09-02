@@ -127,5 +127,51 @@
     "noMatchesFound": "Nem található mérkőzés ehhez a várólistához",
     "matchHistoryListTitle": "Mérkőzéstörténet",
     "rankedSoloLabel": "Ranglista solo",
-    "rankedFlexLabel": "Ranglista flex"
+    "rankedFlexLabel": "Ranglista flex",
+    "championLevelSemantic": "Szint: {level}",
+    "@championLevelSemantic": {
+        "placeholders": {
+            "level": {
+                "type": "int"
+            }
+        }
+    },
+    "durationSemanticLabel": "Időtartam: {duration}",
+    "@durationSemanticLabel": {
+        "placeholders": {
+            "duration": {
+                "type": "String"
+            }
+        }
+    },
+    "minionsKilledSemanticLabel": "Megölt minionok: {minionsKilled}",
+    "@minionsKilledSemanticLabel": {
+        "placeholders": {
+            "minionsKilled": {
+                "type": "int"
+            }
+        }
+    },
+    "kdaSemanticLabel": "{kills} ölés, {deaths} halál, {assists} assziszt",
+    "@kdaSemanticLabel": {
+        "placeholders": {
+            "kills": {
+                "type": "int"
+            },
+            "deaths": {
+                "type": "int"
+            },
+            "assists": {
+                "type": "int"
+            }
+        }
+    },
+    "matchBannerChampionTileSemanticLabel": "Játszik mint: {championName}",
+    "@matchBannerChampionTileSemanticLabel": {
+        "placeholders": {
+            "championName": {
+                "type": "String"
+            }
+        }
+    }
 }
