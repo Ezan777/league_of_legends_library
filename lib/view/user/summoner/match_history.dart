@@ -23,14 +23,7 @@ class MatchHistory extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<MatchHistoryBloc, MatchHistoryState>(
       builder: (context, matchesState) => switch (matchesState) {
-        MatchHistoryLoading() => const SliverToBoxAdapter(
-            child: Padding(
-              padding: EdgeInsets.only(top: 20),
-              child: Center(
-                child: CircularProgressIndicator(),
-              ),
-            ),
-          ),
+        MatchHistoryLoading() => _loading(),
         MatchHistoryError() => SliverToBoxAdapter(
             child: GenericErrorView(
               error: matchesState.error,
@@ -55,9 +48,20 @@ class MatchHistory extends StatelessWidget {
     if (matches != null) {
       return _buildList(context, matches, summonerPuuid);
     } else {
-      return _noMatchesFound(context);
+      return state.isLoadingOtherMatches
+          ? _loading()
+          : _noMatchesFound(context);
     }
   }
+
+  Widget _loading() => const SliverToBoxAdapter(
+        child: Padding(
+          padding: EdgeInsets.only(top: 20),
+          child: Center(
+            child: CircularProgressIndicator(),
+          ),
+        ),
+      );
 
   Widget _noMatchesFound(BuildContext context) => SliverToBoxAdapter(
         child: Container(

@@ -11,11 +11,12 @@ sealed class MatchHistoryState extends Equatable {
 
 final class MatchHistoryLoaded extends MatchHistoryState {
   final Map<QueueType, List<LeagueMatch>> matches;
+  final bool isLoadingOtherMatches;
 
-  const MatchHistoryLoaded(this.matches);
+  const MatchHistoryLoaded(this.matches, this.isLoadingOtherMatches);
 
   @override
-  List<Object?> get props => [matches];
+  List<Object?> get props => [matches, isLoadingOtherMatches];
 }
 
 final class MatchHistoryLoading extends MatchHistoryState {}
