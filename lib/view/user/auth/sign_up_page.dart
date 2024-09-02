@@ -283,21 +283,24 @@ class _SignUpPageState extends State<SignUpPage> {
         items: RiotServer.values
             .map((server) => DropdownMenuItem(
                   value: server,
-                  child: Row(
-                    children: [
-                      if (chosenServer == server)
-                        Container(
-                          height: 6,
-                          width: 6,
-                          margin: const EdgeInsets.only(right: 10, left: 4),
-                          decoration: BoxDecoration(
-                            color: Theme.of(context).colorScheme.onSurface,
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(50)),
+                  child: Semantics(
+                    selected: chosenServer == server,
+                    child: Row(
+                      children: [
+                        if (chosenServer == server)
+                          Container(
+                            height: 6,
+                            width: 6,
+                            margin: const EdgeInsets.only(right: 10, left: 4),
+                            decoration: BoxDecoration(
+                              color: Theme.of(context).colorScheme.onSurface,
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(50)),
+                            ),
                           ),
-                        ),
-                      Text(server.serverCode),
-                    ],
+                        Text(server.serverCode),
+                      ],
+                    ),
                   ),
                 ))
             .toList(),

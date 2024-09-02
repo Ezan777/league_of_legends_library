@@ -285,26 +285,29 @@ class _EditUserDataState extends State<EditUserData>
                   items: RiotServer.values
                       .map((server) => DropdownMenuItem(
                             value: server,
-                            child: Row(
-                              children: [
-                                if (chosenServer == server)
-                                  Container(
-                                    height: 6,
-                                    width: 6,
-                                    margin: const EdgeInsets.only(
-                                        right: 10, left: 4),
-                                    decoration: BoxDecoration(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .onSurface
-                                          .withAlpha(
-                                              isDataBeingEdited ? 255 : 125),
-                                      borderRadius: const BorderRadius.all(
-                                          Radius.circular(50)),
+                            child: Semantics(
+                              selected: chosenServer == server,
+                              child: Row(
+                                children: [
+                                  if (chosenServer == server)
+                                    Container(
+                                      height: 6,
+                                      width: 6,
+                                      margin: const EdgeInsets.only(
+                                          right: 10, left: 4),
+                                      decoration: BoxDecoration(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .onSurface
+                                            .withAlpha(
+                                                isDataBeingEdited ? 255 : 125),
+                                        borderRadius: const BorderRadius.all(
+                                            Radius.circular(50)),
+                                      ),
                                     ),
-                                  ),
-                                Text(server.serverCode),
-                              ],
+                                  Text(server.serverCode),
+                                ],
+                              ),
                             ),
                           ))
                       .toList(),
@@ -445,38 +448,41 @@ class _EditUserDataState extends State<EditUserData>
             : SizedBox(
                 key: ValueKey<bool>(isDataBeingEdited),
                 width: 0.42 * MediaQuery.of(context).size.width,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      height: 1,
-                      margin: const EdgeInsets.only(bottom: 4),
-                      decoration: BoxDecoration(
-                        color: Theme.of(context)
-                            .colorScheme
-                            .onSurface
-                            .withAlpha(125),
+                child: Semantics(
+                  label: "$label, ${controller.text}",
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        height: 1,
+                        margin: const EdgeInsets.only(bottom: 4),
+                        decoration: BoxDecoration(
+                          color: Theme.of(context)
+                              .colorScheme
+                              .onSurface
+                              .withAlpha(125),
+                        ),
                       ),
-                    ),
-                    Text(
-                      label,
-                      style: Theme.of(context).textTheme.bodySmall,
-                    ),
-                    Text(
-                      controller.text,
-                      style: Theme.of(context).textTheme.bodyLarge,
-                    ),
-                    Container(
-                      height: 1,
-                      margin: const EdgeInsets.only(top: 4),
-                      decoration: BoxDecoration(
-                        color: Theme.of(context)
-                            .colorScheme
-                            .onSurface
-                            .withAlpha(125),
+                      Text(
+                        label,
+                        style: Theme.of(context).textTheme.bodySmall,
                       ),
-                    ),
-                  ],
+                      Text(
+                        controller.text,
+                        style: Theme.of(context).textTheme.bodyLarge,
+                      ),
+                      Container(
+                        height: 1,
+                        margin: const EdgeInsets.only(top: 4),
+                        decoration: BoxDecoration(
+                          color: Theme.of(context)
+                              .colorScheme
+                              .onSurface
+                              .withAlpha(125),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
       );

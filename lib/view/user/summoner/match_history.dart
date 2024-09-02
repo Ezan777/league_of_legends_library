@@ -146,6 +146,9 @@ class MatchHistory extends StatelessWidget {
               ),
               Text(
                 match.gameDurationString,
+                semanticsLabel: AppLocalizations.of(context)
+                        ?.durationSemanticLabel(match.gameDurationString) ??
+                    "Duration: ${match.gameDurationString}",
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                       color: onContainerColor,
                     ),
@@ -175,12 +178,19 @@ class MatchHistory extends StatelessWidget {
                   children: [
                     Text(
                       "${participant.kills}/${participant.deaths}/${participant.assists}",
+                      semanticsLabel: AppLocalizations.of(context)
+                              ?.kdaSemanticLabel(participant.kills,
+                                  participant.deaths, participant.assists) ??
+                          "${participant.kills} kills, ${participant.deaths} deaths, ${participant.assists} assists",
                       style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                             color: onContainerColor,
                           ),
                     ),
                     Text(
                       "${participant.minionsKilled.toString()} CS",
+                      semanticsLabel: AppLocalizations.of(context)
+                          ?.minionsKilledSemanticLabel(
+                              participant.minionsKilled),
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                             color: onContainerColor,
                           ),
@@ -231,19 +241,25 @@ class MatchHistory extends StatelessWidget {
           height: 0.25 * maxWidth,
           child: Stack(
             children: [
-              Container(
-                width: 0.23 * maxWidth,
-                height: 0.23 * maxWidth,
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Colors.grey.shade900,
-                    width: 1,
+              Semantics(
+                label: AppLocalizations.of(context)
+                        ?.matchBannerChampionTileSemanticLabel(
+                            participant.championId) ??
+                    "Playing as: ${participant.championId}",
+                child: Container(
+                  width: 0.23 * maxWidth,
+                  height: 0.23 * maxWidth,
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.grey.shade900,
+                      width: 1,
+                    ),
+                    shape: BoxShape.circle,
                   ),
-                  shape: BoxShape.circle,
-                ),
-                child: ClipOval(
-                  child:
-                      CachedNetworkImage(imageUrl: participant.championIconUri),
+                  child: ClipOval(
+                    child: CachedNetworkImage(
+                        imageUrl: participant.championIconUri),
+                  ),
                 ),
               ),
               Positioned(
@@ -262,6 +278,10 @@ class MatchHistory extends StatelessWidget {
                   child: Center(
                     child: Text(
                       participant.championLevel.toString(),
+                      semanticsLabel: AppLocalizations.of(context)
+                              ?.championLevelSemantic(
+                                  participant.championLevel) ??
+                          "Level: ${participant.championLevel}",
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                             color: Colors.white,
                           ),

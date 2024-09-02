@@ -21,16 +21,20 @@ class RankSelector extends StatefulWidget {
 class _RankSelectorState extends State<RankSelector> {
   @override
   Widget build(BuildContext context) {
-    buttonLabel(QueueType queueType) => TextScroll(
-          queueType == QueueType.soloDuo
-              ? AppLocalizations.of(context)?.rankedSoloLabel ?? "Ranked Solo"
-              : AppLocalizations.of(context)?.rankedFlexLabel ?? "Ranked Flex",
-          velocity: const Velocity(pixelsPerSecond: Offset(40, 0)),
-          pauseBetween: const Duration(milliseconds: 1600),
-          selectable: false,
-          intervalSpaces: 5,
-          numberOfReps: 3,
-          mode: TextScrollMode.endless,
+    buttonLabel(QueueType queueType) => Semantics(
+          excludeSemantics: true,
+          child: TextScroll(
+            queueType == QueueType.soloDuo
+                ? AppLocalizations.of(context)?.rankedSoloLabel ?? "Ranked Solo"
+                : AppLocalizations.of(context)?.rankedFlexLabel ??
+                    "Ranked Flex",
+            velocity: const Velocity(pixelsPerSecond: Offset(40, 0)),
+            pauseBetween: const Duration(milliseconds: 1600),
+            selectable: false,
+            intervalSpaces: 5,
+            numberOfReps: 3,
+            mode: TextScrollMode.endless,
+          ),
         );
 
     return Column(
@@ -47,23 +51,51 @@ class _RankSelectorState extends State<RankSelector> {
                     child: SizedBox(
                       width: min(0.4 * MediaQuery.of(context).size.width, 150),
                       child: queueType == widget.selectedQueue.value
-                          ? FilledButton.icon(
-                              onPressed: () {
-                                widget.selectedQueue.value = queueType;
-                              },
-                              icon: Icon(queueType == QueueType.soloDuo
-                                  ? Icons.person
-                                  : Icons.group),
-                              label: buttonLabel(queueType),
+                          ? Semantics(
+                              label: queueType == QueueType.soloDuo
+                                  ? AppLocalizations.of(context)
+                                          ?.rankedSoloLabel ??
+                                      "Ranked Solo"
+                                  : AppLocalizations.of(context)
+                                          ?.rankedFlexLabel ??
+                                      "Ranked Flex",
+                              button: true,
+                              selected: true,
+                              child: Semantics(
+                                excludeSemantics: true,
+                                child: FilledButton.icon(
+                                  onPressed: () {
+                                    widget.selectedQueue.value = queueType;
+                                  },
+                                  icon: Icon(queueType == QueueType.soloDuo
+                                      ? Icons.person
+                                      : Icons.group),
+                                  label: buttonLabel(queueType),
+                                ),
+                              ),
                             )
-                          : OutlinedButton.icon(
-                              onPressed: () {
-                                widget.selectedQueue.value = queueType;
-                              },
-                              icon: Icon(queueType == QueueType.soloDuo
-                                  ? Icons.person
-                                  : Icons.group),
-                              label: buttonLabel(queueType),
+                          : Semantics(
+                              label: queueType == QueueType.soloDuo
+                                  ? AppLocalizations.of(context)
+                                          ?.rankedSoloLabel ??
+                                      "Ranked Solo"
+                                  : AppLocalizations.of(context)
+                                          ?.rankedFlexLabel ??
+                                      "Ranked Flex",
+                              button: true,
+                              selected: false,
+                              child: Semantics(
+                                excludeSemantics: true,
+                                child: OutlinedButton.icon(
+                                  onPressed: () {
+                                    widget.selectedQueue.value = queueType;
+                                  },
+                                  icon: Icon(queueType == QueueType.soloDuo
+                                      ? Icons.person
+                                      : Icons.group),
+                                  label: buttonLabel(queueType),
+                                ),
+                              ),
                             ),
                     ),
                   ))
