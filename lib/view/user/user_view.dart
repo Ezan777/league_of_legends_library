@@ -40,7 +40,7 @@ class UserView extends StatelessWidget {
       child: BlocBuilder<UserBloc, UserState>(
         builder: (context, state) => switch (state) {
           UserLoading() || UpdatingUserData() => const Center(
-              child: CircularProgressIndicator(),
+              child: CircularProgressIndicator.adaptive(),
             ),
           UserLogged() => SummonerView(),
           NoUserLogged() => const LoginView(),

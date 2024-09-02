@@ -66,7 +66,7 @@ class LanguageSetting extends StatelessWidget {
           : const Center(
               child: Padding(
                 padding: EdgeInsets.all(30),
-                child: CircularProgressIndicator(),
+                child: CircularProgressIndicator.adaptive(),
               ),
             ),
     );

@@ -86,7 +86,7 @@ class _LoginViewState extends State<LoginView> {
         child: BlocBuilder<LoginBloc, LoginState>(
           builder: (context, state) => switch (state) {
             LoginLoading() => const Center(
-                child: CircularProgressIndicator(),
+                child: CircularProgressIndicator.adaptive(),
               ),
             LoginInitial() ||
             LoginSuccess() =>

@@ -45,7 +45,7 @@ class SpellButton extends StatelessWidget {
                         spellId: (ability as Spell).id)
                     : ability.tileUrl ?? "",
                 placeholder: ((context, url) =>
-                    const CircularProgressIndicator()),
+                    const CircularProgressIndicator.adaptive()),
                 errorWidget: (context, url, error) => const ImageNotAvailable(),
                 height: 64,
                 width: 64,

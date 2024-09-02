@@ -111,7 +111,7 @@ class HomepageView extends StatelessWidget {
           ),
         RecentlyViewedLoading() => const SliverToBoxAdapter(
             child: Center(
-              child: CircularProgressIndicator(),
+              child: CircularProgressIndicator.adaptive(),
             ),
           ),
         RecentlyViewedError() => SliverToBoxAdapter(
@@ -173,7 +173,7 @@ class HomepageView extends StatelessWidget {
               ),
         FavoritesLoading() => const SliverToBoxAdapter(
             child: Center(
-              child: CircularProgressIndicator(),
+              child: CircularProgressIndicator.adaptive(),
             ),
           ),
         FavoritesError() => SliverToBoxAdapter(

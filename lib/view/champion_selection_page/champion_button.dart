@@ -32,13 +32,13 @@ class _ChampionButtonState extends State<ChampionButton> {
             builder: (context, languageState) => switch (languageState) {
               LanguageLoaded() => _buildChampionButton(
                   skinState, context, languageState.language),
-              LanguageLoading() => const CircularProgressIndicator(),
+              LanguageLoading() => const CircularProgressIndicator.adaptive(),
               LanguageError() => const Center(
                   child: Text("Unable to get language"),
                 )
             },
           ),
-        SkinsLoading() => const CircularProgressIndicator(),
+        SkinsLoading() => const CircularProgressIndicator.adaptive(),
         SkinsError() => const Center(
             child: Text("Unable to retrieve champion data"),
           )
@@ -88,7 +88,7 @@ class _ChampionButtonState extends State<ChampionButton> {
             }
 
             return const Center(
-              child: CircularProgressIndicator(),
+              child: CircularProgressIndicator.adaptive(),
             );
           });
 
@@ -118,7 +118,8 @@ class _ChampionButtonState extends State<ChampionButton> {
           child: CachedNetworkImage(
             imageUrl: ChampionRepository.getChampionTileUrl(
                 championId: widget.championId, skinCode: skinCode),
-            placeholder: (context, url) => const CircularProgressIndicator(),
+            placeholder: (context, url) =>
+                const CircularProgressIndicator.adaptive(),
             errorWidget: (context, url, error) => const ImageNotAvailable(),
             height: 90,
             width: 90,

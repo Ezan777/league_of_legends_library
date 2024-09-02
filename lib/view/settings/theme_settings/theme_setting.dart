@@ -62,7 +62,7 @@ class ThemeSetting extends StatelessWidget {
             )
           : const Padding(
               padding: EdgeInsets.all(15),
-              child: CircularProgressIndicator(),
+              child: CircularProgressIndicator.adaptive(),
             ),
     );
   }

@@ -75,7 +75,7 @@ class ChampionCard extends StatelessWidget {
         SkinsLoading() => const Center(
             child: Padding(
               padding: EdgeInsets.all(20),
-              child: CircularProgressIndicator(),
+              child: CircularProgressIndicator.adaptive(),
             ),
           ),
         SkinsError() => const Center(

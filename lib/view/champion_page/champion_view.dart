@@ -65,7 +65,7 @@ class _ChampionViewState extends State<ChampionView> {
 
   Widget _buildFavoriteButton() => BlocBuilder<FavoritesBloc, FavoritesState>(
       builder: (context, state) => switch (state) {
-            FavoritesLoading() => const CircularProgressIndicator(),
+            FavoritesLoading() => const CircularProgressIndicator.adaptive(),
             FavoritesLoaded() => IconButton(
                 tooltip: state.favoriteChampions.contains(widget.champion)
                     ? (AppLocalizations.of(context)

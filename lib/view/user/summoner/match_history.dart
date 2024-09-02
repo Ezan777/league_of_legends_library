@@ -58,7 +58,7 @@ class MatchHistory extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.only(top: 20),
           child: Center(
-            child: CircularProgressIndicator(),
+            child: CircularProgressIndicator.adaptive(),
           ),
         ),
       );

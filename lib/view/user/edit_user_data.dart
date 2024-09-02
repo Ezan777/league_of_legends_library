@@ -100,7 +100,7 @@ class _EditUserDataState extends State<EditUserData>
         builder: (context, state) => switch (state) {
           UserLoading() => const Scaffold(
               body: Center(
-                child: CircularProgressIndicator(),
+                child: CircularProgressIndicator.adaptive(),
               ),
             ),
           UserLogged() => Scaffold(
@@ -320,7 +320,7 @@ class _EditUserDataState extends State<EditUserData>
                   child: child,
                 ),
                 child: isDataBeingUpdated
-                    ? const CircularProgressIndicator()
+                    ? const CircularProgressIndicator.adaptive()
                     : isDataBeingEdited
                         ? _editingButtons(context, user, () {
                             submitForm();

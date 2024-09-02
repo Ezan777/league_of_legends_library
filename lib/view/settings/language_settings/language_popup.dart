@@ -20,7 +20,7 @@ class _LanguageRadioListState extends State<LanguageRadioList> {
   Widget build(BuildContext context) {
     _chosenLanguage ??= widget.language;
 
-    return AlertDialog(
+    return AlertDialog.adaptive(
       title: const Text.rich(
           TextSpan(text: "Choose a language", locale: Locale('en'))),
       actions: [

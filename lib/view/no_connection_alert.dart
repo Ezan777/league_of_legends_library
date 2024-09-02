@@ -9,7 +9,7 @@ class NoConnectionAlert extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(
+    return AlertDialog.adaptive(
       title: Text(AppLocalizations.of(context)?.noConnectionAvailableTitle ??
           "Connection error"),
       content: SingleChildScrollView(

@@ -32,10 +32,10 @@ class ChangePasswordPage extends StatelessWidget {
         body: BlocBuilder<UserBloc, UserState>(
             builder: (context, userState) => switch (userState) {
                   UserLoading() => const Center(
-                      child: CircularProgressIndicator(),
+                      child: CircularProgressIndicator.adaptive(),
                     ),
                   UpdatingUserData() => const Center(
-                      child: CircularProgressIndicator(),
+                      child: CircularProgressIndicator.adaptive(),
                     ),
                   UserLogged() => MultiBlocListener(
                         listeners: [
@@ -83,7 +83,8 @@ class ChangePasswordPage extends StatelessWidget {
                                       }
                                     }),
                                   ChangingPassword() => const Center(
-                                      child: CircularProgressIndicator(),
+                                      child:
+                                          CircularProgressIndicator.adaptive(),
                                     ),
                                 })),
                   NoUserLogged() || UserError() => GenericErrorView(

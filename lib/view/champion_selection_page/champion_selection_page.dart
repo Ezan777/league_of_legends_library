@@ -67,7 +67,7 @@ class _ChampionSelectionPageState extends State<ChampionSelectionPage> {
           }
         } else {
           return const Scaffold(
-              body: Center(child: CircularProgressIndicator()));
+              body: Center(child: CircularProgressIndicator.adaptive()));
         }
       },
     );

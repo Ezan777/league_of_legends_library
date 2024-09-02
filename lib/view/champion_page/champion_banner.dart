@@ -102,7 +102,7 @@ class _ChampionBannerState extends State<ChampionBanner> {
           SkinsLoading() => const Center(
               child: Padding(
                 padding: EdgeInsets.all(15),
-                child: CircularProgressIndicator(),
+                child: CircularProgressIndicator.adaptive(),
               ),
             ),
           SkinsError() => const Center(

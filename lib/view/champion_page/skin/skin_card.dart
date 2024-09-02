@@ -50,7 +50,7 @@ class SkinCard extends StatelessWidget {
                           child: SizedBox(
                             height: 20,
                             width: 20,
-                            child: CircularProgressIndicator(),
+                            child: CircularProgressIndicator.adaptive(),
                           ),
                         ),
                         errorWidget: (context, url, error) =>
@@ -109,7 +109,7 @@ class SkinCard extends StatelessWidget {
         SkinsLoading() => const Center(
             child: Padding(
               padding: EdgeInsets.all(20),
-              child: CircularProgressIndicator(),
+              child: CircularProgressIndicator.adaptive(),
             ),
           ),
         SkinsError() => Center(

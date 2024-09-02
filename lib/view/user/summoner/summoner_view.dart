@@ -49,7 +49,7 @@ class _SummonerViewState extends State<SummonerView> {
     void logoutPressed() {
       showDialog(
         context: context,
-        builder: (context) => AlertDialog(
+        builder: (context) => AlertDialog.adaptive(
           title: Text(AppLocalizations.of(context)?.logout ?? "Logout"),
           content: Text(AppLocalizations.of(context)?.logoutAlertContent ??
               "Are you sure you want to logout?"),
@@ -116,7 +116,7 @@ class _SummonerViewState extends State<SummonerView> {
           child: BlocBuilder<SummonerBloc, SummonerState>(
             builder: (context, state) => switch (state) {
               SummonerLoading() => const Center(
-                  child: CircularProgressIndicator(),
+                  child: CircularProgressIndicator.adaptive(),
                 ),
               SummonerSuccess() => _buildView(context, state),
               SummonerError() => _errorBox(context, state.error),
@@ -194,7 +194,7 @@ class _SummonerViewState extends State<SummonerView> {
                   child: SizedBox(
                     height: 20,
                     width: 20,
-                    child: CircularProgressIndicator(),
+                    child: CircularProgressIndicator.adaptive(),
                   ),
                 ),
                 errorWidget: (context, url, error) => const ImageNotAvailable(),
@@ -242,7 +242,7 @@ class _SummonerViewState extends State<SummonerView> {
                   child: SizedBox(
                     height: 20,
                     width: 20,
-                    child: CircularProgressIndicator(),
+                    child: CircularProgressIndicator.adaptive(),
                   ),
                 ),
                 errorWidget: (context, url, error) => const ImageNotAvailable(),
@@ -367,7 +367,7 @@ class _SummonerViewState extends State<SummonerView> {
                 },
               ),
             UserLoading() || UpdatingUserData() => const Center(
-                child: CircularProgressIndicator(),
+                child: CircularProgressIndicator.adaptive(),
               ),
           });
 }

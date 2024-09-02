@@ -58,7 +58,7 @@ class _SignUpPageState extends State<SignUpPage> {
             SignUpError() =>
               _signUpForm(context),
             SignUpLoading() => const Center(
-                child: CircularProgressIndicator(),
+                child: CircularProgressIndicator.adaptive(),
               ),
           },
         ),

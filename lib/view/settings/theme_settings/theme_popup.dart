@@ -20,7 +20,7 @@ class _ThemeModeRadioListState extends State<ThemeModeRadioList> {
   @override
   Widget build(BuildContext context) {
     _chosenThemeMode ??= widget.themeMode;
-    return AlertDialog(
+    return AlertDialog.adaptive(
       title: Text(AppLocalizations.of(context)?.themeModePopupTitle ??
           "Choose theme mode"),
       actions: [

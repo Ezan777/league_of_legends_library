@@ -62,7 +62,7 @@ class _DeleteUserPageState extends State<DeleteUserPage> {
                     "Deleted"),
               ),
             DeleteUserLoading() => const Center(
-                child: CircularProgressIndicator(),
+                child: CircularProgressIndicator.adaptive(),
               ),
             DeleteUserError() => _credentialsForm(
                 context,
@@ -86,7 +86,7 @@ class _DeleteUserPageState extends State<DeleteUserPage> {
       if (formKey.currentState != null && formKey.currentState!.validate()) {
         await showDialog(
           context: context,
-          builder: (context) => AlertDialog(
+          builder: (context) => AlertDialog.adaptive(
             title: Text(
                 AppLocalizations.of(context)?.deleteConfirmDialogTitle ??
                     "Are you sure?"),
