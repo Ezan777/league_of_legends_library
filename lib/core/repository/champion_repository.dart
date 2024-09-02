@@ -6,7 +6,6 @@ import 'package:league_of_legends_library/data/champion_local_data_source.dart';
 import 'package:league_of_legends_library/data/assets_data_source.dart';
 
 class ChampionRepository {
-  // TODO: I should clean some code, move varibales to remote data source
   List<String>? _favoritesChampions;
   Queue<String>? _recentlyViewedChampions;
   Map<String, int>? _championIdActiveSkin;
