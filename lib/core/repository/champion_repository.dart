@@ -13,6 +13,7 @@ class ChampionRepository {
   final int maxRecentlyViewedChampions = 6;
   final AssetsDataSource _remoteDataSource;
   final LocalDataSource _localDataSource;
+  static const version = "14.7.1";
   static const String baseUrl =
       "https://league-of-legends-library.web.app"; //https://dragontail.enricozangrando.com";
 
@@ -72,7 +73,7 @@ class ChampionRepository {
   Future<Champion> getChampionById(
       {required String championId, required String languageCode}) async {
     final json = await _remoteDataSource.fetchJson(
-        "$baseUrl/14.7.1/data/$languageCode/champion/$championId.json");
+        "$baseUrl/$version/data/$languageCode/champion/$championId.json");
 
     return Champion.fromJson(
       id: championId,
@@ -83,7 +84,7 @@ class ChampionRepository {
   /// Return a list containing all champions ids. If the data obtained from json is invalid it will return an empty list.
   Future<List<String>> getAllChampionIds() async {
     final json = await _remoteDataSource
-        .fetchJson("$baseUrl/14.7.1/data/en_US/champion.json");
+        .fetchJson("$baseUrl/$version/data/en_US/champion.json");
     List<String> ids;
     final jsonData = json["data"];
 
@@ -118,7 +119,7 @@ class ChampionRepository {
   }
 
   static String getSpellTileUrl({required String spellId}) {
-    return "$baseUrl/14.7.1/img/spell/$spellId.png";
+    return "$baseUrl/$version/img/spell/$spellId.png";
   }
 
   Future<bool> addFavoriteChampion({required String championId}) async {
