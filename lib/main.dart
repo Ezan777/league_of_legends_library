@@ -13,7 +13,10 @@ import 'package:league_of_legends_library/bloc/champion_skin/skin_event.dart';
 import 'package:league_of_legends_library/bloc/favorites/favorites_bloc.dart';
 import 'package:league_of_legends_library/bloc/favorites/favorites_event.dart';
 import 'package:league_of_legends_library/bloc/match_history/match_history_bloc.dart';
+import 'package:league_of_legends_library/bloc/match_history/match_history_event.dart';
 import 'package:league_of_legends_library/bloc/summoner/summoner_bloc.dart';
+import 'package:league_of_legends_library/bloc/summoner/summoner_event.dart';
+import 'package:league_of_legends_library/bloc/summoner/summoner_state.dart';
 import 'package:league_of_legends_library/bloc/user/change_password/change_password_bloc.dart';
 import 'package:league_of_legends_library/bloc/user/delete_user/delete_user_bloc.dart';
 import 'package:league_of_legends_library/bloc/user/login/login_bloc.dart';
@@ -30,6 +33,8 @@ import 'package:league_of_legends_library/bloc/settings/theme_bloc/theme_state.d
 import 'package:league_of_legends_library/bloc/user/sign_up/sign_up_bloc.dart';
 import 'package:league_of_legends_library/bloc/user/user_bloc.dart';
 import 'package:league_of_legends_library/bloc/user/user_event.dart';
+import 'package:league_of_legends_library/bloc/user/user_state.dart';
+import 'package:league_of_legends_library/data/riot_summoner_api.dart';
 import 'package:league_of_legends_library/firebase_options.dart';
 import 'package:league_of_legends_library/view/homepage/homepage.dart';
 import 'package:league_of_legends_library/view/settings/language_settings/available_languages.dart';
@@ -127,17 +132,42 @@ class MyApp extends StatelessWidget {
                 DeleteUserBloc(appModel.userRepository, appModel.authSource),
           ),
         ],
-        child: BlocListener<LanguageBloc, LanguageState>(
-          listener: (context, languageState) {
-            if (languageState is LanguageLoaded) {
-              context
-                  .read<RecentlyViewedBloc>()
-                  .add(ChangedLanguage(languageState.language));
-              context
-                  .read<FavoritesBloc>()
-                  .add(ApplicationLanguageChanged(languageState.language));
-            }
-          },
+        child: MultiBlocListener(
+          listeners: [
+            BlocListener<LanguageBloc, LanguageState>(
+                listener: (context, languageState) {
+              if (languageState is LanguageLoaded) {
+                context
+                    .read<RecentlyViewedBloc>()
+                    .add(ChangedLanguage(languageState.language));
+                context
+                    .read<FavoritesBloc>()
+                    .add(ApplicationLanguageChanged(languageState.language));
+              }
+            }),
+            BlocListener<UserBloc, UserState>(
+              listener: (context, state) {
+                if (state is UserLogged) {
+                  context.read<SummonerBloc>().add(SummonerStarted(
+                      state.appUser.summonerName,
+                      state.appUser.tagLine,
+                      RiotServer.fromServerCode(state.appUser.serverCode)));
+                }
+              },
+            ),
+            BlocListener<SummonerBloc, SummonerState>(
+              listener: (context, state) {
+                if (state is SummonerSuccess) {
+                  context.read<MatchHistoryBloc>().add(MatchHistoryStarted(
+                      RiotRegion.fromServer(RiotServer.fromServerCode(
+                              state.summoner.serverCode))
+                          .name,
+                      state.summoner.puuid,
+                      count: 10));
+                }
+              },
+            ),
+          ],
           child: BlocBuilder<ThemeBloc, ThemeState>(
             builder: (context, themeState) =>
                 BlocBuilder<LanguageBloc, LanguageState>(
