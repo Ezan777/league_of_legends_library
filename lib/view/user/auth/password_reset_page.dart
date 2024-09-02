@@ -37,7 +37,7 @@ class PasswordResetPage extends StatelessWidget {
           child: BlocBuilder<PasswordResetBloc, PasswordResetState>(
             builder: (context, state) => switch (state) {
               PasswordResetInitial() || PasswordResetError() => Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15),
+                  padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
                   child: Form(
                     key: resetFromKey,
                     child: Column(
@@ -79,9 +79,9 @@ class PasswordResetPage extends StatelessWidget {
                     ),
                   ),
                 ),
-              PasswordResetLoading() => const Center(
+              PasswordResetLoading() => const Padding(padding: EdgeInsets.all(15), child: Center(
                   child: CircularProgressIndicator(),
-                ),
+                ),),
               PasswordResetSuccess() => _successfullySentPasswordReset(),
             },
           ),
@@ -89,8 +89,7 @@ class PasswordResetPage extends StatelessWidget {
       ),
     );
   }
-
-  // TODO fix alignment
+  
   Widget _successfullySentPasswordReset() => const Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
