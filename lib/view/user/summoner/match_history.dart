@@ -121,7 +121,6 @@ class MatchHistory extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 15),
       padding: const EdgeInsets.all(5),
-      constraints: BoxConstraints(maxWidth: maxWidth),
       decoration: BoxDecoration(
         color: containerColor,
         borderRadius: BorderRadius.circular(20),
@@ -201,7 +200,11 @@ class MatchHistory extends StatelessWidget {
               // Items
               Padding(
                 padding: const EdgeInsets.all(10),
-                child: Row(
+                child: SizedBox(
+                  width: 0.35 * maxWidth,
+                  child: FittedBox(
+                  fit: BoxFit.fitWidth,
+                  child: Row(
                   children: [
                     Column(
                       children: [
@@ -223,6 +226,8 @@ class MatchHistory extends StatelessWidget {
                     ),
                     _itemTile(context, maxWidth, participant.trinketIconUri),
                   ],
+                ),
+                ),
                 ),
               ),
             ],
@@ -269,7 +274,9 @@ class MatchHistory extends StatelessWidget {
                       color: Colors.yellowAccent.shade700,
                     ),
                   ),
-                  child: Center(
+                  child: FittedBox(
+                    fit: BoxFit.fitHeight,
+                    child: Center(
                     child: Text(
                       participant.championLevel.toString(),
                       semanticsLabel: "${AppLocalizations.of(context)?.matchBannerChampionTileSemanticLabel(participant.championId) ?? "Playing as: ${participant.championId}"}, ${AppLocalizations.of(context)
@@ -280,6 +287,7 @@ class MatchHistory extends StatelessWidget {
                             color: Colors.white,
                           ),
                     ),
+                  ),
                   ),
                 ),
               ),
@@ -312,8 +320,6 @@ class MatchHistory extends StatelessWidget {
   Widget _itemTile(BuildContext context, double maxWidth, String itemIconUri) =>
       Container(
         margin: const EdgeInsets.all(2),
-        width: 0.08 * maxWidth,
-        height: 0.08 * maxWidth,
         decoration: BoxDecoration(
           color: MediaQuery.of(context).platformBrightness == Brightness.light
               ? Colors.grey.shade300

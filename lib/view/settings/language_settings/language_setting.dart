@@ -26,7 +26,7 @@ class LanguageSetting extends StatelessWidget {
                   );
                 },
                 child: Container(
-                  height: 65,
+                  constraints: const BoxConstraints(minHeight: 65),
                   decoration: BoxDecoration(
                     border: Border.symmetric(
                         horizontal: BorderSide(

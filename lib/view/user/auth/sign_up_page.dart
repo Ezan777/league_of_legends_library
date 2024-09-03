@@ -298,7 +298,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                   const BorderRadius.all(Radius.circular(50)),
                             ),
                           ),
-                        Text(server.serverCode),
+                        Text(server.serverCode, style: Theme.of(context).textTheme.bodyMedium,),
                       ],
                     ),
                   ),

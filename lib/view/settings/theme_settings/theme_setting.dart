@@ -25,7 +25,7 @@ class ThemeSetting extends StatelessWidget {
                           ThemeModeRadioList(themeMode: state.themeMode));
                 },
                 child: Container(
-                  height: 65,
+                  constraints: const BoxConstraints(minHeight: 65),
                   decoration: BoxDecoration(
                     border: Border.symmetric(
                         horizontal: BorderSide(

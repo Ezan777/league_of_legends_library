@@ -77,7 +77,7 @@ class _ChampionSelectionPageState extends State<ChampionSelectionPage> {
       GridView.builder(
         itemCount: championsId.length,
         gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-            maxCrossAxisExtent: 200, mainAxisExtent: 200),
+            maxCrossAxisExtent: 210, mainAxisExtent: 200),
         itemBuilder: (context, index) => ChampionButton(
             championId: championsId[index],
             championRepository: widget.championRepository),

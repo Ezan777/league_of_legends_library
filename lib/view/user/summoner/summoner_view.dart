@@ -147,7 +147,7 @@ class _SummonerViewState extends State<SummonerView> {
                 );
               },
             ),
-            expandedHeight: 175,
+            expandedHeight: 200,
             collapsedHeight: collapsedHeight,
           ),
           SliverToBoxAdapter(
@@ -275,7 +275,7 @@ class _SummonerViewState extends State<SummonerView> {
                         fontStyle: FontStyle.italic,
                       ),
                 ),
-                Text(
+                TextScroll(
                   AppLocalizations.of(context)
                           ?.summonerLevel(state.summoner.level) ??
                       "Level: ${state.summoner.level}",
@@ -283,7 +283,12 @@ class _SummonerViewState extends State<SummonerView> {
                         fontWeight: FontWeight.bold,
                         fontStyle: FontStyle.italic,
                       ),
-                )
+                      velocity: const Velocity(pixelsPerSecond: Offset(50, 0)),
+                  pauseBetween: const Duration(milliseconds: 1600),
+                  selectable: false,
+                  intervalSpaces: 6,
+                  mode: TextScrollMode.endless,
+                ),
               ],
             ),
           ),

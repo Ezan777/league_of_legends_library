@@ -129,7 +129,9 @@ class _ChampionButtonState extends State<ChampionButton> {
 
   Widget _buildNameText(
           {required Champion champion, required BuildContext context}) =>
-      Text(
+      FittedBox(
+        fit: BoxFit.fitWidth,
+        child: Text(
         champion.name,
         overflow: TextOverflow.ellipsis,
         style: Theme.of(context).textTheme.headlineSmall?.copyWith(
@@ -137,5 +139,6 @@ class _ChampionButtonState extends State<ChampionButton> {
               fontWeight: FontWeight.bold,
               fontStyle: FontStyle.italic,
             ),
+      ),
       );
 }
