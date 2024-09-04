@@ -146,7 +146,7 @@ class RankContainer extends StatelessWidget {
       },
       child: Center(
         child: Padding(
-          padding: const EdgeInsets.only(top: 45),
+          padding: const EdgeInsets.symmetric(vertical: 45),
           child: Text(
             "Unranked",
             style: Theme.of(context).textTheme.headlineLarge?.copyWith(

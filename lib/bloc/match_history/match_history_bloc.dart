@@ -25,7 +25,7 @@ class MatchHistoryBloc extends Bloc<MatchHistoryEvent, MatchHistoryState> {
           queueType,
           count: event.count,
         );
-        emit(MatchHistoryLoaded(matches, true));
+        emit(MatchHistoryLoaded(matches, queueType != QueueType.values.last));
       }
       emit(MatchHistoryLoaded(matches, false));
     } catch (e) {

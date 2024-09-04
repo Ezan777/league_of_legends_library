@@ -22,11 +22,11 @@ class MatchHistory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<MatchHistoryBloc, MatchHistoryState>(
-      builder: (context, matchesState) => switch (matchesState) {
+      builder: (context, state) => switch (state) {
         MatchHistoryLoading() => _loading(),
         MatchHistoryError() => SliverToBoxAdapter(
             child: GenericErrorView(
-              error: matchesState.error,
+              error: state.error,
               retryCallback: () {
                 context.read<MatchHistoryBloc>().add(MatchHistoryStarted(
                     RiotRegion.fromServer(
@@ -37,7 +37,7 @@ class MatchHistory extends StatelessWidget {
             ),
           ),
         MatchHistoryLoaded() =>
-          _buildView(context, summoner.puuid, matchesState),
+          _buildView(context, summoner.puuid, state),
       },
     );
   }
@@ -45,7 +45,7 @@ class MatchHistory extends StatelessWidget {
   Widget _buildView(
       BuildContext context, String summonerPuuid, MatchHistoryLoaded state) {
     final matches = state.matches[queueType];
-    if (matches != null) {
+    if (matches != null && matches.isNotEmpty) {
       return _buildList(context, matches, summonerPuuid);
     } else {
       return state.isLoadingOtherMatches
