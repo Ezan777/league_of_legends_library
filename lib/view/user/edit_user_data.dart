@@ -441,7 +441,7 @@ class _EditUserDataState extends State<EditUserData>
                     suffixIcon: const Icon(
                       Icons.edit,
                     ),
-                    label: Text(label),
+                    label: Text(label, overflow: TextOverflow.ellipsis,),
                   ),
                 ),
               )
@@ -503,7 +503,7 @@ class _EditUserDataState extends State<EditUserData>
                 constraints: const BoxConstraints(maxWidth: 140),
                 child: Center(
                   child: Text(AppLocalizations.of(context)?.saveChanges ??
-                      "Save changes"),
+                      "Save changes", overflow: TextOverflow.ellipsis,),
                 ),
               ),
             ),
