@@ -25,11 +25,12 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
+  bool obscurePassword = true;
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    final emailController = TextEditingController();
-    final passwordController = TextEditingController();
-
     reloadPage() {
       context.read<LoginBloc>().add(LoginStarted());
     }
@@ -163,7 +164,7 @@ class _LoginViewState extends State<LoginView> {
                 ),
                 TextFormField(
                   controller: passwordController,
-                  obscureText: true,
+                  obscureText: obscurePassword,
                   onFieldSubmitted: (value) {
                     submitForm();
                   },
@@ -173,6 +174,16 @@ class _LoginViewState extends State<LoginView> {
                           "Please enter your password"
                       : null,
                   decoration: InputDecoration(
+                    suffixIcon: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          obscurePassword = !obscurePassword;
+                        });
+                      },
+                      icon: obscurePassword
+                          ? const Icon(Icons.visibility)
+                          : const Icon(Icons.visibility_off),
+                    ),
                     border: const OutlineInputBorder(),
                     labelText: AppLocalizations.of(context)?.passwordLabel ??
                         "Password",
