@@ -134,7 +134,11 @@ class MatchHistory extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Text(
+              Container(
+                constraints: BoxConstraints(maxWidth: 0.25* maxWidth),
+                child: FittedBox(
+                  fit: BoxFit.fitWidth,
+                  child: Text(
                 participant.isWinner
                     ? AppLocalizations.of(context)?.wonMatchLabel ?? "WIN"
                     : AppLocalizations.of(context)?.lostMatchLabel ?? "LOSS",
@@ -143,7 +147,13 @@ class MatchHistory extends StatelessWidget {
                       color: onContainerColor,
                     ),
               ),
-              Text(
+                ),
+              ),
+              Container(
+                constraints: BoxConstraints(maxWidth: 0.25* maxWidth),
+                child: FittedBox(
+                  fit: BoxFit.fitWidth,
+                  child: Text(
                 match.gameDurationString,
                 semanticsLabel: AppLocalizations.of(context)
                         ?.durationSemanticLabel(match.gameDurationString) ??
@@ -152,12 +162,21 @@ class MatchHistory extends StatelessWidget {
                       color: onContainerColor,
                     ),
               ),
-              Text(
+                ),
+              ),
+              Container(
+                constraints: BoxConstraints(maxWidth: 0.25* maxWidth),
+                child: FittedBox(
+                  fit: BoxFit.fitWidth,
+                  child: Text(
                 match.gameCreationDateString,
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                       color: onContainerColor,
                     ),
               ),
+                ),
+              ),
+              
             ],
           ),
           const SizedBox(
@@ -171,9 +190,12 @@ class MatchHistory extends StatelessWidget {
               // Summoner's spells
               _summonerSpells(maxWidth, participant),
               // KDA and CS
-              Padding(
+              Container(
                 padding: const EdgeInsets.all(3),
-                child: Column(
+                constraints: BoxConstraints(maxWidth: 0.21 * maxWidth),
+                child: FittedBox(
+                  fit: BoxFit.fitWidth,
+                  child: Column(
                   children: [
                     Text(
                       "${participant.kills}/${participant.deaths}/${participant.assists}",
@@ -195,6 +217,7 @@ class MatchHistory extends StatelessWidget {
                           ),
                     ),
                   ],
+                ),
                 ),
               ),
               // Items
