@@ -134,29 +134,48 @@ class MatchHistory extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Text(
-                participant.isWinner
-                    ? AppLocalizations.of(context)?.wonMatchLabel ?? "WIN"
-                    : AppLocalizations.of(context)?.lostMatchLabel ?? "LOSS",
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: onContainerColor,
-                    ),
+              Container(
+                constraints: BoxConstraints(maxWidth: 0.25 * maxWidth),
+                child: FittedBox(
+                  fit: BoxFit.fitWidth,
+                  child: Text(
+                    participant.isWinner
+                        ? AppLocalizations.of(context)?.wonMatchLabel ?? "WIN"
+                        : AppLocalizations.of(context)?.lostMatchLabel ??
+                            "LOSS",
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: onContainerColor,
+                        ),
+                  ),
+                ),
               ),
-              Text(
-                match.gameDurationString,
-                semanticsLabel: AppLocalizations.of(context)
-                        ?.durationSemanticLabel(match.gameDurationString) ??
-                    "Duration: ${match.gameDurationString}",
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: onContainerColor,
-                    ),
+              Container(
+                constraints: BoxConstraints(maxWidth: 0.25 * maxWidth),
+                child: FittedBox(
+                  fit: BoxFit.fitWidth,
+                  child: Text(
+                    match.gameDurationString,
+                    semanticsLabel: AppLocalizations.of(context)
+                            ?.durationSemanticLabel(match.gameDurationString) ??
+                        "Duration: ${match.gameDurationString}",
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: onContainerColor,
+                        ),
+                  ),
+                ),
               ),
-              Text(
-                match.gameCreationDateString,
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: onContainerColor,
-                    ),
+              Container(
+                constraints: BoxConstraints(maxWidth: 0.25 * maxWidth),
+                child: FittedBox(
+                  fit: BoxFit.fitWidth,
+                  child: Text(
+                    match.gameCreationDateString,
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: onContainerColor,
+                        ),
+                  ),
+                ),
               ),
             ],
           ),
@@ -171,30 +190,34 @@ class MatchHistory extends StatelessWidget {
               // Summoner's spells
               _summonerSpells(maxWidth, participant),
               // KDA and CS
-              Padding(
+              Container(
                 padding: const EdgeInsets.all(3),
-                child: Column(
-                  children: [
-                    Text(
-                      "${participant.kills}/${participant.deaths}/${participant.assists}",
-                      semanticsLabel: AppLocalizations.of(context)
-                              ?.kdaSemanticLabel(participant.kills,
-                                  participant.deaths, participant.assists) ??
-                          "${participant.kills} kills, ${participant.deaths} deaths, ${participant.assists} assists",
-                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                            color: onContainerColor,
-                          ),
-                    ),
-                    Text(
-                      "${participant.minionsKilled.toString()} CS",
-                      semanticsLabel: AppLocalizations.of(context)
-                          ?.minionsKilledSemanticLabel(
-                              participant.minionsKilled),
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: onContainerColor,
-                          ),
-                    ),
-                  ],
+                constraints: BoxConstraints(maxWidth: 0.21 * maxWidth),
+                child: FittedBox(
+                  fit: BoxFit.fitWidth,
+                  child: Column(
+                    children: [
+                      Text(
+                        "${participant.kills}/${participant.deaths}/${participant.assists}",
+                        semanticsLabel: AppLocalizations.of(context)
+                                ?.kdaSemanticLabel(participant.kills,
+                                    participant.deaths, participant.assists) ??
+                            "${participant.kills} kills, ${participant.deaths} deaths, ${participant.assists} assists",
+                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                              color: onContainerColor,
+                            ),
+                      ),
+                      Text(
+                        "${participant.minionsKilled.toString()} CS",
+                        semanticsLabel: AppLocalizations.of(context)
+                            ?.minionsKilledSemanticLabel(
+                                participant.minionsKilled),
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              color: onContainerColor,
+                            ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               // Items

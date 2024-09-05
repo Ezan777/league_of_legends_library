@@ -441,7 +441,10 @@ class _EditUserDataState extends State<EditUserData>
                     suffixIcon: const Icon(
                       Icons.edit,
                     ),
-                    label: Text(label),
+                    label: Text(
+                      label,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
                 ),
               )
@@ -502,8 +505,10 @@ class _EditUserDataState extends State<EditUserData>
                 width: 0.3 * MediaQuery.of(context).size.width,
                 constraints: const BoxConstraints(maxWidth: 140),
                 child: Center(
-                  child: Text(AppLocalizations.of(context)?.saveChanges ??
-                      "Save changes"),
+                  child: Text(
+                    AppLocalizations.of(context)?.saveChanges ?? "Save changes",
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
               ),
             ),

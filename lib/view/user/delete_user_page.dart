@@ -17,11 +17,12 @@ class DeleteUserPage extends StatefulWidget {
 }
 
 class _DeleteUserPageState extends State<DeleteUserPage> {
+  final TextEditingController passwordController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
+  bool obscurePassword = true;
+
   @override
   Widget build(BuildContext context) {
-    final TextEditingController passwordController = TextEditingController();
-    final formKey = GlobalKey<FormState>();
-
     return Scaffold(
       appBar: AppBar(
         title: Text(AppLocalizations.of(context)?.deleteAccountPageTitle ??
@@ -138,7 +139,7 @@ class _DeleteUserPageState extends State<DeleteUserPage> {
                 controller: passwordController,
                 textInputAction: TextInputAction.done,
                 onFieldSubmitted: (value) => onSubmit(),
-                obscureText: true,
+                obscureText: obscurePassword,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return AppLocalizations.of(context)?.emptyPassword ??
@@ -151,6 +152,16 @@ class _DeleteUserPageState extends State<DeleteUserPage> {
                   border: const OutlineInputBorder(),
                   labelText:
                       AppLocalizations.of(context)?.passwordLabel ?? "Password",
+                  suffixIcon: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        obscurePassword = !obscurePassword;
+                      });
+                    },
+                    icon: obscurePassword
+                        ? const Icon(Icons.visibility)
+                        : const Icon(Icons.visibility_off),
+                  ),
                 ),
               ),
               const SizedBox(
