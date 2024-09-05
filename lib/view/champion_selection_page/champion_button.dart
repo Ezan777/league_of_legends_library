@@ -132,13 +132,13 @@ class _ChampionButtonState extends State<ChampionButton> {
       FittedBox(
         fit: BoxFit.fitWidth,
         child: Text(
-        champion.name,
-        overflow: TextOverflow.ellipsis,
-        style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-              color: Theme.of(context).colorScheme.onSurface,
-              fontWeight: FontWeight.bold,
-              fontStyle: FontStyle.italic,
-            ),
-      ),
+          champion.name,
+          overflow: TextOverflow.ellipsis,
+          style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                color: Theme.of(context).colorScheme.onSurface,
+                fontWeight: FontWeight.bold,
+                fontStyle: FontStyle.italic,
+              ),
+        ),
       );
 }

@@ -20,9 +20,9 @@ class GenericErrorView extends StatelessWidget {
     final String retryLabel =
         AppLocalizations.of(context)?.retryButton ?? "Retry";
 
-    if (error is Exception) {
+    /* if (error is Exception) {
       message += " Error: $error";
-    }
+    } */
 
     return switch (error) {
       _ => _genericError(context, theme, title, message, retryLabel,

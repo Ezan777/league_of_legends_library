@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:league_of_legends_library/core/model/league_of_legends/rank.dart';
+import 'package:league_of_legends_library/view/errors/image_not_available.dart';
 
 class RankContainer extends StatelessWidget {
   final Rank? rank;
@@ -67,6 +68,7 @@ class RankContainer extends StatelessWidget {
           children: [
             CachedNetworkImage(
               imageUrl: rank.tierIconUri,
+              errorWidget: (context, url, error) => const ImageNotAvailable(),
               width: 128,
               height: 128,
             ),

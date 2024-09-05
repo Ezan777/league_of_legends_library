@@ -283,7 +283,7 @@ class _SummonerViewState extends State<SummonerView> {
                         fontWeight: FontWeight.bold,
                         fontStyle: FontStyle.italic,
                       ),
-                      velocity: const Velocity(pixelsPerSecond: Offset(50, 0)),
+                  velocity: const Velocity(pixelsPerSecond: Offset(50, 0)),
                   pauseBetween: const Duration(milliseconds: 1600),
                   selectable: false,
                   intervalSpaces: 6,

@@ -13,6 +13,7 @@ import 'package:league_of_legends_library/core/model/league_of_legends/summoner.
 import 'package:league_of_legends_library/data/riot_summoner_api.dart';
 import 'package:league_of_legends_library/view/errors/generic_error_view.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:league_of_legends_library/view/errors/image_not_available.dart';
 
 class MatchHistory extends StatelessWidget {
   final QueueType queueType;
@@ -36,8 +37,7 @@ class MatchHistory extends StatelessWidget {
               },
             ),
           ),
-        MatchHistoryLoaded() =>
-          _buildView(context, summoner.puuid, state),
+        MatchHistoryLoaded() => _buildView(context, summoner.puuid, state),
       },
     );
   }
@@ -203,31 +203,37 @@ class MatchHistory extends StatelessWidget {
                 child: SizedBox(
                   width: 0.35 * maxWidth,
                   child: FittedBox(
-                  fit: BoxFit.fitWidth,
-                  child: Row(
-                  children: [
-                    Column(
+                    fit: BoxFit.fitWidth,
+                    child: Row(
                       children: [
-                        Row(
-                          children: participant.itemsIconUri
-                              .sublist(0, participant.itemsIconUri.length > 3 ? 3 : participant.itemsIconUri.length)
-                              .map((itemIconUri) =>
-                                  _itemTile(context, maxWidth, itemIconUri))
-                              .toList(),
+                        Column(
+                          children: [
+                            Row(
+                              children: participant.itemsIconUri
+                                  .sublist(
+                                      0,
+                                      participant.itemsIconUri.length > 3
+                                          ? 3
+                                          : participant.itemsIconUri.length)
+                                  .map((itemIconUri) =>
+                                      _itemTile(context, maxWidth, itemIconUri))
+                                  .toList(),
+                            ),
+                            if (participant.itemsIconUri.length > 4)
+                              Row(
+                                children: participant.itemsIconUri
+                                    .sublist(3)
+                                    .map((itemIconUri) => _itemTile(
+                                        context, maxWidth, itemIconUri))
+                                    .toList(),
+                              ),
+                          ],
                         ),
-                        if (participant.itemsIconUri.length > 4) Row(
-                          children: participant.itemsIconUri
-                              .sublist(3)
-                              .map((itemIconUri) =>
-                                  _itemTile(context, maxWidth, itemIconUri))
-                              .toList(),
-                        ),
+                        _itemTile(
+                            context, maxWidth, participant.trinketIconUri),
                       ],
                     ),
-                    _itemTile(context, maxWidth, participant.trinketIconUri),
-                  ],
-                ),
-                ),
+                  ),
                 ),
               ),
             ],
@@ -247,20 +253,23 @@ class MatchHistory extends StatelessWidget {
           child: Stack(
             children: [
               Container(
-                  width: 0.23 * maxWidth,
-                  height: 0.23 * maxWidth,
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Colors.grey.shade900,
-                      width: 1,
-                    ),
-                    shape: BoxShape.circle,
+                width: 0.23 * maxWidth,
+                height: 0.23 * maxWidth,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.grey.shade900,
+                    width: 1,
                   ),
-                  child: ClipOval(
-                    child: CachedNetworkImage(
-                        imageUrl: participant.championIconUri),
+                  shape: BoxShape.circle,
+                ),
+                child: ClipOval(
+                  child: CachedNetworkImage(
+                    imageUrl: participant.championIconUri,
+                    errorWidget: (context, url, error) =>
+                        const ImageNotAvailable(),
                   ),
                 ),
+              ),
               Positioned(
                 top: 0.19 * maxWidth,
                 left: 0.07 * maxWidth,
@@ -277,17 +286,15 @@ class MatchHistory extends StatelessWidget {
                   child: FittedBox(
                     fit: BoxFit.fitHeight,
                     child: Center(
-                    child: Text(
-                      participant.championLevel.toString(),
-                      semanticsLabel: "${AppLocalizations.of(context)?.matchBannerChampionTileSemanticLabel(participant.championId) ?? "Playing as: ${participant.championId}"}, ${AppLocalizations.of(context)
-                              ?.championLevelSemantic(
-                                  participant.championLevel) ??
-                          "Level: ${participant.championLevel}"}",
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: Colors.white,
-                          ),
+                      child: Text(
+                        participant.championLevel.toString(),
+                        semanticsLabel:
+                            "${AppLocalizations.of(context)?.matchBannerChampionTileSemanticLabel(participant.championId) ?? "Playing as: ${participant.championId}"}, ${AppLocalizations.of(context)?.championLevelSemantic(participant.championLevel) ?? "Level: ${participant.championLevel}"}",
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              color: Colors.white,
+                            ),
+                      ),
                     ),
-                  ),
                   ),
                 ),
               ),
@@ -308,7 +315,11 @@ class MatchHistory extends StatelessWidget {
                     width: 0.09 * maxWidth,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
-                      child: CachedNetworkImage(imageUrl: summonerSpellIconUri),
+                      child: CachedNetworkImage(
+                        imageUrl: summonerSpellIconUri,
+                        errorWidget: (context, url, error) =>
+                            const ImageNotAvailable(),
+                      ),
                     ),
                   ),
                 ),
@@ -328,6 +339,9 @@ class MatchHistory extends StatelessWidget {
         ),
         child: ClipRRect(
             borderRadius: BorderRadius.circular(10),
-            child: CachedNetworkImage(imageUrl: itemIconUri)),
+            child: CachedNetworkImage(
+              imageUrl: itemIconUri,
+              errorWidget: (context, url, error) => const ImageNotAvailable(),
+            )),
       );
 }
